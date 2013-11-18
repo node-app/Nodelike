@@ -15,6 +15,8 @@
 JSExportAs(open,  - (JSValue *)open:(NSString *)path flags:(NSNumber *)flags mode:(NSNumber *)mode callback:(JSValue *)cb);
 JSExportAs(close, - (JSValue *)close:(NSNumber *)file callback:(JSValue *)cb);
 
+JSExportAs(read, - (JSValue *)read:(NSNumber *)file to:(JSValue *)target offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb);
+
 JSExportAs(readdir, - (JSValue *)readDir:(NSString *)path callback:(JSValue *)cb);
 
 JSExportAs(fdatasync, - (JSValue *)fdatasync:(NSNumber *)file callback:(JSValue *)cb);
