@@ -16,9 +16,7 @@
 }
 
 + (NSNumber *)writeString:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
-
     return [NLBindingBuffer write:[str UTF8String] toBuffer:target atOffset:off withLength:len];
-
 }
 
 + (NSNumber *)write:(const char *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
@@ -42,9 +40,32 @@
     
 }
 
++ (NSString *)slice:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg inContext:(NLContext *)ctx {
+    size_t start = [start_arg intValue], end = [end_arg intValue], len = end - start;
+    char *data = malloc(len);
+    for (int i = 0; i < len; i++) {
+        data[i] = [[buffer objectAtIndexedSubscript:i + start] toInt32];
+    }
+    NSString *str = [NSString stringWithUTF8String:data];
+    free(data);
+    return str;
+}
+
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
 
     JSValue *proto = target[@"prototype"];
+    
+    proto[@"asciiSlice"] = ^(NSNumber *start, NSNumber *end) {
+        return [NLBindingBuffer slice:[NLContext currentThis] from:start to:end inContext:[NLContext currentContext]];
+    };
+    
+    proto[@"binarySlice"] = ^(NSNumber *start, NSNumber *end) {
+        return [NLBindingBuffer slice:[NLContext currentThis] from:start to:end inContext:[NLContext currentContext]];
+    };
+    
+    proto[@"utf8Slice"] = ^(NSNumber *start, NSNumber *end) {
+        return [NLBindingBuffer slice:[NLContext currentThis] from:start to:end inContext:[NLContext currentContext]];
+    };
     
     proto[@"asciiWrite"] = ^(NSString *string, JSValue *off, JSValue *len) {
         return [NLBindingBuffer writeString:string toBuffer:[NLContext currentThis] atOffset:off withLength:len];
