@@ -151,7 +151,7 @@ static void after(uv_fs_t* req) {
 #pragma mark stat
 
 const static NSTimeInterval spec_to_time(uv_timespec_t spec) {
-    return ((double)spec.tv_sec) * 1000 + ((double)spec.tv_nsec) / 1000 / 1000 / 1000;
+    return ((double)spec.tv_sec) * 1000 + ((double)spec.tv_nsec) / 1000 / 1000;
 }
 
 - (JSValue *)buildStatsObject:(const uv_stat_t *)s inContext:(JSContext *)context {
