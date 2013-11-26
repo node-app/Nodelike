@@ -150,19 +150,26 @@ static void after(uv_fs_t* req) {
 
 #pragma mark stat
 
+const static NSTimeInterval spec_to_time(uv_timespec_t spec) {
+    return ((double)spec.tv_sec) * 1000 + ((double)spec.tv_nsec) / 1000 / 1000 / 1000;
+}
+
 - (JSValue *)buildStatsObject:(const uv_stat_t *)s inContext:(JSContext *)context {
     JSValue *stats = [JSValue valueWithNewObjectInContext:context];
     stats[@"__proto__"] = _Stats[@"prototype"];
-    stats[@"dev"]     = [JSValue valueWithInt32:s->st_dev    inContext:context];
-    stats[@"mode"]    = [JSValue valueWithInt32:s->st_mode   inContext:context];
-    stats[@"nlink"]   = [JSValue valueWithInt32:s->st_nlink  inContext:context];
-    stats[@"uid"]     = [JSValue valueWithInt32:s->st_uid    inContext:context];
-    stats[@"gid"]     = [JSValue valueWithInt32:s->st_gid    inContext:context];
-    stats[@"rdev"]    = [JSValue valueWithInt32:s->st_rdev   inContext:context];
-    stats[@"ino"]     = [JSValue valueWithInt32:s->st_ino    inContext:context];
-    stats[@"size"]    = [JSValue valueWithInt32:s->st_size   inContext:context];
-    stats[@"blocks"]  = [JSValue valueWithInt32:s->st_blocks inContext:context];
-    // @TODO: atime, mtime, ctime, birthtime
+    stats[@"dev"]       = [JSValue valueWithInt32:s->st_dev    inContext:context];
+    stats[@"mode"]      = [JSValue valueWithInt32:s->st_mode   inContext:context];
+    stats[@"nlink"]     = [JSValue valueWithInt32:s->st_nlink  inContext:context];
+    stats[@"uid"]       = [JSValue valueWithInt32:s->st_uid    inContext:context];
+    stats[@"gid"]       = [JSValue valueWithInt32:s->st_gid    inContext:context];
+    stats[@"rdev"]      = [JSValue valueWithInt32:s->st_rdev   inContext:context];
+    stats[@"ino"]       = [JSValue valueWithInt32:s->st_ino    inContext:context];
+    stats[@"size"]      = [JSValue valueWithInt32:s->st_size   inContext:context];
+    stats[@"blocks"]    = [JSValue valueWithInt32:s->st_blocks inContext:context];
+    stats[@"atime"]     = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_atim)];
+    stats[@"mtime"]     = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_mtim)];
+    stats[@"ctime"]     = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_ctim)];
+    stats[@"birthtime"] = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_birthtim)];
     return stats;
 }
 
