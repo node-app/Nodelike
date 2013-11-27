@@ -8,7 +8,7 @@
 
 #import "NLHandle.h"
 
-@protocol NLTimerWrapExports <JSExport>
+@protocol NLTimerExports <JSExport>
 
 - (void)ref;
 - (void)unref;
@@ -22,6 +22,6 @@ JSExportAs(start, - (NSNumber *)start:(NSNumber *)timeout repeat:(NSNumber *)rep
 
 @end
 
-@interface NLTimerWrap : NLHandle <NLTimerWrapExports>
+@interface NLTimer : NLHandle <NLTimerExports>
 
 @end

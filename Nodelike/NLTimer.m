@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 Sam Rijs. All rights reserved.
 //
 
-#import "NLTimerWrap.h"
+#import "NLTimer.h"
 
 static const unsigned int kOnTimeout = 0;
 
-@implementation NLTimerWrap {
+@implementation NLTimer {
     uv_timer_t handle;
 }
 
 + (id)binding {
-    JSValue   *timer     = [NLBinding makeConstructor:^{ return [[NLTimerWrap alloc] init]; } inContext:[NLContext currentContext]];
+    JSValue   *timer     = [NLBinding makeConstructor:^{ return [[NLTimer alloc] init]; } inContext:[NLContext currentContext]];
     timer[@"kOnTimeout"] = [NSNumber numberWithUnsignedInt:kOnTimeout];
     timer[@"now"]        = ^{
         uv_loop_t *eventLoop = [[NLContext currentContext] eventLoop];
