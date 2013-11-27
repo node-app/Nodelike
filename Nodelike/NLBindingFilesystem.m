@@ -64,7 +64,7 @@ static void after(uv_fs_t* req) {
 
 - (JSValue *)read:(NSNumber *)file to:(JSValue *)target offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
     unsigned int buffer_length = [target[@"length"] toUInt32];
-    unsigned int length   = [off isUndefined] ? buffer_length : [off toUInt32];
+    unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
     return [CALL(read, cb, [file intValue], malloc(length), length, position)
             ^(void *req, NLContext *context) {
