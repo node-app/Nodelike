@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCaresWrap.m */; };
+		B53E6998184672F3004E4EF9 /* NLStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B53E6997184672F3004E4EF9 /* NLStream.m */; };
 		B54C1F53180D37280051F826 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B54C1F94180D37810051F826 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
 		B54C1F96180D37C80051F826 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
@@ -114,6 +115,8 @@
 /* Begin PBXFileReference section */
 		B5061A381815A9B00083AB4B /* NLCaresWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCaresWrap.h; sourceTree = "<group>"; };
 		B5061A391815A9B00083AB4B /* NLCaresWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCaresWrap.m; sourceTree = "<group>"; };
+		B53E6996184672F3004E4EF9 /* NLStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLStream.h; sourceTree = "<group>"; };
+		B53E6997184672F3004E4EF9 /* NLStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLStream.m; sourceTree = "<group>"; };
 		B54C1F52180D37280051F826 /* libuv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54C1F95180D37C80051F826 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		B59E5F89181EC45A0093A6FF /* NLBindingUv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingUv.h; sourceTree = "<group>"; };
@@ -277,6 +280,8 @@
 				B59E5F90181EE3590093A6FF /* NLHandle.m */,
 				B59E5FA41820EF530093A6FF /* NLTimerWrap.h */,
 				B59E5FA51820EF530093A6FF /* NLTimerWrap.m */,
+				B53E6996184672F3004E4EF9 /* NLStream.h */,
+				B53E6997184672F3004E4EF9 /* NLStream.m */,
 				B5061A381815A9B00083AB4B /* NLCaresWrap.h */,
 				B5061A391815A9B00083AB4B /* NLCaresWrap.m */,
 				B59EA093180CB587005BF5C1 /* Nodelike.h */,
@@ -620,6 +625,7 @@
 				B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
 				B5C5B24C181321300091FDE8 /* NLBindingBuffer.m in Sources */,
+				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,
 				B59E5F94181F07090093A6FF /* NLBindingFilesystem.m in Sources */,
 				B59E5F9D181F07320093A6FF /* NLProcess.m in Sources */,
 				B59E5FA0181F073D0093A6FF /* NLBinding.m in Sources */,
