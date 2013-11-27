@@ -33,7 +33,7 @@
     
     for (int i = 0; i < max_length; i++) {
         JSValue *val = [JSValue valueWithInt32:data[i] inContext:target.context];
-        [target setObject:val atIndexedSubscript:i + offset];
+        [target setValue:val atIndex:i + offset];
     }
     
     return [NSNumber numberWithUnsignedInteger:max_length];
@@ -42,10 +42,11 @@
 
 + (NSString *)slice:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg inContext:(NLContext *)ctx {
     size_t start = [start_arg intValue], end = [end_arg intValue], len = end - start;
-    char *data = malloc(len);
+    char *data = malloc(len + 1);
     for (int i = 0; i < len; i++) {
-        data[i] = [[buffer objectAtIndexedSubscript:i + start] toInt32];
+        data[i] = [[buffer valueAtIndex:i + start] toInt32];
     }
+    data[len] = '\0';
     NSString *str = [NSString stringWithUTF8String:data];
     free(data);
     return str;
