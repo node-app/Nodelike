@@ -52,12 +52,12 @@ static void onReadCommon(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf
     wrap.callbacks->doRead(handle, nread, buf, pending);
 }
 
-void doAlloc(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
+static void doAlloc(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
     buf->base = malloc(suggested_size);
     buf->len  = suggested_size;
 }
 
-void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
+static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
     
 }
 
