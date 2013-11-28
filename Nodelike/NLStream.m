@@ -9,25 +9,34 @@
 #import "NLStream.h"
 
 @implementation NLStream {
-    uv_stream_t *stream;
+    struct NLStreamCallbacks defaultCallbacks;
 }
 
 #define isNamedPipe(stream)    (stream->type == UV_NAMED_PIPE)
 #define isNamedPipeIPC(stream) (isNamedPipe(stream) && ((uv_pipe_t *)stream)->ipc != 0)
 #define isTCP(stream)          (stream->type == UV_TCP)
 
+- (id)init {
+    defaultCallbacks.doAlloc = doAlloc;
+    defaultCallbacks.doRead  = doRead;
+    _callbacks = &defaultCallbacks;
+    return [super init];
+}
+
 - (NSNumber *)readStart {
     int err;
-    if (isNamedPipeIPC(stream)) {
-        err = uv_read2_start(stream, onAlloc, onRead2);
+    if (isNamedPipeIPC(_stream)) {
+        err = uv_read2_start(_stream, onAlloc, onRead2);
     } else {
-        err = uv_read_start(stream, onAlloc, onRead);
+        err = uv_read_start(_stream, onAlloc, onRead);
     }
     return [NSNumber numberWithInt:err];
 }
 
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
-    return;
+    NLStream *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:[NLStream class]];
+    assert(wrap.stream == (uv_stream_t *)handle);
+    wrap.callbacks->doAlloc(handle, suggested_size, buf);
 }
 
 static void onRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf) {
@@ -39,9 +48,18 @@ static void onRead2(uv_pipe_t *handle, ssize_t nread, const uv_buf_t *buf, uv_ha
 }
 
 static void onReadCommon(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
-    return;
+    NLStream *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:[NLStream class]];
+    wrap.callbacks->doRead(handle, nread, buf, pending);
 }
 
+void doAlloc(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
+    buf->base = malloc(suggested_size);
+    buf->len  = suggested_size;
+}
+
+void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
+    
+}
 
 
 @end

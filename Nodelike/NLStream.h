@@ -8,6 +8,11 @@
 
 #import "NLHandle.h"
 
+struct NLStreamCallbacks {
+    void (*doAlloc)(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf);
+    void (*doRead)(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending);
+};
+
 @protocol NLStreamExports <JSExport>
 
 - (void)ref;
@@ -19,5 +24,8 @@
 @end
 
 @interface NLStream : NLHandle <NLStreamExports>
+
+@property uv_stream_t *stream;
+@property struct NLStreamCallbacks *callbacks;
 
 @end
