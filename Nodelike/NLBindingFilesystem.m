@@ -151,7 +151,7 @@ static void after(uv_fs_t* req) {
 #pragma mark stat
 
 const static JSObjectRef spec_to_date(uv_timespec_t spec, JSContextRef ctx) {
-    JSValueRef val = JSValueMakeNumber(ctx, ((double)spec.tv_sec) + ((double)spec.tv_nsec) / 1000 / 1000 / 1000);
+    JSValueRef val = JSValueMakeNumber(ctx, ((double)spec.tv_sec) * 1000 + ((double)spec.tv_nsec) / 1000 / 1000);
     return JSObjectMakeDate(ctx, 1, &val, nil);
 }
 
