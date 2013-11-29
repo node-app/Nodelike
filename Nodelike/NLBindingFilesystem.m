@@ -150,11 +150,13 @@ static void after(uv_fs_t* req) {
 
 #pragma mark stat
 
-const static NSTimeInterval spec_to_time(uv_timespec_t spec) {
-    return ((double)spec.tv_sec) * 1000 + ((double)spec.tv_nsec) / 1000 / 1000;
+const static JSObjectRef spec_to_date(uv_timespec_t spec, JSContextRef ctx) {
+    JSValueRef val = JSValueMakeNumber(ctx, ((double)spec.tv_sec) + ((double)spec.tv_nsec) / 1000 / 1000 / 1000);
+    return JSObjectMakeDate(ctx, 1, &val, nil);
 }
 
 - (JSValue *)buildStatsObject:(const uv_stat_t *)s inContext:(JSContext *)context {
+    JSContextRef contextRef = [context JSGlobalContextRef];
     JSValue *stats = [JSValue valueWithNewObjectInContext:context];
     stats[@"__proto__"] = _Stats[@"prototype"];
     stats[@"dev"]       = [JSValue valueWithInt32:s->st_dev    inContext:context];
@@ -166,10 +168,10 @@ const static NSTimeInterval spec_to_time(uv_timespec_t spec) {
     stats[@"ino"]       = [JSValue valueWithInt32:s->st_ino    inContext:context];
     stats[@"size"]      = [JSValue valueWithInt32:s->st_size   inContext:context];
     stats[@"blocks"]    = [JSValue valueWithInt32:s->st_blocks inContext:context];
-    stats[@"atime"]     = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_atim)];
-    stats[@"mtime"]     = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_mtim)];
-    stats[@"ctime"]     = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_ctim)];
-    stats[@"birthtime"] = [NSDate dateWithTimeIntervalSince1970:spec_to_time(s->st_birthtim)];
+    stats[@"atime"]     = [JSValue valueWithJSValueRef:spec_to_date(s->st_atim,     contextRef) inContext:context];
+    stats[@"mtime"]     = [JSValue valueWithJSValueRef:spec_to_date(s->st_mtim,     contextRef) inContext:context];
+    stats[@"ctime"]     = [JSValue valueWithJSValueRef:spec_to_date(s->st_ctim,     contextRef) inContext:context];
+    stats[@"birthtime"] = [JSValue valueWithJSValueRef:spec_to_date(s->st_birthtim, contextRef) inContext:context];
     return stats;
 }
 
