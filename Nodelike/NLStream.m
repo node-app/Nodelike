@@ -48,7 +48,7 @@ static void onRead2(uv_pipe_t *handle, ssize_t nread, const uv_buf_t *buf, uv_ha
 }
 
 static void onReadCommon(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
-    NLStream *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:[NLStream class]];
+    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:[NLStream class]];
     wrap.callbacks->doRead(handle, nread, buf, pending);
 }
 
