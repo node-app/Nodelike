@@ -62,7 +62,24 @@ static void doAlloc(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
 }
 
 static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
+
+    JSValue *value = (__bridge JSValue *)(handle->data);
+
+    if (nread < 0)  {
+        if (buf->base != NULL)
+            free(buf->base);
+        [[value valueForProperty:@"onread"] callWithArguments:@[[NSNumber numberWithLong:nread]]];
+        return;
+    }
+
+    if (nread == 0) {
+        if (buf->base != NULL)
+            free(buf->base);
+        return;
+    }
     
+    // TODO: implement callback call for successful read
+
 }
 
 
