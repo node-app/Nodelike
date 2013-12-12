@@ -10,6 +10,14 @@
 
 static JSValue *constructor;
 
+size_t writeBuffer(const char *data, JSValue *buffer, size_t off, size_t len) {
+    for (int i = 0; i < len; i++) {
+        JSValue *val = [JSValue valueWithInt32:data[i] inContext:buffer.context];
+        [buffer setValue:val atIndex:i + off];
+    }
+    return len;
+}
+
 @implementation NLBindingBuffer
 
 + (id)binding {
@@ -19,6 +27,12 @@ static JSValue *constructor;
 
 + (JSValue *)constructor {
     return constructor;
+}
+
++ (JSValue *)useData:(const char *)data ofLength:(size_t)len {
+    JSValue *buffer = [[self constructor] callWithArguments:@[[NSNumber numberWithLong:len]]];
+    writeBuffer(data, buffer, 0, len);
+    return buffer;
 }
 
 + (NSNumber *)writeString:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
@@ -37,12 +51,7 @@ static JSValue *constructor;
     
     max_length = MIN(obj_length - offset, max_length);
     
-    for (int i = 0; i < max_length; i++) {
-        JSValue *val = [JSValue valueWithInt32:data[i] inContext:target.context];
-        [target setValue:val atIndex:i + offset];
-    }
-    
-    return [NSNumber numberWithUnsignedInteger:max_length];
+    return [NSNumber numberWithUnsignedInteger:writeBuffer(data, target, offset, max_length)];
     
 }
 

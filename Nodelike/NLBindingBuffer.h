@@ -12,6 +12,8 @@
 
 + (JSValue *)constructor;
 
++ (JSValue *)useData:(const char *)data ofLength:(size_t)len;
+
 + (NSNumber *)writeString:(NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len;
 
 + (NSNumber *)write:(const char *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len;
