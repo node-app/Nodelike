@@ -20,6 +20,7 @@ struct NLStreamCallbacks {
 - (void)close:(JSValue *)cb;
 
 - (NSNumber *)readStart;
+- (NSNumber *)readStop;
 
 @end
 

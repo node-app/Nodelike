@@ -33,6 +33,10 @@
     return [NSNumber numberWithInt:err];
 }
 
+- (NSNumber *)readStop {
+    return [NSNumber numberWithInt:uv_read_stop(_stream)];
+}
+
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
     NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:[NLStream class]];
     assert(wrap.stream == (uv_stream_t *)handle);
