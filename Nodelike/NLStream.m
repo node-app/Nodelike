@@ -8,6 +8,8 @@
 
 #import "NLStream.h"
 
+#import "NLBindingBuffer.h"
+
 @implementation NLStream {
     struct NLStreamCallbacks defaultCallbacks;
 }
@@ -77,8 +79,12 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
             free(buf->base);
         return;
     }
+
+    JSValue *buffer = [NLBindingBuffer useData:buf->base ofLength:buf->len];
     
-    // TODO: implement callback call for successful read
+    // TODO: implement handle wrapping (TCPWrap, PipeWrap, UDPWrap) of pending handle
+    
+    [[value valueForProperty:@"onread"] callWithArguments:@[[NSNumber numberWithLong:nread], buffer]];
 
 }
 
