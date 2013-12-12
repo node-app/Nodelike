@@ -34,7 +34,7 @@
 }
 
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
-    NLStream *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:[NLStream class]];
+    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:[NLStream class]];
     assert(wrap.stream == (uv_stream_t *)handle);
     wrap.callbacks->doAlloc(handle, suggested_size, buf);
 }
