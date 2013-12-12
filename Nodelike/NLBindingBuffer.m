@@ -8,11 +8,17 @@
 
 #import "NLBindingBuffer.h"
 
+static JSValue *constructor;
+
 @implementation NLBindingBuffer
 
 + (id)binding {
     return @{@"setupBufferJS": ^(JSValue *target, JSValue *internal) {
         [self setupBufferJS:target internal:internal];}};
+}
+
++ (JSValue *)constructor {
+    return constructor;
 }
 
 + (NSNumber *)writeString:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
@@ -53,6 +59,8 @@
 }
 
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
+
+    constructor = target;
 
     JSValue *proto = target[@"prototype"];
     
