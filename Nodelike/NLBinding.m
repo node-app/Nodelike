@@ -15,6 +15,7 @@
 #import "NLCaresWrap.h"
 #import "NLBindingUv.h"
 #import "NLTimer.h"
+#import "NLTCP.h"
 
 @implementation NLBinding
 
@@ -37,6 +38,7 @@
                      @"buffer":     [NLBindingBuffer     class],
                      @"timer_wrap": [NLTimer             class],
                      @"cares_wrap": [NLCaresWrap         class],
+                     @"tcp_wrap":   [NLTCP               class],
                      @"uv":         [NLBindingUv         class]};
     });
     return bindings;
