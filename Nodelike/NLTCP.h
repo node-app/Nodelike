@@ -18,6 +18,7 @@
 - (NSNumber *)readStop;
 
 - (void)open:(NSNumber *)fd;
+JSExportAs(bind, - (NSNumber *)bind:(NSString *)address port:(NSNumber *)port);
 
 @end
 
