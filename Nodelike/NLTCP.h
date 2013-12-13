@@ -18,7 +18,8 @@
 - (NSNumber *)readStop;
 
 - (void)open:(NSNumber *)fd;
-JSExportAs(bind, - (NSNumber *)bind:(NSString *)address port:(NSNumber *)port);
+JSExportAs(bind,  - (NSNumber *)bind:(NSString *)address port:(NSNumber *)port);
+JSExportAs(bind6, - (NSNumber *)bind6:(NSString *)address port:(NSNumber *)port);
 
 @end
 

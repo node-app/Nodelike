@@ -22,4 +22,12 @@
     return [NSNumber numberWithInt:err];
 }
 
+- (NSNumber *)bind6:(NSString *)address port:(NSNumber *)port {
+    struct sockaddr_in6 addr;
+    int err = uv_ip6_addr([address UTF8String], [port intValue], &addr);
+    if (err == 0)
+        err = uv_tcp_bind((uv_tcp_t *)self.handle, (const struct sockaddr *)&addr);
+    return [NSNumber numberWithInt:err];
+}
+
 @end
