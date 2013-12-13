@@ -8,7 +8,22 @@
 
 #import "NLTCP.h"
 
-@implementation NLTCP
+@implementation NLTCP {
+    uv_tcp_t handle;
+}
+
++ (id)binding {
+    JSValue *tcp = [NLBinding makeConstructor:^{ return [NLTCP new]; } inContext:[NLContext currentContext]];
+    return @{@"TCP": tcp};
+}
+
+- (id)init {
+    NLContext *context = [NLContext currentContext];
+    self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
+    int r = uv_tcp_init(context.eventLoop, &handle);
+    assert(r == 0);
+    return self;
+}
 
 - (void)open:(NSNumber *)fd {
     uv_tcp_open((uv_tcp_t *)self.handle, [fd intValue]);
@@ -18,7 +33,7 @@
     struct sockaddr_in addr;
     int err = uv_ip4_addr([address UTF8String], [port intValue], &addr);
     if (err == 0)
-        err = uv_tcp_bind((uv_tcp_t *)self.handle, (const struct sockaddr *)&addr);
+        err = uv_tcp_bind(&handle, (const struct sockaddr *)&addr);
     return [NSNumber numberWithInt:err];
 }
 
@@ -26,7 +41,7 @@
     struct sockaddr_in6 addr;
     int err = uv_ip6_addr([address UTF8String], [port intValue], &addr);
     if (err == 0)
-        err = uv_tcp_bind((uv_tcp_t *)self.handle, (const struct sockaddr *)&addr);
+        err = uv_tcp_bind(&handle, (const struct sockaddr *)&addr);
     return [NSNumber numberWithInt:err];
 }
 
