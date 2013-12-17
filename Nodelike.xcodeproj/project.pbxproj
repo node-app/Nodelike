@@ -8,6 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCaresWrap.m */; };
+		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
+		B52B8144186075CD003B40D9 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8118186075CD003B40D9 /* inet.c */; };
+		B52B8146186075CD003B40D9 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811C186075CD003B40D9 /* async.c */; };
+		B52B8147186075CD003B40D9 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811E186075CD003B40D9 /* core.c */; };
+		B52B8148186075CD003B40D9 /* darwin-proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811F186075CD003B40D9 /* darwin-proctitle.c */; };
+		B52B8149186075CD003B40D9 /* darwin.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8120186075CD003B40D9 /* darwin.c */; };
+		B52B814A186075CD003B40D9 /* dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8121186075CD003B40D9 /* dl.c */; };
+		B52B814C186075CD003B40D9 /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8123186075CD003B40D9 /* fs.c */; };
+		B52B814D186075CD003B40D9 /* fsevents.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8124186075CD003B40D9 /* fsevents.c */; };
+		B52B814E186075CD003B40D9 /* getaddrinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8125186075CD003B40D9 /* getaddrinfo.c */; };
+		B52B814F186075CD003B40D9 /* kqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8127186075CD003B40D9 /* kqueue.c */; };
+		B52B8153186075CD003B40D9 /* loop-watcher.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B812C186075CD003B40D9 /* loop-watcher.c */; };
+		B52B8154186075CD003B40D9 /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B812D186075CD003B40D9 /* loop.c */; };
+		B52B8157186075CD003B40D9 /* pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8130186075CD003B40D9 /* pipe.c */; };
+		B52B8158186075CD003B40D9 /* poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8131186075CD003B40D9 /* poll.c */; };
+		B52B8159186075CD003B40D9 /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8132186075CD003B40D9 /* process.c */; };
+		B52B815A186075CD003B40D9 /* proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8133186075CD003B40D9 /* proctitle.c */; };
+		B52B815C186075CD003B40D9 /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8135186075CD003B40D9 /* signal.c */; };
+		B52B815D186075CD003B40D9 /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8137186075CD003B40D9 /* stream.c */; };
+		B52B815F186075CD003B40D9 /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8139186075CD003B40D9 /* tcp.c */; };
+		B52B8160186075CD003B40D9 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813A186075CD003B40D9 /* thread.c */; };
+		B52B8161186075CD003B40D9 /* threadpool.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813B186075CD003B40D9 /* threadpool.c */; };
+		B52B8162186075CD003B40D9 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813C186075CD003B40D9 /* timer.c */; };
+		B52B8163186075CD003B40D9 /* tty.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813D186075CD003B40D9 /* tty.c */; };
+		B52B8164186075CD003B40D9 /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813E186075CD003B40D9 /* udp.c */; };
+		B52B8166186075CD003B40D9 /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8140186075CD003B40D9 /* uv-common.c */; };
+		B52B8167186075CD003B40D9 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8142186075CD003B40D9 /* version.c */; };
 		B53E6998184672F3004E4EF9 /* NLStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B53E6997184672F3004E4EF9 /* NLStream.m */; };
 		B54C1F53180D37280051F826 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B54C1F94180D37810051F826 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
@@ -25,82 +52,6 @@
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
 		B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */; };
 		B5C5B24C181321300091FDE8 /* NLBindingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B24B181321300091FDE8 /* NLBindingBuffer.m */; };
-		B5D9EDE7183A353C00E321A0 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC69183A342400E321A0 /* fs-poll.c */; };
-		B5D9EDE8183A353C00E321A0 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC6A183A342400E321A0 /* inet.c */; };
-		B5D9EDE9183A353C00E321A0 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC6E183A342400E321A0 /* async.c */; };
-		B5D9EDEA183A353C00E321A0 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC70183A342400E321A0 /* core.c */; };
-		B5D9EDEB183A353C00E321A0 /* darwin-proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC71183A342400E321A0 /* darwin-proctitle.c */; };
-		B5D9EDEC183A353C00E321A0 /* darwin.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC72183A342400E321A0 /* darwin.c */; };
-		B5D9EDED183A353C00E321A0 /* dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC73183A342400E321A0 /* dl.c */; };
-		B5D9EDEE183A353C00E321A0 /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC75183A342400E321A0 /* fs.c */; };
-		B5D9EDEF183A353C00E321A0 /* fsevents.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC76183A342400E321A0 /* fsevents.c */; };
-		B5D9EDF0183A353C00E321A0 /* getaddrinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC77183A342400E321A0 /* getaddrinfo.c */; };
-		B5D9EDF1183A353C00E321A0 /* kqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC79183A342400E321A0 /* kqueue.c */; };
-		B5D9EDF2183A353C00E321A0 /* loop-watcher.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC7E183A342400E321A0 /* loop-watcher.c */; };
-		B5D9EDF3183A353C00E321A0 /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC7F183A342400E321A0 /* loop.c */; };
-		B5D9EDF4183A353C00E321A0 /* pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC82183A342400E321A0 /* pipe.c */; };
-		B5D9EDF5183A353C00E321A0 /* poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC83183A342400E321A0 /* poll.c */; };
-		B5D9EDF6183A353C00E321A0 /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC84183A342400E321A0 /* process.c */; };
-		B5D9EDF7183A353C00E321A0 /* proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC85183A342400E321A0 /* proctitle.c */; };
-		B5D9EDF8183A353C00E321A0 /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC87183A342400E321A0 /* signal.c */; };
-		B5D9EDF9183A353C00E321A0 /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC89183A342400E321A0 /* stream.c */; };
-		B5D9EDFA183A353C00E321A0 /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC8B183A342400E321A0 /* tcp.c */; };
-		B5D9EDFB183A353C00E321A0 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC8C183A342400E321A0 /* thread.c */; };
-		B5D9EDFC183A353C00E321A0 /* threadpool.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC8D183A342400E321A0 /* threadpool.c */; };
-		B5D9EDFD183A353C00E321A0 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC8E183A342400E321A0 /* timer.c */; };
-		B5D9EDFE183A353C00E321A0 /* tty.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC8F183A342400E321A0 /* tty.c */; };
-		B5D9EDFF183A353C00E321A0 /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC90183A342400E321A0 /* udp.c */; };
-		B5D9EE00183A353C00E321A0 /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC92183A342400E321A0 /* uv-common.c */; };
-		B5D9EE01183A353C00E321A0 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = B5D9EC94183A342400E321A0 /* version.c */; };
-		B5D9EE02183A355400E321A0 /* _debugger.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB5D183A33F400E321A0 /* _debugger.js */; };
-		B5D9EE03183A355400E321A0 /* _http_agent.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB5E183A33F400E321A0 /* _http_agent.js */; };
-		B5D9EE04183A355400E321A0 /* _http_client.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB5F183A33F400E321A0 /* _http_client.js */; };
-		B5D9EE05183A355400E321A0 /* _http_common.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB60183A33F400E321A0 /* _http_common.js */; };
-		B5D9EE06183A355400E321A0 /* _http_incoming.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB61183A33F400E321A0 /* _http_incoming.js */; };
-		B5D9EE07183A355400E321A0 /* _http_outgoing.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB62183A33F400E321A0 /* _http_outgoing.js */; };
-		B5D9EE08183A355400E321A0 /* _http_server.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB63183A33F400E321A0 /* _http_server.js */; };
-		B5D9EE09183A355400E321A0 /* _linklist.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB64183A33F400E321A0 /* _linklist.js */; };
-		B5D9EE0A183A355400E321A0 /* _stream_duplex.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB65183A33F400E321A0 /* _stream_duplex.js */; };
-		B5D9EE0B183A355400E321A0 /* _stream_passthrough.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB66183A33F400E321A0 /* _stream_passthrough.js */; };
-		B5D9EE0C183A355400E321A0 /* _stream_readable.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB67183A33F400E321A0 /* _stream_readable.js */; };
-		B5D9EE0D183A355400E321A0 /* _stream_transform.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB68183A33F400E321A0 /* _stream_transform.js */; };
-		B5D9EE0E183A355400E321A0 /* _stream_writable.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB69183A33F400E321A0 /* _stream_writable.js */; };
-		B5D9EE0F183A355400E321A0 /* _tls_legacy.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB6A183A33F400E321A0 /* _tls_legacy.js */; };
-		B5D9EE10183A355400E321A0 /* _tls_wrap.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB6B183A33F400E321A0 /* _tls_wrap.js */; };
-		B5D9EE11183A355400E321A0 /* assert.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB6C183A33F400E321A0 /* assert.js */; };
-		B5D9EE12183A355400E321A0 /* buffer.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB6D183A33F400E321A0 /* buffer.js */; };
-		B5D9EE13183A355400E321A0 /* child_process.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB6E183A33F400E321A0 /* child_process.js */; };
-		B5D9EE14183A355400E321A0 /* cluster.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB6F183A33F400E321A0 /* cluster.js */; };
-		B5D9EE15183A355400E321A0 /* console.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB70183A33F400E321A0 /* console.js */; };
-		B5D9EE16183A355400E321A0 /* constants.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB71183A33F400E321A0 /* constants.js */; };
-		B5D9EE17183A355400E321A0 /* crypto.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB72183A33F400E321A0 /* crypto.js */; };
-		B5D9EE18183A355400E321A0 /* dgram.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB73183A33F400E321A0 /* dgram.js */; };
-		B5D9EE19183A355400E321A0 /* dns.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB74183A33F400E321A0 /* dns.js */; };
-		B5D9EE1A183A355400E321A0 /* domain.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB75183A33F400E321A0 /* domain.js */; };
-		B5D9EE1B183A355400E321A0 /* events.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB76183A33F400E321A0 /* events.js */; };
-		B5D9EE1C183A355400E321A0 /* freelist.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB77183A33F400E321A0 /* freelist.js */; };
-		B5D9EE1D183A355400E321A0 /* fs.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB78183A33F400E321A0 /* fs.js */; };
-		B5D9EE1E183A355400E321A0 /* http.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB79183A33F400E321A0 /* http.js */; };
-		B5D9EE1F183A355400E321A0 /* https.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB7A183A33F400E321A0 /* https.js */; };
-		B5D9EE20183A355400E321A0 /* module.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB7B183A33F400E321A0 /* module.js */; };
-		B5D9EE21183A355400E321A0 /* net.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB7C183A33F400E321A0 /* net.js */; };
-		B5D9EE22183A355400E321A0 /* os.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB7D183A33F400E321A0 /* os.js */; };
-		B5D9EE23183A355400E321A0 /* path.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB7E183A33F400E321A0 /* path.js */; };
-		B5D9EE24183A355400E321A0 /* punycode.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB7F183A33F400E321A0 /* punycode.js */; };
-		B5D9EE25183A355400E321A0 /* querystring.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB80183A33F400E321A0 /* querystring.js */; };
-		B5D9EE26183A355400E321A0 /* readline.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB81183A33F400E321A0 /* readline.js */; };
-		B5D9EE27183A355400E321A0 /* repl.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB82183A33F400E321A0 /* repl.js */; };
-		B5D9EE28183A355400E321A0 /* smalloc.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB83183A33F400E321A0 /* smalloc.js */; };
-		B5D9EE29183A355400E321A0 /* stream.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB84183A33F400E321A0 /* stream.js */; };
-		B5D9EE2A183A355400E321A0 /* string_decoder.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB85183A33F400E321A0 /* string_decoder.js */; };
-		B5D9EE2B183A355400E321A0 /* sys.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB86183A33F400E321A0 /* sys.js */; };
-		B5D9EE2C183A355400E321A0 /* timers.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB87183A33F400E321A0 /* timers.js */; };
-		B5D9EE2D183A355400E321A0 /* tls.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB88183A33F400E321A0 /* tls.js */; };
-		B5D9EE2E183A355400E321A0 /* tty.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB89183A33F400E321A0 /* tty.js */; };
-		B5D9EE2F183A355400E321A0 /* url.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB8A183A33F500E321A0 /* url.js */; };
-		B5D9EE30183A355400E321A0 /* util.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB8B183A33F500E321A0 /* util.js */; };
-		B5D9EE31183A355400E321A0 /* vm.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB8C183A33F500E321A0 /* vm.js */; };
-		B5D9EE32183A355400E321A0 /* zlib.js in Resources */ = {isa = PBXBuildFile; fileRef = B5D9EB8D183A33F500E321A0 /* zlib.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +67,44 @@
 /* Begin PBXFileReference section */
 		B5061A381815A9B00083AB4B /* NLCaresWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCaresWrap.h; sourceTree = "<group>"; };
 		B5061A391815A9B00083AB4B /* NLCaresWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCaresWrap.m; sourceTree = "<group>"; };
+		B52B810D18607587003B40D9 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = libuv/include/tree.h; sourceTree = SOURCE_ROOT; };
+		B52B810E18607587003B40D9 /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-bsd.h"; path = "libuv/include/uv-bsd.h"; sourceTree = SOURCE_ROOT; };
+		B52B810F18607587003B40D9 /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-darwin.h"; path = "libuv/include/uv-darwin.h"; sourceTree = SOURCE_ROOT; };
+		B52B811018607587003B40D9 /* uv-errno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-errno.h"; path = "libuv/include/uv-errno.h"; sourceTree = SOURCE_ROOT; };
+		B52B811118607587003B40D9 /* uv-linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-linux.h"; path = "libuv/include/uv-linux.h"; sourceTree = SOURCE_ROOT; };
+		B52B811218607587003B40D9 /* uv-sunos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-sunos.h"; path = "libuv/include/uv-sunos.h"; sourceTree = SOURCE_ROOT; };
+		B52B811318607587003B40D9 /* uv-unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-unix.h"; path = "libuv/include/uv-unix.h"; sourceTree = SOURCE_ROOT; };
+		B52B811518607587003B40D9 /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = uv.h; path = libuv/include/uv.h; sourceTree = SOURCE_ROOT; };
+		B52B8117186075CD003B40D9 /* fs-poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "fs-poll.c"; path = "libuv/src/fs-poll.c"; sourceTree = SOURCE_ROOT; };
+		B52B8118186075CD003B40D9 /* inet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = inet.c; path = libuv/src/inet.c; sourceTree = SOURCE_ROOT; };
+		B52B8119186075CD003B40D9 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = queue.h; path = libuv/src/queue.h; sourceTree = SOURCE_ROOT; };
+		B52B811C186075CD003B40D9 /* async.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = async.c; sourceTree = "<group>"; };
+		B52B811E186075CD003B40D9 /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core.c; sourceTree = "<group>"; };
+		B52B811F186075CD003B40D9 /* darwin-proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "darwin-proctitle.c"; sourceTree = "<group>"; };
+		B52B8120186075CD003B40D9 /* darwin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = darwin.c; sourceTree = "<group>"; };
+		B52B8121186075CD003B40D9 /* dl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dl.c; sourceTree = "<group>"; };
+		B52B8123186075CD003B40D9 /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fs.c; sourceTree = "<group>"; };
+		B52B8124186075CD003B40D9 /* fsevents.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fsevents.c; sourceTree = "<group>"; };
+		B52B8125186075CD003B40D9 /* getaddrinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getaddrinfo.c; sourceTree = "<group>"; };
+		B52B8126186075CD003B40D9 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
+		B52B8127186075CD003B40D9 /* kqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kqueue.c; sourceTree = "<group>"; };
+		B52B812C186075CD003B40D9 /* loop-watcher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "loop-watcher.c"; sourceTree = "<group>"; };
+		B52B812D186075CD003B40D9 /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loop.c; sourceTree = "<group>"; };
+		B52B8130186075CD003B40D9 /* pipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pipe.c; sourceTree = "<group>"; };
+		B52B8131186075CD003B40D9 /* poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = poll.c; sourceTree = "<group>"; };
+		B52B8132186075CD003B40D9 /* process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = process.c; sourceTree = "<group>"; };
+		B52B8133186075CD003B40D9 /* proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = proctitle.c; sourceTree = "<group>"; };
+		B52B8135186075CD003B40D9 /* signal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signal.c; sourceTree = "<group>"; };
+		B52B8137186075CD003B40D9 /* stream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stream.c; sourceTree = "<group>"; };
+		B52B8139186075CD003B40D9 /* tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcp.c; sourceTree = "<group>"; };
+		B52B813A186075CD003B40D9 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
+		B52B813B186075CD003B40D9 /* threadpool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threadpool.c; sourceTree = "<group>"; };
+		B52B813C186075CD003B40D9 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
+		B52B813D186075CD003B40D9 /* tty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tty.c; sourceTree = "<group>"; };
+		B52B813E186075CD003B40D9 /* udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = udp.c; sourceTree = "<group>"; };
+		B52B8140186075CD003B40D9 /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "uv-common.c"; path = "libuv/src/uv-common.c"; sourceTree = SOURCE_ROOT; };
+		B52B8141186075CD003B40D9 /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-common.h"; path = "libuv/src/uv-common.h"; sourceTree = SOURCE_ROOT; };
+		B52B8142186075CD003B40D9 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = version.c; path = libuv/src/version.c; sourceTree = SOURCE_ROOT; };
 		B53E6996184672F3004E4EF9 /* NLStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLStream.h; sourceTree = "<group>"; };
 		B53E6997184672F3004E4EF9 /* NLStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLStream.m; sourceTree = "<group>"; };
 		B54C1F52180D37280051F826 /* libuv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuv.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,44 +185,6 @@
 		B5D9EB8B183A33F500E321A0 /* util.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = util.js; sourceTree = "<group>"; };
 		B5D9EB8C183A33F500E321A0 /* vm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vm.js; sourceTree = "<group>"; };
 		B5D9EB8D183A33F500E321A0 /* zlib.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = zlib.js; sourceTree = "<group>"; };
-		B5D9EC59183A342400E321A0 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree.h; sourceTree = "<group>"; };
-		B5D9EC5A183A342400E321A0 /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-bsd.h"; sourceTree = "<group>"; };
-		B5D9EC5B183A342400E321A0 /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-darwin.h"; sourceTree = "<group>"; };
-		B5D9EC5C183A342400E321A0 /* uv-errno.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-errno.h"; sourceTree = "<group>"; };
-		B5D9EC5D183A342400E321A0 /* uv-linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-linux.h"; sourceTree = "<group>"; };
-		B5D9EC5E183A342400E321A0 /* uv-sunos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-sunos.h"; sourceTree = "<group>"; };
-		B5D9EC5F183A342400E321A0 /* uv-unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-unix.h"; sourceTree = "<group>"; };
-		B5D9EC61183A342400E321A0 /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv.h; sourceTree = "<group>"; };
-		B5D9EC69183A342400E321A0 /* fs-poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "fs-poll.c"; sourceTree = "<group>"; };
-		B5D9EC6A183A342400E321A0 /* inet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inet.c; sourceTree = "<group>"; };
-		B5D9EC6B183A342400E321A0 /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
-		B5D9EC6E183A342400E321A0 /* async.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = async.c; sourceTree = "<group>"; };
-		B5D9EC70183A342400E321A0 /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core.c; sourceTree = "<group>"; };
-		B5D9EC71183A342400E321A0 /* darwin-proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "darwin-proctitle.c"; sourceTree = "<group>"; };
-		B5D9EC72183A342400E321A0 /* darwin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = darwin.c; sourceTree = "<group>"; };
-		B5D9EC73183A342400E321A0 /* dl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dl.c; sourceTree = "<group>"; };
-		B5D9EC75183A342400E321A0 /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fs.c; sourceTree = "<group>"; };
-		B5D9EC76183A342400E321A0 /* fsevents.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fsevents.c; sourceTree = "<group>"; };
-		B5D9EC77183A342400E321A0 /* getaddrinfo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getaddrinfo.c; sourceTree = "<group>"; };
-		B5D9EC78183A342400E321A0 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
-		B5D9EC79183A342400E321A0 /* kqueue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kqueue.c; sourceTree = "<group>"; };
-		B5D9EC7E183A342400E321A0 /* loop-watcher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "loop-watcher.c"; sourceTree = "<group>"; };
-		B5D9EC7F183A342400E321A0 /* loop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loop.c; sourceTree = "<group>"; };
-		B5D9EC82183A342400E321A0 /* pipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pipe.c; sourceTree = "<group>"; };
-		B5D9EC83183A342400E321A0 /* poll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = poll.c; sourceTree = "<group>"; };
-		B5D9EC84183A342400E321A0 /* process.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = process.c; sourceTree = "<group>"; };
-		B5D9EC85183A342400E321A0 /* proctitle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = proctitle.c; sourceTree = "<group>"; };
-		B5D9EC87183A342400E321A0 /* signal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signal.c; sourceTree = "<group>"; };
-		B5D9EC89183A342400E321A0 /* stream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stream.c; sourceTree = "<group>"; };
-		B5D9EC8B183A342400E321A0 /* tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tcp.c; sourceTree = "<group>"; };
-		B5D9EC8C183A342400E321A0 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thread.c; sourceTree = "<group>"; };
-		B5D9EC8D183A342400E321A0 /* threadpool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threadpool.c; sourceTree = "<group>"; };
-		B5D9EC8E183A342400E321A0 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
-		B5D9EC8F183A342400E321A0 /* tty.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tty.c; sourceTree = "<group>"; };
-		B5D9EC90183A342400E321A0 /* udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = udp.c; sourceTree = "<group>"; };
-		B5D9EC92183A342400E321A0 /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "uv-common.c"; sourceTree = "<group>"; };
-		B5D9EC93183A342400E321A0 /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-common.h"; sourceTree = "<group>"; };
-		B5D9EC94183A342400E321A0 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +210,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B52B810A18607575003B40D9 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B52B810D18607587003B40D9 /* tree.h */,
+				B52B810E18607587003B40D9 /* uv-bsd.h */,
+				B52B810F18607587003B40D9 /* uv-darwin.h */,
+				B52B811018607587003B40D9 /* uv-errno.h */,
+				B52B811118607587003B40D9 /* uv-linux.h */,
+				B52B811218607587003B40D9 /* uv-sunos.h */,
+				B52B811318607587003B40D9 /* uv-unix.h */,
+				B52B811518607587003B40D9 /* uv.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		B52B8116186075C1003B40D9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B52B8117186075CD003B40D9 /* fs-poll.c */,
+				B52B8118186075CD003B40D9 /* inet.c */,
+				B52B8119186075CD003B40D9 /* queue.h */,
+				B52B811A186075CD003B40D9 /* unix */,
+				B52B8140186075CD003B40D9 /* uv-common.c */,
+				B52B8141186075CD003B40D9 /* uv-common.h */,
+				B52B8142186075CD003B40D9 /* version.c */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		B52B811A186075CD003B40D9 /* unix */ = {
+			isa = PBXGroup;
+			children = (
+				B52B811C186075CD003B40D9 /* async.c */,
+				B52B811E186075CD003B40D9 /* core.c */,
+				B52B811F186075CD003B40D9 /* darwin-proctitle.c */,
+				B52B8120186075CD003B40D9 /* darwin.c */,
+				B52B8121186075CD003B40D9 /* dl.c */,
+				B52B8123186075CD003B40D9 /* fs.c */,
+				B52B8124186075CD003B40D9 /* fsevents.c */,
+				B52B8125186075CD003B40D9 /* getaddrinfo.c */,
+				B52B8126186075CD003B40D9 /* internal.h */,
+				B52B8127186075CD003B40D9 /* kqueue.c */,
+				B52B812C186075CD003B40D9 /* loop-watcher.c */,
+				B52B812D186075CD003B40D9 /* loop.c */,
+				B52B8130186075CD003B40D9 /* pipe.c */,
+				B52B8131186075CD003B40D9 /* poll.c */,
+				B52B8132186075CD003B40D9 /* process.c */,
+				B52B8133186075CD003B40D9 /* proctitle.c */,
+				B52B8135186075CD003B40D9 /* signal.c */,
+				B52B8137186075CD003B40D9 /* stream.c */,
+				B52B8139186075CD003B40D9 /* tcp.c */,
+				B52B813A186075CD003B40D9 /* thread.c */,
+				B52B813B186075CD003B40D9 /* threadpool.c */,
+				B52B813C186075CD003B40D9 /* timer.c */,
+				B52B813D186075CD003B40D9 /* tty.c */,
+				B52B813E186075CD003B40D9 /* udp.c */,
+			);
+			name = unix;
+			path = libuv/src/unix;
+			sourceTree = SOURCE_ROOT;
+		};
 		B59EA090180CB587005BF5C1 /* Nodelike */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,71 +404,11 @@
 		B5D9EC4B183A342400E321A0 /* libuv */ = {
 			isa = PBXGroup;
 			children = (
-				B5D9EC56183A342400E321A0 /* include */,
-				B5D9EC68183A342400E321A0 /* src */,
+				B52B8116186075C1003B40D9 /* src */,
+				B52B810A18607575003B40D9 /* include */,
 			);
 			name = libuv;
 			path = node/deps/uv;
-			sourceTree = "<group>";
-		};
-		B5D9EC56183A342400E321A0 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				B5D9EC59183A342400E321A0 /* tree.h */,
-				B5D9EC5A183A342400E321A0 /* uv-bsd.h */,
-				B5D9EC5B183A342400E321A0 /* uv-darwin.h */,
-				B5D9EC5C183A342400E321A0 /* uv-errno.h */,
-				B5D9EC5D183A342400E321A0 /* uv-linux.h */,
-				B5D9EC5E183A342400E321A0 /* uv-sunos.h */,
-				B5D9EC5F183A342400E321A0 /* uv-unix.h */,
-				B5D9EC61183A342400E321A0 /* uv.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		B5D9EC68183A342400E321A0 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				B5D9EC69183A342400E321A0 /* fs-poll.c */,
-				B5D9EC6A183A342400E321A0 /* inet.c */,
-				B5D9EC6B183A342400E321A0 /* queue.h */,
-				B5D9EC6C183A342400E321A0 /* unix */,
-				B5D9EC92183A342400E321A0 /* uv-common.c */,
-				B5D9EC93183A342400E321A0 /* uv-common.h */,
-				B5D9EC94183A342400E321A0 /* version.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		B5D9EC6C183A342400E321A0 /* unix */ = {
-			isa = PBXGroup;
-			children = (
-				B5D9EC6E183A342400E321A0 /* async.c */,
-				B5D9EC70183A342400E321A0 /* core.c */,
-				B5D9EC71183A342400E321A0 /* darwin-proctitle.c */,
-				B5D9EC72183A342400E321A0 /* darwin.c */,
-				B5D9EC73183A342400E321A0 /* dl.c */,
-				B5D9EC75183A342400E321A0 /* fs.c */,
-				B5D9EC76183A342400E321A0 /* fsevents.c */,
-				B5D9EC77183A342400E321A0 /* getaddrinfo.c */,
-				B5D9EC78183A342400E321A0 /* internal.h */,
-				B5D9EC79183A342400E321A0 /* kqueue.c */,
-				B5D9EC7E183A342400E321A0 /* loop-watcher.c */,
-				B5D9EC7F183A342400E321A0 /* loop.c */,
-				B5D9EC82183A342400E321A0 /* pipe.c */,
-				B5D9EC83183A342400E321A0 /* poll.c */,
-				B5D9EC84183A342400E321A0 /* process.c */,
-				B5D9EC85183A342400E321A0 /* proctitle.c */,
-				B5D9EC87183A342400E321A0 /* signal.c */,
-				B5D9EC89183A342400E321A0 /* stream.c */,
-				B5D9EC8B183A342400E321A0 /* tcp.c */,
-				B5D9EC8C183A342400E321A0 /* thread.c */,
-				B5D9EC8D183A342400E321A0 /* threadpool.c */,
-				B5D9EC8E183A342400E321A0 /* timer.c */,
-				B5D9EC8F183A342400E321A0 /* tty.c */,
-				B5D9EC90183A342400E321A0 /* udp.c */,
-			);
-			path = unix;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -530,55 +482,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5D9EE02183A355400E321A0 /* _debugger.js in Resources */,
-				B5D9EE03183A355400E321A0 /* _http_agent.js in Resources */,
-				B5D9EE04183A355400E321A0 /* _http_client.js in Resources */,
-				B5D9EE05183A355400E321A0 /* _http_common.js in Resources */,
-				B5D9EE06183A355400E321A0 /* _http_incoming.js in Resources */,
-				B5D9EE07183A355400E321A0 /* _http_outgoing.js in Resources */,
-				B5D9EE08183A355400E321A0 /* _http_server.js in Resources */,
-				B5D9EE09183A355400E321A0 /* _linklist.js in Resources */,
-				B5D9EE0A183A355400E321A0 /* _stream_duplex.js in Resources */,
-				B5D9EE0B183A355400E321A0 /* _stream_passthrough.js in Resources */,
-				B5D9EE0C183A355400E321A0 /* _stream_readable.js in Resources */,
-				B5D9EE0D183A355400E321A0 /* _stream_transform.js in Resources */,
-				B5D9EE0E183A355400E321A0 /* _stream_writable.js in Resources */,
-				B5D9EE0F183A355400E321A0 /* _tls_legacy.js in Resources */,
-				B5D9EE10183A355400E321A0 /* _tls_wrap.js in Resources */,
-				B5D9EE11183A355400E321A0 /* assert.js in Resources */,
-				B5D9EE12183A355400E321A0 /* buffer.js in Resources */,
-				B5D9EE13183A355400E321A0 /* child_process.js in Resources */,
-				B5D9EE14183A355400E321A0 /* cluster.js in Resources */,
-				B5D9EE15183A355400E321A0 /* console.js in Resources */,
-				B5D9EE16183A355400E321A0 /* constants.js in Resources */,
-				B5D9EE17183A355400E321A0 /* crypto.js in Resources */,
-				B5D9EE18183A355400E321A0 /* dgram.js in Resources */,
-				B5D9EE19183A355400E321A0 /* dns.js in Resources */,
-				B5D9EE1A183A355400E321A0 /* domain.js in Resources */,
-				B5D9EE1B183A355400E321A0 /* events.js in Resources */,
-				B5D9EE1C183A355400E321A0 /* freelist.js in Resources */,
-				B5D9EE1D183A355400E321A0 /* fs.js in Resources */,
-				B5D9EE1E183A355400E321A0 /* http.js in Resources */,
-				B5D9EE1F183A355400E321A0 /* https.js in Resources */,
-				B5D9EE20183A355400E321A0 /* module.js in Resources */,
-				B5D9EE21183A355400E321A0 /* net.js in Resources */,
-				B5D9EE22183A355400E321A0 /* os.js in Resources */,
-				B5D9EE23183A355400E321A0 /* path.js in Resources */,
-				B5D9EE24183A355400E321A0 /* punycode.js in Resources */,
-				B5D9EE25183A355400E321A0 /* querystring.js in Resources */,
-				B5D9EE26183A355400E321A0 /* readline.js in Resources */,
-				B5D9EE27183A355400E321A0 /* repl.js in Resources */,
-				B5D9EE28183A355400E321A0 /* smalloc.js in Resources */,
-				B5D9EE29183A355400E321A0 /* stream.js in Resources */,
-				B5D9EE2A183A355400E321A0 /* string_decoder.js in Resources */,
-				B5D9EE2B183A355400E321A0 /* sys.js in Resources */,
-				B5D9EE2C183A355400E321A0 /* timers.js in Resources */,
-				B5D9EE2D183A355400E321A0 /* tls.js in Resources */,
-				B5D9EE2E183A355400E321A0 /* tty.js in Resources */,
-				B5D9EE2F183A355400E321A0 /* url.js in Resources */,
-				B5D9EE30183A355400E321A0 /* util.js in Resources */,
-				B5D9EE31183A355400E321A0 /* vm.js in Resources */,
-				B5D9EE32183A355400E321A0 /* zlib.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,33 +492,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5D9EDE7183A353C00E321A0 /* fs-poll.c in Sources */,
-				B5D9EDE8183A353C00E321A0 /* inet.c in Sources */,
-				B5D9EDE9183A353C00E321A0 /* async.c in Sources */,
-				B5D9EDEA183A353C00E321A0 /* core.c in Sources */,
-				B5D9EDEB183A353C00E321A0 /* darwin-proctitle.c in Sources */,
-				B5D9EDEC183A353C00E321A0 /* darwin.c in Sources */,
-				B5D9EDED183A353C00E321A0 /* dl.c in Sources */,
-				B5D9EDEE183A353C00E321A0 /* fs.c in Sources */,
-				B5D9EDEF183A353C00E321A0 /* fsevents.c in Sources */,
-				B5D9EDF0183A353C00E321A0 /* getaddrinfo.c in Sources */,
-				B5D9EDF1183A353C00E321A0 /* kqueue.c in Sources */,
-				B5D9EDF2183A353C00E321A0 /* loop-watcher.c in Sources */,
-				B5D9EDF3183A353C00E321A0 /* loop.c in Sources */,
-				B5D9EDF4183A353C00E321A0 /* pipe.c in Sources */,
-				B5D9EDF5183A353C00E321A0 /* poll.c in Sources */,
-				B5D9EDF6183A353C00E321A0 /* process.c in Sources */,
-				B5D9EDF7183A353C00E321A0 /* proctitle.c in Sources */,
-				B5D9EDF8183A353C00E321A0 /* signal.c in Sources */,
-				B5D9EDF9183A353C00E321A0 /* stream.c in Sources */,
-				B5D9EDFA183A353C00E321A0 /* tcp.c in Sources */,
-				B5D9EDFB183A353C00E321A0 /* thread.c in Sources */,
-				B5D9EDFC183A353C00E321A0 /* threadpool.c in Sources */,
-				B5D9EDFD183A353C00E321A0 /* timer.c in Sources */,
-				B5D9EDFE183A353C00E321A0 /* tty.c in Sources */,
-				B5D9EDFF183A353C00E321A0 /* udp.c in Sources */,
-				B5D9EE00183A353C00E321A0 /* uv-common.c in Sources */,
-				B5D9EE01183A353C00E321A0 /* version.c in Sources */,
+				B52B8147186075CD003B40D9 /* core.c in Sources */,
+				B52B8166186075CD003B40D9 /* uv-common.c in Sources */,
+				B52B814C186075CD003B40D9 /* fs.c in Sources */,
+				B52B814A186075CD003B40D9 /* dl.c in Sources */,
+				B52B8146186075CD003B40D9 /* async.c in Sources */,
+				B52B814E186075CD003B40D9 /* getaddrinfo.c in Sources */,
+				B52B815C186075CD003B40D9 /* signal.c in Sources */,
+				B52B8160186075CD003B40D9 /* thread.c in Sources */,
+				B52B8161186075CD003B40D9 /* threadpool.c in Sources */,
+				B52B8153186075CD003B40D9 /* loop-watcher.c in Sources */,
+				B52B8163186075CD003B40D9 /* tty.c in Sources */,
+				B52B8158186075CD003B40D9 /* poll.c in Sources */,
+				B52B8162186075CD003B40D9 /* timer.c in Sources */,
+				B52B8167186075CD003B40D9 /* version.c in Sources */,
+				B52B8164186075CD003B40D9 /* udp.c in Sources */,
+				B52B815D186075CD003B40D9 /* stream.c in Sources */,
+				B52B814F186075CD003B40D9 /* kqueue.c in Sources */,
+				B52B8159186075CD003B40D9 /* process.c in Sources */,
+				B52B815F186075CD003B40D9 /* tcp.c in Sources */,
+				B52B8154186075CD003B40D9 /* loop.c in Sources */,
+				B52B8144186075CD003B40D9 /* inet.c in Sources */,
+				B52B8157186075CD003B40D9 /* pipe.c in Sources */,
+				B52B815A186075CD003B40D9 /* proctitle.c in Sources */,
+				B52B8149186075CD003B40D9 /* darwin.c in Sources */,
+				B52B814D186075CD003B40D9 /* fsevents.c in Sources */,
+				B52B8143186075CD003B40D9 /* fs-poll.c in Sources */,
+				B52B8148186075CD003B40D9 /* darwin-proctitle.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
