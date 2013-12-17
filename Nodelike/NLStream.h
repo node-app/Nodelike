@@ -26,6 +26,8 @@ struct NLStreamCallbacks {
 
 @interface NLStream : NLHandle <NLStreamExports>
 
+- (id)initWithStream:(uv_stream_t *)stream inContext:(NLContext *)context;
+
 @property uv_stream_t *stream;
 @property struct NLStreamCallbacks *callbacks;
 

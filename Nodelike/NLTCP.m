@@ -18,7 +18,7 @@
 
 - (id)init {
     NLContext *context = NLContext.currentContext;
-    self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
+    self = [super initWithStream:(uv_stream_t *)&handle inContext:context];
     int r = uv_tcp_init(context.eventLoop, &handle);
     assert(r == 0);
     return self;

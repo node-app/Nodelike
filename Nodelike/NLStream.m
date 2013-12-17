@@ -9,6 +9,7 @@
 #import "NLStream.h"
 
 #import "NLBindingBuffer.h"
+#import "NLTCP.h"
 
 @implementation NLStream {
     struct NLStreamCallbacks defaultCallbacks;
@@ -23,6 +24,12 @@
     defaultCallbacks.doRead  = doRead;
     _callbacks = &defaultCallbacks;
     return [super init];
+}
+
+- (id)initWithStream:(uv_stream_t *)stream inContext:(NLContext *)context {
+    self = [super initWithHandle:(uv_handle_t *)stream inContext:context];
+    _stream = stream;
+    return self;
 }
 
 - (NSNumber *)readStart {
@@ -80,11 +87,25 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
         return;
     }
 
-    JSValue *buffer = [NLBindingBuffer useData:buf->base ofLength:buf->len];
+    JSValue  *buffer      = [NLBindingBuffer useData:buf->base ofLength:buf->len];
+    NLStream *pending_obj = nil;
     
-    // TODO: implement handle wrapping (TCPWrap, PipeWrap, UDPWrap) of pending handle
+    if (pending == UV_TCP) {
+        pending_obj = [NLTCP new];
+    } else if (pending == UV_NAMED_PIPE) {
+        pending_obj = nil; // TODO: implement pending named pipe
+    } else if (pending == UV_UDP) {
+        pending_obj = nil; // TODO: implement pending udp
+    } else {
+        assert(pending == UV_UNKNOWN_HANDLE);
+    }
     
-    [[value valueForProperty:@"onread"] callWithArguments:@[[NSNumber numberWithLong:nread], buffer]];
+    if (pending_obj != nil) {
+        if (uv_accept(handle, pending_obj.stream))
+            abort();
+    }
+    
+    [[value valueForProperty:@"onread"] callWithArguments:@[[NSNumber numberWithLong:nread], buffer, pending_obj]];
 
 }
 
