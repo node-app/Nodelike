@@ -20,6 +20,9 @@
 - (NSNumber *)getsockname:(JSValue *)out;
 - (NSNumber *)getpeername:(JSValue *)out;
 
+- (NSNumber *)setNoDelay:(NSNumber *)enable;
+JSExportAs(setKeepAlive, - (NSNumber *)setKeepAlive:(NSNumber *)enable to:(NSNumber *)delay);
+
 - (void)open:(NSNumber *)fd;
 JSExportAs(bind,  - (NSNumber *)bind:(NSString *)address port:(NSNumber *)port);
 JSExportAs(bind6, - (NSNumber *)bind6:(NSString *)address port:(NSNumber *)port);

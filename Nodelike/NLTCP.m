@@ -50,6 +50,16 @@
     return [NSNumber numberWithInt:err];
 }
 
+- (NSNumber *)setNoDelay:(NSNumber *)enable {
+    int err = uv_tcp_nodelay(&handle, enable.boolValue);
+    return [NSNumber numberWithInt:err];
+}
+
+- (NSNumber *)setKeepAlive:(NSNumber *)enable to:(NSNumber *)delay {
+    int err = uv_tcp_keepalive(&handle, enable.boolValue, delay.unsignedIntValue);
+    return [NSNumber numberWithInt:err];
+}
+
 - (void)open:(NSNumber *)fd {
     uv_tcp_open((uv_tcp_t *)self.handle, fd.intValue);
 }
