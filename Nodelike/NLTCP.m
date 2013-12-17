@@ -44,4 +44,31 @@
     return [NSNumber numberWithInt:err];
 }
 
+- (NSNumber *)listen:(NSNumber *)backlog {
+    int err = uv_listen((uv_stream_t *)&handle, backlog.intValue, onConnection);
+    return [NSNumber numberWithInt:err];
+}
+
+static void onConnection(uv_stream_t *handle, int status) {
+
+    JSValue *wrap = (__bridge JSValue *)(handle->data);
+
+    NSMutableArray *args = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:status], nil];
+
+    if (status == 0) {
+
+        NLTCP *client_obj = [NLTCP new];
+
+        uv_stream_t *client_handle = (uv_stream_t *)&client_obj->handle;
+        if (uv_accept(handle, client_handle))
+            return;
+
+        args[1] = client_obj;
+
+    }
+
+    [[wrap valueForProperty:@"onconnection"] callWithArguments:args];
+
+}
+
 @end
