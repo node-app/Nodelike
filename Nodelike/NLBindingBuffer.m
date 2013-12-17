@@ -10,10 +10,11 @@
 
 static JSValue *constructor;
 
-size_t writeBuffer(const char *data, JSValue *buffer, size_t off, size_t len) {
+size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t len) {
+    JSContextRef context = target.context.JSGlobalContextRef;
+    JSObjectRef  buffer  = (JSObjectRef)target.JSValueRef;
     for (int i = 0; i < len; i++) {
-        JSValue *val = [JSValue valueWithInt32:data[i] inContext:buffer.context];
-        [buffer setValue:val atIndex:i + off];
+        JSObjectSetPropertyAtIndex(context, buffer, i + (unsigned int)off, JSValueMakeNumber(context, data[i]), nil);
     }
     return len;
 }
