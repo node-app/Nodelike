@@ -13,8 +13,7 @@
 }
 
 + (id)binding {
-    JSValue *tcp = [NLBinding makeConstructor:^{ return [NLTCP new]; } inContext:[NLContext currentContext]];
-    return @{@"TCP": tcp};
+    return @{@"TCP": self.constructor};
 }
 
 - (id)init {

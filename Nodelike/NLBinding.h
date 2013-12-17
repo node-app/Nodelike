@@ -27,5 +27,6 @@
 + (id)binding;
 
 + (JSValue *)makeConstructor:(id)block inContext:(JSContext *)context;
++ (JSValue *)constructor;
 
 @end

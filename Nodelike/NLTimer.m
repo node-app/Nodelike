@@ -15,7 +15,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 + (id)binding {
-    JSValue   *timer     = [NLBinding makeConstructor:^{ return [[NLTimer alloc] init]; } inContext:[NLContext currentContext]];
+    JSValue   *timer     = self.constructor;
     timer[@"kOnTimeout"] = [NSNumber numberWithUnsignedInt:kOnTimeout];
     timer[@"now"]        = ^{
         uv_loop_t *eventLoop = [[NLContext currentContext] eventLoop];
@@ -26,10 +26,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 - (id)init {
-    return [self initInContext:[NLContext currentContext]];
-}
-
-- (id)initInContext:(NLContext *)context {
+    NLContext *context = [NLContext currentContext];
     self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
     int r = uv_timer_init(context.eventLoop, &handle);
     assert(r == 0);

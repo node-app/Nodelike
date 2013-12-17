@@ -70,4 +70,8 @@
     return fun;
 }
 
++ (JSValue *)constructor {
+    return [self makeConstructor:^{ return [[self alloc] init]; } inContext:[JSContext currentContext]];
+}
+
 @end
