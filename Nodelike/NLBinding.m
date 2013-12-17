@@ -23,7 +23,7 @@
     static NSCache *cache = nil;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
-        cache = [[NSCache alloc] init];
+        cache = [NSCache new];
     });
     return cache;
 }
@@ -32,27 +32,27 @@
     static NSDictionary *bindings = nil;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
-        bindings = @{@"fs":         [NLBindingFilesystem class],
-                     @"constants":  [NLBindingConstants  class],
-                     @"smalloc":    [NLBindingSmalloc    class],
-                     @"buffer":     [NLBindingBuffer     class],
-                     @"timer_wrap": [NLTimer             class],
-                     @"cares_wrap": [NLCaresWrap         class],
-                     @"tcp_wrap":   [NLTCP               class],
-                     @"uv":         [NLBindingUv         class]};
+        bindings = @{@"fs":         NLBindingFilesystem.class,
+                     @"constants":  NLBindingConstants.class,
+                     @"smalloc":    NLBindingSmalloc.class,
+                     @"buffer":     NLBindingBuffer.class,
+                     @"timer_wrap": NLTimer.class,
+                     @"cares_wrap": NLCaresWrap.class,
+                     @"tcp_wrap":   NLTCP.class,
+                     @"uv":         NLBindingUv.class};
     });
     return bindings;
 }
 
 + (id)bindingForIdentifier:(NSString *)identifier {
-    NSCache *cache = [NLBinding bindingCache];
+    NSCache *cache = NLBinding.bindingCache;
     id binding = [cache objectForKey:identifier];
     if (binding != nil) {
         return binding;
     }
-    Class cls = [NLBinding bindings][identifier];
+    Class cls = NLBinding.bindings[identifier];
     if (cls) {
-        binding = [cls binding];
+        binding = cls.binding;
         [cache setObject:binding forKey:identifier];
         return binding;
     } else {
@@ -71,7 +71,7 @@
 }
 
 + (JSValue *)constructor {
-    return [self makeConstructor:^{ return [[self alloc] init]; } inContext:[JSContext currentContext]];
+    return [self makeConstructor:^{ return [self new]; } inContext:JSContext.currentContext];
 }
 
 @end

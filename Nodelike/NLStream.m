@@ -40,7 +40,7 @@
 }
 
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
-    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:[NLStream class]];
+    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:NLStream.class];
     assert(wrap.stream == (uv_stream_t *)handle);
     wrap.callbacks->doAlloc(handle, suggested_size, buf);
 }
@@ -54,7 +54,7 @@ static void onRead2(uv_pipe_t *handle, ssize_t nread, const uv_buf_t *buf, uv_ha
 }
 
 static void onReadCommon(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
-    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:[NLStream class]];
+    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:NLStream.class];
     wrap.callbacks->doRead(handle, nread, buf, pending);
 }
 

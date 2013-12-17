@@ -18,8 +18,8 @@
 @implementation NLBindingConstants
 
 + (id)binding {
-    JSContext   *context      = [NLContext currentContext];
-    JSContextRef contextRef   = [context JSGlobalContextRef];
+    JSContext   *context      = NLContext.currentContext;
+    JSContextRef contextRef   = context.JSGlobalContextRef;
     JSObjectRef  constantsRef = JSObjectMake(contextRef, nil, nil);
     define_errnum_constants(constantsRef, contextRef);
     define_signal_constants(constantsRef, contextRef);

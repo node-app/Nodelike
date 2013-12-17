@@ -19,7 +19,7 @@ static const unsigned int kCloseCallback = 2;
     static NSMutableArray *queue;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
-        queue = [[NSMutableArray alloc] init];
+        queue = [NSMutableArray new];
     });
     return queue;
 }
@@ -65,7 +65,7 @@ static const unsigned int kCloseCallback = 2;
 }
 
 static void onClose(uv_handle_t *handle) {
-    NLHandle *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:[NLHandle class]];
+    NLHandle *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:NLHandle.class];
     if (wrap->flags & kCloseCallback) {
         [wrap.closeCallback callWithArguments:@[]];
     }

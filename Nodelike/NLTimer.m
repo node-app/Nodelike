@@ -18,7 +18,7 @@ static const unsigned int kOnTimeout = 0;
     JSValue   *timer     = self.constructor;
     timer[@"kOnTimeout"] = [NSNumber numberWithUnsignedInt:kOnTimeout];
     timer[@"now"]        = ^{
-        uv_loop_t *eventLoop = [[NLContext currentContext] eventLoop];
+        uv_loop_t *eventLoop = NLContext.currentContext.eventLoop;
         uv_update_time(eventLoop);
         return [NSNumber numberWithDouble:uv_now(eventLoop)];
     };
@@ -26,7 +26,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 - (id)init {
-    NLContext *context = [NLContext currentContext];
+    NLContext *context = NLContext.currentContext;
     self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
     int r = uv_timer_init(context.eventLoop, &handle);
     assert(r == 0);
@@ -34,7 +34,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 - (NSNumber *)start:(NSNumber *)timeout repeat:(NSNumber *)repeat {
-    return [NSNumber numberWithInt:uv_timer_start(&handle, onTimeout, [timeout intValue], [repeat intValue])];
+    return [NSNumber numberWithInt:uv_timer_start(&handle, onTimeout, timeout.intValue, repeat.intValue)];
 }
 
 - (NSNumber *)stop {
@@ -42,7 +42,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 - (NSNumber *)setRepeat:(NSNumber *)repeat {
-    uv_timer_set_repeat(&handle, [repeat intValue]);
+    uv_timer_set_repeat(&handle, repeat.intValue);
     return @0;
 }
 
@@ -56,8 +56,8 @@ static const unsigned int kOnTimeout = 0;
 
 static void onTimeout(uv_timer_t *handle, int status) {
     JSValue     *wrap       = (__bridge JSValue *)(handle->data);
-    JSObjectRef  wrapRef    = (JSObjectRef)[wrap JSValueRef];
-    JSContextRef contextRef = [[wrap context] JSGlobalContextRef];
+    JSObjectRef  wrapRef    = (JSObjectRef)(wrap.JSValueRef);
+    JSContextRef contextRef = wrap.context.JSGlobalContextRef;
     JSValueRef   callback   = JSObjectGetPropertyAtIndex(contextRef, wrapRef, kOnTimeout, nil);
     if (callback && JSValueIsObject(contextRef, callback) && JSObjectIsFunction(contextRef, (JSObjectRef)callback)) {
         JSValueRef arg = JSValueMakeNumber(contextRef, status);

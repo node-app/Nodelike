@@ -17,7 +17,7 @@
 }
 
 - (id)init {
-    NLContext *context = [NLContext currentContext];
+    NLContext *context = NLContext.currentContext;
     self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
     int r = uv_tcp_init(context.eventLoop, &handle);
     assert(r == 0);
@@ -25,12 +25,12 @@
 }
 
 - (void)open:(NSNumber *)fd {
-    uv_tcp_open((uv_tcp_t *)self.handle, [fd intValue]);
+    uv_tcp_open((uv_tcp_t *)self.handle, fd.intValue);
 }
 
 - (NSNumber *)bind:(longlived NSString *)address port:(NSNumber *)port {
     struct sockaddr_in addr;
-    int err = uv_ip4_addr([address UTF8String], [port intValue], &addr);
+    int err = uv_ip4_addr(address.UTF8String, port.intValue, &addr);
     if (err == 0)
         err = uv_tcp_bind(&handle, (const struct sockaddr *)&addr);
     return [NSNumber numberWithInt:err];
@@ -38,7 +38,7 @@
 
 - (NSNumber *)bind6:(longlived NSString *)address port:(NSNumber *)port {
     struct sockaddr_in6 addr;
-    int err = uv_ip6_addr([address UTF8String], [port intValue], &addr);
+    int err = uv_ip6_addr(address.UTF8String, port.intValue, &addr);
     if (err == 0)
         err = uv_tcp_bind(&handle, (const struct sockaddr *)&addr);
     return [NSNumber numberWithInt:err];

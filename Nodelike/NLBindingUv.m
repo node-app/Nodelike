@@ -14,7 +14,7 @@
 
 + (id)binding {
 
-    NSMutableDictionary *b = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *b = [NSMutableDictionary new];
 
     b[@"errname"] = ^(NSNumber *err) {
         return [NSString stringWithUTF8String:uv_err_name([err intValue])];

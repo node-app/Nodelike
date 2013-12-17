@@ -17,17 +17,17 @@
 - (id)init {
 
     _platform = @"darwin";
-    _argv = [[NSProcessInfo processInfo] arguments];
-    _env  = [[NSProcessInfo processInfo] environment];
+    _argv = NSProcessInfo.processInfo.arguments;
+    _env  = NSProcessInfo.processInfo.environment;
 
-    filemngr  = [[NSFileManager alloc] init];
+    filemngr  = [NSFileManager new];
 
     return [super init];
 
 }
 
 - (NSString *)cwd {
-    return [filemngr currentDirectoryPath];
+    return filemngr.currentDirectoryPath;
 }
 
 - (void)chdir:(NSString *)path {
@@ -35,7 +35,7 @@
 }
 
 - (void)exit:(NSNumber *)code {
-    exit([code intValue]);
+    exit(code.intValue);
 }
 
 - (void)nextTick:(JSValue *)cb {

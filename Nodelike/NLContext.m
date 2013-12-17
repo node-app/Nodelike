@@ -47,17 +47,17 @@ struct data {
 
 - (void)augment {
 
-    _eventLoop    = [NLContext eventLoop];
-    dispatchQueue = [NLContext dispatchQueue];
+    _eventLoop    = NLContext.eventLoop;
+    dispatchQueue = NLContext.dispatchQueue;
 
-    requireCache  = [NLContext requireCache];
+    requireCache  = NLContext.requireCache;
 
     self[@"global"]  = self.globalObject;
 
-    self[@"process"] = [[NLProcess alloc] init];
+    self[@"process"] = [NLProcess new];
 
     self[@"require"] = ^(NSString *module) {
-        return [[NLContext currentContext] requireModule:module];
+        return [NLContext.currentContext requireModule:module];
     };
     
     self[@"log"] = ^(id msg) {
@@ -82,7 +82,7 @@ struct data {
 }
 
 + (NLContext *)contextForEventRequest:(void *)req {
-    return (NLContext *)[(__bridge JSValue *)(((struct data *)(((uv_req_t *)req)->data))->callback) context];
+    return (NLContext *)((__bridge JSValue *)(((struct data *)(((uv_req_t *)req)->data))->callback)).context;
 }
 
 - (void)runEventLoop {
@@ -95,7 +95,7 @@ struct data {
                                    do:(void(^)(uv_loop_t *, void *, bool))task
                                  then:(void(^)(void *, NLContext *))after {
     
-    NLContext *context = [NLContext currentContext];
+    NLContext *context = NLContext.currentContext;
 
     uv_req_t *req = malloc(uv_req_size(type));
 
@@ -167,7 +167,7 @@ struct data {
 }
 
 - (void)setErrorCode:(int)error forEventRequest:(void *)req {
-    NSString *msg = [NSString stringWithCString:uv_strerror(error) encoding:NSUTF8StringEncoding];
+    NSString *msg = [NSString stringWithUTF8String:uv_strerror(error)];
     [self setError:[JSValue valueWithNewErrorFromMessage:msg inContext:self] forEventRequest:req];
 }
 
@@ -185,7 +185,7 @@ struct data {
     static NSMutableDictionary *cache;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
-        cache = [[NSMutableDictionary alloc] init];
+        cache = [NSMutableDictionary new];
     });
     return cache;
 }
@@ -198,8 +198,8 @@ struct data {
         return cached;
     }
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:module
-                                                     ofType:@"js"];
+    NSString* path = [NSBundle.mainBundle pathForResource:module
+                                                   ofType:@"js"];
     
     NSString* content = [NSString stringWithContentsOfFile:path
                                                   encoding:NSUTF8StringEncoding
