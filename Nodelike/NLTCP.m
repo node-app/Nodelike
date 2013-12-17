@@ -24,6 +24,32 @@
     return self;
 }
 
+- (NSNumber *)getsockname:(JSValue *)out {
+    struct sockaddr_storage address;
+    int addrlen = sizeof(address);
+    int err = uv_tcp_getsockname(&handle,
+                                 (struct sockaddr *)&address,
+                                 &addrlen);
+    if (err == 0) {
+        const struct sockaddr* addr = (const struct sockaddr *)&address;
+        AddressToJS(NLContext.currentContext, addr, out);
+    }
+    return [NSNumber numberWithInt:err];
+}
+
+- (NSNumber *)getpeername:(JSValue *)out {
+    struct sockaddr_storage address;
+    int addrlen = sizeof(address);
+    int err = uv_tcp_getpeername(&handle,
+                                 (struct sockaddr *)&address,
+                                 &addrlen);
+    if (err == 0) {
+        const struct sockaddr* addr = (const struct sockaddr *)&address;
+        AddressToJS(NLContext.currentContext, addr, out);
+    }
+    return [NSNumber numberWithInt:err];
+}
+
 - (void)open:(NSNumber *)fd {
     uv_tcp_open((uv_tcp_t *)self.handle, fd.intValue);
 }
@@ -68,6 +94,41 @@ static void onConnection(uv_stream_t *handle, int status) {
     }
 
     [[wrap valueForProperty:@"onconnection"] callWithArguments:args];
+
+}
+
+void AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
+
+    char ip[INET6_ADDRSTRLEN];
+    const struct sockaddr_in  *a4;
+    const struct sockaddr_in6 *a6;
+    int port;
+    
+    if ([info isUndefined])
+        info = [JSValue valueWithNewObjectInContext:context];
+    
+    switch (addr->sa_family) {
+        case AF_INET6:
+            a6 = (const struct sockaddr_in6 *)addr;
+            uv_inet_ntop(AF_INET6, &a6->sin6_addr, ip, sizeof ip);
+            port = ntohs(a6->sin6_port);
+            [info setValue:[NSString stringWithUTF8String:ip] forProperty:@"address"];
+            [info setValue:@"IPv6"                            forProperty:@"family"];
+            [info setValue:[NSNumber numberWithInt:port]      forProperty:@"port"];
+            break;
+            
+        case AF_INET:
+            a4 = (const struct sockaddr_in *)addr;
+            uv_inet_ntop(AF_INET, &a4->sin_addr, ip, sizeof ip);
+            port = ntohs(a4->sin_port);
+            [info setValue:[NSString stringWithUTF8String:ip] forProperty:@"address"];
+            [info setValue:@"IPv4"                            forProperty:@"family"];
+            [info setValue:[NSNumber numberWithInt:port]      forProperty:@"port"];
+            break;
+            
+        default:
+            [info setValue:@"" forProperty:@"address"];
+    }
 
 }
 
