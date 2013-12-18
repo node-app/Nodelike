@@ -77,7 +77,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
     if (nread < 0)  {
         if (buf->base != NULL)
             free(buf->base);
-        [[value valueForProperty:@"onread"] callWithArguments:@[[NSNumber numberWithLong:nread]]];
+        [value invokeMethod:@"onread" withArguments:@[[NSNumber numberWithLong:nread]]];
         return;
     }
 
@@ -105,7 +105,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
             abort();
     }
     
-    [[value valueForProperty:@"onread"] callWithArguments:@[[NSNumber numberWithLong:nread], buffer, pending_obj]];
+    [value invokeMethod:@"onread" withArguments:@[[NSNumber numberWithLong:nread], buffer, pending_obj]];
 
 }
 
