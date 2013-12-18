@@ -17,7 +17,10 @@
 }
 
 - (id)init {
-    NLContext *context = NLContext.currentContext;
+    return [self initInContext:NLContext.currentContext];
+}
+
+- (id)initInContext:(NLContext *)context {
     self = [super initWithStream:(uv_stream_t *)&handle inContext:context];
     int r = uv_tcp_init(context.eventLoop, &handle);
     assert(r == 0);
@@ -93,7 +96,7 @@ static void onConnection(uv_stream_t *handle, int status) {
 
     if (status == 0) {
 
-        NLTCP *client_obj = [NLTCP new];
+        NLTCP *client_obj = [[NLTCP alloc] initInContext:wrap.context];
 
         uv_stream_t *client_handle = (uv_stream_t *)&client_obj->handle;
         if (uv_accept(handle, client_handle))
