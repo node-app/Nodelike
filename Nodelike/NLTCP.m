@@ -106,7 +106,7 @@ static void onConnection(uv_stream_t *handle, int status) {
 
     }
 
-    [[wrap valueForProperty:@"onconnection"] callWithArguments:args];
+    [wrap invokeMethod:@"onconnection" withArguments:args];
 
 }
 
