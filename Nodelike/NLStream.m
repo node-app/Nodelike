@@ -26,7 +26,7 @@
     return [super init];
 }
 
-- (id)initWithStream:(uv_stream_t *)stream inContext:(NLContext *)context {
+- (id)initWithStream:(uv_stream_t *)stream inContext:(JSContext *)context {
     self = [super initWithHandle:(uv_handle_t *)stream inContext:context];
     _stream = stream;
     return self;

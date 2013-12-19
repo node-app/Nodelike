@@ -14,6 +14,8 @@
 
 @property (readonly) uv_loop_t *eventLoop;
 
++ (uv_loop_t *)eventLoop;
+
 + (NLContext *)currentContext;
 
 + (NLContext *)contextForEventRequest:(void *)req;

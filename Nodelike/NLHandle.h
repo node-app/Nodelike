@@ -22,6 +22,6 @@
 @property (readonly) JSValue     *closeCallback;
 @property (readonly) NSValue     *weakValue;
 
-- (id)initWithHandle:(uv_handle_t *)handle inContext:(NLContext *)context;
+- (id)initWithHandle:(uv_handle_t *)handle inContext:(JSContext *)context;
 
 @end

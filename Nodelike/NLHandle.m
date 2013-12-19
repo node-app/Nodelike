@@ -50,7 +50,7 @@ static const unsigned int kCloseCallback = 2;
     }
 }
 
-- (id)initWithHandle:(uv_handle_t *)handle inContext:(NLContext *)context {
+- (id)initWithHandle:(uv_handle_t *)handle inContext:(JSContext *)context {
     self          = [super init];
     flags         = 0;
     _handle       = handle;

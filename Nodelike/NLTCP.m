@@ -17,12 +17,12 @@
 }
 
 - (id)init {
-    return [self initInContext:NLContext.currentContext];
+    return [self initInContext:JSContext.currentContext];
 }
 
-- (id)initInContext:(NLContext *)context {
+- (id)initInContext:(JSContext *)context {
     self = [super initWithStream:(uv_stream_t *)&handle inContext:context];
-    int r = uv_tcp_init(context.eventLoop, &handle);
+    int r = uv_tcp_init(NLContext.eventLoop, &handle);
     assert(r == 0);
     return self;
 }

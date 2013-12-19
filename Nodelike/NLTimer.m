@@ -26,9 +26,8 @@ static const unsigned int kOnTimeout = 0;
 }
 
 - (id)init {
-    NLContext *context = NLContext.currentContext;
-    self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
-    int r = uv_timer_init(context.eventLoop, &handle);
+    self = [super initWithHandle:(uv_handle_t *)&handle inContext:JSContext.currentContext];
+    int r = uv_timer_init(NLContext.eventLoop, &handle);
     assert(r == 0);
     return self;
 }
