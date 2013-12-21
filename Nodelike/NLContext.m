@@ -195,7 +195,7 @@ struct data {
     JSValue *cached = [requireCache objectForKey:module];
     
     if (cached != nil) {
-        return cached;
+        return cached[@"exports"];
     }
     
     NSString* path = [NSBundle.mainBundle pathForResource:module
@@ -210,24 +210,22 @@ struct data {
         self.exception = [JSValue valueWithNewErrorFromMessage:error inContext:self];
         return nil;
     }
-
-    NSString *template = @"(function (exports, require, module, __filename, __dirname) {%@\n});";
-    NSString *source = [NSString stringWithFormat:template, content];
-
-    JSValue *fn = [self evaluateScript:source];
     
     JSValue *exports = [JSValue valueWithNewObjectInContext:self];
     JSValue *modulev = [JSValue valueWithNewObjectInContext:self];
     modulev[@"exports"] = exports;
 
+    requireCache[module] = modulev;
+
+    NSString *template = @"(function (exports, require, module, __filename, __dirname) {%@\n});";
+    NSString *source = [NSString stringWithFormat:template, content];
+
+    JSValue *fn = [self evaluateScript:source];
+
     [fn callWithArguments:@[exports, self[@"require"], modulev]];
 
-    JSValue *moduleValue = modulev[@"exports"];
+    return modulev[@"exports"];
 
-    requireCache[module] = moduleValue;
-
-    return moduleValue;
-    
 }
 
 @end
