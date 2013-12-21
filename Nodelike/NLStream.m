@@ -19,16 +19,12 @@
 #define isNamedPipeIPC(stream) (isNamedPipe(stream) && ((uv_pipe_t *)stream)->ipc != 0)
 #define isTCP(stream)          (stream->type == UV_TCP)
 
-- (id)init {
-    defaultCallbacks.doAlloc = doAlloc;
-    defaultCallbacks.doRead  = doRead;
-    _callbacks = &defaultCallbacks;
-    return [super init];
-}
-
 - (id)initWithStream:(uv_stream_t *)stream inContext:(JSContext *)context {
     self = [super initWithHandle:(uv_handle_t *)stream inContext:context];
     _stream = stream;
+    defaultCallbacks.doAlloc = doAlloc;
+    defaultCallbacks.doRead  = doRead;
+    _callbacks = &defaultCallbacks;
     return self;
 }
 
