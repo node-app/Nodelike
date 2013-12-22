@@ -33,7 +33,7 @@ static void after(uv_fs_t* req) {
     [NLContext finishEventRequest:req do:
      ^(NLContext *context) {
          if (req->result < 0) {
-             [context setErrorCode:req->result forEventRequest:req];
+             [context setErrorCode:(int)req->result forEventRequest:req];
          } else {
              [context callSuccessfulEventRequest:req];
          }
@@ -53,7 +53,7 @@ static void after(uv_fs_t* req) {
 - (JSValue *)open:(longlived NSString *)path flags:(NSNumber *)flags mode:(NSNumber *)mode callback:(JSValue *)cb {
     return [CALL(open, cb, path.UTF8String, flags.intValue, mode.intValue)
             ^(void *req, NLContext *context) {
-                [context setValue:[JSValue valueWithInt32:REQ(req)->result inContext:context] forEventRequest:req];
+                [context setValue:[JSValue valueWithInt32:(int)REQ(req)->result inContext:context] forEventRequest:req];
             }];
 }
 
@@ -68,7 +68,7 @@ static void after(uv_fs_t* req) {
     return [CALL(read, cb, [file intValue], malloc(length), length, position)
             ^(void *req, NLContext *context) {
                 [NLBindingBuffer write:REQ(req)->buf toBuffer:target atOffset:off withLength:len];
-                [context setValue:[JSValue valueWithInt32:REQ(req)->result inContext:context] forEventRequest:req];
+                [context setValue:[JSValue valueWithInt32:(int)REQ(req)->result inContext:context] forEventRequest:req];
             }];
 
 }
@@ -77,7 +77,7 @@ static void after(uv_fs_t* req) {
     return [CALL(readdir, cb, [path UTF8String], 0)
             ^(void *req, NLContext *context) {
                 char *namebuf = REQ(req)->ptr;
-                int i, nnames = REQ(req)->result;
+                ssize_t i, nnames = REQ(req)->result;
                 JSValue *names = [JSValue valueWithNewArrayInContext:context];
                 for (i = 0; i < nnames; i++) {
                     names[i] = [NSString stringWithUTF8String:namebuf];
