@@ -18,7 +18,7 @@ static const unsigned int kOnTimeout = 0;
     JSValue   *timer     = self.constructor;
     timer[@"kOnTimeout"] = [NSNumber numberWithUnsignedInt:kOnTimeout];
     timer[@"now"]        = ^{
-        uv_loop_t *eventLoop = NLContext.currentContext.eventLoop;
+        uv_loop_t *eventLoop = NLContext.eventLoop;
         uv_update_time(eventLoop);
         return [NSNumber numberWithDouble:uv_now(eventLoop)];
     };

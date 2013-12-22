@@ -56,12 +56,12 @@ static const unsigned int kCloseCallback = 2;
     _handle       = handle;
     _handle->data = (void *)CFBridgingRetain([JSValue valueWithObject:self inContext:context]);
     _weakValue    = [NSValue valueWithNonretainedObject:self];
-    [[NLHandle handleQueue] addObject:_weakValue];
+    [NLHandle.handleQueue addObject:_weakValue];
     return self;
 }
 
 - (void)dealloc {
-    [[NLHandle handleQueue] removeObject:self.weakValue];
+    [NLHandle.handleQueue removeObject:self.weakValue];
 }
 
 static void onClose(uv_handle_t *handle) {
