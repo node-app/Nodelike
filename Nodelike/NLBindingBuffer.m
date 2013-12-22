@@ -10,7 +10,7 @@
 
 static JSValue *constructor;
 
-size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t len) {
+static size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t len) {
     JSContextRef context = target.context.JSGlobalContextRef;
     JSObjectRef  buffer  = (JSObjectRef)target.JSValueRef;
     for (int i = 0; i < len; i++) {

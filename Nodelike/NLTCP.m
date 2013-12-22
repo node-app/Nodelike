@@ -110,7 +110,7 @@ static void onConnection(uv_stream_t *handle, int status) {
 
 }
 
-void AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
+static void AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
 
     char ip[INET6_ADDRSTRLEN];
     const struct sockaddr_in  *a4;

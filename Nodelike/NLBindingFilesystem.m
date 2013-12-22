@@ -154,9 +154,10 @@ const static JSObjectRef spec_to_date(uv_timespec_t spec, JSContextRef ctx) {
     return JSObjectMakeDate(ctx, 1, &val, nil);
 }
 
-- (JSValue *)buildStatsObject:(const uv_stat_t *)s inContext:(JSContext *)context {
+static JSValue *buildStatsObject(const uv_stat_t *s, JSValue *_Stats) {
+    JSContext   *context    = _Stats.context;
     JSContextRef contextRef = context.JSGlobalContextRef;
-    JSValue *stats = [JSValue valueWithNewObjectInContext:context];
+    JSValue     *stats      = [JSValue valueWithNewObjectInContext:context];
     stats[@"__proto__"] = _Stats[@"prototype"];
     stats[@"dev"]       = [JSValue valueWithInt32:s->st_dev    inContext:context];
     stats[@"mode"]      = [JSValue valueWithInt32:s->st_mode   inContext:context];
@@ -176,19 +177,19 @@ const static JSObjectRef spec_to_date(uv_timespec_t spec, JSContextRef ctx) {
 
 - (JSValue *)stat:(longlived NSString *)path callback:(JSValue *)cb {
     return [CALL(stat, cb, path.UTF8String) ^(void *req, NLContext *context) {
-        [context setValue:[self buildStatsObject:REQ(req)->ptr inContext:context] forEventRequest:req];
+        [context setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
     }];
 }
 
 - (JSValue *)lstat:(longlived NSString *)path callback:(JSValue *)cb {
     return [CALL(lstat, cb, path.UTF8String) ^(void *req, NLContext *context) {
-        [context setValue:[self buildStatsObject:REQ(req)->ptr inContext:context] forEventRequest:req];
+        [context setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
     }];
 }
 
 - (JSValue *)fstat:(longlived NSNumber *)file callback:(JSValue *)cb {
     return [CALL(fstat, cb, file.intValue) ^(void *req, NLContext *context) {
-        [context setValue:[self buildStatsObject:REQ(req)->ptr inContext:context] forEventRequest:req];
+        [context setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
     }];
 }
 
