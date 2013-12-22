@@ -31,7 +31,7 @@ size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t len) {
 }
 
 + (JSValue *)useData:(const char *)data ofLength:(size_t)len {
-    JSValue *buffer = [self.constructor callWithArguments:@[[NSNumber numberWithLong:len]]];
+    JSValue *buffer = [self.constructor constructWithArguments:@[[NSNumber numberWithLong:len]]];
     writeBuffer(data, buffer, 0, len);
     return buffer;
 }
