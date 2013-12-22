@@ -63,6 +63,8 @@ struct data {
     self[@"log"] = ^(id msg) {
         NSLog(@"%@", msg);
     };
+    
+    self[@"Buffer"] = [self requireModule:@"buffer"][@"Buffer"];
 
 }
 
