@@ -52,6 +52,8 @@ struct data {
 
     requireCache  = NLContext.requireCache;
 
+    [self augmentNoops];
+
     self[@"global"]  = self.globalObject;
 
     self[@"process"] = [NLProcess new];
@@ -65,6 +67,16 @@ struct data {
     };
     
     self[@"Buffer"] = [self requireModule:@"buffer"][@"Buffer"];
+
+}
+
+- (void)augmentNoops {
+    
+    JSValue *noop = [self evaluateScript:@"(function(){})"];
+    
+    self[@"DTRACE_NET_SERVER_CONNECTION"] = noop;
+    
+    self[@"COUNTER_NET_SERVER_CONNECTION"] = noop;
 
 }
 
