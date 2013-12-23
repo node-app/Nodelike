@@ -70,10 +70,12 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
 
     JSValue *value = (__bridge JSValue *)(handle->data);
 
+    NSMutableArray *args = [NSMutableArray arrayWithObject:[NSNumber numberWithLong:nread]];
+
     if (nread < 0)  {
         if (buf->base != NULL)
             free(buf->base);
-        [value invokeMethod:@"onread" withArguments:@[[NSNumber numberWithLong:nread]]];
+        [value invokeMethod:@"onread" withArguments:args];
         return;
     }
 
@@ -82,9 +84,11 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
             free(buf->base);
         return;
     }
-
+    
     JSValue  *buffer      = [NLBindingBuffer useData:buf->base ofLength:buf->len];
     NLStream *pending_obj = nil;
+    
+    [args addObject:buffer];
     
     if (pending == UV_TCP) {
         pending_obj = [NLTCP new];
@@ -97,11 +101,12 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
     }
     
     if (pending_obj != nil) {
+        [args addObject:pending_obj];
         if (uv_accept(handle, pending_obj.stream))
             abort();
     }
     
-    [value invokeMethod:@"onread" withArguments:@[[NSNumber numberWithLong:nread], buffer, pending_obj]];
+    [value invokeMethod:@"onread" withArguments:args];
 
 }
 
