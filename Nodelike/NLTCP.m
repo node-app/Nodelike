@@ -8,6 +8,11 @@
 
 #import "NLTCP.h"
 
+struct connectWrap {
+    uv_connect_t req;
+    void        *value;
+};
+
 @implementation NLTCP {
     uv_tcp_t handle;
 }
@@ -86,6 +91,63 @@
 - (NSNumber *)listen:(NSNumber *)backlog {
     int err = uv_listen((uv_stream_t *)&handle, backlog.intValue, onConnection);
     return [NSNumber numberWithInt:err];
+}
+
+- (NSNumber *)connect:(JSValue *)obj address:(longlived NSString *)address port:(NSNumber *)port {
+    
+    struct sockaddr_in addr;
+    int err = uv_ip4_addr(address.UTF8String, port.intValue, &addr);
+    
+    if (err == 0) {
+        struct connectWrap *wrap = malloc(sizeof(struct connectWrap));
+        wrap->value    = (void *)CFBridgingRetain(obj);
+        wrap->req.data = wrap;
+        err = uv_tcp_connect(&wrap->req,
+                             &handle,
+                             (const struct sockaddr *)&addr,
+                             afterConnect);
+        if (err)
+            free(wrap);
+    }
+    
+    return [NSNumber numberWithInt:err];
+
+}
+
+- (NSNumber *)connect6:(JSValue *)obj address:(longlived NSString *)address port:(NSNumber *)port {
+    
+    struct sockaddr_in6 addr;
+    int err = uv_ip6_addr(address.UTF8String, port.intValue, &addr);
+    
+    if (err == 0) {
+        struct connectWrap *wrap = malloc(sizeof(struct connectWrap));
+        wrap->value    = (void *)CFBridgingRetain(obj);
+        wrap->req.data = wrap;
+        err = uv_tcp_connect(&wrap->req,
+                             &handle,
+                             (const struct sockaddr *)&addr,
+                             afterConnect);
+        if (err)
+            free(wrap);
+    }
+    
+    return [NSNumber numberWithInt:err];
+    
+}
+
+static void afterConnect(uv_connect_t* req, int status) {
+    
+    JSValue *connectWrap = CFBridgingRelease(((struct connectWrap *)req->data)->value);
+    JSValue *wrap        = (__bridge JSValue *)(req->handle->data);
+
+    free(req->data);
+    
+    [connectWrap invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status],
+                                                            wrap,
+                                                            connectWrap,
+                                                            [NSNumber numberWithBool:YES],
+                                                            [NSNumber numberWithBool:YES]]];
+
 }
 
 static void onConnection(uv_stream_t *handle, int status) {

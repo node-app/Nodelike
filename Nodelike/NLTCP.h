@@ -24,9 +24,14 @@
 JSExportAs(setKeepAlive, - (NSNumber *)setKeepAlive:(NSNumber *)enable to:(NSNumber *)delay);
 
 - (void)open:(NSNumber *)fd;
+
 JSExportAs(bind,  - (NSNumber *)bind:(NSString *)address port:(NSNumber *)port);
 JSExportAs(bind6, - (NSNumber *)bind6:(NSString *)address port:(NSNumber *)port);
+
 - (NSNumber *)listen:(NSNumber *)backlog;
+
+JSExportAs(connect,  - (NSNumber *)connect:(JSValue *)obj address:(NSString *)address port:(NSNumber *)port);
+JSExportAs(connect6, - (NSNumber *)connect6:(JSValue *)obj address:(NSString *)address port:(NSNumber *)port);
 
 @end
 
