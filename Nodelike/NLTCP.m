@@ -92,7 +92,7 @@ static void onConnection(uv_stream_t *handle, int status) {
 
     JSValue *wrap = (__bridge JSValue *)(handle->data);
 
-    NSMutableArray *args = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithInt:status], nil];
+    NSMutableArray *args = [NSMutableArray arrayWithObject:[NSNumber numberWithInt:status]];
 
     if (status == 0) {
 
@@ -102,7 +102,7 @@ static void onConnection(uv_stream_t *handle, int status) {
         if (uv_accept(handle, client_handle))
             return;
 
-        args[1] = client_obj;
+        [args addObject:client_obj];
 
     }
 
