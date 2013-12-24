@@ -74,17 +74,19 @@ struct connectWrap {
 
 - (NSNumber *)bind:(longlived NSString *)address port:(NSNumber *)port {
     struct sockaddr_in addr;
-    int err = uv_ip4_addr(address.UTF8String, port.intValue, &addr);
-    if (err == 0)
-        err = uv_tcp_bind(&handle, (const struct sockaddr *)&addr);
-    return [NSNumber numberWithInt:err];
+    return bindCommon(uv_ip4_addr(address.UTF8String, port.intValue, &addr),
+                      &handle, (const struct sockaddr *)&addr);
 }
 
 - (NSNumber *)bind6:(longlived NSString *)address port:(NSNumber *)port {
     struct sockaddr_in6 addr;
-    int err = uv_ip6_addr(address.UTF8String, port.intValue, &addr);
+    return bindCommon(uv_ip6_addr(address.UTF8String, port.intValue, &addr),
+                      &handle, (const struct sockaddr *)&addr);
+}
+
+static NSNumber *bindCommon (int err, uv_tcp_t *handle, const struct sockaddr *addr) {
     if (err == 0)
-        err = uv_tcp_bind(&handle, (const struct sockaddr *)&addr);
+        err = uv_tcp_bind(handle, addr);
     return [NSNumber numberWithInt:err];
 }
 
@@ -94,45 +96,27 @@ struct connectWrap {
 }
 
 - (NSNumber *)connect:(JSValue *)obj address:(longlived NSString *)address port:(NSNumber *)port {
-    
     struct sockaddr_in addr;
-    int err = uv_ip4_addr(address.UTF8String, port.intValue, &addr);
-    
-    if (err == 0) {
-        struct connectWrap *wrap = malloc(sizeof(struct connectWrap));
-        wrap->value    = (void *)CFBridgingRetain(obj);
-        wrap->req.data = wrap;
-        err = uv_tcp_connect(&wrap->req,
-                             &handle,
-                             (const struct sockaddr *)&addr,
-                             afterConnect);
-        if (err)
-            free(wrap);
-    }
-    
-    return [NSNumber numberWithInt:err];
-
+    return connectCommon(uv_ip4_addr(address.UTF8String, port.intValue, &addr),
+                         obj, &handle, (const struct sockaddr *)&addr);
 }
 
 - (NSNumber *)connect6:(JSValue *)obj address:(longlived NSString *)address port:(NSNumber *)port {
-    
     struct sockaddr_in6 addr;
-    int err = uv_ip6_addr(address.UTF8String, port.intValue, &addr);
-    
+    return connectCommon(uv_ip6_addr(address.UTF8String, port.intValue, &addr),
+                         obj, &handle, (const struct sockaddr *)&addr);
+}
+
+static NSNumber *connectCommon (int err, JSValue *obj, uv_tcp_t *handle, const struct sockaddr *addr) {
     if (err == 0) {
         struct connectWrap *wrap = malloc(sizeof(struct connectWrap));
         wrap->value    = (void *)CFBridgingRetain(obj);
         wrap->req.data = wrap;
-        err = uv_tcp_connect(&wrap->req,
-                             &handle,
-                             (const struct sockaddr *)&addr,
-                             afterConnect);
+        err = uv_tcp_connect(&wrap->req, handle, addr, afterConnect);
         if (err)
             free(wrap);
     }
-    
     return [NSNumber numberWithInt:err];
-    
 }
 
 static void afterConnect(uv_connect_t* req, int status) {
