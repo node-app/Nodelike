@@ -62,7 +62,7 @@ static size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t 
     JSContextRef contextRef = ctx.JSGlobalContextRef;
     JSObjectRef  bufferRef  = (JSObjectRef)buffer.JSValueRef;
     for (int i = 0; i < len; i++) {
-        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + start, nil);
+        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + (int)start, nil);
         data[i] = JSValueToNumber(contextRef, prop, nil);
     }
     data[len] = '\0';
