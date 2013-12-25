@@ -75,8 +75,10 @@ struct data {
     JSValue *noop = [self evaluateScript:@"(function(){})"];
     
     self[@"DTRACE_NET_SERVER_CONNECTION"] = noop;
+    self[@"DTRACE_NET_STREAM_END"]        = noop;
     
-    self[@"COUNTER_NET_SERVER_CONNECTION"] = noop;
+    self[@"COUNTER_NET_SERVER_CONNECTION"]      = noop;
+    self[@"COUNTER_NET_SERVER_CONNECTION_CLOSE"] = noop;
 
 }
 
