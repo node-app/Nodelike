@@ -24,18 +24,3 @@ You first need to fetch the nodejs submodule. Do so by:
 2. `git submodule update`
 
 Afterwards, just open `Nodelike.xcodeproj`, build the framework and you're all set!
-
-What's working right now
-------------------------
-
-- `process`: `.cwd()`, `.chdir()`, `.argv`, `.env`, `.exit()`, `.nextTick()`
-- `require()` for native modules
-- `fs`: `open`, `close`, `readdir`
-- `util`
-- `url`
-- `events`
-- `path`
-- `stream`
-- `querystring`
-- `punycode`
-- `assert`
