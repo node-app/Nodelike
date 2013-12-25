@@ -59,8 +59,11 @@ static size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t 
 + (NSString *)slice:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg inContext:(NLContext *)ctx {
     size_t start = start_arg.intValue, end = end_arg.intValue, len = end - start;
     char *data = malloc(len + 1);
+    JSContextRef contextRef = ctx.JSGlobalContextRef;
+    JSObjectRef  bufferRef  = (JSObjectRef)buffer.JSValueRef;
     for (int i = 0; i < len; i++) {
-        data[i] = [[buffer valueAtIndex:i + start] toInt32];
+        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + start, nil);
+        data[i] = JSValueToNumber(contextRef, prop, nil);
     }
     data[len] = '\0';
     NSString *str = [NSString stringWithUTF8String:data];
