@@ -19,6 +19,17 @@ static size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t 
     return len;
 }
 
+static size_t sliceBuffer(char *data, JSValue *target, size_t off, size_t len) {
+    JSContextRef contextRef = target.context.JSGlobalContextRef;
+    JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
+    int i;
+    for (i = 0; i < len; i++) {
+        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + (int)off, nil);
+        data[i] = JSValueToNumber(contextRef, prop, nil);
+    }
+    return i;
+}
+
 @implementation NLBindingBuffer
 
 + (id)binding {
@@ -56,15 +67,20 @@ static size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t 
     
 }
 
++ (size_t)getLength:(JSValue *)buffer {
+    return [buffer[@"length"] toInt32];
+}
+
++ (char *)getData:(JSValue *)buffer ofSize:(size_t)size {
+    char *data = malloc(size);
+    sliceBuffer(data, buffer, 0, size);
+    return data;
+}
+
 + (NSString *)slice:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg inContext:(NLContext *)ctx {
     size_t start = start_arg.intValue, end = end_arg.intValue, len = end - start;
     char *data = malloc(len + 1);
-    JSContextRef contextRef = ctx.JSGlobalContextRef;
-    JSObjectRef  bufferRef  = (JSObjectRef)buffer.JSValueRef;
-    for (int i = 0; i < len; i++) {
-        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + (int)start, nil);
-        data[i] = JSValueToNumber(contextRef, prop, nil);
-    }
+    sliceBuffer(data, buffer, start, len);
     data[len] = '\0';
     NSString *str = [NSString stringWithUTF8String:data];
     free(data);
