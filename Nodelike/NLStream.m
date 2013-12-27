@@ -85,7 +85,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
         return;
     }
     
-    JSValue  *buffer      = [NLBindingBuffer useData:buf->base ofLength:buf->len];
+    JSValue  *buffer      = [NLBindingBuffer useData:buf->base ofLength:(int)buf->len];
     NLStream *pending_obj = nil;
     
     [args addObject:buffer];
