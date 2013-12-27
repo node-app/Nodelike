@@ -12,7 +12,10 @@
 
 + (JSValue *)constructor;
 
-+ (JSValue *)useData:(const char *)data ofLength:(size_t)len;
++ (JSValue *)useData:(const char *)data ofLength:(int)len;
+
++ (int)getLength:(JSValue *)buffer;
++ (char *)getData:(JSValue *)buffer ofSize:(int)size;
 
 + (NSNumber *)writeString:(NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len;
 

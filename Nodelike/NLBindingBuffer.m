@@ -8,26 +8,25 @@
 
 #import "NLBindingBuffer.h"
 
-static JSValue *constructor;
+static JSValue *constructor = nil;
 
-static size_t writeBuffer(const char *data, JSValue *target, size_t off, size_t len) {
+static size_t writeBuffer(const char *data, JSValue *target, int off, int len) {
     JSContextRef context = target.context.JSGlobalContextRef;
     JSObjectRef  buffer  = (JSObjectRef)target.JSValueRef;
     for (int i = 0; i < len; i++) {
-        JSObjectSetPropertyAtIndex(context, buffer, i + (unsigned int)off, JSValueMakeNumber(context, data[i]), nil);
+        JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, data[i]), nil);
     }
     return len;
 }
 
-static size_t sliceBuffer(char *data, JSValue *target, size_t off, size_t len) {
+static size_t sliceBuffer(char *data, JSValue *target, int off, int len) {
     JSContextRef contextRef = target.context.JSGlobalContextRef;
     JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
-    int i;
-    for (i = 0; i < len; i++) {
-        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + (int)off, nil);
+    for (int i = 0; i < len; i++) {
+        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + off, nil);
         data[i] = JSValueToNumber(contextRef, prop, nil);
     }
-    return i;
+    return len;
 }
 
 @implementation NLBindingBuffer
@@ -41,8 +40,8 @@ static size_t sliceBuffer(char *data, JSValue *target, size_t off, size_t len) {
     return constructor;
 }
 
-+ (JSValue *)useData:(const char *)data ofLength:(size_t)len {
-    JSValue *buffer = [self.constructor constructWithArguments:@[[NSNumber numberWithLong:len]]];
++ (JSValue *)useData:(const char *)data ofLength:(int)len {
+    JSValue *buffer = [constructor constructWithArguments:@[[NSNumber numberWithInt:len]]];
     writeBuffer(data, buffer, 0, len);
     return buffer;
 }
@@ -53,32 +52,26 @@ static size_t sliceBuffer(char *data, JSValue *target, size_t off, size_t len) {
 
 + (NSNumber *)write:(const char *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
     
-    size_t obj_length = [target[@"length"] toUInt32];
+    int obj_length = [target[@"length"] toInt32],
+        offset     = [off isUndefined] ?                   0 : [off toUInt32],
+        max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
-    size_t offset;
-    size_t max_length;
-    
-    offset     = [off isUndefined] ?                   0 : [off toUInt32];
-    max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
-    
-    max_length = MIN(obj_length - offset, max_length);
-    
-    return [NSNumber numberWithUnsignedInteger:writeBuffer(data, target, offset, max_length)];
+    return [NSNumber numberWithUnsignedInteger:writeBuffer(data, target, offset, MIN(obj_length - offset, max_length))];
     
 }
 
-+ (size_t)getLength:(JSValue *)buffer {
++ (int)getLength:(JSValue *)buffer {
     return [buffer[@"length"] toInt32];
 }
 
-+ (char *)getData:(JSValue *)buffer ofSize:(size_t)size {
++ (char *)getData:(JSValue *)buffer ofSize:(int)size {
     char *data = malloc(size);
     sliceBuffer(data, buffer, 0, size);
     return data;
 }
 
 + (NSString *)slice:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg inContext:(NLContext *)ctx {
-    size_t start = start_arg.intValue, end = end_arg.intValue, len = end - start;
+    int start = start_arg.intValue, end = end_arg.intValue, len = end - start;
     char *data = malloc(len + 1);
     sliceBuffer(data, buffer, start, len);
     data[len] = '\0';
