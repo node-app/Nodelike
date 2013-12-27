@@ -19,14 +19,14 @@ static size_t writeBuffer(const char *data, JSValue *target, int off, int len) {
     return len;
 }
 
-static size_t sliceBuffer(char *data, JSValue *target, int off, int len) {
+static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
     JSContextRef contextRef = target.context.JSGlobalContextRef;
     JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
     for (int i = 0; i < len; i++) {
         JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + off, nil);
         data[i] = JSValueToNumber(contextRef, prop, nil);
     }
-    return len;
+    return data;
 }
 
 @implementation NLBindingBuffer
@@ -65,15 +65,12 @@ static size_t sliceBuffer(char *data, JSValue *target, int off, int len) {
 }
 
 + (char *)getData:(JSValue *)buffer ofSize:(int)size {
-    char *data = malloc(size);
-    sliceBuffer(data, buffer, 0, size);
-    return data;
+    return sliceBuffer(malloc(size), buffer, 0, size);
 }
 
 + (NSString *)slice:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg inContext:(NLContext *)ctx {
-    int start = start_arg.intValue, end = end_arg.intValue, len = end - start;
-    char *data = malloc(len + 1);
-    sliceBuffer(data, buffer, start, len);
+    int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
+    char *data  = sliceBuffer(malloc(len + 1), buffer, start, len);
     data[len] = '\0';
     NSString *str = [NSString stringWithUTF8String:data];
     free(data);
