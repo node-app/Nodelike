@@ -27,22 +27,4 @@
 
 + (void)runEventLoop;
 
-#pragma mark Private
-
-+ (JSContext *)contextForEventRequest:(void *)req;
-
-+ (JSValue *)createEventRequestOfType:(uv_req_type)type withCallback:(JSValue *)cb
-                                   do:(void(^)(uv_loop_t *loop, void *req, bool async))task
-                                 then:(void(^)(void *, JSContext *))after;
-
-+ (void)finishEventRequest:(void *)req do:(void(^)(JSContext *context))task;
-
-+ (void)callSuccessfulEventRequest:(void *)req;
-
-+ (void)setErrorCode:(int)error forEventRequest:(void *)req;
-
-+ (void)setError:(JSValue *)error forEventRequest:(void *)req;
-
-+ (void)setValue:(JSValue *)value forEventRequest:(void *)req;
-
 @end
