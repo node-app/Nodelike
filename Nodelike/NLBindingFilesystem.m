@@ -31,11 +31,11 @@
 
 static void after(uv_fs_t* req) {
     [NLContext finishEventRequest:req do:
-     ^(NLContext *context) {
+     ^(JSContext *context) {
          if (req->result < 0) {
-             [context setErrorCode:(int)req->result forEventRequest:req];
+             [NLContext setErrorCode:(int)req->result forEventRequest:req];
          } else {
-             [context callSuccessfulEventRequest:req];
+             [NLContext callSuccessfulEventRequest:req];
          }
          uv_fs_req_cleanup(req);
      }];
@@ -52,8 +52,8 @@ static void after(uv_fs_t* req) {
 
 - (JSValue *)open:(longlived NSString *)path flags:(NSNumber *)flags mode:(NSNumber *)mode callback:(JSValue *)cb {
     return [CALL(open, cb, path.UTF8String, flags.intValue, mode.intValue)
-            ^(void *req, NLContext *context) {
-                [context setValue:[JSValue valueWithInt32:(int)REQ(req)->result inContext:context] forEventRequest:req];
+            ^(void *req, JSContext *context) {
+                [NLContext setValue:[JSValue valueWithInt32:(int)REQ(req)->result inContext:context] forEventRequest:req];
             }];
 }
 
@@ -66,16 +66,16 @@ static void after(uv_fs_t* req) {
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
     return [CALL(read, cb, [file intValue], malloc(length), length, position)
-            ^(void *req, NLContext *context) {
+            ^(void *req, JSContext *context) {
                 [NLBindingBuffer write:REQ(req)->buf toBuffer:target atOffset:off withLength:len];
-                [context setValue:[JSValue valueWithInt32:(int)REQ(req)->result inContext:context] forEventRequest:req];
+                [NLContext setValue:[JSValue valueWithInt32:(int)REQ(req)->result inContext:context] forEventRequest:req];
             }];
 
 }
 
 - (JSValue *)readDir:(longlived NSString *)path callback:(JSValue *)cb {
     return [CALL(readdir, cb, [path UTF8String], 0)
-            ^(void *req, NLContext *context) {
+            ^(void *req, JSContext *context) {
                 char *namebuf = REQ(req)->ptr;
                 ssize_t i, nnames = REQ(req)->result;
                 JSValue *names = [JSValue valueWithNewArrayInContext:context];
@@ -83,7 +83,7 @@ static void after(uv_fs_t* req) {
                     names[i] = [NSString stringWithUTF8String:namebuf];
                     namebuf += strlen(namebuf) + 1;
                 }
-                [context setValue:names forEventRequest:req];
+                [NLContext setValue:names forEventRequest:req];
             }];
 }
 
@@ -121,9 +121,9 @@ static void after(uv_fs_t* req) {
 }
 
 - (JSValue *)readlink:(longlived NSString *)path callback:(JSValue *)cb {
-    return [CALL(readlink, cb, path.UTF8String) ^(void *req, NLContext *context) {
+    return [CALL(readlink, cb, path.UTF8String) ^(void *req, JSContext *context) {
         NSString *str = [NSString stringWithUTF8String:REQ(req)->ptr];
-        [context setValue:[JSValue valueWithObject:str inContext:context] forEventRequest:req];
+        [NLContext setValue:[JSValue valueWithObject:str inContext:context] forEventRequest:req];
     }];
 }
 
@@ -176,20 +176,20 @@ static JSValue *buildStatsObject(const uv_stat_t *s, JSValue *_Stats) {
 }
 
 - (JSValue *)stat:(longlived NSString *)path callback:(JSValue *)cb {
-    return [CALL(stat, cb, path.UTF8String) ^(void *req, NLContext *context) {
-        [context setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
+    return [CALL(stat, cb, path.UTF8String) ^(void *req, JSContext *context) {
+        [NLContext setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
     }];
 }
 
 - (JSValue *)lstat:(longlived NSString *)path callback:(JSValue *)cb {
-    return [CALL(lstat, cb, path.UTF8String) ^(void *req, NLContext *context) {
-        [context setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
+    return [CALL(lstat, cb, path.UTF8String) ^(void *req, JSContext *context) {
+        [NLContext setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
     }];
 }
 
 - (JSValue *)fstat:(longlived NSNumber *)file callback:(JSValue *)cb {
-    return [CALL(fstat, cb, file.intValue) ^(void *req, NLContext *context) {
-        [context setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
+    return [CALL(fstat, cb, file.intValue) ^(void *req, JSContext *context) {
+        [NLContext setValue:buildStatsObject(REQ(req)->ptr, _Stats) forEventRequest:req];
     }];
 }
 

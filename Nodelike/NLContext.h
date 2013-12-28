@@ -12,28 +12,34 @@
 
 @interface NLContext : JSContext
 
-@property (readonly) uv_loop_t *eventLoop;
+#pragma mark Public API
+
++ (void)attachToContext:(JSContext *)context;
+
++ (JSValue *)requireModule:(NSString *)module inContext:(JSContext *)context;
+
+- (JSValue *)requireModule:(NSString *)module;
 
 + (uv_loop_t *)eventLoop;
 
-+ (NLContext *)currentContext;
++ (void)runEventLoop;
 
-+ (NLContext *)contextForEventRequest:(void *)req;
+#pragma mark Private
+
++ (JSContext *)contextForEventRequest:(void *)req;
 
 + (JSValue *)createEventRequestOfType:(uv_req_type)type withCallback:(JSValue *)cb
                                    do:(void(^)(uv_loop_t *loop, void *req, bool async))task
-                                 then:(void(^)(void *, NLContext *))after;
+                                 then:(void(^)(void *, JSContext *))after;
 
-+ (void)finishEventRequest:(void *)req do:(void(^)(NLContext *context))task;
++ (void)finishEventRequest:(void *)req do:(void(^)(JSContext *context))task;
 
-- (void)callSuccessfulEventRequest:(void *)req;
++ (void)callSuccessfulEventRequest:(void *)req;
 
-- (void)setErrorCode:(int)error forEventRequest:(void *)req;
++ (void)setErrorCode:(int)error forEventRequest:(void *)req;
 
-- (void)setError:(JSValue *)error forEventRequest:(void *)req;
++ (void)setError:(JSValue *)error forEventRequest:(void *)req;
 
-- (void)setValue:(JSValue *)value forEventRequest:(void *)req;
-
-- (JSValue *)requireModule:(NSString *)module;
++ (void)setValue:(JSValue *)value forEventRequest:(void *)req;
 
 @end

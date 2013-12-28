@@ -14,22 +14,19 @@ struct data {
     void *callback, *error, *value, *after;
 };
 
-@implementation NLContext {
-    dispatch_queue_t     dispatchQueue;
-    NSMutableDictionary *requireCache;
-}
+@implementation NLContext
 
 #pragma mark - JSContext
 
 - (id)init {
     self = [super init];
-    [self augment];
+    [NLContext attachToContext:self];
     return self;
 }
 
 - (id)initWithVirtualMachine:(JSVirtualMachine *)virtualMachine {
     self = [super initWithVirtualMachine:virtualMachine];
-    [self augment];
+    [NLContext attachToContext:self];
     return self;
 }
 
@@ -39,47 +36,36 @@ struct data {
 
 - (JSValue *)evaluateScript:(NSString *)script {
     JSValue *val = [super evaluateScript:script];
-    [self runEventLoop];
+    [NLContext runEventLoop];
     return val;
 }
 
 #pragma mark - Scope Setup
 
-- (void)augment {
++ (void)attachToContext:(JSContext *)context {
 
-    _eventLoop    = NLContext.eventLoop;
-    dispatchQueue = NLContext.dispatchQueue;
-
-    requireCache  = NLContext.requireCache;
-
-    [self augmentNoops];
-
-    self[@"global"]  = self.globalObject;
-
-    self[@"process"] = [NLProcess new];
-
-    self[@"require"] = ^(NSString *module) {
-        return [NLContext.currentContext requireModule:module];
+    context[@"global"]  = context.globalObject;
+    
+    context[@"process"] = [NLProcess new];
+    
+    context[@"require"] = ^(NSString *module) {
+        return [NLContext requireModule:module inContext:JSContext.currentContext];
     };
     
-    self[@"log"] = ^(id msg) {
+    context[@"log"] = ^(id msg) {
         NSLog(@"%@", msg);
     };
     
-    self[@"Buffer"] = [self requireModule:@"buffer"][@"Buffer"];
+    context[@"Buffer"] = [NLContext requireModule:@"buffer" inContext:context][@"Buffer"];
 
-}
-
-- (void)augmentNoops {
+    JSValue *noop = [context evaluateScript:@"(function(){})"];
     
-    JSValue *noop = [self evaluateScript:@"(function(){})"];
+    context[@"DTRACE_NET_SERVER_CONNECTION"] = noop;
+    context[@"DTRACE_NET_STREAM_END"]        = noop;
     
-    self[@"DTRACE_NET_SERVER_CONNECTION"] = noop;
-    self[@"DTRACE_NET_STREAM_END"]        = noop;
+    context[@"COUNTER_NET_SERVER_CONNECTION"]       = noop;
+    context[@"COUNTER_NET_SERVER_CONNECTION_CLOSE"] = noop;
     
-    self[@"COUNTER_NET_SERVER_CONNECTION"]      = noop;
-    self[@"COUNTER_NET_SERVER_CONNECTION_CLOSE"] = noop;
-
 }
 
 #pragma mark - Event Handling
@@ -97,21 +83,21 @@ struct data {
     return queue;
 }
 
-+ (NLContext *)contextForEventRequest:(void *)req {
-    return (NLContext *)((__bridge JSValue *)(((struct data *)(((uv_req_t *)req)->data))->callback)).context;
++ (JSContext *)contextForEventRequest:(void *)req {
+    return (JSContext *)((__bridge JSValue *)(((struct data *)(((uv_req_t *)req)->data))->callback)).context;
 }
 
-- (void)runEventLoop {
-    dispatch_async(dispatchQueue, ^{
-        uv_run(_eventLoop, UV_RUN_DEFAULT);
++ (void)runEventLoop {
+    dispatch_async(NLContext.dispatchQueue, ^{
+        uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
     });
 }
 
 + (JSValue *)createEventRequestOfType:(uv_req_type)type withCallback:(JSValue *)cb
                                    do:(void(^)(uv_loop_t *, void *, bool))task
-                                 then:(void(^)(void *, NLContext *))after {
+                                 then:(void(^)(void *, JSContext *))after {
     
-    NLContext *context = NLContext.currentContext;
+    JSContext *context = JSContext.currentContext;
 
     uv_req_t *req = malloc(uv_req_size(type));
 
@@ -123,7 +109,7 @@ struct data {
 
     bool async = ![cb isUndefined];
 
-    task(context.eventLoop, req, async);
+    task(NLContext.eventLoop, req, async);
 
     if (!async) {
 
@@ -144,9 +130,9 @@ struct data {
 
 }
 
-+ (void)finishEventRequest:(void *)req do:(void (^)(NLContext *))task {
++ (void)finishEventRequest:(void *)req do:(void (^)(JSContext *))task {
 
-    NLContext *context = [NLContext contextForEventRequest:req];
+    JSContext *context = [NLContext contextForEventRequest:req];
 
     struct data *data = ((uv_req_t *)req)->data;
 
@@ -175,23 +161,25 @@ struct data {
     
 }
 
-- (void)callSuccessfulEventRequest:(void *)req {
++ (void)callSuccessfulEventRequest:(void *)req {
+    JSContext *context = [self contextForEventRequest:req];
     struct data *data = ((uv_req_t *)req)->data;
     if (data->after != nil) {
-        ((void (^)(void*, NLContext *))CFBridgingRelease(data->after))(req, self);
+        ((void (^)(void*, JSContext *))CFBridgingRelease(data->after))(req, context);
     }
 }
 
-- (void)setErrorCode:(int)error forEventRequest:(void *)req {
++ (void)setErrorCode:(int)error forEventRequest:(void *)req {
+    JSContext *context = [self contextForEventRequest:req];
     NSString *msg = [NSString stringWithUTF8String:uv_strerror(error)];
-    [self setError:[JSValue valueWithNewErrorFromMessage:msg inContext:self] forEventRequest:req];
+    [self setError:[JSValue valueWithNewErrorFromMessage:msg inContext:context] forEventRequest:req];
 }
 
-- (void)setError:(JSValue *)error forEventRequest:(void *)req {
++ (void)setError:(JSValue *)error forEventRequest:(void *)req {
     ((struct data *)(((uv_req_t *)req)->data))->error = (void *)CFBridgingRetain(error);
 }
 
-- (void)setValue:(JSValue *)value forEventRequest:(void *)req {
++ (void)setValue:(JSValue *)value forEventRequest:(void *)req {
     ((struct data *)(((uv_req_t *)req)->data))->value = (void *)CFBridgingRetain(value);
 }
 
@@ -207,7 +195,14 @@ struct data {
 }
 
 - (JSValue *)requireModule:(NSString *)module {
+
+    return [NLContext requireModule:module inContext:self];
+
+}
+
++ (JSValue *)requireModule:(NSString *)module inContext:(JSContext *)context {
     
+    NSMutableDictionary *requireCache = NLContext.requireCache;
     JSValue *cached = [requireCache objectForKey:module];
     
     if (cached != nil) {
@@ -223,12 +218,12 @@ struct data {
     
     if (content == nil) {
         NSString *error = [NSString stringWithFormat:@"Cannot find module '%@'", module];
-        self.exception = [JSValue valueWithNewErrorFromMessage:error inContext:self];
+        context.exception = [JSValue valueWithNewErrorFromMessage:error inContext:context];
         return nil;
     }
     
-    JSValue *exports = [JSValue valueWithNewObjectInContext:self];
-    JSValue *modulev = [JSValue valueWithNewObjectInContext:self];
+    JSValue *exports = [JSValue valueWithNewObjectInContext:context];
+    JSValue *modulev = [JSValue valueWithNewObjectInContext:context];
     modulev[@"exports"] = exports;
 
     requireCache[module] = modulev;
@@ -236,9 +231,9 @@ struct data {
     NSString *template = @"(function (exports, require, module, __filename, __dirname) {%@\n});";
     NSString *source = [NSString stringWithFormat:template, content];
 
-    JSValue *fn = [self evaluateScript:source];
+    JSValue *fn = [context evaluateScript:source];
 
-    [fn callWithArguments:@[exports, self[@"require"], modulev]];
+    [fn callWithArguments:@[exports, context[@"require"], modulev]];
 
     return modulev[@"exports"];
 
