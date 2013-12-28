@@ -68,6 +68,10 @@ struct data {
     
 }
 
++ (void)attachToWebView:(UIWebView *)webView {
+    [self attachToContext:[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"]];
+}
+
 #pragma mark - Event Handling
 
 + (uv_loop_t *)eventLoop {

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Sam Rijs. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 #import "uv.h"
@@ -15,6 +16,8 @@
 #pragma mark Public API
 
 + (void)attachToContext:(JSContext *)context;
+
++ (void)attachToWebView:(UIWebView *)webView;
 
 + (JSValue *)requireModule:(NSString *)module inContext:(JSContext *)context;
 
