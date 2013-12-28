@@ -10,6 +10,8 @@
 
 #import "NLBindingBuffer.h"
 
+static JSValue *Stats = nil;
+
 @implementation NLBindingFilesystem
 
 - (id)init {
@@ -18,11 +20,15 @@
 
     JSContext *context = JSContext.currentContext;
     
-    _Stats = [JSValue valueWithNewObjectInContext:context];
-    _Stats[@"prototype"] = [JSValue valueWithNewObjectInContext:context];
+    Stats = [JSValue valueWithNewObjectInContext:context];
+    Stats[@"prototype"] = [JSValue valueWithNewObjectInContext:context];
 
     return self;
 
+}
+
+- (JSValue *)Stats {
+    return Stats;
 }
 
 + (id)binding {
@@ -32,9 +38,7 @@
 - (JSValue *)open:(longlived NSString *)path flags:(NSNumber *)flags mode:(NSNumber *)mode callback:(JSValue *)cb {
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_open(loop, req, path.UTF8String, flags.intValue, mode.intValue, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
-        setValue([JSValue valueWithInt32:(int)req->result inContext:context], req);
-    });
+    }, nil);
 }
 
 - (JSValue *)close:(NSNumber *)file callback:(JSValue *)cb {
@@ -49,25 +53,15 @@
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_read(loop, req, file.intValue, malloc(length), length, position, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
+    }, ^(uv_fs_t *req) {
         [NLBindingBuffer write:req->buf toBuffer:target atOffset:off withLength:len];
-        setValue([JSValue valueWithInt32:(int)req->result inContext:context], req);
     });
 }
 
 - (JSValue *)readDir:(longlived NSString *)path callback:(JSValue *)cb {
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_readdir(loop, req, path.UTF8String, 0, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
-        char *namebuf = req->ptr;
-        ssize_t i, nnames = req->result;
-        JSValue *names = [JSValue valueWithNewArrayInContext:context];
-        for (i = 0; i < nnames; i++) {
-            names[i] = [NSString stringWithUTF8String:namebuf];
-            namebuf += strlen(namebuf) + 1;
-        }
-        setValue(names, req);
-    });
+    }, nil);
 }
 
 - (JSValue *)fdatasync:(NSNumber *)file callback:(JSValue *)cb {
@@ -122,10 +116,7 @@
 - (JSValue *)readlink:(longlived NSString *)path callback:(JSValue *)cb {
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_readlink(loop, req, path.UTF8String, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
-        NSString *str = [NSString stringWithUTF8String:req->ptr];
-        setValue([JSValue valueWithObject:str inContext:context], req);
-    });
+    }, nil);
 }
 
 - (JSValue *)unlink:(longlived NSString *)path callback:(JSValue *)cb {
@@ -189,25 +180,19 @@ static JSValue *buildStatsObject(const uv_stat_t *s, JSValue *_Stats) {
 - (JSValue *)stat:(longlived NSString *)path callback:(JSValue *)cb {
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_stat(loop, req, path.UTF8String, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
-        setValue(buildStatsObject(req->ptr, _Stats), req);
-    });
+    }, nil);
 }
 
 - (JSValue *)lstat:(longlived NSString *)path callback:(JSValue *)cb {
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_lstat(loop, req, path.UTF8String, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
-        setValue(buildStatsObject(req->ptr, _Stats), req);
-    });
+    }, nil);
 }
 
 - (JSValue *)fstat:(longlived NSNumber *)file callback:(JSValue *)cb {
     return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
         uv_fs_fstat(loop, req, file.intValue, async ? after : nil);
-    }, ^(uv_fs_t *req, JSContext *context) {
-        setValue(buildStatsObject(req->ptr, _Stats), req);
-    });
+    }, nil);
 }
 
 struct data {
@@ -221,7 +206,7 @@ static JSContext *contextForEventRequest(uv_fs_t *req) {
 
 static JSValue *createEventRequest(JSValue *cb,
                                    void(^task)(uv_loop_t *, uv_fs_t *, bool),
-                                   void(^after)(uv_fs_t *, JSContext *)) {
+                                   void(^then)(uv_fs_t *)) {
     
     JSContext *context = JSContext.currentContext;
     
@@ -231,13 +216,15 @@ static JSValue *createEventRequest(JSValue *cb,
     data->callback = (void *)CFBridgingRetain(cb);
     data->error = nil;
     data->value = nil;
-    data->after = (void *)CFBridgingRetain(after);
+    data->after = (void *)CFBridgingRetain(then);
     
     bool async = ![cb isUndefined];
     
     task(NLContext.eventLoop, req, async);
     
     if (!async) {
+        
+        after(req);
         
         JSValue *error = data->error != nil ? CFBridgingRelease(data->error) : nil;
         JSValue *value = data->value != nil ? CFBridgingRelease(data->value) : nil;
@@ -261,23 +248,25 @@ static void after(uv_fs_t *req) {
     JSContext *context = contextForEventRequest(req);
     
     struct data *data = req->data;
+    JSValue *error = [JSValue valueWithNullInContext:context],
+            *value = [JSValue valueWithUndefinedInContext:context];
     
     if (req->result < 0) {
-        setErrorCode((int)req->result, req);
+        NSString *msg = [NSString stringWithUTF8String:uv_strerror((int)req->result)];
+        error = [JSValue valueWithNewErrorFromMessage:msg inContext:context];
     } else {
-        callSuccessfulEventRequest(req);
+        value = callSuccessfulEventRequest(req, value);
     }
+
     uv_fs_req_cleanup(req);
     
-    JSValue *cb    = CFBridgingRelease(data->callback);
-    JSValue *error = data->error != nil ? CFBridgingRelease(data->error) : [JSValue valueWithNullInContext:context];
-    JSValue *value = data->value != nil ? CFBridgingRelease(data->value) : [JSValue valueWithUndefinedInContext:context];
+    JSValue *cb = CFBridgingRelease(data->callback);
     
     if (![cb isUndefined]) {
-        
+
         free(data);
         [cb callWithArguments:@[error, value]];
-        
+
     } else if ([error isNull]) {
         
         data->error = nil;
@@ -292,26 +281,66 @@ static void after(uv_fs_t *req) {
     
 }
 
-static void callSuccessfulEventRequest(void *req) {
+static JSValue *callSuccessfulEventRequest(uv_fs_t *req, JSValue *nothing) {
+
     JSContext *context = contextForEventRequest(req);
+
     struct data *data = ((uv_req_t *)req)->data;
     if (data->after != nil) {
-        ((void (^)(void*, JSContext *))CFBridgingRelease(data->after))(req, context);
+        ((void (^)(void *))CFBridgingRelease(data->after))(req);
     }
-}
 
-static void setErrorCode(int error, void *req) {
-    JSContext *context = contextForEventRequest(req);
-    NSString *msg = [NSString stringWithUTF8String:uv_strerror(error)];
-    setError([JSValue valueWithNewErrorFromMessage:msg inContext:context], req);
-}
+    switch (req->fs_type) {
 
-static void setError(JSValue *error, void *req) {
-    ((struct data *)(((uv_req_t *)req)->data))->error = (void *)CFBridgingRetain(error);
-}
+        case UV_FS_CLOSE:
+        case UV_FS_RENAME:
+        case UV_FS_UNLINK:
+        case UV_FS_RMDIR:
+        case UV_FS_MKDIR:
+        case UV_FS_FTRUNCATE:
+        case UV_FS_FSYNC:
+        case UV_FS_FDATASYNC:
+        case UV_FS_LINK:
+        case UV_FS_SYMLINK:
+        case UV_FS_CHMOD:
+        case UV_FS_FCHMOD:
+        case UV_FS_CHOWN:
+        case UV_FS_FCHOWN:
+        case UV_FS_UTIME:
+        case UV_FS_FUTIME:
+            return nothing;
 
-static void setValue(JSValue *value, void *req) {
-    ((struct data *)(((uv_req_t *)req)->data))->value = (void *)CFBridgingRetain(value);
+        case UV_FS_OPEN:
+        case UV_FS_WRITE:
+            return [JSValue valueWithInt32:(int)req->result inContext:context];
+
+        case UV_FS_STAT:
+        case UV_FS_LSTAT:
+        case UV_FS_FSTAT:
+            return buildStatsObject(req->ptr, Stats);
+
+        case UV_FS_READLINK:
+            return [JSValue valueWithObject:[NSString stringWithUTF8String:req->ptr] inContext:context];
+
+        case UV_FS_READ:
+            return [JSValue valueWithInt32:(int)req->result inContext:context];
+
+        case UV_FS_READDIR: {
+            char *namebuf = req->ptr;
+            ssize_t i, nnames = req->result;
+            JSValue *names = [JSValue valueWithNewArrayInContext:context];
+            for (i = 0; i < nnames; i++) {
+                names[i] = [NSString stringWithUTF8String:namebuf];
+                namebuf += strlen(namebuf) + 1;
+            }
+            return names;
+        }
+
+        default:
+            assert(0 && "Unhandled eio response");
+
+    }
+
 }
 
 @end

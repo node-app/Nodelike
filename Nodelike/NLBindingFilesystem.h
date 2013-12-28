@@ -51,6 +51,6 @@ JSExportAs(fstat, - (JSValue *)fstat:(NSNumber *)file callback:(JSValue *)cb);
 
 @interface NLBindingFilesystem : NLBinding <NLBindingFilesystemExports>
 
-@property JSValue *Stats;
+@property (readonly) JSValue *Stats;
 
 @end
