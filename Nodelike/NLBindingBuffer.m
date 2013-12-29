@@ -12,7 +12,7 @@ static JSValue *constructor = nil;
 
 static size_t writeBuffer(const char *data, JSValue *target, int off, int len) {
     JSContextRef context = target.context.JSGlobalContextRef;
-    JSObjectRef  buffer  = (JSObjectRef)target.JSValueRef;
+    JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
     for (int i = 0; i < len; i++) {
         JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, data[i]), nil);
     }
