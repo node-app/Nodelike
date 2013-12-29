@@ -10,7 +10,7 @@
 
 #import "NLBindingBuffer.h"
 
-typedef static void (*callback)(uv_fs_t *req);
+typedef void (*callback)(uv_fs_t *req);
 
 static JSValue *Stats = nil;
 
