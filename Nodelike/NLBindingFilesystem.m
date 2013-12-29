@@ -10,6 +10,8 @@
 
 #import "NLBindingBuffer.h"
 
+typedef static void (*callback)(uv_fs_t *req);
+
 static JSValue *Stats = nil;
 
 @implementation NLBindingFilesystem
@@ -35,118 +37,84 @@ static JSValue *Stats = nil;
     return [self new];
 }
 
+#define call(fun, ...) ^(uv_loop_t *loop, uv_fs_t *req, callback callback) { uv_fs_## fun(loop, req, __VA_ARGS__, callback); }
+
 - (JSValue *)open:(longlived NSString *)path flags:(NSNumber *)flags mode:(NSNumber *)mode callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_open(loop, req, path.UTF8String, flags.intValue, mode.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(open, path.UTF8String, flags.intValue, mode.intValue), nil);
 }
 
 - (JSValue *)close:(NSNumber *)file callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_close(loop, req, file.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(close, file.intValue), nil);
 }
 
 - (JSValue *)read:(NSNumber *)file to:(JSValue *)target offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
     unsigned int buffer_length = [target[@"length"] toUInt32];
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_read(loop, req, file.intValue, malloc(length), length, position, async ? after : nil);
-    }, ^(uv_fs_t *req) {
+    return req(cb, call(read, file.intValue, malloc(length), length, position), ^(uv_fs_t *req) {
         [NLBindingBuffer write:req->buf toBuffer:target atOffset:off withLength:len];
     });
 }
 
 - (JSValue *)readDir:(longlived NSString *)path callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_readdir(loop, req, path.UTF8String, 0, async ? after : nil);
-    }, nil);
+    return req(cb, call(readdir, path.UTF8String, 0), nil);
 }
 
 - (JSValue *)fdatasync:(NSNumber *)file callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_fdatasync(loop, req, file.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(fdatasync, file.intValue), nil);
 }
 
 - (JSValue *)fsync:(NSNumber *)file callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_fsync(loop, req, file.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(fsync, file.intValue), nil);
 }
 
 - (JSValue *)rename:(longlived NSString *)oldpath to:(longlived NSString *)newpath callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_rename(loop, req, oldpath.UTF8String, newpath.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(rename, oldpath.UTF8String, newpath.UTF8String), nil);
 }
 
 - (JSValue *)ftruncate:(NSNumber *)file length:(NSNumber *)len callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_ftruncate(loop, req, file.intValue, len.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(ftruncate, file.intValue, len.intValue), nil);
 }
 
 - (JSValue *)rmdir:(longlived NSString *)path callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_rmdir(loop, req, path.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(rmdir, path.UTF8String), nil);
 }
 
 - (JSValue *)mkdir:(longlived NSString *)path mode:(NSNumber *)mode callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_mkdir(loop, req, path.UTF8String, mode.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(mkdir, path.UTF8String, mode.intValue), nil);
 }
 
 - (JSValue *)link:(longlived NSString *)dst from:(longlived NSString *)src callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_link(loop, req, dst.UTF8String, src.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(link, dst.UTF8String, src.UTF8String), nil);
 }
 
 - (JSValue *)symlink:(longlived NSString *)dst from:(longlived NSString *)src mode:(NSString *)mode callback:(JSValue *)cb {
     // we ignore the mode argument because it is only effective on windows platforms
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_symlink(loop, req, dst.UTF8String, src.UTF8String, 0 /*flags*/, async ? after : nil);
-    }, nil);
+    return req(cb, call(symlink, dst.UTF8String, src.UTF8String, 0 /*flags*/), nil);
 }
 
 - (JSValue *)readlink:(longlived NSString *)path callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_readlink(loop, req, path.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(readlink, path.UTF8String), nil);
 }
 
 - (JSValue *)unlink:(longlived NSString *)path callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_unlink(loop, req, path.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(unlink, path.UTF8String), nil);
 }
 
 - (JSValue *)chmod:(longlived NSString *)path mode:(NSNumber *)mode callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_chmod(loop, req, path.UTF8String, mode.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(chmod, path.UTF8String, mode.intValue), nil);
 }
 
 - (JSValue *)fchmod:(NSNumber *)file mode:(NSNumber *)mode callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_fchmod(loop, req, file.intValue, mode.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(fchmod, file.intValue, mode.intValue), nil);
 }
 
 - (JSValue *)chown:(longlived NSString *)path uid:(NSNumber *)uid gid:(NSNumber *)gid callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_chown(loop, req, path.UTF8String, uid.unsignedIntValue, gid.unsignedIntValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(chown, path.UTF8String, uid.unsignedIntValue, gid.unsignedIntValue), nil);
 }
 
 - (JSValue *)fchown:(NSNumber *)file uid:(NSNumber *)uid gid:(NSNumber *)gid callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_fchown(loop, req, file.intValue, uid.unsignedIntValue, gid.unsignedIntValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(fchown, file.intValue, uid.unsignedIntValue, gid.unsignedIntValue), nil);
 }
 
 #pragma mark stat
@@ -178,21 +146,15 @@ static JSValue *buildStatsObject(const uv_stat_t *s, JSValue *_Stats) {
 }
 
 - (JSValue *)stat:(longlived NSString *)path callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_stat(loop, req, path.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(stat, path.UTF8String), nil);
 }
 
 - (JSValue *)lstat:(longlived NSString *)path callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_lstat(loop, req, path.UTF8String, async ? after : nil);
-    }, nil);
+    return req(cb, call(lstat, path.UTF8String), nil);
 }
 
 - (JSValue *)fstat:(longlived NSNumber *)file callback:(JSValue *)cb {
-    return createEventRequest(cb, ^(uv_loop_t *loop, uv_fs_t *req, bool async) {
-        uv_fs_fstat(loop, req, file.intValue, async ? after : nil);
-    }, nil);
+    return req(cb, call(fstat, file.intValue), nil);
 }
 
 struct data {
@@ -204,9 +166,7 @@ static JSContext *contextForEventRequest(uv_fs_t *req) {
     return (JSContext *)((__bridge JSValue *)data->callback).context;
 }
 
-static JSValue *createEventRequest(JSValue *cb,
-                                   void(^task)(uv_loop_t *, uv_fs_t *, bool),
-                                   void(^then)(uv_fs_t *)) {
+static JSValue *req(JSValue *cb, void(^task)(uv_loop_t *, uv_fs_t *, callback), void(^then)(uv_fs_t *)) {
     
     JSContext *context = JSContext.currentContext;
     
@@ -220,7 +180,7 @@ static JSValue *createEventRequest(JSValue *cb,
     
     bool async = ![cb isUndefined];
     
-    task(NLContext.eventLoop, req, async);
+    task(NLContext.eventLoop, req, async ? after : nil);
     
     if (!async) {
         
