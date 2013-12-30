@@ -20,6 +20,8 @@
 // the end of the scope.
 #define longlived __attribute((objc_precise_lifetime))
 
+#define REQWRAP(type) struct type##Wrap { uv_##type##_t req; void *object; }
+
 @interface NLBinding : NSObject
 
 + (id)bindingForIdentifier:(NSString *)identifier;

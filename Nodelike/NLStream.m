@@ -52,9 +52,8 @@
         return [NSNumber numberWithInt:UV_ENOBUFS];
     }
 
-    struct writeWrap *writeWrap = malloc(sizeof(struct writeWrap));
+    writeWrap *writeWrap = malloc(sizeof(writeWrap));
     writeWrap->object = (void *)CFBridgingRetain(obj);
-    writeWrap->wrap   = (void *)CFBridgingRetain(JSContext.currentThis);
     writeWrap->req.data = writeWrap;
     
     uv_buf_t buf;
@@ -76,7 +75,6 @@
     
     if (err) {
         CFBridgingRelease(writeWrap->object);
-        CFBridgingRelease(writeWrap->wrap);
         free(writeWrap);
     }
 
@@ -171,9 +169,9 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
 
 }
 
-static int doWrite(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb) {
+static int doWrite(writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb) {
     
-    NLStream *wrap = [(__bridge JSValue *)w->wrap toObjectOfClass:NLStream.class];
+    NLStream *wrap = [(__bridge JSValue *)w->req.handle->data toObjectOfClass:NLStream.class];
     
     int r;
     if (send_handle == NULL) {
@@ -198,13 +196,13 @@ static int doWrite(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_
     return r;
 }
 
-static void afterWriteCallback(struct writeWrap *w) {
-    [[(__bridge JSValue *)(w->wrap) toObjectOfClass:NLStream.class] updateWriteQueueSize];
+static void afterWriteCallback(writeWrap *w) {
+    [[(__bridge JSValue *)w->req.handle->data toObjectOfClass:NLStream.class] updateWriteQueueSize];
 }
 
 static void afterWrite(uv_write_t* req, int status) {
-    struct writeWrap *reqWrap = req->data;
-    JSValue  *wrap   = (JSValue *)CFBridgingRelease(reqWrap->wrap);
+    writeWrap *reqWrap = req->data;
+    JSValue  *wrap   = (__bridge JSValue *)(req->handle->data);
     JSValue  *object = (JSValue *)CFBridgingRelease(reqWrap->object);
     NLStream *stream = [wrap toObjectOfClass:NLStream.class];
     
