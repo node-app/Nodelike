@@ -44,13 +44,11 @@
     return [NSNumber numberWithInt:uv_read_stop(_stream)];
 }
 
-- (NSNumber *)writeObject:(JSValue *)obj withString:(longlived NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle {
+- (NSNumber *)writeObject:(JSValue *)obj withData:(const char *)data ofLength:(size_t)size forOptionalSendHandle:(NLHandle *)sendHandle {
 
     int err;
     
-    size_t storage_size = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-    
-    if (storage_size > INT_MAX) {
+    if (size > INT_MAX) {
         return [NSNumber numberWithInt:UV_ENOBUFS];
     }
 
@@ -58,14 +56,10 @@
     writeWrap->object = (void *)CFBridgingRetain(obj);
     writeWrap->wrap   = (void *)CFBridgingRetain(JSContext.currentThis);
     writeWrap->req.data = writeWrap;
-
-    char *data = malloc(storage_size);
-    
-    memcpy(data, string.UTF8String, storage_size);
     
     uv_buf_t buf;
-    buf.base = data;
-    buf.len  = storage_size;
+    buf.base = memcpy(malloc(size), data, size);;
+    buf.len  = size;
     
     if (!isNamedPipeIPC(_stream)) {
         err = _callbacks->doWrite(writeWrap, &buf, 1, NULL, afterWrite);
@@ -78,7 +72,7 @@
         err = _callbacks->doWrite(writeWrap, &buf, 1, (uv_stream_t *)send_handle, afterWrite);
     }
     
-    [obj setValue:[NSNumber numberWithLong:storage_size] forProperty:@"bytes"];
+    [obj setValue:[NSNumber numberWithLong:size] forProperty:@"bytes"];
     
     if (err) {
         CFBridgingRelease(writeWrap->object);
@@ -91,11 +85,17 @@
 }
 
 - (NSNumber *)writeObject:(JSValue *)obj withAsciiString:(longlived NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle {
-    return [self writeObject:obj withString:string forOptionalSendHandle:sendHandle];
+    return [self writeObject:obj
+                    withData:[string cStringUsingEncoding:NSASCIIStringEncoding]
+                    ofLength:[string lengthOfBytesUsingEncoding:NSASCIIStringEncoding]
+       forOptionalSendHandle:sendHandle];
 }
 
 - (NSNumber *)writeObject:(JSValue *)obj withUtf8String:(longlived NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle {
-    return [self writeObject:obj withString:string forOptionalSendHandle:sendHandle];
+    return [self writeObject:obj
+                    withData:[string cStringUsingEncoding:NSUTF8StringEncoding]
+                    ofLength:[string lengthOfBytesUsingEncoding:NSUTF8StringEncoding]
+       forOptionalSendHandle:sendHandle];
 }
 
 - (void)updateWriteQueueSize {

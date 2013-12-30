@@ -41,7 +41,8 @@ JSExportAs(writeUtf8String,  - (NSNumber *)writeObject:(JSValue *)obj withUtf8St
 
 - (id)initWithStream:(uv_stream_t *)stream inContext:(JSContext *)context;
 
-- (NSNumber *)writeObject:(JSValue *)obj withString:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle;
+- (NSNumber *)writeObject:(JSValue *)obj withData:(const char *)data ofLength:(size_t)size forOptionalSendHandle:(NLHandle *)sendHandle;
+
 - (NSNumber *)writeObject:(JSValue *)obj withAsciiString:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle;
 - (NSNumber *)writeObject:(JSValue *)obj withUtf8String:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle;
 
