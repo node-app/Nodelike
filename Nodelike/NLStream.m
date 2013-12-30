@@ -210,10 +210,8 @@ static void afterWrite(uv_write_t* req, int status) {
     
     [object deleteProperty:@"handle"];
     stream.callbacks->afterWrite(reqWrap);
-    
-    if ([[wrap valueForProperty:@"oncomplete"] isObject]) {
-        [wrap invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status], wrap, object]];
-    }
+
+    [object invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status], wrap, object]];
     
     free(reqWrap);
 }
