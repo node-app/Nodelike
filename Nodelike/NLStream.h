@@ -8,13 +8,17 @@
 
 #import "NLHandle.h"
 
-typedef REQWRAP(write) writeWrap;
+typedef struct writeWrap {
+    uv_write_t req;
+    void      *wrap;
+    void      *object;
+} writeWrap;
 
 struct NLStreamCallbacks {
     void (*doAlloc)(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf);
     void (*doRead)(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending);
-    int  (*doWrite)(writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb);
-    void (*afterWrite)(writeWrap *w);
+    int  (*doWrite)(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb);
+    void (*afterWrite)(struct writeWrap *w);
 };
 
 @protocol NLStreamExports <JSExport>

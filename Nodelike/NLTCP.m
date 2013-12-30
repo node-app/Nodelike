@@ -8,7 +8,10 @@
 
 #import "NLTCP.h"
 
-typedef REQWRAP(connect) connectWrap;
+struct connectWrap {
+    uv_connect_t req;
+    void        *value;
+};
 
 @implementation NLTCP {
     uv_tcp_t handle;
@@ -106,8 +109,8 @@ static NSNumber *bindCommon (int err, uv_tcp_t *handle, const struct sockaddr *a
 
 static NSNumber *connectCommon (int err, JSValue *obj, uv_tcp_t *handle, const struct sockaddr *addr) {
     if (err == 0) {
-        connectWrap *wrap = malloc(sizeof(connectWrap));
-        wrap->object    = (void *)CFBridgingRetain(obj);
+        struct connectWrap *wrap = malloc(sizeof(struct connectWrap));
+        wrap->value    = (void *)CFBridgingRetain(obj);
         wrap->req.data = wrap;
         err = uv_tcp_connect(&wrap->req, handle, addr, afterConnect);
         if (err)
@@ -117,17 +120,17 @@ static NSNumber *connectCommon (int err, JSValue *obj, uv_tcp_t *handle, const s
 }
 
 static void afterConnect(uv_connect_t* req, int status) {
-    connectWrap *connectWrap = req->data;
-    JSValue *object = CFBridgingRelease(connectWrap->object);
-    JSValue *wrap   = (__bridge JSValue *)(req->handle->data);
+    
+    JSValue *connectWrap = CFBridgingRelease(((struct connectWrap *)req->data)->value);
+    JSValue *wrap        = (__bridge JSValue *)(req->handle->data);
 
     free(req->data);
     
-    [object invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status],
-                                                        wrap,
-                                                        object,
-                                                        [NSNumber numberWithBool:YES],
-                                                        [NSNumber numberWithBool:YES]]];
+    [connectWrap invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status],
+                                                            wrap,
+                                                            connectWrap,
+                                                            [NSNumber numberWithBool:YES],
+                                                            [NSNumber numberWithBool:YES]]];
 
 }
 
