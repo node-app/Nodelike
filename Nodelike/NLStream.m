@@ -204,7 +204,7 @@ static void afterWriteCallback(struct writeWrap *w) {
 
 static void afterWrite(uv_write_t* req, int status) {
     struct writeWrap *reqWrap = req->data;
-    JSValue  *wrap   = (JSValue *)CFBridgingRelease(req->handle->data);
+    JSValue  *wrap   = (JSValue *)CFBridgingRelease(reqWrap->wrap);
     JSValue  *object = (JSValue *)CFBridgingRelease(reqWrap->object);
     NLStream *stream = [wrap toObjectOfClass:NLStream.class];
     
