@@ -57,7 +57,7 @@
 
     struct writeWrap *writeWrap = malloc(sizeof(struct writeWrap));
     writeWrap->object = (void *)CFBridgingRetain(obj);
-    writeWrap->wrap   = (void *)CFBridgingRetain(JSContext.currentThis);
+    writeWrap->wrap   = (void *)CFBridgingRetain(self);
     writeWrap->req.data = writeWrap;
     
     uv_buf_t buf;
@@ -106,7 +106,7 @@
 }
 
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
-    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:NLStream.class];
+    NLStream *wrap = (__bridge NLStream *)handle->data;
     assert(wrap.stream == (uv_stream_t *)handle);
     wrap.callbacks->doAlloc(handle, suggested_size, buf);
 }
@@ -120,7 +120,7 @@ static void onRead2(uv_pipe_t *handle, ssize_t nread, const uv_buf_t *buf, uv_ha
 }
 
 static void onReadCommon(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
-    NLStream *wrap = [(__bridge JSValue *)(handle->data) toObjectOfClass:NLStream.class];
+    NLStream *wrap = (__bridge NLStream *)handle->data;
     wrap.callbacks->doRead(handle, nread, buf, pending);
 }
 
@@ -131,14 +131,14 @@ static void doAlloc(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
 
 static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending) {
 
-    JSValue *value = (__bridge JSValue *)(handle->data);
+    NLHandle *wrap = (__bridge NLHandle *)(handle->data);
 
     NSMutableArray *args = [NSMutableArray arrayWithObject:[NSNumber numberWithLong:nread]];
 
     if (nread < 0)  {
         if (buf->base != NULL)
             free(buf->base);
-        [value invokeMethod:@"onread" withArguments:args];
+        [wrap.object invokeMethod:@"onread" withArguments:args];
         return;
     }
 
@@ -154,7 +154,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
     [args addObject:buffer];
     
     if (pending == UV_TCP) {
-        pending_obj = [NLTCP new];
+        pending_obj = [[NLTCP alloc] initInContext:wrap.context];
     } else if (pending == UV_NAMED_PIPE) {
         pending_obj = nil; // TODO: implement pending named pipe
     } else if (pending == UV_UDP) {
@@ -169,13 +169,13 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
             abort();
     }
     
-    [value invokeMethod:@"onread" withArguments:args];
+    [wrap.object invokeMethod:@"onread" withArguments:args];
 
 }
 
 static int doWrite(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb) {
     
-    NLStream *wrap = [(__bridge JSValue *)w->wrap toObjectOfClass:NLStream.class];
+    NLStream *wrap = (__bridge NLStream *)w->wrap;
     
     int r;
     if (send_handle == NULL) {
@@ -204,12 +204,11 @@ static void afterWriteCallback(struct writeWrap *w) {
 
 static void afterWrite(uv_write_t* req, int status) {
     struct writeWrap *reqWrap = req->data;
-    JSValue  *wrap   = (JSValue *)CFBridgingRelease(reqWrap->wrap);
+    NLStream *wrap   = (NLStream *)CFBridgingRelease(reqWrap->wrap);
     JSValue  *object = (JSValue *)CFBridgingRelease(reqWrap->object);
-    NLStream *stream = [wrap toObjectOfClass:NLStream.class];
     
     [object deleteProperty:@"handle"];
-    stream.callbacks->afterWrite(reqWrap);
+    wrap.callbacks->afterWrite(reqWrap);
 
     [object invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status], wrap, object]];
     

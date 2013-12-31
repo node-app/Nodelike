@@ -40,4 +40,6 @@ JSExportAs(connect6, - (NSNumber *)connect6:(JSValue *)obj address:(NSString *)a
 
 @interface NLTCP : NLStream <NLTCPExports>
 
+- (id)initInContext:(JSContext *)context;
+
 @end

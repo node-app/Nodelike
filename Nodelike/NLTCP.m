@@ -124,8 +124,8 @@ static NSNumber *connectCommon (int err, JSValue *obj, uv_tcp_t *handle, const s
 
 static void afterConnect(uv_connect_t* req, int status) {
     
-    JSValue *connectWrap = CFBridgingRelease(((struct connectWrap *)req->data)->value);
-    JSValue *wrap        = (__bridge JSValue *)(req->handle->data);
+    JSValue  *connectWrap = CFBridgingRelease(((struct connectWrap *)req->data)->value);
+    NLStream *wrap        = (__bridge NLStream *)(req->handle->data);
 
     free(req->data);
     
@@ -139,7 +139,7 @@ static void afterConnect(uv_connect_t* req, int status) {
 
 static void onConnection(uv_stream_t *handle, int status) {
 
-    JSValue *wrap = (__bridge JSValue *)(handle->data);
+    NLStream *wrap = (__bridge NLStream *)handle->data;
 
     NSMutableArray *args = [NSMutableArray arrayWithObject:[NSNumber numberWithInt:status]];
 
@@ -155,7 +155,7 @@ static void onConnection(uv_stream_t *handle, int status) {
 
     }
 
-    [wrap invokeMethod:@"onconnection" withArguments:args];
+    [wrap.object invokeMethod:@"onconnection" withArguments:args];
 
 }
 

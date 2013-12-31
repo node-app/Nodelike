@@ -48,29 +48,35 @@ static const unsigned int kCloseCallback = 2;
     uv_close(_handle, onClose);
     _handle = nil;
     if (![cb isUndefined]) {
-        _closeCallback = cb;
+        [((__bridge NLHandle *)_handle->data).object setValue:cb forProperty:@"close"];
         flags |= kCloseCallback;
     }
 }
 
 - (id)initWithHandle:(uv_handle_t *)handle inContext:(JSContext *)context {
+    assert(context != nil);
     self          = [super init];
     flags         = 0;
     _handle       = handle;
-    _handle->data = (void *)CFBridgingRetain([JSValue valueWithObject:self inContext:context]);
+    _handle->data = (void *)CFBridgingRetain(self);
+    _context      = context;
     _weakValue    = [NSValue valueWithNonretainedObject:self];
     [NLHandle.handleQueue addObject:_weakValue];
     return self;
 }
 
+- (JSValue *)object {
+    return [JSValue valueWithObject:self inContext:self.context];
+}
+
 - (void)dealloc {
-    [NLHandle.handleQueue removeObject:self.weakValue];
+    [NLHandle.handleQueue removeObject:_weakValue];
 }
 
 static void onClose(uv_handle_t *handle) {
-    NLHandle *wrap = [(JSValue *)CFBridgingRelease(handle->data) toObjectOfClass:NLHandle.class];
+    NLHandle *wrap = (NLHandle *)CFBridgingRelease(handle->data);
     if (wrap->flags & kCloseCallback) {
-        [wrap.closeCallback callWithArguments:@[]];
+        [wrap.object invokeMethod:@"close" withArguments:@[]];
     }
 }
 

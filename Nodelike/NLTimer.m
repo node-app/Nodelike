@@ -57,7 +57,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 static void onTimeout(uv_timer_t *handle, int status) {
-    JSValue     *wrap       = (__bridge JSValue *)(handle->data);
+    JSValue     *wrap       = ((__bridge NLHandle *)handle->data).object;
     JSObjectRef  wrapRef    = (JSObjectRef)(wrap.JSValueRef);
     JSContextRef contextRef = wrap.context.JSGlobalContextRef;
     JSValueRef   callback   = JSObjectGetPropertyAtIndex(contextRef, wrapRef, kOnTimeout, nil);
