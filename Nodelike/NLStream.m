@@ -101,9 +101,8 @@
        forOptionalSendHandle:sendHandle];
 }
 
-- (void)updateWriteQueueSize {
-    size_t write_queue_size = _stream->write_queue_size;
-    _writeQueueSize = [NSNumber numberWithLong:write_queue_size];
+- (NSNumber *)writeQueueSize {
+    return [NSNumber numberWithLong:_stream->write_queue_size];
 }
 
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
@@ -195,14 +194,12 @@ static int doWrite(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_
             //NODE_COUNT_PIPE_BYTES_SENT(bytes);
         }
     }
-    
-    [wrap updateWriteQueueSize];
 
     return r;
 }
 
 static void afterWriteCallback(struct writeWrap *w) {
-    [[(__bridge JSValue *)(w->wrap) toObjectOfClass:NLStream.class] updateWriteQueueSize];
+    return;
 }
 
 static void afterWrite(uv_write_t* req, int status) {
