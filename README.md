@@ -1,4 +1,4 @@
-# Nodelike [![Build Status](https://travis-ci.org/node-app/Nodelike.png?branch=master)](https://travis-ci.org/node-app/Nodelike)
+# Nodelike [![Build Status](https://travis-ci.org/node-app/Nodelike.png?branch=master)](https://travis-ci.org/node-app/Nodelike) ![GA Beacon](https://ga-beacon.appspot.com/UA-38007063-5/node-app/Nodelike)
 
 Nodelike is a weekend hack to implement a roughly Node.JS-compatible interface using JavaScriptCore.framework on iOS 7 and OS X Mavericks.
 
