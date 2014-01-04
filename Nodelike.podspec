@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Nodelike/*.{h,m}', 'libuv/src/**/*.{c,h}', 'libuv/include/*.h'
-  s.exclude_files = 'libuv/src/win', 'libuv/src/unix/*{bsd,aix,linux,sunos}*', 'libuv/include/*{bsd,linux,sunos,unix,win,msvc2008}*'
+  s.exclude_files = 'libuv/src/win', 'libuv/src/unix/*{bsd,aix,linux,sunos}*', 'libuv/include/uv-{bsd,linux,sunos,win}*.h','libuv/include/*msvc2008*.h' 
   s.frameworks = 'Foundation', 'JavaScriptCore'
   s.libraries = 'System'
   
