@@ -22,13 +22,13 @@ Pod::Spec.new do |s|
   s.author       = { "Sam Rijs" => "recv@awesam.de" }
   s.source       = { :git => "https://github.com/node-app/Nodelike.git", :tag => s.version.to_s, :submodules => true }
 
-  s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.9'
   s.requires_arc = true
 
   s.source_files = 'Nodelike/*.{h,m}', 'libuv/src/**/*.{c,h}', 'libuv/include/*.h'
   s.exclude_files = 'libuv/src/win', 'libuv/src/unix/*{bsd,aix,linux,sunos}*', 'libuv/include/uv-{bsd,linux,sunos,win}*.h','libuv/include/*msvc2008*.h' 
   s.frameworks = 'Foundation', 'JavaScriptCore'
   s.libraries = 'System'
-  
+  s.compiler_flags ='-Wno-conversion'
 end
