@@ -67,9 +67,11 @@
     
 }
 
+#if TARGET_OS_IPHONE
 + (void)attachToWebView:(UIWebView *)webView {
     [self attachToContext:[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"]];
 }
+#endif 
 
 #pragma mark - Event Handling
 

@@ -9,7 +9,12 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+#include "TargetConditionals.h"
+
+#if TARGET_OS_IPHONE 
 #import <UIKit/UIKit.h>
+#endif 
+
 #import <JavaScriptCore/JavaScriptCore.h>
 
 #import "uv.h"
@@ -20,7 +25,9 @@
 
 + (void)attachToContext:(JSContext *)context;
 
+#if TARGET_OS_IPHONE
 + (void)attachToWebView:(UIWebView *)webView;
+#endif 
 
 + (JSValue *)requireModule:(NSString *)module inContext:(JSContext *)context;
 
