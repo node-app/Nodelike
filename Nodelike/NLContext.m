@@ -11,7 +11,7 @@
 
 #import "NLContext.h"
 
-#import "NLProcess.h"
+#import "NLBinding.h"
 
 @implementation NLContext
 
@@ -44,8 +44,24 @@
 + (void)attachToContext:(JSContext *)context {
 
     context[@"global"]  = context.globalObject;
+
+    context[@"process"] = @{@"platform": @"darwin",
+                            @"argv":     NSProcessInfo.processInfo.arguments,
+                            @"env":      NSProcessInfo.processInfo.environment};
     
-    context[@"process"] = [NLProcess new];
+    context[@"process"][@"exit"] = ^(NSNumber *code) {
+        exit(code.intValue);
+    };
+    
+    context[@"process"][@"nextTick"] = ^(JSValue * cb) {
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            [cb callWithArguments:@[]];
+        });
+    };
+    
+    context[@"process"][@"binding"] = ^(NSString *binding) {
+        return [NLBinding bindingForIdentifier:binding];
+    };
     
     context[@"require"] = ^(NSString *module) {
         return [NLContext requireModule:module inContext:JSContext.currentContext];
