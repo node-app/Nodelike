@@ -19,6 +19,7 @@
 #import "NLBindingUv.h"
 #import "NLTimer.h"
 #import "NLTCP.h"
+#import "NLUDP.h"
 #import "NLProcess.h"
 
 @implementation NLBinding
@@ -43,6 +44,7 @@
                      @"timer_wrap":   NLTimer.class,
                      @"cares_wrap":   NLCaresWrap.class,
                      @"tcp_wrap":     NLTCP.class,
+                     @"udp_wrap":     NLUDP.class,
                      @"uv":           NLBindingUv.class,
                      @"process_wrap": NLProcess.class};
     });
