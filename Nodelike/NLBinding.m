@@ -19,6 +19,7 @@
 #import "NLBindingUv.h"
 #import "NLTimer.h"
 #import "NLTCP.h"
+#import "NLProcess.h"
 
 @implementation NLBinding
 
@@ -35,14 +36,15 @@
     static NSDictionary *bindings = nil;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
-        bindings = @{@"fs":         NLBindingFilesystem.class,
-                     @"constants":  NLBindingConstants.class,
-                     @"smalloc":    NLBindingSmalloc.class,
-                     @"buffer":     NLBindingBuffer.class,
-                     @"timer_wrap": NLTimer.class,
-                     @"cares_wrap": NLCaresWrap.class,
-                     @"tcp_wrap":   NLTCP.class,
-                     @"uv":         NLBindingUv.class};
+        bindings = @{@"fs":           NLBindingFilesystem.class,
+                     @"constants":    NLBindingConstants.class,
+                     @"smalloc":      NLBindingSmalloc.class,
+                     @"buffer":       NLBindingBuffer.class,
+                     @"timer_wrap":   NLTimer.class,
+                     @"cares_wrap":   NLCaresWrap.class,
+                     @"tcp_wrap":     NLTCP.class,
+                     @"uv":           NLBindingUv.class,
+                     @"process_wrap": NLProcess.class};
     });
     return bindings;
 }

@@ -12,7 +12,15 @@
 #import "NLProcess.h"
 
 @implementation NLProcess {
-    NSFileManager *filemngr;
+    uv_process_t handle;
+}
+
++ (id)binding {
+    return @{@"Process": self.constructor};
+}
+
+- (id)init {
+    return [super initWithHandle:(uv_handle_t *)&handle inContext:JSContext.currentContext];
 }
 
 @end

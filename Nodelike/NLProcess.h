@@ -9,12 +9,16 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#import "NLBinding.h"
+#import "NLHandle.h"
 
 @protocol NLProcessJSExports <JSExport>
 
+- (void)ref;
+- (void)unref;
+- (void)close:(JSValue *)cb;
+
 @end
 
-@interface NLProcess : NLBinding <NLProcessJSExports>
+@interface NLProcess : NLHandle <NLProcessJSExports>
 
 @end
