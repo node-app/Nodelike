@@ -17,11 +17,18 @@ typedef struct writeWrap {
     void      *object;
 } writeWrap;
 
+struct shutdownWrap {
+    uv_shutdown_t req;
+    void         *wrap;
+    void         *object;
+};
+
 struct NLStreamCallbacks {
     void (*doAlloc)(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf);
     void (*doRead)(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_handle_type pending);
     int  (*doWrite)(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb);
     void (*afterWrite)(struct writeWrap *w);
+    int  (*doShutdown)(struct shutdownWrap* wrap, uv_shutdown_cb cb);
 };
 
 @protocol NLStreamExports <JSExport>
@@ -38,6 +45,8 @@ struct NLStreamCallbacks {
 JSExportAs(writeAsciiString, - (NSNumber *)writeObject:(JSValue *)obj withAsciiString:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle);
 JSExportAs(writeUtf8String,  - (NSNumber *)writeObject:(JSValue *)obj withUtf8String:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle);
 JSExportAs(writeBuffer,      - (NSNumber *)writeObject:(JSValue *)obj withBuffer:(JSValue *)buffer forOptionalSendHandle:(NLHandle *)sendHandle);
+
+- (NSNumber *)shutdown:(JSValue *)obj;
 
 @end
 

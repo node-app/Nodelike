@@ -29,6 +29,7 @@
     defaultCallbacks.doRead  = doRead;
     defaultCallbacks.doWrite = doWrite;
     defaultCallbacks.afterWrite = afterWriteCallback;
+    defaultCallbacks.doShutdown = doShutdown;
     _callbacks = &defaultCallbacks;
     return self;
 }
@@ -111,6 +112,20 @@
 
 - (NSNumber *)writeQueueSize {
     return [NSNumber numberWithLong:_stream->write_queue_size];
+}
+
+- (NSNumber *)shutdown:(JSValue *)obj {
+    struct shutdownWrap *wrap = malloc(sizeof(struct shutdownWrap));
+    wrap->wrap   = (void *)CFBridgingRetain(self);
+    wrap->object = (void *)CFBridgingRetain(obj);
+    wrap->req.data = wrap;
+    int err = self.callbacks->doShutdown(wrap, afterShutdown);
+    if (err) {
+        CFBridgingRelease(wrap->wrap);
+        CFBridgingRelease(wrap->object);
+        free(wrap);
+    }
+    return [NSNumber numberWithInt:err];
 }
 
 static void onAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
@@ -221,6 +236,19 @@ static void afterWrite(uv_write_t* req, int status) {
     [object invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status], wrap, object]];
     
     free(reqWrap);
+}
+
+int doShutdown(struct shutdownWrap* w, uv_shutdown_cb cb) {
+    NLStream *wrap = (__bridge NLStream *)w->wrap;
+    return uv_shutdown(&w->req, wrap.stream, cb);
+}
+
+void afterShutdown(uv_shutdown_t* req, int status) {
+    struct shutdownWrap *shutdownWrap = req->data;
+    NLStream *wrap   = (NLStream *)CFBridgingRelease(shutdownWrap->wrap);
+    JSValue  *object = (JSValue  *)CFBridgingRelease(shutdownWrap->object);
+    [object invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status], wrap, object]];
+    free(shutdownWrap);
 }
 
 @end
