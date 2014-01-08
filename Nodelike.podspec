@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
   s.requires_arc = true
 
-  s.source_files = 'Nodelike/*.{h,m}', 'libuv/src/**/*.{c,h}', 'libuv/include/*.h', 'http-parser/*.{c,h}', 'http-parser/contrib/*.c'
+  s.source_files = 'Nodelike/*.{h,m}', 'libuv/src/**/*.{c,h}', 'libuv/include/*.h', 'http-parser/*.{c,h}'
   s.exclude_files = 'libuv/src/win', 'libuv/src/unix/*{bsd,aix,linux,sunos}*', 'libuv/include/uv-{bsd,linux,sunos,win}*.h','libuv/include/*msvc2008*.h' 
   s.frameworks = 'Foundation', 'JavaScriptCore'
   s.libraries = 'System'
