@@ -58,7 +58,7 @@ static const unsigned int kCloseCallback = 2;
     self          = [super init];
     flags         = 0;
     _handle       = handle;
-    _handle->data = (void *)CFBridgingRetain(self);
+    _handle->data = (__bridge void *)(self);
     _context      = context;
     _weakValue    = [NSValue valueWithNonretainedObject:self];
     [NLHandle.handleQueue addObject:_weakValue];
@@ -74,7 +74,7 @@ static const unsigned int kCloseCallback = 2;
 }
 
 static void onClose(uv_handle_t *handle) {
-    NLHandle *wrap = (NLHandle *)CFBridgingRelease(handle->data);
+    NLHandle *wrap = (__bridge NLHandle *)handle->data;
     if (wrap->flags & kCloseCallback) {
         [wrap.object invokeMethod:@"close" withArguments:@[]];
     }
