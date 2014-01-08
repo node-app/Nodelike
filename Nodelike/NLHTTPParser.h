@@ -13,6 +13,10 @@
 
 @protocol NLHTTPParserExports <JSExport>
 
+- (void)reinitialize:(NSNumber *)type;
+- (void)pause;
+- (void)resume;
+
 @end
 
 @interface NLHTTPParser : NLBinding <NLHTTPParserExports>

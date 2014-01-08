@@ -18,13 +18,31 @@ const uint32_t kOnHeadersComplete = 1;
 const uint32_t kOnBody            = 2;
 const uint32_t kOnMessageComplete = 3;
 
-@implementation NLHTTPParser
+@implementation NLHTTPParser {
+    http_parser parser_;
+    NSString *fields_[32];  // header fields
+    NSString *values_[32];  // header values
+    NSString *url_;
+    NSString *status_message_;
+    int num_fields_;
+    int num_values_;
+    bool have_flushed_;
+    bool got_exception_;
+    JSValue *current_buffer_;
+    size_t current_buffer_len_;
+    char* current_buffer_data_;
+    const struct http_parser_settings settings;
+}
 
 + (id)binding {
 
     JSContext *context = JSContext.currentContext;
 
-    JSValue *parser = self.constructor;
+    JSValue *parser = [NLBinding makeConstructor:^(NSNumber *type) {
+        NLHTTPParser *p = [[NLHTTPParser alloc] init];
+        [p reinitialize:type];
+        return p;
+    }  inContext:context];
 
     parser[@"REQUEST"]  = [NSNumber numberWithInt:HTTP_REQUEST];
     parser[@"RESPONSE"] = [NSNumber numberWithInt:HTTP_RESPONSE];
@@ -44,6 +62,31 @@ const uint32_t kOnMessageComplete = 3;
 
     return @{@"HTTPParser": parser};
 
+}
+
+- (instancetype)init {
+    self = [super init];
+    current_buffer_len_  = 0;
+    current_buffer_data_ = NULL;
+    return self;
+}
+
+- (void)reinitialize:(NSNumber *)type {
+    http_parser_init(&parser_, type.intValue);
+    url_            = @"";
+    status_message_ = @"";
+    num_fields_     = 0;
+    num_values_     = 0;
+    have_flushed_   = false;
+    got_exception_  = false;
+}
+
+- (void)pause {
+    http_parser_pause(&parser_, true);
+}
+
+- (void)resume {
+    http_parser_pause(&parser_, false);
 }
 
 @end
