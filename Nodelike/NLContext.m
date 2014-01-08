@@ -83,6 +83,7 @@
     
     context[@"COUNTER_NET_SERVER_CONNECTION"]       = noop;
     context[@"COUNTER_NET_SERVER_CONNECTION_CLOSE"] = noop;
+    context[@"COUNTER_HTTP_CLIENT_REQUEST"]         = noop;
     
 }
 
