@@ -81,6 +81,10 @@
     context[@"DTRACE_NET_STREAM_END"]        = noop;
     context[@"DTRACE_HTTP_CLIENT_REQUEST"]   = noop;
     context[@"DTRACE_HTTP_CLIENT_RESPONSE"]  = noop;
+    context[@"DTRACE_HTTP_SERVER_REQUEST"]   = noop;
+    context[@"DTRACE_HTTP_SERVER_RESPONSE"]  = noop;
+    context[@"DTRACE_NET_SOCKET_READ"]       = noop;
+    context[@"DTRACE_NET_SOCKET_WRITE"]      = noop;
     
     context[@"COUNTER_NET_SERVER_CONNECTION"]       = noop;
     context[@"COUNTER_NET_SERVER_CONNECTION_CLOSE"] = noop;
