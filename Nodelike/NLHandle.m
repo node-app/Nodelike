@@ -48,7 +48,7 @@ static const unsigned int kCloseCallback = 2;
     uv_close(_handle, onClose);
     _handle = nil;
     if (![cb isUndefined]) {
-        [((__bridge NLHandle *)_handle->data).object setValue:cb forProperty:@"close"];
+        [self.object setValue:cb forProperty:@"close"];
         flags |= kCloseCallback;
     }
 }
