@@ -40,6 +40,7 @@
 		B54C1F94180D37810051F826 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
 		B54C1F96180D37C80051F826 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
 		B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFA8187DBFA700FF1D8A /* http_parser.c */; };
+		B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */; };
 		B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = B599FF2B185A7ED000057DD6 /* NLTCP.m */; };
 		B59E5F8B181EC45A0093A6FF /* NLBindingUv.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F8A181EC45A0093A6FF /* NLBindingUv.m */; };
 		B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F90181EE3590093A6FF /* NLHandle.m */; };
@@ -112,6 +113,8 @@
 		B54C1F95180D37C80051F826 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		B56DEFA8187DBFA700FF1D8A /* http_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
 		B56DEFAA187DBFA700FF1D8A /* http_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_parser.h; sourceTree = "<group>"; };
+		B56DEFBC187DC18100FF1D8A /* NLHTTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLHTTPParser.h; sourceTree = "<group>"; };
+		B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLHTTPParser.m; sourceTree = "<group>"; };
 		B599FF2A185A7ED000057DD6 /* NLTCP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTCP.h; sourceTree = "<group>"; };
 		B599FF2B185A7ED000057DD6 /* NLTCP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTCP.m; sourceTree = "<group>"; };
 		B59E5F89181EC45A0093A6FF /* NLBindingUv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingUv.h; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				B53E6997184672F3004E4EF9 /* NLStream.m */,
 				B599FF2A185A7ED000057DD6 /* NLTCP.h */,
 				B599FF2B185A7ED000057DD6 /* NLTCP.m */,
+				B56DEFBC187DC18100FF1D8A /* NLHTTPParser.h */,
+				B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */,
 				B5061A381815A9B00083AB4B /* NLCaresWrap.h */,
 				B5061A391815A9B00083AB4B /* NLCaresWrap.m */,
 				B59EA093180CB587005BF5C1 /* Nodelike.h */,
@@ -432,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */,
 				B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */,
 				B59E5F8B181EC45A0093A6FF /* NLBindingUv.m in Sources */,
 				B59E5FA3181F07480093A6FF /* NLBindingConstants.m in Sources */,

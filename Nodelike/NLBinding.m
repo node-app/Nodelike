@@ -21,6 +21,7 @@
 #import "NLTCP.h"
 #import "NLUDP.h"
 #import "NLProcess.h"
+#import "NLHTTPParser.h"
 
 @implementation NLBinding
 
@@ -46,7 +47,8 @@
                      @"tcp_wrap":     NLTCP.class,
                      @"udp_wrap":     NLUDP.class,
                      @"uv":           NLBindingUv.class,
-                     @"process_wrap": NLProcess.class};
+                     @"process_wrap": NLProcess.class,
+                     @"http_parser":  NLHTTPParser.class};
     });
     return bindings;
 }
