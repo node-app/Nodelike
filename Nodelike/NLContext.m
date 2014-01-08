@@ -43,6 +43,8 @@
 
 + (void)attachToContext:(JSContext *)context {
 
+    [self attachPolyfillsToContext:context];
+    
     context[@"global"]  = context.globalObject;
 
     context[@"process"] = @{@"platform": @"darwin",
@@ -83,11 +85,17 @@
     
 }
 
++ (void)attachPolyfillsToContext:(JSContext *)context {
+
+    context[@"Number"][@"isFinite"] = [context evaluateScript:@"(function (value) { return typeof value === 'number' && isFinite(value); })"];
+
+}
+
 #if TARGET_OS_IPHONE
 + (void)attachToWebView:(UIWebView *)webView {
     [self attachToContext:[webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"]];
 }
-#endif 
+#endif
 
 #pragma mark - Event Handling
 
