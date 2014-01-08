@@ -293,7 +293,7 @@ static int on_headers_complete (http_parser* p) {
     JSValueRef messageInfoRef = messageInfo.JSValueRef;
     
     JSValueRef head_response = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 1, &messageInfoRef, NULL);
-    
+
     if (!head_response) {
         parser->got_exception_ = true;
         return -1;
@@ -317,13 +317,13 @@ static int on_body (http_parser* p, const char* at, size_t length) {
     if (!JSValueIsObject(ctxRef, cbRef) || !JSObjectIsFunction(ctxRef, (JSObjectRef)cbRef))
         return 0;
     
-    JSValue *argv = [JSValue valueWithNewArrayInContext:ctx];
-    argv[0] = parser->current_buffer_;
-    argv[1] = [JSValue valueWithUInt32:at - parser->current_buffer_data_ inContext:ctx];
-    argv[2] = [JSValue valueWithUInt32:length inContext:ctx];
-    JSValueRef argvRef = argv.JSValueRef;
+    JSValueRef argv[3] = {
+        (parser->current_buffer_).JSValueRef,
+        JSValueMakeNumber(ctxRef, at - parser->current_buffer_data_),
+        JSValueMakeNumber(ctxRef, length)
+    };
     
-    JSValueRef r = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 3, &argvRef, NULL);
+    JSValueRef r = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 3, argv, NULL);
     
     if (!r) {
         parser->got_exception_ = true;
