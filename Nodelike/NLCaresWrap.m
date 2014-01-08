@@ -51,7 +51,8 @@ static int isIP(const char *ip) {
     }
     
     struct getaddrinfoWrap *wrap = malloc(sizeof(struct getaddrinfoWrap));
-    wrap->value                  = (void *)CFBridgingRetain(obj);
+    wrap->value    = (void *)CFBridgingRetain(obj);
+    wrap->req.data = wrap;
     
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));

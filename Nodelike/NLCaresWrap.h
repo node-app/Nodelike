@@ -15,7 +15,7 @@
 
 + (NSNumber *)isIP:(NSString *)ip;
 
-JSExportAs(getaddrinfo, - (NSNumber *)getAddrInfo:(JSValue *)obj hostname:(NSString *)hostname family:(NSNumber *)family);
+JSExportAs(getaddrinfo, + (NSNumber *)getAddrInfo:(JSValue *)obj hostname:(NSString *)hostname family:(NSNumber *)family);
 
 @end
 
