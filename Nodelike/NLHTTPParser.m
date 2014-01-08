@@ -20,12 +20,14 @@ const uint32_t kOnHeadersComplete = 1;
 const uint32_t kOnBody            = 2;
 const uint32_t kOnMessageComplete = 3;
 
+static const int num_fields_max = 32;
+
 @implementation NLHTTPParser {
     http_parser parser_;
-    NSString *fields_[32];  // header fields
-    NSString *values_[32];  // header values
-    NSString *url_;
-    NSString *status_message_;
+    NSMutableData *fields_[num_fields_max];  // header fields
+    NSMutableData *values_[num_fields_max];  // header values
+    NSMutableData *url_;
+    NSMutableData *status_message_;
     int num_fields_;
     int num_values_;
     bool have_flushed_;
@@ -33,7 +35,7 @@ const uint32_t kOnMessageComplete = 3;
     JSValue *current_buffer_;
     size_t current_buffer_len_;
     char* current_buffer_data_;
-    const struct http_parser_settings settings;
+    struct http_parser_settings settings;
 }
 
 + (id)binding {
@@ -70,14 +72,22 @@ const uint32_t kOnMessageComplete = 3;
     self = [super init];
     current_buffer_len_  = 0;
     current_buffer_data_ = NULL;
-    // @TODO: initialize settings
+    settings.on_message_begin = on_message_begin;
+    settings.on_url = on_url;
+    settings.on_status = on_status;
+    settings.on_header_field = on_header_field;
+    settings.on_header_value = on_header_value;
+    settings.on_headers_complete = on_headers_complete;
+    settings.on_body = on_body;
+    settings.on_message_complete = on_message_complete;
     return self;
 }
 
 - (void)reinitialize:(NSNumber *)type {
     http_parser_init(&parser_, type.intValue);
-    url_            = @"";
-    status_message_ = @"";
+    parser_.data    = (__bridge void *)(self);
+    url_            = [NSMutableData new];
+    status_message_ = [NSMutableData new];
     num_fields_     = 0;
     num_values_     = 0;
     have_flushed_   = false;
@@ -151,8 +161,8 @@ const uint32_t kOnMessageComplete = 3;
 - (JSValue *)headers {
     JSValue *headers = [JSValue valueWithNewArrayInContext:JSContext.currentContext];
     for (int i = 0; i < num_values_; ++i) {
-        [headers setValue:fields_[i] atIndex:2 * i];
-        [headers setValue:values_[i] atIndex:2 * i + 1];
+        [headers setValue:[[NSString alloc] initWithData:fields_[i] encoding:NSASCIIStringEncoding] atIndex:2 * i];
+        [headers setValue:[[NSString alloc] initWithData:values_[i] encoding:NSASCIIStringEncoding] atIndex:2 * i + 1];
     }
     return headers;
 }
@@ -184,8 +194,171 @@ const uint32_t kOnMessageComplete = 3;
     if (!r)
         got_exception_ = true;
     
-    url_ = @"";
+    [url_ setLength:0];
     have_flushed_ = true;
 }
+
+static int on_message_begin (http_parser* p) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    parser->num_fields_ = parser->num_values_ = 0;
+    [parser->url_ setLength:0];
+    [parser->status_message_ setLength:0];
+    return 0;
+}
+
+static int on_url (http_parser* p, const char* at, size_t length) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    [parser->url_ appendBytes:at length:length];
+    return 0;
+}
+
+static int on_status (http_parser* p, const char* at, size_t length) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    [parser->status_message_ appendBytes:at length:length];
+    return 0;
+}
+
+static int on_header_field (http_parser* p, const char* at, size_t length) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    if (parser->num_fields_ == parser->num_values_) {
+        parser->num_fields_++;
+        if (parser->num_fields_ == num_fields_max) {
+            [parser flush];
+            parser->num_fields_ = 1;
+            parser->num_values_ = 0;
+        }
+        parser->fields_[parser->num_fields_ - 1] = [NSMutableData new];
+    }
+    [parser->fields_[parser->num_fields_ - 1] appendBytes:at length:length];
+    return 0;
+}
+
+static int on_header_value (http_parser* p, const char* at, size_t length) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    if (parser->num_values_ != parser->num_fields_) {
+        // start of new header value
+        parser->num_values_++;
+        parser->values_[parser->num_values_ - 1] = [NSMutableData new];
+    }
+    [parser->values_[parser->num_values_ - 1] appendBytes:at length:length];
+    return 0;
+}
+
+static int on_headers_complete (http_parser* p) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    
+    JSContext   *ctx    = JSContext.currentContext;
+    JSContextRef ctxRef = ctx.JSGlobalContextRef;
+    
+    JSValue   *obj    = JSContext.currentThis;
+    JSValueRef objRef = obj.JSValueRef;
+    JSValue   *cb     = [obj valueAtIndex:kOnHeadersComplete];
+    JSValueRef cbRef  = cb.JSValueRef;
+    
+    if (!JSValueIsObject(ctxRef, cbRef) || !JSObjectIsFunction(ctxRef, (JSObjectRef)cbRef))
+        return 0;
+    
+    JSValue *messageInfo = [JSValue valueWithNewObjectInContext:ctx];
+    
+    if (parser->have_flushed_) {
+        // Slow case, flush remaining headers.
+        [parser flush];
+    } else {
+        // Fast case, pass headers and URL to JS land.
+        messageInfo[@"headers"] = parser.headers;
+        if (parser->parser_.type == HTTP_REQUEST)
+            messageInfo[@"url"] = [[NSString alloc] initWithData:parser->url_ encoding:NSASCIIStringEncoding];
+    }
+    parser->num_fields_ = parser->num_values_ = 0;
+    
+    // METHOD
+    if (parser->parser_.type == HTTP_REQUEST) {
+        messageInfo[@"method"] = [NSNumber numberWithUnsignedInt:parser->parser_.method];
+    }
+    
+    // STATUS
+    if (parser->parser_.type == HTTP_RESPONSE) {
+        messageInfo[@"statusCode"] = [NSNumber numberWithUnsignedInt:parser->parser_.status_code];
+        messageInfo[@"statusMessage"] = [[NSString alloc] initWithData:parser->status_message_ encoding:NSASCIIStringEncoding];
+    }
+    
+    // VERSION
+    messageInfo[@"versionMajor"] = [NSNumber numberWithInt:parser->parser_.http_major];
+    messageInfo[@"versionMinor"] = [NSNumber numberWithInt:parser->parser_.http_minor];
+    
+    messageInfo[@"shouldKeepAlive"] = [NSNumber numberWithBool:http_should_keep_alive(&parser->parser_)];
+    
+    messageInfo[@"upgrade"] = [NSNumber numberWithBool:parser->parser_.upgrade];
+    
+    JSValueRef messageInfoRef = messageInfo.JSValueRef;
+    
+    JSValueRef head_response = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 1, &messageInfoRef, NULL);
+    
+    if (!head_response) {
+        parser->got_exception_ = true;
+        return -1;
+    }
+
+    return JSValueToBoolean(ctxRef, head_response);
+
+}
+
+static int on_body (http_parser* p, const char* at, size_t length) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    
+    JSContext   *ctx    = JSContext.currentContext;
+    JSContextRef ctxRef = ctx.JSGlobalContextRef;
+    
+    JSValue   *obj    = JSContext.currentThis;
+    JSValueRef objRef = obj.JSValueRef;
+    JSValue   *cb     = [obj valueAtIndex:kOnBody];
+    JSValueRef cbRef  = cb.JSValueRef;
+    
+    if (!JSValueIsObject(ctxRef, cbRef) || !JSObjectIsFunction(ctxRef, (JSObjectRef)cbRef))
+        return 0;
+    
+    JSValue *argv = [JSValue valueWithNewArrayInContext:ctx];
+    argv[0] = parser->current_buffer_;
+    argv[1] = [JSValue valueWithUInt32:at - parser->current_buffer_data_ inContext:ctx];
+    argv[2] = [JSValue valueWithUInt32:length inContext:ctx];
+    JSValueRef argvRef = argv.JSValueRef;
+    
+    JSValueRef r = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 3, &argvRef, NULL);
+    
+    if (!r) {
+        parser->got_exception_ = true;
+        return -1;
+    }
+    
+    return 0;
+}
+
+static int on_message_complete (http_parser* p) {
+    NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
+    
+    JSContext   *ctx    = JSContext.currentContext;
+    JSContextRef ctxRef = ctx.JSGlobalContextRef;
+    
+    JSValue   *obj    = JSContext.currentThis;
+    JSValueRef objRef = obj.JSValueRef;
+    JSValue   *cb     = [obj valueAtIndex:kOnBody];
+    JSValueRef cbRef  = cb.JSValueRef;
+    
+    if (parser->num_fields_)
+        [parser flush];  // Flush trailing HTTP headers.
+    
+    if (!JSValueIsObject(ctxRef, cbRef) || !JSObjectIsFunction(ctxRef, (JSObjectRef)cbRef))
+        return 0;
+    
+    JSValueRef r = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 0, NULL, NULL);
+    
+    if (!r) {
+        parser->got_exception_ = true;
+        return -1;
+    }
+    
+    return 0;
+}
+
 
 @end
