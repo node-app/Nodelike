@@ -14,9 +14,22 @@
 @implementation NLBindingSmalloc
 
 + (id)binding {
-    return @{@"alloc":     ^(JSValue *target, NSNumber *size) { return target; },
-             @"sliceOnto": ^(JSValue *s, JSValue *d, NSNumber *a, NSNumber *b) { return s; },
-             @"kMaxLength": [NSNumber numberWithInt:INT_MAX]};
+    return @{@"kMaxLength": [NSNumber numberWithInt:INT_MAX],
+             @"alloc": ^(JSValue *t, NSNumber *s) { return t; },
+             @"sliceOnto": ^(JSValue *s, JSValue *d, NSNumber *a, NSNumber *b) {
+                 return sliceOnto(s, d, a.intValue, b.intValue);
+             }};
+}
+
+static JSValue *sliceOnto(JSValue *src, JSValue *dst, int start, int end) {
+    int length = end - start;
+    JSContextRef context = src.context.JSGlobalContextRef;
+    JSObjectRef  srcRef  = JSValueToObject(context, src.JSValueRef, nil);
+    JSObjectRef  dstRef  = JSValueToObject(context, dst.JSValueRef, nil);
+    for (int i = 0; i < length; i++) {
+        JSObjectSetPropertyAtIndex(context, dstRef, i, JSObjectGetPropertyAtIndex(context, srcRef, i + start, NULL), NULL);
+    }
+    return src;
 }
 
 @end
