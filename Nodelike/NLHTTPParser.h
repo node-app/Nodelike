@@ -13,6 +13,9 @@
 
 @protocol NLHTTPParserExports <JSExport>
 
+- (JSValue *)execute:(JSValue *)buffer;
+- (JSValue *)finish;
+
 - (void)reinitialize:(NSNumber *)type;
 - (void)pause;
 - (void)resume;

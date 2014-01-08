@@ -11,6 +11,8 @@
 
 #import "NLHTTPParser.h"
 
+#import "NLBindingBuffer.h"
+
 #import "http_parser.h"
 
 const uint32_t kOnHeaders         = 0;
@@ -68,6 +70,7 @@ const uint32_t kOnMessageComplete = 3;
     self = [super init];
     current_buffer_len_  = 0;
     current_buffer_data_ = NULL;
+    // @TODO: initialize settings
     return self;
 }
 
@@ -87,6 +90,102 @@ const uint32_t kOnMessageComplete = 3;
 
 - (void)resume {
     http_parser_pause(&parser_, false);
+}
+
+- (JSValue *)execute:(JSValue *)buffer {
+    
+    JSContext *ctx = JSContext.currentContext;
+
+    int   buffer_len  = [NLBindingBuffer getLength:buffer];
+    char *buffer_data = [NLBindingBuffer getData:buffer ofSize:buffer_len];
+    
+    current_buffer_      = buffer;
+    current_buffer_len_  = buffer_len;
+    current_buffer_data_ = buffer_data;
+    got_exception_       = false;
+    
+    size_t nparsed = http_parser_execute(&parser_, &settings, buffer_data, buffer_len);
+    
+    current_buffer_ = NULL;
+    current_buffer_len_ = 0;
+    current_buffer_data_ = NULL;
+    
+    if (got_exception_)
+        return [JSValue valueWithUndefinedInContext:ctx];
+    
+    JSValue *nparsed_obj = [JSValue valueWithInt32:(int)nparsed inContext:ctx];
+    
+    if (!parser_.upgrade && nparsed != buffer_len) {
+        JSValue *e = [JSValue valueWithNewErrorFromMessage:@"Parse Error" inContext:ctx];
+        e[@"bytesParsed"] = nparsed_obj;
+        e[@"code"]        = [NSString stringWithUTF8String:http_errno_name(HTTP_PARSER_ERRNO(&parser_))];
+        return e;
+    } else {
+        return [JSValue valueWithObject:nparsed_obj inContext:ctx];
+    }
+
+}
+
+- (JSValue *)finish {
+    
+    JSContext *ctx = JSContext.currentContext;
+
+    got_exception_ = false;
+    
+    size_t nparsed = http_parser_execute(&parser_, &settings, NULL, 0);
+    
+    if (got_exception_)
+        return [JSValue valueWithUndefinedInContext:ctx];
+    
+    if (nparsed) {
+        JSValue *e = [JSValue valueWithNewErrorFromMessage:@"Parse Error" inContext:ctx];
+        e[@"bytesParsed"] = @0;
+        e[@"code"]        = [NSString stringWithUTF8String:http_errno_name(HTTP_PARSER_ERRNO(&parser_))];
+        return e;
+    } else {
+        return [JSValue valueWithUndefinedInContext:ctx];
+    }
+
+}
+
+- (JSValue *)headers {
+    JSValue *headers = [JSValue valueWithNewArrayInContext:JSContext.currentContext];
+    for (int i = 0; i < num_values_; ++i) {
+        [headers setValue:fields_[i] atIndex:2 * i];
+        [headers setValue:values_[i] atIndex:2 * i + 1];
+    }
+    return headers;
+}
+
+- (void)flush {
+    
+    JSContext   *ctx    = JSContext.currentContext;
+    JSContextRef ctxRef = ctx.JSGlobalContextRef;
+    
+    JSValue   *obj    = JSContext.currentThis;
+    JSValueRef objRef = obj.JSValueRef;
+    JSValue   *cb     = [obj valueAtIndex:kOnHeaders];
+    JSValueRef cbRef  = cb.JSValueRef;
+    
+    if (!JSValueIsObject(ctxRef, cbRef) || !JSObjectIsFunction(ctxRef, (JSObjectRef)cbRef))
+        return;
+    
+    JSStringRef urlStrRef = JSStringCreateWithCFString((__bridge CFStringRef)url_);
+    
+    JSValueRef argv[2] = {
+        self.headers.JSValueRef,
+        JSValueMakeString(ctxRef, urlStrRef)
+    };
+    
+    JSStringRelease(urlStrRef);
+
+    JSValueRef r = JSObjectCallAsFunction(ctxRef, (JSObjectRef)cbRef, (JSObjectRef)objRef, 2, argv, NULL);
+    
+    if (!r)
+        got_exception_ = true;
+    
+    url_ = @"";
+    have_flushed_ = true;
 }
 
 @end
