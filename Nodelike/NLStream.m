@@ -87,6 +87,14 @@
     
 }
 
+- (NSNumber *)writeObject:(JSValue *)obj withBuffer:(JSValue *)buffer forOptionalSendHandle:(NLHandle *)sendHandle {
+    int len = [NLBindingBuffer getLength:buffer];
+    return [self writeObject:obj
+                    withData:[NLBindingBuffer getData:buffer ofSize:len]
+                    ofLength:len
+       forOptionalSendHandle:sendHandle];
+}
+
 - (NSNumber *)writeObject:(JSValue *)obj withAsciiString:(longlived NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle {
     return [self writeObject:obj
                     withData:[string cStringUsingEncoding:NSASCIIStringEncoding]

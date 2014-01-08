@@ -37,6 +37,7 @@ struct NLStreamCallbacks {
 
 JSExportAs(writeAsciiString, - (NSNumber *)writeObject:(JSValue *)obj withAsciiString:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle);
 JSExportAs(writeUtf8String,  - (NSNumber *)writeObject:(JSValue *)obj withUtf8String:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle);
+JSExportAs(writeBuffer,      - (NSNumber *)writeObject:(JSValue *)obj withBuffer:(JSValue *)buffer forOptionalSendHandle:(NLHandle *)sendHandle);
 
 @end
 
@@ -45,9 +46,6 @@ JSExportAs(writeUtf8String,  - (NSNumber *)writeObject:(JSValue *)obj withUtf8St
 - (id)initWithStream:(uv_stream_t *)stream inContext:(JSContext *)context;
 
 - (NSNumber *)writeObject:(JSValue *)obj withData:(const char *)data ofLength:(size_t)size forOptionalSendHandle:(NLHandle *)sendHandle;
-
-- (NSNumber *)writeObject:(JSValue *)obj withAsciiString:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle;
-- (NSNumber *)writeObject:(JSValue *)obj withUtf8String:(NSString *)string forOptionalSendHandle:(NLHandle *)sendHandle;
 
 @property uv_stream_t *stream;
 @property struct NLStreamCallbacks *callbacks;
