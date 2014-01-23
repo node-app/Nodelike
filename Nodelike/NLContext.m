@@ -49,7 +49,8 @@
 
     context[@"process"] = @{@"platform": @"darwin",
                             @"argv":     NSProcessInfo.processInfo.arguments,
-                            @"env":      NSProcessInfo.processInfo.environment};
+                            @"env":      NSProcessInfo.processInfo.environment,
+                            @"_asyncFlags": @{}};
     
     context[@"process"][@"exit"] = ^(NSNumber *code) {
         exit(code.intValue);
