@@ -58,7 +58,7 @@
 
     struct writeWrap *writeWrap = malloc(sizeof(struct writeWrap));
     writeWrap->object = (void *)CFBridgingRetain(obj);
-    writeWrap->wrap   = (void *)CFBridgingRetain(self);
+    writeWrap->wrap   = (__bridge void *)self;
     writeWrap->req.data = writeWrap;
     
     uv_buf_t buf;
@@ -116,7 +116,7 @@
 
 - (NSNumber *)shutdown:(JSValue *)obj {
     struct shutdownWrap *wrap = malloc(sizeof(struct shutdownWrap));
-    wrap->wrap   = (void *)CFBridgingRetain(self);
+    wrap->wrap   = (__bridge void *)self;
     wrap->object = (void *)CFBridgingRetain(obj);
     wrap->req.data = wrap;
     int err = self.callbacks->doShutdown(wrap, afterShutdown);
