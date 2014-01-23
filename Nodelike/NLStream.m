@@ -227,7 +227,7 @@ static void afterWriteCallback(struct writeWrap *w) {
 
 static void afterWrite(uv_write_t* req, int status) {
     struct writeWrap *reqWrap = req->data;
-    NLStream *wrap   = (NLStream *)CFBridgingRelease(reqWrap->wrap);
+    NLStream *wrap   = (__bridge NLStream *)(reqWrap->wrap);
     JSValue  *object = (JSValue *)CFBridgingRelease(reqWrap->object);
     
     [object deleteProperty:@"handle"];
@@ -245,7 +245,7 @@ int doShutdown(struct shutdownWrap* w, uv_shutdown_cb cb) {
 
 void afterShutdown(uv_shutdown_t* req, int status) {
     struct shutdownWrap *shutdownWrap = req->data;
-    NLStream *wrap   = (NLStream *)CFBridgingRelease(shutdownWrap->wrap);
+    NLStream *wrap   = (__bridge NLStream *)(shutdownWrap->wrap);
     JSValue  *object = (JSValue  *)CFBridgingRelease(shutdownWrap->object);
     [object invokeMethod:@"oncomplete" withArguments:@[[NSNumber numberWithInt:status], wrap, object]];
     free(shutdownWrap);
