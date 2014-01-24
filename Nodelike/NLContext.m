@@ -74,7 +74,9 @@
         NSLog(@"%@", msg);
     };
     
-    context[@"Buffer"] = [NLContext requireModule:@"buffer" inContext:context][@"Buffer"];
+    [context.globalObject defineProperty:@"Buffer" descriptor:@{JSPropertyDescriptorGetKey: ^{
+        return [NLContext requireModule:@"buffer" inContext:context][@"Buffer"];
+    }}];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
     
