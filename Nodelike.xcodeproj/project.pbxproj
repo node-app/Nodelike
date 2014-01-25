@@ -958,6 +958,7 @@
 				B54173291894341600B6636B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B54C1F6E180D37280051F826 /* Build configuration list for PBXNativeTarget "uv" */ = {
 			isa = XCConfigurationList;

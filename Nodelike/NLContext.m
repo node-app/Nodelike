@@ -157,7 +157,7 @@
         return cached[@"exports"];
     }
     
-    NSString* path = [NSBundle.mainBundle pathForResource:module
+    NSString* path = [[NSBundle bundleForClass:self.class] pathForResource:module
                                                    ofType:@"js"];
     
     NSString* content = [NSString stringWithContentsOfFile:path
