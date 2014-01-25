@@ -29,7 +29,7 @@
 }
 
 - (void)testBundle {
-    NSString *path = [NSBundle.mainBundle pathForResource:@"timers" ofType:@"js"];
+    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"timers" ofType:@"js"];
     XCTAssertNotNil(path, @"Bundle returns no path for resource.");
     XCTAssertTrue([NSFileManager.defaultManager fileExistsAtPath:path], @"Bundle file does not exist at path: %@", path);
 }
@@ -45,8 +45,8 @@
     };
     [ctx evaluateScript:@"require('timers').setTimeout(callback, 1000);"];
     XCTAssertFalse(canary, @"Canary not false immediately after timeout set.");
-    [NSThread sleepForTimeInterval:1.0f];
-    XCTAssertFalse(canary, @"Canary not false immediately after timeout fired.");
+    [NSThread sleepForTimeInterval:1.1f];
+    XCTAssertTrue(canary, @"Canary not true immediately after timeout fired.");
 }
 
 @end
