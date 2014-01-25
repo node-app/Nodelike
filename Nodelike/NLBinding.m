@@ -11,7 +11,7 @@
 
 #import "NLBinding.h"
 
-#import "NLBindingFilesystem.h"
+#import "NLFS.h"
 #import "NLBindingConstants.h"
 #import "NLBindingSmalloc.h"
 #import "NLBindingBuffer.h"
@@ -38,7 +38,7 @@
     static NSDictionary *bindings = nil;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
-        bindings = @{@"fs":           NLBindingFilesystem.class,
+        bindings = @{@"fs":           NLFS.class,
                      @"constants":    NLBindingConstants.class,
                      @"smalloc":      NLBindingSmalloc.class,
                      @"buffer":       NLBindingBuffer.class,

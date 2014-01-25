@@ -1,5 +1,5 @@
 //
-//  NLBindingFilesystem.h
+//  NLFS.h
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/13/13.
@@ -11,7 +11,7 @@
 
 #import "NLBinding.h"
 
-@protocol NLBindingFilesystemExports <JSExport>
+@protocol NLFSExports <JSExport>
 
 @property (readonly) JSValue *Stats;
 
@@ -52,7 +52,7 @@ JSExportAs(fstat, - (JSValue *)fstat:(NSNumber *)file callback:(JSValue *)cb);
 
 @end
 
-@interface NLBindingFilesystem : NLBinding <NLBindingFilesystemExports>
+@interface NLFS : NLBinding <NLFSExports>
 
 @property (readonly) JSValue *Stats;
 
