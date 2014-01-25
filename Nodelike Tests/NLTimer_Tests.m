@@ -28,6 +28,12 @@
     [super tearDown];
 }
 
+- (void)testBundle {
+    NSString *path = [NSBundle.mainBundle pathForResource:@"timers" ofType:@"js"];
+    XCTAssertNotNil(path, @"Bundle returns no path for resource.");
+    XCTAssertTrue([NSFileManager.defaultManager fileExistsAtPath:path], @"Bundle file does not exist at path: %@", path);
+}
+
 - (void)testSetTimeout {
     __block bool canary = false;
     NLContext *ctx = [NLContext new];
