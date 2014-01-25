@@ -28,20 +28,28 @@
     [super tearDown];
 }
 
-- (void)testBundle {
-    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"timers" ofType:@"js"];
-    XCTAssertNotNil(path, @"Bundle returns no path for resource.");
-    XCTAssertTrue([NSFileManager.defaultManager fileExistsAtPath:path], @"Bundle file does not exist at path: %@", path);
-}
-
-- (void)testSetTimeout {
+- (void)testSetTimeout0 {
     __block bool canary = false;
     NLContext *ctx = [NLContext new];
+    ctx.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
+        XCTFail(@"Context exception thrown: %@", e);
+    };
     ctx[@"callback"] = ^{
         canary = true;
     };
+    [ctx evaluateScript:@"require('timers').setTimeout(callback, 0);"];
+    [NSThread sleepForTimeInterval:0.1f];
+    XCTAssertTrue(canary, @"Canary not true immediately after timeout fired.");
+}
+
+- (void)testSetTimeout1000 {
+    __block bool canary = false;
+    NLContext *ctx = [NLContext new];
     ctx.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
         XCTFail(@"Context exception thrown: %@", e);
+    };
+    ctx[@"callback"] = ^{
+        canary = true;
     };
     [ctx evaluateScript:@"require('timers').setTimeout(callback, 1000);"];
     XCTAssertFalse(canary, @"Canary not false immediately after timeout set.");
