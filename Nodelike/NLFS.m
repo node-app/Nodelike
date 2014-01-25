@@ -11,7 +11,7 @@
 
 #import "NLFS.h"
 
-#import "NLBindingBuffer.h"
+#import "NLBuffer.h"
 
 typedef void (*callback)(uv_fs_t *req);
 
@@ -55,7 +55,7 @@ static JSValue *Stats = nil;
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
     return req(cb, call(read, file.intValue, malloc(length), length, position), ^(uv_fs_t *req) {
-        [NLBindingBuffer write:req->buf toBuffer:target atOffset:off withLength:len];
+        [NLBuffer write:req->buf toBuffer:target atOffset:off withLength:len];
     });
 }
 

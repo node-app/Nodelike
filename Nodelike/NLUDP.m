@@ -11,7 +11,7 @@
 
 #import "NLUDP.h"
 
-#import "NLBindingBuffer.h"
+#import "NLBuffer.h"
 
 struct sendWrap {
     uv_udp_send_t req;
@@ -121,7 +121,7 @@ static NSNumber *sendCommon (JSValue *req, JSValue *buffer,
     sendWrap->hasCallback = hasCallback;
     sendWrap->req.data = sendWrap;
     
-    uv_buf_t buf = uv_buf_init([NLBindingBuffer getData:buffer ofSize:length] + offset, length);
+    uv_buf_t buf = uv_buf_init([NLBuffer getData:buffer ofSize:length] + offset, length);
     
     err = uv_udp_send(&sendWrap->req, handle, &buf, 1, addr, onSend);
     
@@ -202,7 +202,7 @@ static void onRecv (uv_udp_t* handle, ssize_t nread, const uv_buf_t* buf, const 
     
     char* base = realloc(buf->base, nread);
     
-    args[2] = [NLBindingBuffer useData:base ofLength:nread];
+    args[2] = [NLBuffer useData:base ofLength:nread];
     args[3] = AddressToJS(wrap.context, addr, NULL);
     [wrapObj invokeMethod:@"onmessage" withArguments:args];
 

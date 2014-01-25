@@ -47,6 +47,7 @@
 		B54C1F96180D37C80051F826 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
 		B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFA8187DBFA700FF1D8A /* http_parser.c */; };
 		B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */; };
+		B578842418944F2000EA1A81 /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
 		B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = B599FF2B185A7ED000057DD6 /* NLTCP.m */; };
 		B59E5F8B181EC45A0093A6FF /* NLUV.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F8A181EC45A0093A6FF /* NLUV.m */; };
 		B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F90181EE3590093A6FF /* NLHandle.m */; };
@@ -59,7 +60,6 @@
 		B59EA08F180CB587005BF5C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
 		B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */; };
-		B5C5B24C181321300091FDE8 /* NLBindingBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B24B181321300091FDE8 /* NLBindingBuffer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +137,7 @@
 		B56DEFAA187DBFA700FF1D8A /* http_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_parser.h; sourceTree = "<group>"; };
 		B56DEFBC187DC18100FF1D8A /* NLHTTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLHTTPParser.h; sourceTree = "<group>"; };
 		B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLHTTPParser.m; sourceTree = "<group>"; };
+		B578842318944F2000EA1A81 /* NLBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBuffer.m; sourceTree = "<group>"; };
 		B599FF2A185A7ED000057DD6 /* NLTCP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTCP.h; sourceTree = "<group>"; };
 		B599FF2B185A7ED000057DD6 /* NLTCP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTCP.m; sourceTree = "<group>"; };
 		B59E5F89181EC45A0093A6FF /* NLUV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLUV.h; sourceTree = "<group>"; };
@@ -162,8 +163,7 @@
 		B5B44642180AB78E009ADEF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBindingSmalloc.m; sourceTree = "<group>"; };
-		B5C5B24A181321300091FDE8 /* NLBindingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingBuffer.h; sourceTree = "<group>"; };
-		B5C5B24B181321300091FDE8 /* NLBindingBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBindingBuffer.m; sourceTree = "<group>"; };
+		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,8 +303,8 @@
 				B59E5FA2181F07480093A6FF /* NLBindingConstants.m */,
 				B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */,
 				B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */,
-				B5C5B24A181321300091FDE8 /* NLBindingBuffer.h */,
-				B5C5B24B181321300091FDE8 /* NLBindingBuffer.m */,
+				B5C5B24A181321300091FDE8 /* NLBuffer.h */,
+				B578842318944F2000EA1A81 /* NLBuffer.m */,
 				B59E5F89181EC45A0093A6FF /* NLUV.h */,
 				B59E5F8A181EC45A0093A6FF /* NLUV.m */,
 				B59E5F8F181EE3590093A6FF /* NLHandle.h */,
@@ -543,13 +543,13 @@
 				B59E5F9A181F07270093A6FF /* NLContext.m in Sources */,
 				B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
-				B5C5B24C181321300091FDE8 /* NLBindingBuffer.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,
 				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,
 				B59E5F94181F07090093A6FF /* NLFS.m in Sources */,
 				B59E5F9D181F07320093A6FF /* NLProcess.m in Sources */,
 				B59E5FA0181F073D0093A6FF /* NLBinding.m in Sources */,
 				B59E5FA61820EF530093A6FF /* NLTimer.m in Sources */,
+				B578842418944F2000EA1A81 /* NLBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@
 #import "NLFS.h"
 #import "NLBindingConstants.h"
 #import "NLBindingSmalloc.h"
-#import "NLBindingBuffer.h"
+#import "NLBuffer.h"
 #import "NLCaresWrap.h"
 #import "NLUV.h"
 #import "NLTimer.h"
@@ -41,7 +41,7 @@
         bindings = @{@"fs":           NLFS.class,
                      @"constants":    NLBindingConstants.class,
                      @"smalloc":      NLBindingSmalloc.class,
-                     @"buffer":       NLBindingBuffer.class,
+                     @"buffer":       NLBuffer.class,
                      @"timer_wrap":   NLTimer.class,
                      @"cares_wrap":   NLCaresWrap.class,
                      @"tcp_wrap":     NLTCP.class,

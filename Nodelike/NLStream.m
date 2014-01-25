@@ -11,7 +11,7 @@
 
 #import "NLStream.h"
 
-#import "NLBindingBuffer.h"
+#import "NLBuffer.h"
 #import "NLTCP.h"
 
 @implementation NLStream {
@@ -88,9 +88,9 @@
 }
 
 - (NSNumber *)writeObject:(JSValue *)obj withBuffer:(JSValue *)buffer forOptionalSendHandle:(NLHandle *)sendHandle {
-    int len = [NLBindingBuffer getLength:buffer];
+    int len = [NLBuffer getLength:buffer];
     return [self writeObject:obj
-                    withData:[NLBindingBuffer getData:buffer ofSize:len]
+                    withData:[NLBuffer getData:buffer ofSize:len]
                     ofLength:len
        forOptionalSendHandle:sendHandle];
 }
@@ -169,7 +169,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
         return;
     }
     
-    JSValue  *buffer      = [NLBindingBuffer useData:buf->base ofLength:(int)nread];
+    JSValue  *buffer      = [NLBuffer useData:buf->base ofLength:(int)nread];
     NLStream *pending_obj = nil;
 
     [args addObject:buffer];

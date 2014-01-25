@@ -11,7 +11,7 @@
 
 #import "NLHTTPParser.h"
 
-#import "NLBindingBuffer.h"
+#import "NLBuffer.h"
 
 #import "http_parser.h"
 
@@ -106,8 +106,8 @@ static const int num_fields_max = 32;
     
     JSContext *ctx = JSContext.currentContext;
 
-    int   buffer_len  = [NLBindingBuffer getLength:buffer];
-    char *buffer_data = [NLBindingBuffer getData:buffer ofSize:buffer_len];
+    int   buffer_len  = [NLBuffer getLength:buffer];
+    char *buffer_data = [NLBuffer getData:buffer ofSize:buffer_len];
     
     current_buffer_      = buffer;
     current_buffer_len_  = buffer_len;

@@ -1,5 +1,5 @@
 //
-//  NLBindingBuffer.h
+//  NLBuffer.h
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/19/13.
@@ -11,7 +11,7 @@
 
 #import "NLBinding.h"
 
-@interface NLBindingBuffer : NLBinding
+@interface NLBuffer : NLBinding
 
 + (JSValue *)constructor;
 

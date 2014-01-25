@@ -1,5 +1,5 @@
 //
-//  NLBindingBuffer.m
+//  NLBuffer.m
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/19/13.
@@ -9,7 +9,7 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#import "NLBindingBuffer.h"
+#import "NLBuffer.h"
 
 static JSValue *constructor = nil;
 
@@ -32,7 +32,7 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
     return data;
 }
 
-@implementation NLBindingBuffer
+@implementation NLBuffer
 
 + (id)binding {
     return @{@"setupBufferJS": ^(JSValue *target, JSValue *internal) {
@@ -50,7 +50,7 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
 }
 
 + (NSNumber *)writeString:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
-    return [NLBindingBuffer write:str.UTF8String toBuffer:target atOffset:off withLength:len];
+    return [NLBuffer write:str.UTF8String toBuffer:target atOffset:off withLength:len];
 }
 
 + (NSNumber *)write:(const char *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
@@ -87,27 +87,27 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
     JSValue *proto = target[@"prototype"];
     
     proto[@"asciiSlice"] = ^(NSNumber *start, NSNumber *end) {
-        return [NLBindingBuffer slice:NLContext.currentThis from:start to:end];
+        return [NLBuffer slice:NLContext.currentThis from:start to:end];
     };
     
     proto[@"binarySlice"] = ^(NSNumber *start, NSNumber *end) {
-        return [NLBindingBuffer slice:NLContext.currentThis from:start to:end];
+        return [NLBuffer slice:NLContext.currentThis from:start to:end];
     };
     
     proto[@"utf8Slice"] = ^(NSNumber *start, NSNumber *end) {
-        return [NLBindingBuffer slice:NLContext.currentThis from:start to:end];
+        return [NLBuffer slice:NLContext.currentThis from:start to:end];
     };
     
     proto[@"asciiWrite"] = ^(NSString *string, JSValue *off, JSValue *len) {
-        return [NLBindingBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
+        return [NLBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
     };
     
     proto[@"binaryWrite"] = ^(NSString *string, JSValue *off, JSValue *len) {
-        return [NLBindingBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
+        return [NLBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
     };
     
     proto[@"utf8Write"] = ^(NSString *string, JSValue *off, JSValue *len) {
-        return [NLBindingBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
+        return [NLBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
     };
     
     internal[@"byteLength"] = ^(NSString *string) {
