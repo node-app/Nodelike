@@ -1,5 +1,5 @@
 //
-//  NLBindingUv.m
+//  NLUV.m
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/28/13.
@@ -9,11 +9,11 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#import "NLBindingUv.h"
+#import "NLUV.h"
 
 #import "uv.h"
 
-@implementation NLBindingUv
+@implementation NLUV
 
 + (id)binding {
 

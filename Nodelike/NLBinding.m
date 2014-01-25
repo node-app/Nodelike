@@ -16,7 +16,7 @@
 #import "NLBindingSmalloc.h"
 #import "NLBindingBuffer.h"
 #import "NLCaresWrap.h"
-#import "NLBindingUv.h"
+#import "NLUV.h"
 #import "NLTimer.h"
 #import "NLTCP.h"
 #import "NLUDP.h"
@@ -46,7 +46,7 @@
                      @"cares_wrap":   NLCaresWrap.class,
                      @"tcp_wrap":     NLTCP.class,
                      @"udp_wrap":     NLUDP.class,
-                     @"uv":           NLBindingUv.class,
+                     @"uv":           NLUV.class,
                      @"process_wrap": NLProcess.class,
                      @"http_parser":  NLHTTPParser.class};
     });

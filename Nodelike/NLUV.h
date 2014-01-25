@@ -1,5 +1,5 @@
 //
-//  NLBindingUv.h
+//  NLUV.h
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/28/13.
@@ -11,6 +11,6 @@
 
 #import "NLBinding.h"
 
-@interface NLBindingUv : NLBinding
+@interface NLUV : NLBinding
 
 @end
