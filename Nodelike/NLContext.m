@@ -13,6 +13,8 @@
 
 #import "NLBinding.h"
 
+#import "NLNatives.h"
+
 @implementation NLContext
 
 #pragma mark - JSContext
@@ -41,6 +43,14 @@
 
 #pragma mark - Scope Setup
 
++ (JSValue *)requireFunctionForContext:(JSContext *)context {
+    JSValue *nativeModuleConstructor = [context evaluateScript:[NLNatives source:@"nativemodule"]];
+    JSValue *nativeModule            = [nativeModuleConstructor callWithArguments:@[^(NSString *code) {
+        return [JSContext.currentContext evaluateScript:code];
+    }]];
+    return nativeModule[@"require"];
+}
+
 + (void)attachToContext:(JSContext *)context {
 
     [self attachPolyfillsToContext:context];
@@ -50,7 +60,8 @@
     context[@"process"] = @{@"platform": @"darwin",
                             @"argv":     NSProcessInfo.processInfo.arguments,
                             @"env":      NSProcessInfo.processInfo.environment,
-                            @"_asyncFlags": @{}};
+                            @"_asyncFlags": @{},
+                            @"moduleLoadList": @[]};
     
     context[@"process"][@"exit"] = ^(NSNumber *code) {
         exit(code.intValue);
@@ -66,16 +77,14 @@
         return [NLBinding bindingForIdentifier:binding];
     };
     
-    context[@"require"] = ^(NSString *module) {
-        return [NLContext requireModule:module inContext:JSContext.currentContext];
-    };
-    
+    context[@"require"] = [self requireFunctionForContext:context];
+
     context[@"log"] = ^(id msg) {
         NSLog(@"%@", msg);
     };
     
     [context.globalObject defineProperty:@"Buffer" descriptor:@{JSPropertyDescriptorGetKey: ^{
-        return [NLContext requireModule:@"buffer" inContext:context][@"Buffer"];
+        return [JSContext.currentContext.globalObject invokeMethod:@"require" withArguments:@[@"buffer"]][@"Buffer"];
     }}];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
@@ -129,62 +138,6 @@
     dispatch_async(NLContext.dispatchQueue, ^{
         uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
     });
-}
-
-#pragma mark - Module Loading
-
-+ (NSMutableDictionary *)requireCache {
-    static NSMutableDictionary *cache;
-    static dispatch_once_t token = 0;
-    dispatch_once(&token, ^{
-        cache = [NSMutableDictionary new];
-    });
-    return cache;
-}
-
-- (JSValue *)requireModule:(NSString *)module {
-
-    return [NLContext requireModule:module inContext:self];
-
-}
-
-+ (JSValue *)requireModule:(NSString *)module inContext:(JSContext *)context {
-    
-    NSMutableDictionary *requireCache = NLContext.requireCache;
-    JSValue *cached = [requireCache objectForKey:module];
-    
-    if (cached != nil) {
-        return cached[@"exports"];
-    }
-    
-    NSString* path = [NSBundle.mainBundle pathForResource:module
-                                                   ofType:@"js"];
-    
-    NSString* content = [NSString stringWithContentsOfFile:path
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    
-    if (content == nil) {
-        NSString *error = [NSString stringWithFormat:@"Cannot find module '%@'", module];
-        context.exception = [JSValue valueWithNewErrorFromMessage:error inContext:context];
-        return nil;
-    }
-    
-    JSValue *exports = [JSValue valueWithNewObjectInContext:context];
-    JSValue *modulev = [JSValue valueWithNewObjectInContext:context];
-    modulev[@"exports"] = exports;
-
-    requireCache[module] = modulev;
-
-    NSString *template = @"(function (exports, require, module, __filename, __dirname) {%@\n});";
-    NSString *source = [NSString stringWithFormat:template, content];
-
-    JSValue *fn = [context evaluateScript:source];
-
-    [fn callWithArguments:@[exports, context[@"require"], modulev]];
-
-    return modulev[@"exports"];
-
 }
 
 @end

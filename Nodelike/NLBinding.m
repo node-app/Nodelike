@@ -22,17 +22,9 @@
 #import "NLUDP.h"
 #import "NLProcess.h"
 #import "NLHTTPParser.h"
+#import "NLNatives.h"
 
 @implementation NLBinding
-
-+ (NSCache *)bindingCache {
-    static NSCache *cache = nil;
-    static dispatch_once_t token = 0;
-    dispatch_once(&token, ^{
-        cache = [NSCache new];
-    });
-    return cache;
-}
 
 + (NSDictionary *)bindings {
     static NSDictionary *bindings = nil;
@@ -48,22 +40,16 @@
                      @"udp_wrap":     NLUDP.class,
                      @"uv":           NLUV.class,
                      @"process_wrap": NLProcess.class,
-                     @"http_parser":  NLHTTPParser.class};
+                     @"http_parser":  NLHTTPParser.class,
+                     @"natives":      NLNatives.class};
     });
     return bindings;
 }
 
 + (id)bindingForIdentifier:(NSString *)identifier {
-    NSCache *cache = NLBinding.bindingCache;
-    id binding = [cache objectForKey:identifier];
-    if (binding != nil) {
-        return binding;
-    }
     Class cls = NLBinding.bindings[identifier];
     if (cls) {
-        binding = cls.binding;
-        [cache setObject:binding forKey:identifier];
-        return binding;
+        return cls.binding;
     } else {
         return nil;
     }
