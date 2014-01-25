@@ -16,6 +16,7 @@ static const unsigned int kCloseCallback = 2;
 
 @implementation NLHandle {
     unsigned int flags;
+    JSValue *persistent;
 }
 
 + (NSMutableArray *)handleQueue {
@@ -60,6 +61,7 @@ static const unsigned int kCloseCallback = 2;
     _handle       = handle;
     _handle->data = (__bridge void *)self;
     _context      = context;
+    persistent   = self.object;
     _weakValue    = [NSValue valueWithNonretainedObject:self];
     [NLHandle.handleQueue addObject:_weakValue];
     return self;
@@ -78,6 +80,7 @@ static void onClose(uv_handle_t *handle) {
     if (wrap->flags & kCloseCallback) {
         [wrap.object invokeMethod:@"close" withArguments:@[]];
     }
+    wrap->persistent = nil;
 }
 
 @end
