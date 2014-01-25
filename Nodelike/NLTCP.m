@@ -72,7 +72,7 @@ struct connectWrap {
 }
 
 - (void)open:(NSNumber *)fd {
-    uv_tcp_open((uv_tcp_t *)self.handle, fd.intValue);
+    uv_tcp_open(&handle, fd.intValue);
 }
 
 - (NSNumber *)bind:(longlived NSString *)address port:(NSNumber *)port {
@@ -159,14 +159,14 @@ static void onConnection(uv_stream_t *handle, int status) {
 
 }
 
-static void AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
-
+static JSValue *AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
+    
     char ip[INET6_ADDRSTRLEN];
     const struct sockaddr_in  *a4;
     const struct sockaddr_in6 *a6;
     int port;
     
-    if ([info isUndefined])
+    if (!info || [info isUndefined])
         info = [JSValue valueWithNewObjectInContext:context];
     
     switch (addr->sa_family) {
@@ -178,7 +178,7 @@ static void AddressToJS (JSContext *context, const struct sockaddr* addr, JSValu
             [info setValue:@"IPv6"                            forProperty:@"family"];
             [info setValue:[NSNumber numberWithInt:port]      forProperty:@"port"];
             break;
-            
+        
         case AF_INET:
             a4 = (const struct sockaddr_in *)addr;
             uv_inet_ntop(AF_INET, &a4->sin_addr, ip, sizeof ip);
@@ -187,11 +187,13 @@ static void AddressToJS (JSContext *context, const struct sockaddr* addr, JSValu
             [info setValue:@"IPv4"                            forProperty:@"family"];
             [info setValue:[NSNumber numberWithInt:port]      forProperty:@"port"];
             break;
-            
+        
         default:
             [info setValue:@"" forProperty:@"address"];
     }
-
+    
+    return info;
+    
 }
 
 @end
