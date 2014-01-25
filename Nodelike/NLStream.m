@@ -80,7 +80,6 @@
     
     if (err) {
         CFBridgingRelease(writeWrap->object);
-        CFBridgingRelease(writeWrap->wrap);
         free(writeWrap);
     }
 
@@ -121,7 +120,6 @@
     wrap->req.data = wrap;
     int err = self.callbacks->doShutdown(wrap, afterShutdown);
     if (err) {
-        CFBridgingRelease(wrap->wrap);
         CFBridgingRelease(wrap->object);
         free(wrap);
     }
