@@ -36,6 +36,7 @@
 		B52B8166186075CD003B40D9 /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8140186075CD003B40D9 /* uv-common.c */; };
 		B52B8167186075CD003B40D9 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8142186075CD003B40D9 /* version.c */; };
 		B53E6998184672F3004E4EF9 /* NLStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B53E6997184672F3004E4EF9 /* NLStream.m */; };
+		B5417311189415C000B6636B /* NLUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = B5417310189415C000B6636B /* NLUDP.m */; };
 		B54C1F53180D37280051F826 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B54C1F94180D37810051F826 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
 		B54C1F96180D37C80051F826 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
@@ -109,6 +110,8 @@
 		B52B8142186075CD003B40D9 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = version.c; path = libuv/src/version.c; sourceTree = SOURCE_ROOT; };
 		B53E6996184672F3004E4EF9 /* NLStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLStream.h; sourceTree = "<group>"; };
 		B53E6997184672F3004E4EF9 /* NLStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLStream.m; sourceTree = "<group>"; };
+		B541730F189415C000B6636B /* NLUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLUDP.h; sourceTree = "<group>"; };
+		B5417310189415C000B6636B /* NLUDP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLUDP.m; sourceTree = "<group>"; };
 		B54C1F52180D37280051F826 /* libuv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54C1F95180D37C80051F826 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		B56DEFA8187DBFA700FF1D8A /* http_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				B53E6997184672F3004E4EF9 /* NLStream.m */,
 				B599FF2A185A7ED000057DD6 /* NLTCP.h */,
 				B599FF2B185A7ED000057DD6 /* NLTCP.m */,
+				B541730F189415C000B6636B /* NLUDP.h */,
+				B5417310189415C000B6636B /* NLUDP.m */,
 				B56DEFBC187DC18100FF1D8A /* NLHTTPParser.h */,
 				B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */,
 				B5061A381815A9B00083AB4B /* NLCaresWrap.h */,
@@ -439,6 +444,7 @@
 			files = (
 				B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */,
 				B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */,
+				B5417311189415C000B6636B /* NLUDP.m in Sources */,
 				B59E5F8B181EC45A0093A6FF /* NLBindingUv.m in Sources */,
 				B59E5FA3181F07480093A6FF /* NLBindingConstants.m in Sources */,
 				B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */,
