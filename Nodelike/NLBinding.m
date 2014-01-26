@@ -15,7 +15,7 @@
 #import "NLConstants.h"
 #import "NLSmalloc.h"
 #import "NLBuffer.h"
-#import "NLCaresWrap.h"
+#import "NLCares.h"
 #import "NLUV.h"
 #import "NLTimer.h"
 #import "NLTCP.h"
@@ -35,7 +35,7 @@
                      @"smalloc":      NLSmalloc.class,
                      @"buffer":       NLBuffer.class,
                      @"timer_wrap":   NLTimer.class,
-                     @"cares_wrap":   NLCaresWrap.class,
+                     @"cares_wrap":   NLCares.class,
                      @"tcp_wrap":     NLTCP.class,
                      @"udp_wrap":     NLUDP.class,
                      @"uv":           NLUV.class,

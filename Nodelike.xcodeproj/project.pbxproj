@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCaresWrap.m */; };
+		B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCares.m */; };
 		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
 		B52B8144186075CD003B40D9 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8118186075CD003B40D9 /* inet.c */; };
 		B52B8146186075CD003B40D9 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811C186075CD003B40D9 /* async.c */; };
@@ -132,8 +132,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B5061A381815A9B00083AB4B /* NLCaresWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCaresWrap.h; sourceTree = "<group>"; };
-		B5061A391815A9B00083AB4B /* NLCaresWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCaresWrap.m; sourceTree = "<group>"; };
+		B5061A381815A9B00083AB4B /* NLCares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCares.h; sourceTree = "<group>"; };
+		B5061A391815A9B00083AB4B /* NLCares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCares.m; sourceTree = "<group>"; };
 		B52B810D18607587003B40D9 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = libuv/include/tree.h; sourceTree = SOURCE_ROOT; };
 		B52B810E18607587003B40D9 /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-bsd.h"; path = "libuv/include/uv-bsd.h"; sourceTree = SOURCE_ROOT; };
 		B52B810F18607587003B40D9 /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-darwin.h"; path = "libuv/include/uv-darwin.h"; sourceTree = SOURCE_ROOT; };
@@ -483,8 +483,8 @@
 				B5417310189415C000B6636B /* NLUDP.m */,
 				B56DEFBC187DC18100FF1D8A /* NLHTTPParser.h */,
 				B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */,
-				B5061A381815A9B00083AB4B /* NLCaresWrap.h */,
-				B5061A391815A9B00083AB4B /* NLCaresWrap.m */,
+				B5061A381815A9B00083AB4B /* NLCares.h */,
+				B5061A391815A9B00083AB4B /* NLCares.m */,
 				B59EA093180CB587005BF5C1 /* Nodelike.h */,
 				B59EA091180CB587005BF5C1 /* Supporting Files */,
 			);
@@ -756,7 +756,7 @@
 				B59E5FA3181F07480093A6FF /* NLConstants.m in Sources */,
 				B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */,
 				B59E5F9A181F07270093A6FF /* NLContext.m in Sources */,
-				B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */,
+				B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,

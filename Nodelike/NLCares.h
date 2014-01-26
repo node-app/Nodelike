@@ -1,5 +1,5 @@
 //
-//  NLCaresWrap.h
+//  NLCares.h
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/21/13.
@@ -11,7 +11,7 @@
 
 #import "NLBinding.h"
 
-@protocol NLCaresWrapExports <JSExport>
+@protocol NLCaresExports <JSExport>
 
 + (NSNumber *)isIP:(NSString *)ip;
 
@@ -19,6 +19,6 @@ JSExportAs(getaddrinfo, + (NSNumber *)getAddrInfo:(JSValue *)obj hostname:(NSStr
 
 @end
 
-@interface NLCaresWrap : NLBinding <NLCaresWrapExports>
+@interface NLCares : NLBinding <NLCaresExports>
 
 @end

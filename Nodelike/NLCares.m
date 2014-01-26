@@ -1,5 +1,5 @@
 //
-//  NLCaresWrap.m
+//  NLCares.m
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/21/13.
@@ -9,7 +9,7 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#import "NLCaresWrap.h"
+#import "NLCares.h"
 
 struct getaddrinfoWrap {
     uv_getaddrinfo_t req;
@@ -26,7 +26,7 @@ static int isIP(const char *ip) {
     return rc;
 }
 
-@implementation NLCaresWrap
+@implementation NLCares
 
 + (NSNumber *)isIP:(longlived NSString *)ip {
     return [NSNumber numberWithInt:isIP(ip.UTF8String)];
