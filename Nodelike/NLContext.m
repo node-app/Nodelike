@@ -43,19 +43,14 @@
 
 #pragma mark - Scope Setup
 
-+ (JSValue *)requireFunctionForContext:(JSContext *)context {
-    JSValue *nativeModuleConstructor = [context evaluateScript:[NLNatives source:@"nativemodule"]];
-    JSValue *nativeModule            = [nativeModuleConstructor callWithArguments:@[^(NSString *code) {
++ (void)runBootstrapJavascript:(JSContext *)context {
+    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
+    [constructor callWithArguments:@[^(NSString *code) {
         return [JSContext.currentContext evaluateScript:code];
     }]];
-    return nativeModule[@"require"];
 }
 
 + (void)attachToContext:(JSContext *)context {
-
-    [self attachPolyfillsToContext:context];
-    
-    context[@"global"]  = context.globalObject;
 
     context[@"process"] = @{@"platform": @"darwin",
                             @"argv":     NSProcessInfo.processInfo.arguments,
@@ -77,15 +72,11 @@
         return [NLBinding bindingForIdentifier:binding];
     };
     
-    context[@"require"] = [self requireFunctionForContext:context];
-
     context[@"log"] = ^(id msg) {
         NSLog(@"%@", msg);
     };
     
-    [context.globalObject defineProperty:@"Buffer" descriptor:@{JSPropertyDescriptorGetKey: ^{
-        return [JSContext.currentContext.globalObject invokeMethod:@"require" withArguments:@[@"buffer"]][@"Buffer"];
-    }}];
+    [self runBootstrapJavascript:context];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
     
@@ -105,12 +96,6 @@
     context[@"COUNTER_HTTP_CLIENT_REQUEST"]         = noop;
     context[@"COUNTER_HTTP_CLIENT_RESPONSE"]        = noop;
     
-}
-
-+ (void)attachPolyfillsToContext:(JSContext *)context {
-
-    context[@"Number"][@"isFinite"] = [context evaluateScript:@"(function (value) { return typeof value === 'number' && isFinite(value); })"];
-
 }
 
 #if TARGET_OS_IPHONE

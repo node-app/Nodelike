@@ -111,7 +111,7 @@
 		B59EA08F180CB587005BF5C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
 		B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */; };
-		B5C9F31B18949019008B8EB2 /* nativemodule.js in Resources */ = {isa = PBXBuildFile; fileRef = B5C9F31A18949011008B8EB2 /* nativemodule.js */; };
+		B5C9F31B18949019008B8EB2 /* nodelike.js in Resources */ = {isa = PBXBuildFile; fileRef = B5C9F31A18949011008B8EB2 /* nodelike.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,7 +267,7 @@
 		B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBindingSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
-		B5C9F31A18949011008B8EB2 /* nativemodule.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = nativemodule.js; sourceTree = "<group>"; };
+		B5C9F31A18949011008B8EB2 /* nodelike.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = nodelike.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,7 +387,7 @@
 		B541732D189438CC00B6636B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				B5C9F31A18949011008B8EB2 /* nativemodule.js */,
+				B5C9F31A18949011008B8EB2 /* nodelike.js */,
 				B541732E189438CC00B6636B /* _debugger.js */,
 				B541732F189438CC00B6636B /* _http_agent.js */,
 				B5417330189438CC00B6636B /* _http_client.js */,
@@ -639,7 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C9F31B18949019008B8EB2 /* nativemodule.js in Resources */,
+				B5C9F31B18949019008B8EB2 /* nodelike.js in Resources */,
 				B541735F189438DC00B6636B /* _debugger.js in Resources */,
 				B5417360189438DC00B6636B /* _http_agent.js in Resources */,
 				B5417361189438DC00B6636B /* _http_client.js in Resources */,
