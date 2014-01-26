@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCaresWrap.m */; };
-		B516C39C18947E2200CC17D4 /* nativemodule.js in Resources */ = {isa = PBXBuildFile; fileRef = B516C39B18947E1400CC17D4 /* nativemodule.js */; };
 		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
 		B52B8144186075CD003B40D9 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8118186075CD003B40D9 /* inet.c */; };
 		B52B8146186075CD003B40D9 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811C186075CD003B40D9 /* async.c */; };
@@ -42,7 +41,57 @@
 		B54173191894341600B6636B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B541731B1894341600B6636B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B541731A1894341600B6636B /* UIKit.framework */; };
 		B54173211894341600B6636B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B541731F1894341600B6636B /* InfoPlist.strings */; };
-		B54173231894341600B6636B /* Nodelike_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B54173221894341600B6636B /* Nodelike_Tests.m */; };
+		B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B541732A1894362000B6636B /* NLTimer_Tests.m */; };
+		B541732C189436B700B6636B /* libNodelike.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA08E180CB587005BF5C1 /* libNodelike.a */; };
+		B541735F189438DC00B6636B /* _debugger.js in Resources */ = {isa = PBXBuildFile; fileRef = B541732E189438CC00B6636B /* _debugger.js */; };
+		B5417360189438DC00B6636B /* _http_agent.js in Resources */ = {isa = PBXBuildFile; fileRef = B541732F189438CC00B6636B /* _http_agent.js */; };
+		B5417361189438DC00B6636B /* _http_client.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417330189438CC00B6636B /* _http_client.js */; };
+		B5417362189438DC00B6636B /* _http_common.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417331189438CC00B6636B /* _http_common.js */; };
+		B5417363189438DC00B6636B /* _http_incoming.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417332189438CC00B6636B /* _http_incoming.js */; };
+		B5417364189438DC00B6636B /* _http_outgoing.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417333189438CC00B6636B /* _http_outgoing.js */; };
+		B5417365189438DC00B6636B /* _http_server.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417334189438CC00B6636B /* _http_server.js */; };
+		B5417366189438DC00B6636B /* _linklist.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417335189438CC00B6636B /* _linklist.js */; };
+		B5417367189438DC00B6636B /* _stream_duplex.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417336189438CC00B6636B /* _stream_duplex.js */; };
+		B5417368189438DC00B6636B /* _stream_passthrough.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417337189438CC00B6636B /* _stream_passthrough.js */; };
+		B5417369189438DC00B6636B /* _stream_readable.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417338189438CC00B6636B /* _stream_readable.js */; };
+		B541736A189438DC00B6636B /* _stream_transform.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417339189438CC00B6636B /* _stream_transform.js */; };
+		B541736B189438DC00B6636B /* _stream_writable.js in Resources */ = {isa = PBXBuildFile; fileRef = B541733A189438CC00B6636B /* _stream_writable.js */; };
+		B541736C189438DC00B6636B /* _tls_legacy.js in Resources */ = {isa = PBXBuildFile; fileRef = B541733B189438CC00B6636B /* _tls_legacy.js */; };
+		B541736D189438DC00B6636B /* _tls_wrap.js in Resources */ = {isa = PBXBuildFile; fileRef = B541733C189438CC00B6636B /* _tls_wrap.js */; };
+		B541736E189438DC00B6636B /* assert.js in Resources */ = {isa = PBXBuildFile; fileRef = B541733D189438CC00B6636B /* assert.js */; };
+		B541736F189438DC00B6636B /* buffer.js in Resources */ = {isa = PBXBuildFile; fileRef = B541733E189438CC00B6636B /* buffer.js */; };
+		B5417370189438DC00B6636B /* child_process.js in Resources */ = {isa = PBXBuildFile; fileRef = B541733F189438CC00B6636B /* child_process.js */; };
+		B5417371189438DC00B6636B /* cluster.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417340189438CC00B6636B /* cluster.js */; };
+		B5417372189438DC00B6636B /* console.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417341189438CC00B6636B /* console.js */; };
+		B5417373189438DC00B6636B /* constants.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417342189438CC00B6636B /* constants.js */; };
+		B5417374189438DC00B6636B /* crypto.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417343189438CC00B6636B /* crypto.js */; };
+		B5417375189438DC00B6636B /* dgram.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417344189438CC00B6636B /* dgram.js */; };
+		B5417376189438DC00B6636B /* dns.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417345189438CC00B6636B /* dns.js */; };
+		B5417377189438DC00B6636B /* domain.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417346189438CC00B6636B /* domain.js */; };
+		B5417378189438DC00B6636B /* events.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417347189438CC00B6636B /* events.js */; };
+		B5417379189438DC00B6636B /* freelist.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417348189438CC00B6636B /* freelist.js */; };
+		B541737A189438DC00B6636B /* fs.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417349189438CC00B6636B /* fs.js */; };
+		B541737B189438DC00B6636B /* http.js in Resources */ = {isa = PBXBuildFile; fileRef = B541734A189438CC00B6636B /* http.js */; };
+		B541737C189438DC00B6636B /* https.js in Resources */ = {isa = PBXBuildFile; fileRef = B541734B189438CC00B6636B /* https.js */; };
+		B541737D189438DC00B6636B /* module.js in Resources */ = {isa = PBXBuildFile; fileRef = B541734C189438CC00B6636B /* module.js */; };
+		B541737E189438DC00B6636B /* net.js in Resources */ = {isa = PBXBuildFile; fileRef = B541734D189438CC00B6636B /* net.js */; };
+		B541737F189438DC00B6636B /* os.js in Resources */ = {isa = PBXBuildFile; fileRef = B541734E189438CC00B6636B /* os.js */; };
+		B5417380189438DC00B6636B /* path.js in Resources */ = {isa = PBXBuildFile; fileRef = B541734F189438CC00B6636B /* path.js */; };
+		B5417381189438DC00B6636B /* punycode.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417350189438CC00B6636B /* punycode.js */; };
+		B5417382189438DC00B6636B /* querystring.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417351189438CC00B6636B /* querystring.js */; };
+		B5417383189438DC00B6636B /* readline.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417352189438CC00B6636B /* readline.js */; };
+		B5417384189438DC00B6636B /* repl.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417353189438CC00B6636B /* repl.js */; };
+		B5417385189438DC00B6636B /* smalloc.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417354189438CC00B6636B /* smalloc.js */; };
+		B5417386189438DC00B6636B /* stream.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417355189438CC00B6636B /* stream.js */; };
+		B5417387189438DC00B6636B /* string_decoder.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417356189438CC00B6636B /* string_decoder.js */; };
+		B5417388189438DC00B6636B /* sys.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417357189438CC00B6636B /* sys.js */; };
+		B5417389189438DC00B6636B /* timers.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417358189438CC00B6636B /* timers.js */; };
+		B541738A189438DC00B6636B /* tls.js in Resources */ = {isa = PBXBuildFile; fileRef = B5417359189438CC00B6636B /* tls.js */; };
+		B541738B189438DC00B6636B /* tty.js in Resources */ = {isa = PBXBuildFile; fileRef = B541735A189438CC00B6636B /* tty.js */; };
+		B541738C189438DC00B6636B /* url.js in Resources */ = {isa = PBXBuildFile; fileRef = B541735B189438CC00B6636B /* url.js */; };
+		B541738D189438DC00B6636B /* util.js in Resources */ = {isa = PBXBuildFile; fileRef = B541735C189438CC00B6636B /* util.js */; };
+		B541738E189438DC00B6636B /* vm.js in Resources */ = {isa = PBXBuildFile; fileRef = B541735D189438CC00B6636B /* vm.js */; };
+		B541738F189438DC00B6636B /* zlib.js in Resources */ = {isa = PBXBuildFile; fileRef = B541735E189438CC00B6636B /* zlib.js */; };
 		B54C1F53180D37280051F826 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B54C1F94180D37810051F826 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
 		B54C1F96180D37C80051F826 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
@@ -62,6 +111,7 @@
 		B59EA08F180CB587005BF5C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
 		B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */; };
+		B5C9F31B18949019008B8EB2 /* nativemodule.js in Resources */ = {isa = PBXBuildFile; fileRef = B5C9F31A18949011008B8EB2 /* nativemodule.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +134,6 @@
 /* Begin PBXFileReference section */
 		B5061A381815A9B00083AB4B /* NLCaresWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCaresWrap.h; sourceTree = "<group>"; };
 		B5061A391815A9B00083AB4B /* NLCaresWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCaresWrap.m; sourceTree = "<group>"; };
-		B516C39B18947E1400CC17D4 /* nativemodule.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = nativemodule.js; sourceTree = "<group>"; };
 		B52B810D18607587003B40D9 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = libuv/include/tree.h; sourceTree = SOURCE_ROOT; };
 		B52B810E18607587003B40D9 /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-bsd.h"; path = "libuv/include/uv-bsd.h"; sourceTree = SOURCE_ROOT; };
 		B52B810F18607587003B40D9 /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-darwin.h"; path = "libuv/include/uv-darwin.h"; sourceTree = SOURCE_ROOT; };
@@ -132,8 +181,57 @@
 		B541731A1894341600B6636B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		B541731E1894341600B6636B /* Nodelike Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Nodelike Tests-Info.plist"; sourceTree = "<group>"; };
 		B54173201894341600B6636B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B54173221894341600B6636B /* Nodelike_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Nodelike_Tests.m; sourceTree = "<group>"; };
 		B54173241894341600B6636B /* Nodelike Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nodelike Tests-Prefix.pch"; sourceTree = "<group>"; };
+		B541732A1894362000B6636B /* NLTimer_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTimer_Tests.m; sourceTree = "<group>"; };
+		B541732E189438CC00B6636B /* _debugger.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _debugger.js; sourceTree = "<group>"; };
+		B541732F189438CC00B6636B /* _http_agent.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_agent.js; sourceTree = "<group>"; };
+		B5417330189438CC00B6636B /* _http_client.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_client.js; sourceTree = "<group>"; };
+		B5417331189438CC00B6636B /* _http_common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_common.js; sourceTree = "<group>"; };
+		B5417332189438CC00B6636B /* _http_incoming.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_incoming.js; sourceTree = "<group>"; };
+		B5417333189438CC00B6636B /* _http_outgoing.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_outgoing.js; sourceTree = "<group>"; };
+		B5417334189438CC00B6636B /* _http_server.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_server.js; sourceTree = "<group>"; };
+		B5417335189438CC00B6636B /* _linklist.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _linklist.js; sourceTree = "<group>"; };
+		B5417336189438CC00B6636B /* _stream_duplex.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _stream_duplex.js; sourceTree = "<group>"; };
+		B5417337189438CC00B6636B /* _stream_passthrough.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _stream_passthrough.js; sourceTree = "<group>"; };
+		B5417338189438CC00B6636B /* _stream_readable.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _stream_readable.js; sourceTree = "<group>"; };
+		B5417339189438CC00B6636B /* _stream_transform.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _stream_transform.js; sourceTree = "<group>"; };
+		B541733A189438CC00B6636B /* _stream_writable.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _stream_writable.js; sourceTree = "<group>"; };
+		B541733B189438CC00B6636B /* _tls_legacy.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _tls_legacy.js; sourceTree = "<group>"; };
+		B541733C189438CC00B6636B /* _tls_wrap.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _tls_wrap.js; sourceTree = "<group>"; };
+		B541733D189438CC00B6636B /* assert.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
+		B541733E189438CC00B6636B /* buffer.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = buffer.js; sourceTree = "<group>"; };
+		B541733F189438CC00B6636B /* child_process.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = child_process.js; sourceTree = "<group>"; };
+		B5417340189438CC00B6636B /* cluster.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = cluster.js; sourceTree = "<group>"; };
+		B5417341189438CC00B6636B /* console.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = console.js; sourceTree = "<group>"; };
+		B5417342189438CC00B6636B /* constants.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = constants.js; sourceTree = "<group>"; };
+		B5417343189438CC00B6636B /* crypto.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = crypto.js; sourceTree = "<group>"; };
+		B5417344189438CC00B6636B /* dgram.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = dgram.js; sourceTree = "<group>"; };
+		B5417345189438CC00B6636B /* dns.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = dns.js; sourceTree = "<group>"; };
+		B5417346189438CC00B6636B /* domain.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = domain.js; sourceTree = "<group>"; };
+		B5417347189438CC00B6636B /* events.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = events.js; sourceTree = "<group>"; };
+		B5417348189438CC00B6636B /* freelist.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = freelist.js; sourceTree = "<group>"; };
+		B5417349189438CC00B6636B /* fs.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = fs.js; sourceTree = "<group>"; };
+		B541734A189438CC00B6636B /* http.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = http.js; sourceTree = "<group>"; };
+		B541734B189438CC00B6636B /* https.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = https.js; sourceTree = "<group>"; };
+		B541734C189438CC00B6636B /* module.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = module.js; sourceTree = "<group>"; };
+		B541734D189438CC00B6636B /* net.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = net.js; sourceTree = "<group>"; };
+		B541734E189438CC00B6636B /* os.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = os.js; sourceTree = "<group>"; };
+		B541734F189438CC00B6636B /* path.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = path.js; sourceTree = "<group>"; };
+		B5417350189438CC00B6636B /* punycode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = punycode.js; sourceTree = "<group>"; };
+		B5417351189438CC00B6636B /* querystring.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = querystring.js; sourceTree = "<group>"; };
+		B5417352189438CC00B6636B /* readline.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = readline.js; sourceTree = "<group>"; };
+		B5417353189438CC00B6636B /* repl.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = repl.js; sourceTree = "<group>"; };
+		B5417354189438CC00B6636B /* smalloc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = smalloc.js; sourceTree = "<group>"; };
+		B5417355189438CC00B6636B /* stream.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = stream.js; sourceTree = "<group>"; };
+		B5417356189438CC00B6636B /* string_decoder.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = string_decoder.js; sourceTree = "<group>"; };
+		B5417357189438CC00B6636B /* sys.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = sys.js; sourceTree = "<group>"; };
+		B5417358189438CC00B6636B /* timers.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = timers.js; sourceTree = "<group>"; };
+		B5417359189438CC00B6636B /* tls.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = tls.js; sourceTree = "<group>"; };
+		B541735A189438CC00B6636B /* tty.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = tty.js; sourceTree = "<group>"; };
+		B541735B189438CC00B6636B /* url.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = url.js; sourceTree = "<group>"; };
+		B541735C189438CC00B6636B /* util.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = util.js; sourceTree = "<group>"; };
+		B541735D189438CC00B6636B /* vm.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = vm.js; sourceTree = "<group>"; };
+		B541735E189438CC00B6636B /* zlib.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = zlib.js; sourceTree = "<group>"; };
 		B54C1F52180D37280051F826 /* libuv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54C1F95180D37C80051F826 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		B56DEFA8187DBFA700FF1D8A /* http_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
@@ -169,6 +267,7 @@
 		B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBindingSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
+		B5C9F31A18949011008B8EB2 /* nativemodule.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = nativemodule.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B541732C189436B700B6636B /* libNodelike.a in Frameworks */,
 				B54173181894341600B6636B /* XCTest.framework in Frameworks */,
 				B541731B1894341600B6636B /* UIKit.framework in Frameworks */,
 				B54173191894341600B6636B /* Foundation.framework in Frameworks */,
@@ -268,7 +368,7 @@
 		B541731C1894341600B6636B /* Nodelike Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B54173221894341600B6636B /* Nodelike_Tests.m */,
+				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
 			path = "Nodelike Tests";
@@ -282,6 +382,63 @@
 				B54173241894341600B6636B /* Nodelike Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B541732D189438CC00B6636B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				B5C9F31A18949011008B8EB2 /* nativemodule.js */,
+				B541732E189438CC00B6636B /* _debugger.js */,
+				B541732F189438CC00B6636B /* _http_agent.js */,
+				B5417330189438CC00B6636B /* _http_client.js */,
+				B5417331189438CC00B6636B /* _http_common.js */,
+				B5417332189438CC00B6636B /* _http_incoming.js */,
+				B5417333189438CC00B6636B /* _http_outgoing.js */,
+				B5417334189438CC00B6636B /* _http_server.js */,
+				B5417335189438CC00B6636B /* _linklist.js */,
+				B5417336189438CC00B6636B /* _stream_duplex.js */,
+				B5417337189438CC00B6636B /* _stream_passthrough.js */,
+				B5417338189438CC00B6636B /* _stream_readable.js */,
+				B5417339189438CC00B6636B /* _stream_transform.js */,
+				B541733A189438CC00B6636B /* _stream_writable.js */,
+				B541733B189438CC00B6636B /* _tls_legacy.js */,
+				B541733C189438CC00B6636B /* _tls_wrap.js */,
+				B541733D189438CC00B6636B /* assert.js */,
+				B541733E189438CC00B6636B /* buffer.js */,
+				B541733F189438CC00B6636B /* child_process.js */,
+				B5417340189438CC00B6636B /* cluster.js */,
+				B5417341189438CC00B6636B /* console.js */,
+				B5417342189438CC00B6636B /* constants.js */,
+				B5417343189438CC00B6636B /* crypto.js */,
+				B5417344189438CC00B6636B /* dgram.js */,
+				B5417345189438CC00B6636B /* dns.js */,
+				B5417346189438CC00B6636B /* domain.js */,
+				B5417347189438CC00B6636B /* events.js */,
+				B5417348189438CC00B6636B /* freelist.js */,
+				B5417349189438CC00B6636B /* fs.js */,
+				B541734A189438CC00B6636B /* http.js */,
+				B541734B189438CC00B6636B /* https.js */,
+				B541734C189438CC00B6636B /* module.js */,
+				B541734D189438CC00B6636B /* net.js */,
+				B541734E189438CC00B6636B /* os.js */,
+				B541734F189438CC00B6636B /* path.js */,
+				B5417350189438CC00B6636B /* punycode.js */,
+				B5417351189438CC00B6636B /* querystring.js */,
+				B5417352189438CC00B6636B /* readline.js */,
+				B5417353189438CC00B6636B /* repl.js */,
+				B5417354189438CC00B6636B /* smalloc.js */,
+				B5417355189438CC00B6636B /* stream.js */,
+				B5417356189438CC00B6636B /* string_decoder.js */,
+				B5417357189438CC00B6636B /* sys.js */,
+				B5417358189438CC00B6636B /* timers.js */,
+				B5417359189438CC00B6636B /* tls.js */,
+				B541735A189438CC00B6636B /* tty.js */,
+				B541735B189438CC00B6636B /* url.js */,
+				B541735C189438CC00B6636B /* util.js */,
+				B541735D189438CC00B6636B /* vm.js */,
+				B541735E189438CC00B6636B /* zlib.js */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		B56DEF9F187DBFA700FF1D8A /* http-parser */ = {
@@ -345,6 +502,7 @@
 		B5B44636180AB78E009ADEF9 = {
 			isa = PBXGroup;
 			children = (
+				B541732D189438CC00B6636B /* lib */,
 				B56DEF9F187DBFA700FF1D8A /* http-parser */,
 				B5D9EC4B183A342400E321A0 /* libuv */,
 				B59EA090180CB587005BF5C1 /* Nodelike */,
@@ -481,6 +639,56 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C9F31B18949019008B8EB2 /* nativemodule.js in Resources */,
+				B541735F189438DC00B6636B /* _debugger.js in Resources */,
+				B5417360189438DC00B6636B /* _http_agent.js in Resources */,
+				B5417361189438DC00B6636B /* _http_client.js in Resources */,
+				B5417362189438DC00B6636B /* _http_common.js in Resources */,
+				B5417363189438DC00B6636B /* _http_incoming.js in Resources */,
+				B5417364189438DC00B6636B /* _http_outgoing.js in Resources */,
+				B5417365189438DC00B6636B /* _http_server.js in Resources */,
+				B5417366189438DC00B6636B /* _linklist.js in Resources */,
+				B5417367189438DC00B6636B /* _stream_duplex.js in Resources */,
+				B5417368189438DC00B6636B /* _stream_passthrough.js in Resources */,
+				B5417369189438DC00B6636B /* _stream_readable.js in Resources */,
+				B541736A189438DC00B6636B /* _stream_transform.js in Resources */,
+				B541736B189438DC00B6636B /* _stream_writable.js in Resources */,
+				B541736C189438DC00B6636B /* _tls_legacy.js in Resources */,
+				B541736D189438DC00B6636B /* _tls_wrap.js in Resources */,
+				B541736E189438DC00B6636B /* assert.js in Resources */,
+				B541736F189438DC00B6636B /* buffer.js in Resources */,
+				B5417370189438DC00B6636B /* child_process.js in Resources */,
+				B5417371189438DC00B6636B /* cluster.js in Resources */,
+				B5417372189438DC00B6636B /* console.js in Resources */,
+				B5417373189438DC00B6636B /* constants.js in Resources */,
+				B5417374189438DC00B6636B /* crypto.js in Resources */,
+				B5417375189438DC00B6636B /* dgram.js in Resources */,
+				B5417376189438DC00B6636B /* dns.js in Resources */,
+				B5417377189438DC00B6636B /* domain.js in Resources */,
+				B5417378189438DC00B6636B /* events.js in Resources */,
+				B5417379189438DC00B6636B /* freelist.js in Resources */,
+				B541737A189438DC00B6636B /* fs.js in Resources */,
+				B541737B189438DC00B6636B /* http.js in Resources */,
+				B541737C189438DC00B6636B /* https.js in Resources */,
+				B541737D189438DC00B6636B /* module.js in Resources */,
+				B541737E189438DC00B6636B /* net.js in Resources */,
+				B541737F189438DC00B6636B /* os.js in Resources */,
+				B5417380189438DC00B6636B /* path.js in Resources */,
+				B5417381189438DC00B6636B /* punycode.js in Resources */,
+				B5417382189438DC00B6636B /* querystring.js in Resources */,
+				B5417383189438DC00B6636B /* readline.js in Resources */,
+				B5417384189438DC00B6636B /* repl.js in Resources */,
+				B5417385189438DC00B6636B /* smalloc.js in Resources */,
+				B5417386189438DC00B6636B /* stream.js in Resources */,
+				B5417387189438DC00B6636B /* string_decoder.js in Resources */,
+				B5417388189438DC00B6636B /* sys.js in Resources */,
+				B5417389189438DC00B6636B /* timers.js in Resources */,
+				B541738A189438DC00B6636B /* tls.js in Resources */,
+				B541738B189438DC00B6636B /* tty.js in Resources */,
+				B541738C189438DC00B6636B /* url.js in Resources */,
+				B541738D189438DC00B6636B /* util.js in Resources */,
+				B541738E189438DC00B6636B /* vm.js in Resources */,
+				B541738F189438DC00B6636B /* zlib.js in Resources */,
 				B54173211894341600B6636B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,7 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B54173231894341600B6636B /* Nodelike_Tests.m in Sources */,
+				B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +759,6 @@
 				B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
-				B5C5B24C181321300091FDE8 /* NLBindingBuffer.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,
 				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,
 				B59E5F94181F07090093A6FF /* NLFS.m in Sources */,
