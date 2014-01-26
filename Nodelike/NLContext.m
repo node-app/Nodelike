@@ -58,8 +58,12 @@
                             @"_asyncFlags": @{},
                             @"moduleLoadList": @[]};
     
-    context[@"process"][@"exit"] = ^(NSNumber *code) {
+    context[@"process"][@"reallyExit"] = ^(NSNumber *code) {
         exit(code.intValue);
+    };
+    
+    context[@"process"][@"_kill"] = ^(NSNumber *pid, NSNumber *sig) {
+        kill(pid.intValue, sig.intValue);
     };
     
     context[@"process"][@"nextTick"] = ^(JSValue * cb) {
