@@ -106,7 +106,7 @@
 		B59E5F9A181F07270093A6FF /* NLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F99181F07270093A6FF /* NLContext.m */; };
 		B59E5F9D181F07320093A6FF /* NLProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F9C181F07320093A6FF /* NLProcess.m */; };
 		B59E5FA0181F073D0093A6FF /* NLBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F9F181F073D0093A6FF /* NLBinding.m */; };
-		B59E5FA3181F07480093A6FF /* NLBindingConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA2181F07480093A6FF /* NLBindingConstants.m */; };
+		B59E5FA3181F07480093A6FF /* NLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA2181F07480093A6FF /* NLConstants.m */; };
 		B59E5FA61820EF530093A6FF /* NLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA51820EF530093A6FF /* NLTimer.m */; };
 		B59EA08F180CB587005BF5C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
@@ -255,8 +255,8 @@
 		B59E5F9C181F07320093A6FF /* NLProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLProcess.m; sourceTree = "<group>"; };
 		B59E5F9E181F073D0093A6FF /* NLBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBinding.h; sourceTree = "<group>"; };
 		B59E5F9F181F073D0093A6FF /* NLBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBinding.m; sourceTree = "<group>"; };
-		B59E5FA1181F07480093A6FF /* NLBindingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingConstants.h; sourceTree = "<group>"; };
-		B59E5FA2181F07480093A6FF /* NLBindingConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBindingConstants.m; sourceTree = "<group>"; };
+		B59E5FA1181F07480093A6FF /* NLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLConstants.h; sourceTree = "<group>"; };
+		B59E5FA2181F07480093A6FF /* NLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLConstants.m; sourceTree = "<group>"; };
 		B59E5FA41820EF530093A6FF /* NLTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTimer.h; sourceTree = "<group>"; };
 		B59E5FA51820EF530093A6FF /* NLTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTimer.m; sourceTree = "<group>"; };
 		B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -463,8 +463,8 @@
 				B59E5F9F181F073D0093A6FF /* NLBinding.m */,
 				B59E5F92181F07090093A6FF /* NLFS.h */,
 				B59E5F93181F07090093A6FF /* NLFS.m */,
-				B59E5FA1181F07480093A6FF /* NLBindingConstants.h */,
-				B59E5FA2181F07480093A6FF /* NLBindingConstants.m */,
+				B59E5FA1181F07480093A6FF /* NLConstants.h */,
+				B59E5FA2181F07480093A6FF /* NLConstants.m */,
 				B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */,
 				B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */,
 				B5C5B24A181321300091FDE8 /* NLBuffer.h */,
@@ -753,7 +753,7 @@
 				B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */,
 				B5417311189415C000B6636B /* NLUDP.m in Sources */,
 				B59E5F8B181EC45A0093A6FF /* NLUV.m in Sources */,
-				B59E5FA3181F07480093A6FF /* NLBindingConstants.m in Sources */,
+				B59E5FA3181F07480093A6FF /* NLConstants.m in Sources */,
 				B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */,
 				B59E5F9A181F07270093A6FF /* NLContext.m in Sources */,
 				B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */,

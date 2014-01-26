@@ -1,5 +1,5 @@
 //
-//  NLBindingConstants.h
+//  NLConstants.h
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/13/13.
@@ -11,6 +11,6 @@
 
 #import "NLBinding.h"
 
-@interface NLBindingConstants : NLBinding
+@interface NLConstants : NLBinding
 
 @end

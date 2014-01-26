@@ -1,5 +1,5 @@
 //
-//  NLBindingConstants.m
+//  NLConstants.m
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/13/13.
@@ -9,7 +9,7 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#import "NLBindingConstants.h"
+#import "NLConstants.h"
 
 #include <errno.h>
 #include <unistd.h>
@@ -18,7 +18,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-@implementation NLBindingConstants
+@implementation NLConstants
 
 + (id)binding {
     JSContext   *context      = JSContext.currentContext;
