@@ -1,2 +1,4 @@
 language: objective-c
-script: xcodebuild -target Nodelike -arch armv7
+xcode_sdk: iphonesimulator
+xcode_scheme: Nodelike Tests
+xcode_project: Nodelike.xcodeproj
