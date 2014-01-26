@@ -1,4 +1,4 @@
 language: objective-c
 xcode_sdk: iphonesimulator
-xcode_scheme: Nodelike Tests
+xcode_scheme: Nodelike
 xcode_project: Nodelike.xcodeproj
