@@ -1,5 +1,5 @@
 //
-//  NLBindingSmalloc.h
+//  NLSmalloc.h
 //  Nodelike
 //
 //  Created by Sam Rijs on 10/19/13.
@@ -11,6 +11,6 @@
 
 #import "NLBinding.h"
 
-@interface NLBindingSmalloc : NLBinding
+@interface NLSmalloc : NLBinding
 
 @end

@@ -13,7 +13,7 @@
 
 #import "NLFS.h"
 #import "NLConstants.h"
-#import "NLBindingSmalloc.h"
+#import "NLSmalloc.h"
 #import "NLBuffer.h"
 #import "NLCaresWrap.h"
 #import "NLUV.h"
@@ -32,7 +32,7 @@
     dispatch_once(&token, ^{
         bindings = @{@"fs":           NLFS.class,
                      @"constants":    NLConstants.class,
-                     @"smalloc":      NLBindingSmalloc.class,
+                     @"smalloc":      NLSmalloc.class,
                      @"buffer":       NLBuffer.class,
                      @"timer_wrap":   NLTimer.class,
                      @"cares_wrap":   NLCaresWrap.class,

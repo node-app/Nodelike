@@ -110,7 +110,7 @@
 		B59E5FA61820EF530093A6FF /* NLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA51820EF530093A6FF /* NLTimer.m */; };
 		B59EA08F180CB587005BF5C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
-		B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */; };
+		B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
 		B5C9F31B18949019008B8EB2 /* nodelike.js in Resources */ = {isa = PBXBuildFile; fileRef = B5C9F31A18949011008B8EB2 /* nodelike.js */; };
 /* End PBXBuildFile section */
 
@@ -264,8 +264,8 @@
 		B59EA092180CB587005BF5C1 /* Nodelike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nodelike-Prefix.pch"; sourceTree = "<group>"; };
 		B59EA093180CB587005BF5C1 /* Nodelike.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Nodelike.h; sourceTree = "<group>"; };
 		B5B44642180AB78E009ADEF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBindingSmalloc.h; sourceTree = "<group>"; };
-		B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBindingSmalloc.m; sourceTree = "<group>"; };
+		B5C5B247181319550091FDE8 /* NLSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSmalloc.h; sourceTree = "<group>"; };
+		B5C5B248181319550091FDE8 /* NLSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
 		B5C9F31A18949011008B8EB2 /* nodelike.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = nodelike.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -465,8 +465,8 @@
 				B59E5F93181F07090093A6FF /* NLFS.m */,
 				B59E5FA1181F07480093A6FF /* NLConstants.h */,
 				B59E5FA2181F07480093A6FF /* NLConstants.m */,
-				B5C5B247181319550091FDE8 /* NLBindingSmalloc.h */,
-				B5C5B248181319550091FDE8 /* NLBindingSmalloc.m */,
+				B5C5B247181319550091FDE8 /* NLSmalloc.h */,
+				B5C5B248181319550091FDE8 /* NLSmalloc.m */,
 				B5C5B24A181321300091FDE8 /* NLBuffer.h */,
 				B578842318944F2000EA1A81 /* NLBuffer.m */,
 				B59E5F89181EC45A0093A6FF /* NLUV.h */,
@@ -754,7 +754,7 @@
 				B5417311189415C000B6636B /* NLUDP.m in Sources */,
 				B59E5F8B181EC45A0093A6FF /* NLUV.m in Sources */,
 				B59E5FA3181F07480093A6FF /* NLConstants.m in Sources */,
-				B5C5B249181319550091FDE8 /* NLBindingSmalloc.m in Sources */,
+				B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */,
 				B59E5F9A181F07270093A6FF /* NLContext.m in Sources */,
 				B5061A3A1815A9B00083AB4B /* NLCaresWrap.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
