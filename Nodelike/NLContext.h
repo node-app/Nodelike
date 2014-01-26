@@ -27,7 +27,7 @@
 
 #if TARGET_OS_IPHONE
 + (void)attachToWebView:(UIWebView *)webView;
-#endif 
+#endif
 
 + (uv_loop_t *)eventLoop;
 
