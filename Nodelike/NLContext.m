@@ -52,6 +52,12 @@
 
 + (void)attachToContext:(JSContext *)context {
 
+#ifdef DEBUG
+    context.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
+        NSLog(@"EXC: %@", e);
+    };
+#endif
+    
     context[@"process"] = @{@"platform": @"darwin",
                             @"argv":     NSProcessInfo.processInfo.arguments,
                             @"env":      NSProcessInfo.processInfo.environment,
