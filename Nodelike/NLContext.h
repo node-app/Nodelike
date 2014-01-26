@@ -29,10 +29,6 @@
 + (void)attachToWebView:(UIWebView *)webView;
 #endif 
 
-+ (JSValue *)requireModule:(NSString *)module inContext:(JSContext *)context;
-
-- (JSValue *)requireModule:(NSString *)module;
-
 + (uv_loop_t *)eventLoop;
 
 + (void)runEventLoop;
