@@ -23,6 +23,17 @@
     }
 }
 
++ (NSArray *)modules {
+    NSArray *files = [NSBundle pathsForResourcesOfType:@"js" inDirectory:self.bundle.bundlePath];
+    NSMutableArray *modules = [NSMutableArray new];
+    for (int i = 0; i < files.count; i++) {
+        NSURL    *url  = files[i];
+        NSString *name = [url.lastPathComponent substringToIndex:url.lastPathComponent.length - url.pathExtension.length - 1];
+        [modules addObject:name];
+    }
+    return modules;
+}
+
 + (NSString *)source:(NSString *)module {
     NSString *path    = [self.bundle pathForResource:module ofType:@"js"];
     NSString *content = [NSString stringWithContentsOfFile:path
@@ -32,11 +43,10 @@
 }
 
 + (id)binding {
-    NSArray *files   = [NSBundle pathsForResourcesOfType:@"js" inDirectory:self.bundle.bundlePath];
+    NSArray *modules = [self modules];
     JSValue *sources = [JSValue valueWithNewObjectInContext:JSContext.currentContext];
-    for (int i = 0; i < files.count; i++) {
-        NSURL    *url  = files[i];
-        NSString *name = [url.lastPathComponent substringToIndex:url.lastPathComponent.length - url.pathExtension.length - 1];
+    for (int i = 0; i < modules.count; i++) {
+        NSString *name = modules[i];
         [sources defineProperty:name
                      descriptor:@{JSPropertyDescriptorGetKey: ^{ return [NLNatives source:name]; }}];
     }

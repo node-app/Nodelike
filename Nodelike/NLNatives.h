@@ -14,6 +14,7 @@
 @interface NLNatives : NLBinding
 
 + (NSBundle *)bundle;
++ (NSArray *)modules;
 + (NSString *)source:(NSString *)module;
 
 @end
