@@ -112,6 +112,15 @@
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
 		B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
 		B5C9F31B18949019008B8EB2 /* nodelike.js in Resources */ = {isa = PBXBuildFile; fileRef = B5C9F31A18949011008B8EB2 /* nodelike.js */; };
+		B5FD81381899AD21007FB460 /* test-timers-first-fire.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD812F1899AD13007FB460 /* test-timers-first-fire.js */; };
+		B5FD81391899AD21007FB460 /* test-timers-immediate-queue.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81301899AD13007FB460 /* test-timers-immediate-queue.js */; };
+		B5FD813A1899AD21007FB460 /* test-timers-immediate.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81311899AD13007FB460 /* test-timers-immediate.js */; };
+		B5FD813B1899AD21007FB460 /* test-timers-linked-list.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81321899AD13007FB460 /* test-timers-linked-list.js */; };
+		B5FD813C1899AD21007FB460 /* test-timers-ordering.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81331899AD13007FB460 /* test-timers-ordering.js */; };
+		B5FD813D1899AD21007FB460 /* test-timers-this.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81341899AD13007FB460 /* test-timers-this.js */; };
+		B5FD813E1899AD21007FB460 /* test-timers-uncaught-exception.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81351899AD13007FB460 /* test-timers-uncaught-exception.js */; };
+		B5FD813F1899AD21007FB460 /* test-timers-unref.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81361899AD13007FB460 /* test-timers-unref.js */; };
+		B5FD81401899AD21007FB460 /* test-timers-zero-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81371899AD13007FB460 /* test-timers-zero-timeout.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +277,15 @@
 		B5C5B248181319550091FDE8 /* NLSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
 		B5C9F31A18949011008B8EB2 /* nodelike.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = nodelike.js; sourceTree = "<group>"; };
+		B5FD812F1899AD13007FB460 /* test-timers-first-fire.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-first-fire.js"; sourceTree = "<group>"; };
+		B5FD81301899AD13007FB460 /* test-timers-immediate-queue.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-immediate-queue.js"; sourceTree = "<group>"; };
+		B5FD81311899AD13007FB460 /* test-timers-immediate.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-immediate.js"; sourceTree = "<group>"; };
+		B5FD81321899AD13007FB460 /* test-timers-linked-list.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-linked-list.js"; sourceTree = "<group>"; };
+		B5FD81331899AD13007FB460 /* test-timers-ordering.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-ordering.js"; sourceTree = "<group>"; };
+		B5FD81341899AD13007FB460 /* test-timers-this.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-this.js"; sourceTree = "<group>"; };
+		B5FD81351899AD13007FB460 /* test-timers-uncaught-exception.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-uncaught-exception.js"; sourceTree = "<group>"; };
+		B5FD81361899AD13007FB460 /* test-timers-unref.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-unref.js"; sourceTree = "<group>"; };
+		B5FD81371899AD13007FB460 /* test-timers-zero-timeout.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-timers-zero-timeout.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +386,7 @@
 		B541731C1894341600B6636B /* Nodelike Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B5FD812E1899AD12007FB460 /* test */,
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
@@ -544,6 +563,22 @@
 			path = node/deps/uv;
 			sourceTree = "<group>";
 		};
+		B5FD812E1899AD12007FB460 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				B5FD812F1899AD13007FB460 /* test-timers-first-fire.js */,
+				B5FD81301899AD13007FB460 /* test-timers-immediate-queue.js */,
+				B5FD81311899AD13007FB460 /* test-timers-immediate.js */,
+				B5FD81321899AD13007FB460 /* test-timers-linked-list.js */,
+				B5FD81331899AD13007FB460 /* test-timers-ordering.js */,
+				B5FD81341899AD13007FB460 /* test-timers-this.js */,
+				B5FD81351899AD13007FB460 /* test-timers-uncaught-exception.js */,
+				B5FD81361899AD13007FB460 /* test-timers-unref.js */,
+				B5FD81371899AD13007FB460 /* test-timers-zero-timeout.js */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -639,6 +674,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FD81381899AD21007FB460 /* test-timers-first-fire.js in Resources */,
+				B5FD81391899AD21007FB460 /* test-timers-immediate-queue.js in Resources */,
+				B5FD813A1899AD21007FB460 /* test-timers-immediate.js in Resources */,
+				B5FD813B1899AD21007FB460 /* test-timers-linked-list.js in Resources */,
+				B5FD813C1899AD21007FB460 /* test-timers-ordering.js in Resources */,
+				B5FD813D1899AD21007FB460 /* test-timers-this.js in Resources */,
+				B5FD813E1899AD21007FB460 /* test-timers-uncaught-exception.js in Resources */,
+				B5FD813F1899AD21007FB460 /* test-timers-unref.js in Resources */,
+				B5FD81401899AD21007FB460 /* test-timers-zero-timeout.js in Resources */,
 				B5C9F31B18949019008B8EB2 /* nodelike.js in Resources */,
 				B541735F189438DC00B6636B /* _debugger.js in Resources */,
 				B5417360189438DC00B6636B /* _http_agent.js in Resources */,
