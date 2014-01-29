@@ -70,14 +70,11 @@
         host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
         clock_get_time(cclock, &mts);
         mach_port_deallocate(mach_task_self(), cclock);
-        unsigned int sec;
-        unsigned int nsec;
-        if (offset.isUndefined) {
-            sec  = mts.tv_sec;
-            nsec = mts.tv_nsec;
-        } else {
-            sec  = [offset valueAtIndex:0].toInt32 - mts.tv_sec;
-            nsec = [offset valueAtIndex:1].toInt32 - mts.tv_nsec;
+        unsigned int sec  = mts.tv_sec;
+        unsigned int nsec = mts.tv_nsec;
+        if (!offset.isUndefined) {
+            sec  = [offset valueAtIndex:0].toInt32 - sec;
+            nsec = [offset valueAtIndex:1].toInt32 - nsec;
         }
         return @[[NSNumber numberWithUnsignedInt:sec], [NSNumber numberWithUnsignedInt:nsec]];
     };
