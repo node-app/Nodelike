@@ -13,6 +13,7 @@
 
 @interface NLNatives : NLBinding
 
++ (NSBundle *)bundle;
 + (NSString *)source:(NSString *)module;
 
 @end
