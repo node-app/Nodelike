@@ -96,6 +96,11 @@
         NSLog(@"%@", msg);
     };
     
+    context[@"console"] = @{
+        @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
+        @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
+    };
+    
     [self runBootstrapJavascript:context];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
