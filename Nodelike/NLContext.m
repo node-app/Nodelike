@@ -61,6 +61,7 @@
     context[@"process"] = @{@"platform": @"darwin",
                             @"argv":     NSProcessInfo.processInfo.arguments,
                             @"env":      NSProcessInfo.processInfo.environment,
+                            @"execPath": NSBundle.mainBundle.executablePath,
                             @"_asyncFlags": @{},
                             @"moduleLoadList": @[]};
     
