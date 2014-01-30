@@ -31,6 +31,7 @@
 
 + (uv_loop_t *)eventLoop;
 
-+ (void)runEventLoop;
++ (void)runEventLoopSync;
++ (void)runEventLoopAsync;
 
 @end

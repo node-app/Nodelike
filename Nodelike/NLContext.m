@@ -35,12 +35,6 @@
     return (NLContext *)[super currentContext];
 }
 
-- (JSValue *)evaluateScript:(NSString *)script {
-    JSValue *val = [super evaluateScript:script];
-    [NLContext runEventLoop];
-    return val;
-}
-
 #pragma mark - Scope Setup
 
 + (void)runBootstrapJavascript:(JSContext *)context {
@@ -145,7 +139,13 @@
     return queue;
 }
 
-+ (void)runEventLoop {
++ (void)runEventLoopSync {
+    dispatch_sync(NLContext.dispatchQueue, ^{
+        uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
+    });
+}
+
++ (void)runEventLoopAsync {
     dispatch_async(NLContext.dispatchQueue, ^{
         uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
     });
