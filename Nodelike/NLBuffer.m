@@ -11,7 +11,9 @@
 
 #import "NLBuffer.h"
 
-static JSValue *constructor = nil;
+#import "JSContext+Nodelike.h"
+
+static char env_constructor_key;
 
 static size_t writeBuffer(const char *data, JSValue *target, int off, int len) {
     JSContextRef context = target.context.JSGlobalContextRef;
@@ -39,12 +41,13 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
         [self setupBufferJS:target internal:internal];}};
 }
 
-+ (JSValue *)constructor {
-    return constructor;
++ (JSValue *)constructorInContext:(JSContext *)ctx {
+    assert(ctx != nil);
+    return [ctx nodelikeGet:&env_constructor_key];
 }
 
-+ (JSValue *)useData:(const char *)data ofLength:(int)len {
-    JSValue *buffer = [constructor constructWithArguments:@[[NSNumber numberWithInt:len]]];
++ (JSValue *)useData:(const char *)data ofLength:(int)len inContext:(JSContext *)ctx {
+    JSValue *buffer = [[self constructorInContext:ctx] constructWithArguments:@[[NSNumber numberWithInt:len]]];
     writeBuffer(data, buffer, 0, len);
     return buffer;
 }
@@ -82,7 +85,7 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
 
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
 
-    constructor = target;
+    [[JSContext currentContext] nodelikeSet:&env_constructor_key toValue:target];
 
     JSValue *proto = target[@"prototype"];
     

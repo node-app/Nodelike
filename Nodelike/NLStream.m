@@ -169,7 +169,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
         return;
     }
     
-    JSValue  *buffer      = [NLBuffer useData:buf->base ofLength:(int)nread];
+    JSValue  *buffer      = [NLBuffer useData:buf->base ofLength:(int)nread inContext:wrap.object.context];
     NLStream *pending_obj = nil;
 
     [args addObject:buffer];

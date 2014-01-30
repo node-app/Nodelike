@@ -202,7 +202,7 @@ static void onRecv (uv_udp_t* handle, ssize_t nread, const uv_buf_t* buf, const 
     
     char* base = realloc(buf->base, nread);
     
-    args[2] = [NLBuffer useData:base ofLength:nread];
+    args[2] = [NLBuffer useData:base ofLength:nread inContext:wrapObj.context];
     args[3] = AddressToJS(wrap.context, addr, NULL);
     [wrapObj invokeMethod:@"onmessage" withArguments:args];
 
