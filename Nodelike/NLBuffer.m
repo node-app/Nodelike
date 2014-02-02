@@ -11,7 +11,7 @@
 
 #import "NLBuffer.h"
 
-#import "JSContext+Nodelike.h"
+#import "NSObject+Nodelike.h"
 
 static char env_constructor_key;
 

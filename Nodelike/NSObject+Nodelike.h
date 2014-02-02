@@ -1,8 +1,8 @@
 //
-//  JSContext+Nodelike.h
+//  NSObject+Nodelike.h
 //  Nodelike
 //
-//  Created by Sam Rijs on 1/30/14.
+//  Created by Sam Rijs on 2/2/14.
 //  Copyright (c) 2014 Sam Rijs.
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,9 +11,9 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@interface JSContext (Nodelike)
+@interface NSObject (Nodelike)
 
-- (JSValue *)nodelikeGet:(void *)key;
-- (void)nodelikeSet:(void *)key toValue:(JSValue *)value;
+- (id)nodelikeGet:(void *)key;
+- (void)nodelikeSet:(void *)key toValue:(id)value;
 
 @end
