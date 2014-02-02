@@ -54,19 +54,23 @@
         @"moduleLoadList": @[]
     }];
     
+    // used in Hrtime() below
+#define NANOS_PER_SEC 1000000000
+
+    // hrtime exposes libuv's uv_hrtime() high-resolution timer.
+    // The value returned by uv_hrtime() is a 64-bit int representing nanoseconds,
+    // so this function instead returns an Array with 2 entries representing seconds
+    // and nanoseconds, to avoid any integer overflow possibility.
+    // Pass in an Array from a previous hrtime() call to instead get a time diff.
     process[@"hrtime"] = ^(JSValue *offset) {
-        clock_serv_t cclock;
-        mach_timespec_t mts;
-        host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-        clock_get_time(cclock, &mts);
-        mach_port_deallocate(mach_task_self(), cclock);
-        unsigned int sec  = mts.tv_sec;
-        unsigned int nsec = mts.tv_nsec;
-        if (!offset.isUndefined) {
-            sec  = [offset valueAtIndex:0].toInt32 - sec;
-            nsec = [offset valueAtIndex:1].toInt32 - nsec;
+        uint64_t t = uv_hrtime();
+        if (!offset.isUndefined && offset.isObject) {
+            // return a time diff tuple
+            uint64_t seconds = [offset valueAtIndex:0].toInt32;
+            uint64_t nanos   = [offset valueAtIndex:1].toInt32;
+            t -= (seconds * NANOS_PER_SEC) + nanos;
         }
-        return @[[NSNumber numberWithUnsignedInt:sec], [NSNumber numberWithUnsignedInt:nsec]];
+        return @[[NSNumber numberWithUnsignedInt:t / NANOS_PER_SEC], [NSNumber numberWithUnsignedInt:t % NANOS_PER_SEC]];
     };
     
     process[@"reallyExit"] = ^(NSNumber *code) {
