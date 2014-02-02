@@ -37,13 +37,6 @@
 
 #pragma mark - Scope Setup
 
-+ (void)runBootstrapJavascript:(JSContext *)context {
-    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
-    [constructor callWithArguments:@[^(NSString *code) {
-        return [JSContext.currentContext evaluateScript:code];
-    }]];
-}
-
 + (void)attachToContext:(JSContext *)context {
 
 #ifdef DEBUG
@@ -52,14 +45,16 @@
     };
 #endif
     
-    context[@"process"] = @{@"platform": @"darwin",
-                            @"argv":     NSProcessInfo.processInfo.arguments,
-                            @"env":      NSProcessInfo.processInfo.environment,
-                            @"execPath": NSBundle.mainBundle.executablePath,
-                            @"_asyncFlags": @{},
-                            @"moduleLoadList": @[]};
+    NSMutableDictionary *process = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"platform": @"darwin",
+        @"argv":     NSProcessInfo.processInfo.arguments,
+        @"env":      NSProcessInfo.processInfo.environment,
+        @"execPath": NSBundle.mainBundle.executablePath,
+        @"_asyncFlags": @{},
+        @"moduleLoadList": @[]
+    }];
     
-    context[@"process"][@"hrtime"] = ^(JSValue *offset) {
+    process[@"hrtime"] = ^(JSValue *offset) {
         clock_serv_t cclock;
         mach_timespec_t mts;
         host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
@@ -74,21 +69,21 @@
         return @[[NSNumber numberWithUnsignedInt:sec], [NSNumber numberWithUnsignedInt:nsec]];
     };
     
-    context[@"process"][@"reallyExit"] = ^(NSNumber *code) {
+    process[@"reallyExit"] = ^(NSNumber *code) {
         exit(code.intValue);
     };
     
-    context[@"process"][@"_kill"] = ^(NSNumber *pid, NSNumber *sig) {
+    process[@"_kill"] = ^(NSNumber *pid, NSNumber *sig) {
         kill(pid.intValue, sig.intValue);
     };
     
-    context[@"process"][@"nextTick"] = ^(JSValue * cb) {
+    process[@"nextTick"] = ^(JSValue * cb) {
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             [cb callWithArguments:@[]];
         });
     };
     
-    context[@"process"][@"binding"] = ^(NSString *binding) {
+    process[@"binding"] = ^(NSString *binding) {
         return [NLBinding bindingForIdentifier:binding];
     };
     
@@ -101,7 +96,8 @@
         @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
     };
     
-    [self runBootstrapJavascript:context];
+    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
+    [constructor callWithArguments:@[process]];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
     
