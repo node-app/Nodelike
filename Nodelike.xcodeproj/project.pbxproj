@@ -596,6 +596,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B54173271894341600B6636B /* Build configuration list for PBXNativeTarget "Nodelike Tests" */;
 			buildPhases = (
+				B52B9B90189EC15600492856 /* Kill Simulator */,
 				B54173121894341600B6636B /* Sources */,
 				B54173131894341600B6636B /* Frameworks */,
 				B54173141894341600B6636B /* Resources */,
@@ -755,6 +756,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B52B9B90189EC15600492856 /* Kill Simulator */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Kill Simulator";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "killall \"iPhone Simulator\"; sleep 2; exit 0;  ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B54173121894341600B6636B /* Sources */ = {
