@@ -11,6 +11,8 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
+extern char env_constructor_key;
+
 @interface NSObject (Nodelike)
 
 - (id)nodelikeGet:(void *)key;

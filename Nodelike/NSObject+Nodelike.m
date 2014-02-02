@@ -13,6 +13,8 @@
 
 #import "objc/runtime.h"
 
+char env_constructor_key = 0;
+
 @implementation NSObject (Nodelike)
 
 - (id)nodelikeGet:(void *)key {

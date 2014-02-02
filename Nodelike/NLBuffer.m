@@ -13,8 +13,6 @@
 
 #import "NSObject+Nodelike.h"
 
-static char env_constructor_key;
-
 static size_t writeBuffer(const char *data, JSValue *target, int off, int len) {
     JSContextRef context = target.context.JSGlobalContextRef;
     JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
