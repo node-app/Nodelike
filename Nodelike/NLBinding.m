@@ -23,6 +23,7 @@
 #import "NLProcess.h"
 #import "NLHTTPParser.h"
 #import "NLNatives.h"
+#import "NLContextify.h"
 
 @implementation NLBinding
 
@@ -41,7 +42,8 @@
                      @"uv":           NLUV.class,
                      @"process_wrap": NLProcess.class,
                      @"http_parser":  NLHTTPParser.class,
-                     @"natives":      NLNatives.class};
+                     @"natives":      NLNatives.class,
+                     @"contextify":   NLContextify.class};
     });
     return bindings;
 }

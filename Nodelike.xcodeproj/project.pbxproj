@@ -110,6 +110,8 @@
 		B59E5FA61820EF530093A6FF /* NLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA51820EF530093A6FF /* NLTimer.m */; };
 		B59EA08F180CB587005BF5C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B59EA0BD180CB639005BF5C1 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
+		B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */; };
+		B5A79B2E189E501300CC04D6 /* NLContextify.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2D189E501200CC04D6 /* NLContextify.m */; };
 		B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
 		B5C9F31B18949019008B8EB2 /* nodelike.js in Resources */ = {isa = PBXBuildFile; fileRef = B5C9F31A18949011008B8EB2 /* nodelike.js */; };
 		B5FD81381899AD21007FB460 /* test-timers-first-fire.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD812F1899AD13007FB460 /* test-timers-first-fire.js */; };
@@ -272,6 +274,10 @@
 		B59EA08E180CB587005BF5C1 /* libNodelike.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNodelike.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59EA092180CB587005BF5C1 /* Nodelike-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nodelike-Prefix.pch"; sourceTree = "<group>"; };
 		B59EA093180CB587005BF5C1 /* Nodelike.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Nodelike.h; sourceTree = "<group>"; };
+		B5A79B29189E4F9400CC04D6 /* NSObject+Nodelike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Nodelike.h"; sourceTree = "<group>"; };
+		B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Nodelike.m"; sourceTree = "<group>"; };
+		B5A79B2C189E501200CC04D6 /* NLContextify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLContextify.h; sourceTree = "<group>"; };
+		B5A79B2D189E501200CC04D6 /* NLContextify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLContextify.m; sourceTree = "<group>"; };
 		B5B44642180AB78E009ADEF9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5C5B247181319550091FDE8 /* NLSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSmalloc.m; sourceTree = "<group>"; };
@@ -472,6 +478,10 @@
 		B59EA090180CB587005BF5C1 /* Nodelike */ = {
 			isa = PBXGroup;
 			children = (
+				B5A79B29189E4F9400CC04D6 /* NSObject+Nodelike.h */,
+				B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */,
+				B5A79B2C189E501200CC04D6 /* NLContextify.h */,
+				B5A79B2D189E501200CC04D6 /* NLContextify.m */,
 				B59E5F98181F07270093A6FF /* NLContext.h */,
 				B59E5F99181F07270093A6FF /* NLContext.m */,
 				B578842518945E9900EA1A81 /* NLNatives.h */,
@@ -794,6 +804,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */,
+				B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */,
 				B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */,
 				B5417311189415C000B6636B /* NLUDP.m in Sources */,
 				B59E5F8B181EC45A0093A6FF /* NLUV.m in Sources */,
@@ -805,6 +816,7 @@
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,
 				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,
+				B5A79B2E189E501300CC04D6 /* NLContextify.m in Sources */,
 				B59E5F94181F07090093A6FF /* NLFS.m in Sources */,
 				B59E5F9D181F07320093A6FF /* NLProcess.m in Sources */,
 				B59E5FA0181F073D0093A6FF /* NLBinding.m in Sources */,
