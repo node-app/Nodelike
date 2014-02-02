@@ -37,13 +37,6 @@
 
 #pragma mark - Scope Setup
 
-+ (void)runBootstrapJavascript:(JSContext *)context {
-    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
-    [constructor callWithArguments:@[^(NSString *code) {
-        return [JSContext.currentContext evaluateScript:code];
-    }]];
-}
-
 + (void)attachToContext:(JSContext *)context {
 
 #ifdef DEBUG
@@ -52,12 +45,14 @@
     };
 #endif
     
-    NSMutableDictionary *process = [NSMutableDictionary dictionaryWithDictionary:@{@"platform": @"darwin",
-                            @"argv":     NSProcessInfo.processInfo.arguments,
-                            @"env":      NSProcessInfo.processInfo.environment,
-                            @"execPath": NSBundle.mainBundle.executablePath,
-                            @"_asyncFlags": @{},
-                            @"moduleLoadList": @[]}];
+    NSMutableDictionary *process = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"platform": @"darwin",
+        @"argv":     NSProcessInfo.processInfo.arguments,
+        @"env":      NSProcessInfo.processInfo.environment,
+        @"execPath": NSBundle.mainBundle.executablePath,
+        @"_asyncFlags": @{},
+        @"moduleLoadList": @[]
+    }];
     
     process[@"hrtime"] = ^(JSValue *offset) {
         clock_serv_t cclock;
