@@ -9,7 +9,7 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#import "NLBinding.h"
+#import "NLAsync.h"
 
 @protocol NLHandleExports <JSExport>
 
@@ -19,7 +19,7 @@
 
 @end
 
-@interface NLHandle : NLBinding <NLHandleExports>
+@interface NLHandle : NLAsync <NLHandleExports>
 
 @property (readonly) uv_handle_t *handle;
 @property (readonly) NSValue     *weakValue;
