@@ -13,8 +13,6 @@
 
 #import "NSObject+Nodelike.h"
 
-static char contextify_hidden;
-
 
 @protocol NLContextifyScriptExports <JSExport>
 
