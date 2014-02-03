@@ -91,10 +91,6 @@
         return [NLBinding bindingForIdentifier:binding];
     };
     
-    context[@"log"] = ^(id msg) {
-        NSLog(@"%@", msg);
-    };
-    
     context[@"console"] = @{
         @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
         @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
