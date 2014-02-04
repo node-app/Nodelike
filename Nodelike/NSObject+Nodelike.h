@@ -11,8 +11,8 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-extern char env_constructor_key;
-extern char contextify_hidden;
+extern char env_buffer_constructor;
+extern char env_contextify_hidden;
 
 @interface NSObject (Nodelike)
 

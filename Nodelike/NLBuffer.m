@@ -41,7 +41,7 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
 
 + (JSValue *)constructorInContext:(JSContext *)ctx {
     assert(ctx != nil);
-    return [ctx nodelikeGet:&env_constructor_key];
+    return [ctx nodelikeGet:&env_buffer_constructor];
 }
 
 + (JSValue *)useData:(const char *)data ofLength:(int)len inContext:(JSContext *)ctx {
@@ -83,7 +83,7 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
 
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
 
-    [[JSContext currentContext] nodelikeSet:&env_constructor_key toValue:target];
+    [[JSContext currentContext] nodelikeSet:&env_buffer_constructor toValue:target];
 
     JSValue *proto = target[@"prototype"];
     

@@ -13,8 +13,8 @@
 
 #import "objc/runtime.h"
 
-char env_constructor_key = 0;
-char contextify_hidden = 0;
+char env_buffer_constructor = 0;
+char env_contextify_hidden  = 0;
 
 @implementation NSObject (Nodelike)
 

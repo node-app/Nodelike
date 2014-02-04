@@ -38,7 +38,7 @@ JSExportAs(runInContext, - (JSValue *)runInContext:(JSValue *)context options:(J
 }
 
 - (JSValue *)runInContext:(JSValue *)context options:(JSValue *)options {
-    JSContext *ctx = [context nodelikeGet:&contextify_hidden];
+    JSContext *ctx = [context nodelikeGet:&env_contextify_hidden];
     assert([ctx isMemberOfClass:JSContext.class]);
     return [ctx evaluateScript:self.code];
 }
@@ -61,14 +61,14 @@ JSExportAs(runInContext, - (JSValue *)runInContext:(JSValue *)context options:(J
 }
 
 + (BOOL)isContext:(JSValue *)obj {
-    return [[obj nodelikeGet:&contextify_hidden] isMemberOfClass:JSContext.class];
+    return [[obj nodelikeGet:&env_contextify_hidden] isMemberOfClass:JSContext.class];
 }
 
 + (JSValue *)makeContext:(JSValue *)sandbox {
-    assert([sandbox nodelikeGet:&contextify_hidden] == nil);
+    assert([sandbox nodelikeGet:&env_contextify_hidden] == nil);
     
     JSContext *ctx = [[JSContext alloc] initWithVirtualMachine:JSContext.currentContext.virtualMachine];
-    [sandbox nodelikeSet:&contextify_hidden toValue:ctx];
+    [sandbox nodelikeSet:&env_contextify_hidden toValue:ctx];
     
     return sandbox;
 }
