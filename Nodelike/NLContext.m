@@ -11,6 +11,8 @@
 
 #import "NLContext.h"
 
+#import "NSObject+Nodelike.h"
+
 #import "NLBinding.h"
 
 #import "NLNatives.h"
@@ -45,14 +47,14 @@
     };
 #endif
     
-    NSMutableDictionary *process = [NSMutableDictionary dictionaryWithDictionary:@{
+    JSValue *process = [JSValue valueWithObject:@{
         @"platform": @"darwin",
         @"argv":     NSProcessInfo.processInfo.arguments,
         @"env":      NSProcessInfo.processInfo.environment,
         @"execPath": NSBundle.mainBundle.executablePath,
         @"_asyncFlags": @{},
         @"moduleLoadList": @[]
-    }];
+    } inContext:context];
     
     // used in Hrtime() below
 #define NANOS_PER_SEC 1000000000
@@ -98,6 +100,8 @@
     
     JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
     [constructor callWithArguments:@[process]];
+    
+    [context nodelikeSet:&env_process_object toValue:process];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
     

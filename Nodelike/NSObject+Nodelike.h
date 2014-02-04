@@ -13,6 +13,7 @@
 
 extern char env_buffer_constructor;
 extern char env_contextify_hidden;
+extern char env_process_object;
 
 @interface NSObject (Nodelike)
 
