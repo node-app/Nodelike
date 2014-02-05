@@ -35,6 +35,7 @@
 		B52B8164186075CD003B40D9 /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813E186075CD003B40D9 /* udp.c */; };
 		B52B8166186075CD003B40D9 /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8140186075CD003B40D9 /* uv-common.c */; };
 		B52B8167186075CD003B40D9 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8142186075CD003B40D9 /* version.c */; };
+		B52B9B9318A01D0800492856 /* NLAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B9B9218A01D0800492856 /* NLAsync.m */; };
 		B53E6998184672F3004E4EF9 /* NLStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B53E6997184672F3004E4EF9 /* NLStream.m */; };
 		B5417311189415C000B6636B /* NLUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = B5417310189415C000B6636B /* NLUDP.m */; };
 		B54173181894341600B6636B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54173171894341600B6636B /* XCTest.framework */; };
@@ -183,6 +184,8 @@
 		B52B8140186075CD003B40D9 /* uv-common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "uv-common.c"; path = "libuv/src/uv-common.c"; sourceTree = SOURCE_ROOT; };
 		B52B8141186075CD003B40D9 /* uv-common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-common.h"; path = "libuv/src/uv-common.h"; sourceTree = SOURCE_ROOT; };
 		B52B8142186075CD003B40D9 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = version.c; path = libuv/src/version.c; sourceTree = SOURCE_ROOT; };
+		B52B9B9118A01D0800492856 /* NLAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLAsync.h; sourceTree = "<group>"; };
+		B52B9B9218A01D0800492856 /* NLAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLAsync.m; sourceTree = "<group>"; };
 		B53E6996184672F3004E4EF9 /* NLStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLStream.h; sourceTree = "<group>"; };
 		B53E6997184672F3004E4EF9 /* NLStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLStream.m; sourceTree = "<group>"; };
 		B541730F189415C000B6636B /* NLUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLUDP.h; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 			children = (
 				B5A79B29189E4F9400CC04D6 /* NSObject+Nodelike.h */,
 				B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */,
+				B52B9B9118A01D0800492856 /* NLAsync.h */,
+				B52B9B9218A01D0800492856 /* NLAsync.m */,
 				B5A79B2C189E501200CC04D6 /* NLContextify.h */,
 				B5A79B2D189E501200CC04D6 /* NLContextify.m */,
 				B59E5F98181F07270093A6FF /* NLContext.h */,
@@ -821,6 +826,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52B9B9318A01D0800492856 /* NLAsync.m in Sources */,
 				B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */,
 				B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */,
 				B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */,
