@@ -83,7 +83,7 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
 
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
 
-    [[JSContext currentContext] nodelikeSet:&env_buffer_constructor toValue:target];
+    [JSContext.currentContext nodelikeSet:&env_buffer_constructor toValue:target];
 
     JSValue *proto = target[@"prototype"];
     
