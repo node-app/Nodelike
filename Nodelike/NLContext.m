@@ -101,7 +101,7 @@
     JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
     [constructor callWithArguments:@[process]];
     
-    [context nodelikeSet:&env_process_object toValue:process];
+    [context.virtualMachine nodelikeSet:&env_process_object toValue:process];
 
     JSValue *noop = [context evaluateScript:@"(function(){})"];
     
