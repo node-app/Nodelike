@@ -19,10 +19,11 @@ struct getaddrinfoWrap {
 static int isIP(const char *ip) {
     struct in6_addr address_buffer;
     int rc = 0;
-    if (uv_inet_pton(AF_INET, ip, &address_buffer) == 0)
+    if (uv_inet_pton(AF_INET, ip, &address_buffer) == 0) {
         rc = 4;
-    else if (uv_inet_pton(AF_INET6, ip, &address_buffer) == 0)
+    } else if (uv_inet_pton(AF_INET6, ip, &address_buffer) == 0) {
         rc = 6;
+    }
     return rc;
 }
 
@@ -75,8 +76,8 @@ static int isIP(const char *ip) {
 
 }
 
-static void afterGetAddrInfo(uv_getaddrinfo_t* req, int status, struct addrinfo* res) {
-    struct getaddrinfoWrap* wrap = req->data;
+static void afterGetAddrInfo(uv_getaddrinfo_t *req, int status, struct addrinfo *res) {
+    struct getaddrinfoWrap *wrap = req->data;
     JSValue *object = CFBridgingRelease(wrap->value);
     
     if (status == 0) {

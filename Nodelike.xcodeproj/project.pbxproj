@@ -100,6 +100,7 @@
 		B572DDA418B4EB7D005E6403 /* test-timers-uncaught-exception.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81351899AD13007FB460 /* test-timers-uncaught-exception.js */; };
 		B572DDA518B4EB7D005E6403 /* test-timers-unref.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81361899AD13007FB460 /* test-timers-unref.js */; };
 		B572DDA618B4EB7D005E6403 /* test-timers-zero-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81371899AD13007FB460 /* test-timers-zero-timeout.js */; };
+		B572DDA918B4F6E3005E6403 /* StyleSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B572DDA818B4F6E3005E6403 /* StyleSettings.plist */; };
 		B578842418944F2000EA1A81 /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
 		B578842718945E9900EA1A81 /* NLNatives.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842618945E9900EA1A81 /* NLNatives.m */; };
 		B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = B599FF2B185A7ED000057DD6 /* NLTCP.m */; };
@@ -237,6 +238,7 @@
 		B572DD7018B4E92A005E6403 /* vm.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = vm.js; sourceTree = "<group>"; };
 		B572DD7118B4E92A005E6403 /* zlib.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = zlib.js; sourceTree = "<group>"; };
 		B572DD9B18B4EB15005E6403 /* nodelike.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = nodelike.js; path = lib/nodelike.js; sourceTree = "<group>"; };
+		B572DDA818B4F6E3005E6403 /* StyleSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StyleSettings.plist; sourceTree = "<group>"; };
 		B5741C851899CDBA0055EF30 /* test-common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-common.js"; sourceTree = "<group>"; };
 		B578842318944F2000EA1A81 /* NLBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBuffer.m; sourceTree = "<group>"; };
 		B578842518945E9900EA1A81 /* NLNatives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLNatives.h; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				B541731C1894341600B6636B /* Nodelike Tests */,
 				B5B44641180AB78E009ADEF9 /* Frameworks */,
 				B5B44640180AB78E009ADEF9 /* Products */,
+				B572DDA818B4F6E3005E6403 /* StyleSettings.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -618,6 +621,7 @@
 				B59EA08B180CB587005BF5C1 /* Frameworks */,
 				B59EA0BE180CB677005BF5C1 /* Resources */,
 				B572DD4718B4E6BA005E6403 /* Retrieve Native Modules */,
+				B572DDAC18B4F7CF005E6403 /* Objective-Clean Run Script */,
 			);
 			buildRules = (
 			);
@@ -728,6 +732,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B572DDA918B4F6E3005E6403 /* StyleSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +766,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "curl https://registry.npmjs.org/node-natives/-/node-natives-0.10.25.tgz | tar -xf -";
+		};
+		B572DDAC18B4F7CF005E6403 /* Objective-Clean Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Objective-Clean Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then\n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\"?NL\nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\"\nfi\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

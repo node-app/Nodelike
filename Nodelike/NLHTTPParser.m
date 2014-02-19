@@ -34,7 +34,7 @@ static const int num_fields_max = 32;
     bool got_exception_;
     JSValue *current_buffer_;
     size_t current_buffer_len_;
-    char* current_buffer_data_;
+    char *current_buffer_data_;
     struct http_parser_settings settings;
 }
 
@@ -198,7 +198,7 @@ static const int num_fields_max = 32;
     have_flushed_ = true;
 }
 
-static int on_message_begin (http_parser* p) {
+static int on_message_begin (http_parser *p) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     parser->num_fields_ = parser->num_values_ = 0;
     [parser->url_ setLength:0];
@@ -206,19 +206,19 @@ static int on_message_begin (http_parser* p) {
     return 0;
 }
 
-static int on_url (http_parser* p, const char* at, size_t length) {
+static int on_url (http_parser *p, const char *at, size_t length) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     [parser->url_ appendBytes:at length:length];
     return 0;
 }
 
-static int on_status (http_parser* p, const char* at, size_t length) {
+static int on_status (http_parser *p, const char *at, size_t length) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     [parser->status_message_ appendBytes:at length:length];
     return 0;
 }
 
-static int on_header_field (http_parser* p, const char* at, size_t length) {
+static int on_header_field (http_parser *p, const char *at, size_t length) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     if (parser->num_fields_ == parser->num_values_) {
         parser->num_fields_++;
@@ -233,7 +233,7 @@ static int on_header_field (http_parser* p, const char* at, size_t length) {
     return 0;
 }
 
-static int on_header_value (http_parser* p, const char* at, size_t length) {
+static int on_header_value (http_parser *p, const char *at, size_t length) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     if (parser->num_values_ != parser->num_fields_) {
         // start of new header value
@@ -244,7 +244,7 @@ static int on_header_value (http_parser* p, const char* at, size_t length) {
     return 0;
 }
 
-static int on_headers_complete (http_parser* p) {
+static int on_headers_complete (http_parser *p) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     
     JSContext   *ctx    = JSContext.currentContext;
@@ -303,7 +303,7 @@ static int on_headers_complete (http_parser* p) {
 
 }
 
-static int on_body (http_parser* p, const char* at, size_t length) {
+static int on_body (http_parser *p, const char *at, size_t length) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     
     JSContext   *ctx    = JSContext.currentContext;
@@ -333,7 +333,7 @@ static int on_body (http_parser* p, const char* at, size_t length) {
     return 0;
 }
 
-static int on_message_complete (http_parser* p) {
+static int on_message_complete (http_parser *p) {
     NLHTTPParser *parser = (__bridge NLHTTPParser *)(p->data);
     
     JSContext   *ctx    = JSContext.currentContext;

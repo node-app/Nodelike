@@ -45,7 +45,7 @@ struct sendWrap {
                                  (struct sockaddr *)&address,
                                  &addrlen);
     if (err == 0) {
-        const struct sockaddr* addr = (const struct sockaddr *)&address;
+        const struct sockaddr *addr = (const struct sockaddr *)&address;
         AddressToJS(NLContext.currentContext, addr, out);
     }
     return [NSNumber numberWithInt:err];
@@ -90,7 +90,7 @@ static NSNumber *bindCommon (int err, uv_udp_t *handle, const struct sockaddr *a
 }
 
 - (NSNumber *)addMembership:(longlived NSString *)address iface:(longlived JSValue *)iface {
-    const char* iface_cstr = NULL;
+    const char *iface_cstr = NULL;
     if (!iface.isUndefined && !iface.isNull) {
         iface_cstr = iface.toString.UTF8String;
     }
@@ -99,7 +99,7 @@ static NSNumber *bindCommon (int err, uv_udp_t *handle, const struct sockaddr *a
 }
 
 - (NSNumber *)dropMembership:(longlived NSString *)address iface:(longlived JSValue *)iface {
-    const char* iface_cstr = NULL;
+    const char *iface_cstr = NULL;
     if (!iface.isUndefined && !iface.isNull) {
         iface_cstr = iface.toString.UTF8String;
     }
@@ -167,7 +167,7 @@ static NSNumber *sendCommon (JSValue *req, JSValue *buffer,
     return [NSNumber numberWithInt:err];
 }
 
-static void onSend (uv_udp_send_t* req, int status) {
+static void onSend (uv_udp_send_t *req, int status) {
     struct sendWrap *sendWrap = req->data;
     JSValue *value = (__bridge JSValue *)(sendWrap->value);
     if (sendWrap->hasCallback) {
@@ -176,12 +176,12 @@ static void onSend (uv_udp_send_t* req, int status) {
     free(sendWrap);
 }
 
-static void onAlloc (uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
+static void onAlloc (uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
     buf->base = malloc(suggested_size);
     buf->len  = suggested_size;
 }
 
-static void onRecv (uv_udp_t* handle, ssize_t nread, const uv_buf_t* buf, const struct sockaddr* addr, unsigned int flags) {
+static void onRecv (uv_udp_t *handle, ssize_t nread, const uv_buf_t *buf, const struct sockaddr *addr, unsigned int flags) {
     if (nread == 0) {
         if (buf->base != NULL)
         free(buf->base);
@@ -200,7 +200,7 @@ static void onRecv (uv_udp_t* handle, ssize_t nread, const uv_buf_t* buf, const 
         return;
     }
     
-    char* base = realloc(buf->base, nread);
+    char *base = realloc(buf->base, nread);
     
     args[2] = [NLBuffer useData:base ofLength:nread inContext:wrapObj.context];
     args[3] = AddressToJS(wrap.context, addr, NULL);
@@ -208,7 +208,7 @@ static void onRecv (uv_udp_t* handle, ssize_t nread, const uv_buf_t* buf, const 
 
 }
 
-static JSValue *AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
+static JSValue *AddressToJS (JSContext *context, const struct sockaddr *addr, JSValue *info) {
     
     char ip[INET6_ADDRSTRLEN];
     const struct sockaddr_in  *a4;

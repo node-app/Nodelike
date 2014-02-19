@@ -68,7 +68,7 @@
     if (!isNamedPipeIPC(_stream)) {
         err = _callbacks->doWrite(writeWrap, &buf, 1, NULL, afterWrite);
     } else {
-        uv_handle_t* send_handle = NULL;
+        uv_handle_t *send_handle = NULL;
         if (sendHandle != nil) {
             send_handle = sendHandle.handle;
             [obj setValue:sendHandle forProperty:@"handle"];
@@ -145,7 +145,7 @@ static void onReadCommon(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf
     wrap.callbacks->doRead(handle, nread, buf, pending);
 }
 
-static void doAlloc(uv_handle_t* handle, size_t suggested_size, uv_buf_t* buf) {
+static void doAlloc(uv_handle_t *handle, size_t suggested_size, uv_buf_t *buf) {
     buf->base = malloc(suggested_size);
     buf->len  = suggested_size;
 }
@@ -194,7 +194,7 @@ static void doRead(uv_stream_t *handle, ssize_t nread, const uv_buf_t *buf, uv_h
 
 }
 
-static int doWrite(struct writeWrap* w, uv_buf_t* bufs, size_t count, uv_stream_t* send_handle, uv_write_cb cb) {
+static int doWrite(struct writeWrap *w, uv_buf_t *bufs, size_t count, uv_stream_t *send_handle, uv_write_cb cb) {
     
     NLStream *wrap = (__bridge NLStream *)w->wrap;
     
@@ -223,7 +223,7 @@ static void afterWriteCallback(struct writeWrap *w) {
     return;
 }
 
-static void afterWrite(uv_write_t* req, int status) {
+static void afterWrite(uv_write_t *req, int status) {
     struct writeWrap *reqWrap = req->data;
     NLStream *wrap   = (__bridge NLStream *)(reqWrap->wrap);
     JSValue  *object = (JSValue *)CFBridgingRelease(reqWrap->object);
@@ -236,12 +236,12 @@ static void afterWrite(uv_write_t* req, int status) {
     free(reqWrap);
 }
 
-int doShutdown(struct shutdownWrap* w, uv_shutdown_cb cb) {
+int doShutdown(struct shutdownWrap *w, uv_shutdown_cb cb) {
     NLStream *wrap = (__bridge NLStream *)w->wrap;
     return uv_shutdown(&w->req, wrap.stream, cb);
 }
 
-void afterShutdown(uv_shutdown_t* req, int status) {
+void afterShutdown(uv_shutdown_t *req, int status) {
     struct shutdownWrap *shutdownWrap = req->data;
     NLStream *wrap   = (__bridge NLStream *)(shutdownWrap->wrap);
     JSValue  *object = (JSValue  *)CFBridgingRelease(shutdownWrap->object);

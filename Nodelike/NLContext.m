@@ -83,7 +83,7 @@
         kill(pid.intValue, sig.intValue);
     };
     
-    process[@"nextTick"] = ^(JSValue * cb) {
+    process[@"nextTick"] = ^(JSValue *cb) {
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             [cb callWithArguments:@[]];
         });

@@ -42,7 +42,7 @@ struct connectWrap {
                                  (struct sockaddr *)&address,
                                  &addrlen);
     if (err == 0) {
-        const struct sockaddr* addr = (const struct sockaddr *)&address;
+        const struct sockaddr *addr = (const struct sockaddr *)&address;
         AddressToJS(NLContext.currentContext, addr, out);
     }
     return [NSNumber numberWithInt:err];
@@ -55,7 +55,7 @@ struct connectWrap {
                                  (struct sockaddr *)&address,
                                  &addrlen);
     if (err == 0) {
-        const struct sockaddr* addr = (const struct sockaddr *)&address;
+        const struct sockaddr *addr = (const struct sockaddr *)&address;
         AddressToJS(NLContext.currentContext, addr, out);
     }
     return [NSNumber numberWithInt:err];
@@ -122,7 +122,7 @@ static NSNumber *connectCommon (int err, JSValue *obj, uv_tcp_t *handle, const s
     return [NSNumber numberWithInt:err];
 }
 
-static void afterConnect(uv_connect_t* req, int status) {
+static void afterConnect(uv_connect_t *req, int status) {
     
     JSValue  *connectWrap = CFBridgingRelease(((struct connectWrap *)req->data)->value);
     NLStream *wrap        = (__bridge NLStream *)(req->handle->data);
@@ -159,7 +159,7 @@ static void onConnection(uv_stream_t *handle, int status) {
 
 }
 
-static JSValue *AddressToJS (JSContext *context, const struct sockaddr* addr, JSValue *info) {
+static JSValue *AddressToJS (JSContext *context, const struct sockaddr *addr, JSValue *info) {
     
     char ip[INET6_ADDRSTRLEN];
     const struct sockaddr_in  *a4;
