@@ -101,6 +101,15 @@
 		B572DDA518B4EB7D005E6403 /* test-timers-unref.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81361899AD13007FB460 /* test-timers-unref.js */; };
 		B572DDA618B4EB7D005E6403 /* test-timers-zero-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81371899AD13007FB460 /* test-timers-zero-timeout.js */; };
 		B572DDA918B4F6E3005E6403 /* StyleSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B572DDA818B4F6E3005E6403 /* StyleSettings.plist */; };
+		B572DDB018B55EC9005E6403 /* test-util-format.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDAD18B55EBA005E6403 /* test-util-format.js */; };
+		B572DDB118B55EC9005E6403 /* test-util-inspect.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDAE18B55EBA005E6403 /* test-util-inspect.js */; };
+		B572DDB218B55EC9005E6403 /* test-util.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDAF18B55EBA005E6403 /* test-util.js */; };
+		B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDB418B55F01005E6403 /* Util_Tests.m */; };
+		B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDBA18B56331005E6403 /* VM_Tests.m */; };
+		B572DDBC18B56654005E6403 /* test-vm-create-context-accessors.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDB618B562EF005E6403 /* test-vm-create-context-accessors.js */; };
+		B572DDBD18B56654005E6403 /* test-vm-create-context-arg.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDB718B562EF005E6403 /* test-vm-create-context-arg.js */; };
+		B572DDBE18B56654005E6403 /* test-vm-create-context-circular-reference.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDB818B562EF005E6403 /* test-vm-create-context-circular-reference.js */; };
+		B572DDC118B5671D005E6403 /* NLScript.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDC018B5671D005E6403 /* NLScript.m */; };
 		B578842418944F2000EA1A81 /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
 		B578842718945E9900EA1A81 /* NLNatives.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842618945E9900EA1A81 /* NLNatives.m */; };
 		B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = B599FF2B185A7ED000057DD6 /* NLTCP.m */; };
@@ -239,6 +248,16 @@
 		B572DD7118B4E92A005E6403 /* zlib.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = zlib.js; sourceTree = "<group>"; };
 		B572DD9B18B4EB15005E6403 /* nodelike.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = nodelike.js; path = lib/nodelike.js; sourceTree = "<group>"; };
 		B572DDA818B4F6E3005E6403 /* StyleSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StyleSettings.plist; sourceTree = "<group>"; };
+		B572DDAD18B55EBA005E6403 /* test-util-format.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-util-format.js"; sourceTree = "<group>"; };
+		B572DDAE18B55EBA005E6403 /* test-util-inspect.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-util-inspect.js"; sourceTree = "<group>"; };
+		B572DDAF18B55EBA005E6403 /* test-util.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-util.js"; sourceTree = "<group>"; };
+		B572DDB418B55F01005E6403 /* Util_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util_Tests.m; sourceTree = "<group>"; };
+		B572DDB618B562EF005E6403 /* test-vm-create-context-accessors.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-vm-create-context-accessors.js"; sourceTree = "<group>"; };
+		B572DDB718B562EF005E6403 /* test-vm-create-context-arg.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-vm-create-context-arg.js"; sourceTree = "<group>"; };
+		B572DDB818B562EF005E6403 /* test-vm-create-context-circular-reference.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-vm-create-context-circular-reference.js"; sourceTree = "<group>"; };
+		B572DDBA18B56331005E6403 /* VM_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VM_Tests.m; sourceTree = "<group>"; };
+		B572DDBF18B5671D005E6403 /* NLScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLScript.h; sourceTree = "<group>"; };
+		B572DDC018B5671D005E6403 /* NLScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLScript.m; sourceTree = "<group>"; };
 		B5741C851899CDBA0055EF30 /* test-common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-common.js"; sourceTree = "<group>"; };
 		B578842318944F2000EA1A81 /* NLBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBuffer.m; sourceTree = "<group>"; };
 		B578842518945E9900EA1A81 /* NLNatives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLNatives.h; sourceTree = "<group>"; };
@@ -384,6 +403,8 @@
 			children = (
 				B5FD812E1899AD12007FB460 /* test */,
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
+				B572DDB418B55F01005E6403 /* Util_Tests.m */,
+				B572DDBA18B56331005E6403 /* VM_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
 			path = "Nodelike Tests";
@@ -465,6 +486,8 @@
 				B52B9B9218A01D0800492856 /* NLAsync.m */,
 				B5A79B2C189E501200CC04D6 /* NLContextify.h */,
 				B5A79B2D189E501200CC04D6 /* NLContextify.m */,
+				B572DDBF18B5671D005E6403 /* NLScript.h */,
+				B572DDC018B5671D005E6403 /* NLScript.m */,
 				B59E5F98181F07270093A6FF /* NLContext.h */,
 				B59E5F99181F07270093A6FF /* NLContext.m */,
 				B578842518945E9900EA1A81 /* NLNatives.h */,
@@ -561,7 +584,13 @@
 		B5FD812E1899AD12007FB460 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				B572DDB618B562EF005E6403 /* test-vm-create-context-accessors.js */,
+				B572DDB718B562EF005E6403 /* test-vm-create-context-arg.js */,
+				B572DDB818B562EF005E6403 /* test-vm-create-context-circular-reference.js */,
 				B5741C851899CDBA0055EF30 /* test-common.js */,
+				B572DDAD18B55EBA005E6403 /* test-util-format.js */,
+				B572DDAE18B55EBA005E6403 /* test-util-inspect.js */,
+				B572DDAF18B55EBA005E6403 /* test-util.js */,
 				B5FD812F1899AD13007FB460 /* test-timers-first-fire.js */,
 				B5FD81301899AD13007FB460 /* test-timers-immediate-queue.js */,
 				B5FD81311899AD13007FB460 /* test-timers-immediate.js */,
@@ -673,6 +702,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B572DDBC18B56654005E6403 /* test-vm-create-context-accessors.js in Resources */,
+				B572DDBD18B56654005E6403 /* test-vm-create-context-arg.js in Resources */,
+				B572DDBE18B56654005E6403 /* test-vm-create-context-circular-reference.js in Resources */,
+				B572DDB018B55EC9005E6403 /* test-util-format.js in Resources */,
+				B572DDB118B55EC9005E6403 /* test-util-inspect.js in Resources */,
+				B572DDB218B55EC9005E6403 /* test-util.js in Resources */,
 				B572DD9D18B4EB7D005E6403 /* test-common.js in Resources */,
 				B572DD9E18B4EB7D005E6403 /* test-timers-first-fire.js in Resources */,
 				B572DD9F18B4EB7D005E6403 /* test-timers-immediate-queue.js in Resources */,
@@ -788,7 +823,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */,
 				B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */,
+				B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +878,7 @@
 				B59E5F9A181F07270093A6FF /* NLContext.m in Sources */,
 				B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
+				B572DDC118B5671D005E6403 /* NLScript.m in Sources */,
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,
 				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,
