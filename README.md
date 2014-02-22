@@ -19,7 +19,9 @@ The goals
 How to compile
 ---------------------------
 
-You first need to fetch the nodejs submodule. Do so by:
+You most likely want to use the stable brach, by `git checkout stable`.
+
+You then need to fetch the nodejs submodule. Do so by:
 1. `git submodule init`
 2. `git submodule update`
 
