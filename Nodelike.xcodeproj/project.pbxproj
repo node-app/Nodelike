@@ -104,6 +104,7 @@
 		B572E02F18B91D48005E6403 /* test-vm-create-context-accessors.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E01618B91CD6005E6403 /* test-vm-create-context-accessors.js */; };
 		B572E03018B91D48005E6403 /* test-vm-create-context-arg.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E01718B91CD6005E6403 /* test-vm-create-context-arg.js */; };
 		B572E03118B91D48005E6403 /* test-vm-create-context-circular-reference.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E01818B91CD6005E6403 /* test-vm-create-context-circular-reference.js */; };
+		B572E03318B92374005E6403 /* test-common.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E03218B92368005E6403 /* test-common.js */; };
 		B578842418944F2000EA1A81 /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
 		B578842718945E9900EA1A81 /* NLNatives.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842618945E9900EA1A81 /* NLNatives.m */; };
 		B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = B599FF2B185A7ED000057DD6 /* NLTCP.m */; };
@@ -849,6 +850,7 @@
 		B572E02518B91CD6005E6403 /* test-zlib-zero-byte.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-zlib-zero-byte.js"; sourceTree = "<group>"; };
 		B572E02618B91CD6005E6403 /* test-zlib.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-zlib.js"; sourceTree = "<group>"; };
 		B572E02718B91CD6005E6403 /* testcfg.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = testcfg.py; sourceTree = "<group>"; };
+		B572E03218B92368005E6403 /* test-common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-common.js"; sourceTree = "<group>"; };
 		B578842318944F2000EA1A81 /* NLBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLBuffer.m; sourceTree = "<group>"; };
 		B578842518945E9900EA1A81 /* NLNatives.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLNatives.h; sourceTree = "<group>"; };
 		B578842618945E9900EA1A81 /* NLNatives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLNatives.m; sourceTree = "<group>"; };
@@ -982,6 +984,7 @@
 		B541731C1894341600B6636B /* Nodelike Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B572E03218B92368005E6403 /* test-common.js */,
 				B572DDCD18B91CD2005E6403 /* package */,
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B572DDB418B55F01005E6403 /* Util_Tests.m */,
@@ -1870,6 +1873,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B572E03318B92374005E6403 /* test-common.js in Resources */,
 				B572E02F18B91D48005E6403 /* test-vm-create-context-accessors.js in Resources */,
 				B572E03018B91D48005E6403 /* test-vm-create-context-arg.js in Resources */,
 				B572E03118B91D48005E6403 /* test-vm-create-context-circular-reference.js in Resources */,
