@@ -36,7 +36,8 @@ static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
 
 + (id)binding {
     return @{@"setupBufferJS": ^(JSValue *target, JSValue *internal) {
-        [self setupBufferJS:target internal:internal];}};
+                [self setupBufferJS:target internal:internal]; },
+             @"SlowBuffer": self.constructor};
 }
 
 + (JSValue *)constructorInContext:(JSContext *)ctx {
