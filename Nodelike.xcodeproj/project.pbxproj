@@ -790,7 +790,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "curl https://registry.npmjs.org/node-natives/-/node-natives-0.10.25.tgz | tar -xf -";
+			shellScript = "curl https://registry.npmjs.org/node-core-lib/-/node-core-lib-0.10.25.tgz | tar -xf -";
 		};
 		B572DDAC18B4F7CF005E6403 /* Objective-Clean Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
