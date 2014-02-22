@@ -100,7 +100,6 @@
 		B572DDA418B4EB7D005E6403 /* test-timers-uncaught-exception.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81351899AD13007FB460 /* test-timers-uncaught-exception.js */; };
 		B572DDA518B4EB7D005E6403 /* test-timers-unref.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81361899AD13007FB460 /* test-timers-unref.js */; };
 		B572DDA618B4EB7D005E6403 /* test-timers-zero-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FD81371899AD13007FB460 /* test-timers-zero-timeout.js */; };
-		B572DDA918B4F6E3005E6403 /* StyleSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B572DDA818B4F6E3005E6403 /* StyleSettings.plist */; };
 		B572DDB018B55EC9005E6403 /* test-util-format.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDAD18B55EBA005E6403 /* test-util-format.js */; };
 		B572DDB118B55EC9005E6403 /* test-util-inspect.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDAE18B55EBA005E6403 /* test-util-inspect.js */; };
 		B572DDB218B55EC9005E6403 /* test-util.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DDAF18B55EBA005E6403 /* test-util.js */; };
@@ -648,7 +647,6 @@
 			buildPhases = (
 				B59EA08A180CB587005BF5C1 /* Sources */,
 				B59EA08B180CB587005BF5C1 /* Frameworks */,
-				B59EA0BE180CB677005BF5C1 /* Resources */,
 				B572DD4718B4E6BA005E6403 /* Retrieve Native Modules */,
 				B572DDAC18B4F7CF005E6403 /* Objective-Clean Run Script */,
 			);
@@ -760,14 +758,6 @@
 				B572DD9918B4E93C005E6403 /* vm.js in Resources */,
 				B572DD9A18B4E93C005E6403 /* zlib.js in Resources */,
 				B54173211894341600B6636B /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B59EA0BE180CB677005BF5C1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B572DDA918B4F6E3005E6403 /* StyleSettings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
