@@ -47,6 +47,12 @@
                <Test
                   Identifier = "NLTimer_Tests">
                </Test>
+               <Test
+                  Identifier = "Util_Tests">
+               </Test>
+               <Test
+                  Identifier = "Buffer_Tests">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
