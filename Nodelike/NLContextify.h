@@ -11,10 +11,20 @@
 
 #import "NLBinding.h"
 
-@interface NLContextify : NLBinding
+@protocol NLContextifyExports <JSExport>
+
+JSExportAs(runInContext, - (JSValue *)runInContext:(JSValue *)context options:(JSValue *)options);
+- (JSValue *)runInThisContext:(JSValue *)options;
+- (JSValue *)runInNewContext:(JSValue *)options;
+
+@end
+
+@interface NLContextify : NLBinding <NLContextifyExports>
+
+@property NSString *code;
+@property JSValue  *options;
 
 + (BOOL)isContext:(JSValue *)obj;
 + (JSValue *)makeContext:(JSValue *)sandbox;
-
 
 @end
