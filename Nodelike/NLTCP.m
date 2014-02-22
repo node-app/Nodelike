@@ -89,7 +89,7 @@ struct connectWrap {
 
 static NSNumber *bindCommon (int err, uv_tcp_t *handle, const struct sockaddr *addr) {
     if (err == 0)
-        err = uv_tcp_bind(handle, addr);
+        err = uv_tcp_bind(handle, addr, 0);
     return [NSNumber numberWithInt:err];
 }
 

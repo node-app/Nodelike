@@ -51,6 +51,9 @@
                   Identifier = "Util_Tests">
                </Test>
                <Test
+                  Identifier = "VM_Tests">
+               </Test>
+               <Test
                   Identifier = "Buffer_Tests">
                </Test>
             </SkippedTests>
