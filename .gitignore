@@ -3,5 +3,8 @@ xcuserdata
 
 *.xccheckout
 build
+
 package
 */package
+
+.idea
