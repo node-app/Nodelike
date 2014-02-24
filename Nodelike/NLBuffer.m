@@ -126,11 +126,26 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
     return [JSValue valueWithJSValueRef:JSValueMakeString(c, s) inContext:buffer.context];
 }
 
++ (void)fill:(JSValue *)target with:(JSValue *)value from:(JSValue *)start_arg to:(JSValue *)end_arg {
+    int start = start_arg.isUndefined ? 0 : start_arg.toInt32,
+        end   = end_arg.isUndefined   ? [self getLength:target] : end_arg.toInt32;
+    JSContextRef context = target.context.JSGlobalContextRef;
+    JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
+    JSValueRef   val     = value.JSValueRef;
+    for (int i = start; i < end; i++) {
+        JSObjectSetPropertyAtIndex(context, buffer, i, val, nil);
+    }
+}
+
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
 
     [JSContext.currentContext nodelikeSet:&env_buffer_constructor toValue:target];
 
     JSValue *proto = target[@"prototype"];
+    
+    proto[@"fill"] = ^(JSValue *value, JSValue *start, JSValue *end) {
+        return [NLBuffer fill:JSContext.currentThis with:value from:start to:end];
+    };
     
     proto[@"asciiSlice"] = ^(NSNumber *start, NSNumber *end) {
         return [NLBuffer sliceAscii:NLContext.currentThis from:start to:end];
