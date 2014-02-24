@@ -6,7 +6,7 @@ notifications:
   flowdock: 803358c5edc46b50866b8e588b4c374b
   webhooks:
     urls:
-    - https://webhooks.gitter.im/e/fa1f3636231a3e89e7fd
+      - https://webhooks.gitter.im/e/fa1f3636231a3e89e7fd
     on_success: change
     on_failure: always
     on_start: false
