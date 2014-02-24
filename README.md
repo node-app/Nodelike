@@ -1,22 +1,48 @@
 # Nodelike [![Build Status](https://travis-ci.org/node-app/Nodelike.png?branch=master)](https://travis-ci.org/node-app/Nodelike) [![Gitter chat](https://badges.gitter.im/node-app/Nodelike.png)](https://gitter.im/node-app/Nodelike)
 
-Nodelike is a project with the goal to implement a roughly Node.JS-compatible interface using JavaScriptCore.framework on iOS 7 and OS X Mavericks.
+_Nodelike_ the core framework of the _Node.app_ project. The _Node.app_ project has the goal to implement a roughly Node.JS-compatible interface using JavaScriptCore.framework on iOS 7 and OS X Mavericks.
 
 (JavaScriptCore hasn't been available before iOS 7, and on OS X the project makes extensive use of the newly-updated 10.9-only Objective-C API. Previously on 10.8 there existed only a very low-level and very verbose C API.)
 
-This is currently in a very incomplete state, and not yet viable for serious use.
+This is currently in an incomplete state, and not yet viable for serious use.
 
-The goals
----------
-- to be _drop-in compatible_ with the current nodejs master
+
+## The goals
+
+_Node.app_ aims to provide a way to create or enrich applications for iOS and OS X Mavericks using Javascript with a Node.JS-compatible API. This will be done lightweight manner, because Node.app utilises the JavaScriptCore system framework and doesn't need to bundle a heavy-weight third-party javascript engine.
+
+Specifically the goals are:
+
+- to be _drop-in compatible_ with node.js 0.11.11
 - to be _very lightweight_
 - to _reuse javascript code from node_ (/lib)
 - to provide the _most minimal binding_ that is possible (via libuv)
 - NOT to archieve Node.js performance (this is meant as a client-side, not a server-side application)
-- NOT to be backwards-compatible (nodejs cutting edge and newest iOS/OS X required)
+- NOT to be backwards-compatible (newest iOS/OS X required)
 
-How to compile
----------------------------
+
+## How it compares to existing approaches
+
+### node-webkit
+
+The [_node-webkit_](https://github.com/rogerwang/node-webkit) project lets you create desktop applications for OS X by combining a Chromium web view with the Node.js project, both using the V8 javascript engine.
+
+The _Node.app_ project also lets you create desktop applications for OS X, but by enriching a JavaScriptCore context (e.g. a WebKit web view context) with Node.js-compatible interfaces. By doing that, the resulting applications are **more lightweight**, since no engine needs to be bundled. Another important difference is that applications using _Node.app_ technology are **fully AppStore compatible**, unlike _node-webkit_ applications.
+
+### MacGap / Phonegap-mac
+
+The [_MacGap_](https://github.com/maccman/macgap) project provides a way to create desktop applications for OS X using JavaScript. It enriches a WebKit context with functions to operate OS X desktop functions, such as hiding/closing/resizing windows, playing sound or operating the dock.
+
+As such, it can be combined with the _Node.app_ project, to get the best of both worlds, Node.js compatibility as well as OS X specific desktop functions.
+
+### Apache Cordova / PhoneGap
+
+[_Apache Cordova_](https://cordova.apache.org/) is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript.
+
+Apache Cordova is available for multiple platforms, but when focussing on the iOS platform, it too can be combined with the _Node.app_ project to get the best of both worlds.
+
+
+## How to compile
 
 You most likely want to use the stable brach, by `git checkout stable`.
 
