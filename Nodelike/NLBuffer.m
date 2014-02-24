@@ -211,14 +211,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     NSString     *strVal = value.toString;
     unsigned long valLen = strVal.length;
     
-    JSValueRef intVal = JSValueMakeNumber(context, (unsigned char)[strVal characterAtIndex:0]);
-    
-    if (valLen == 1) {
-        for (int i = start; i < end; i++) {
-            JSObjectSetPropertyAtIndex(context, buffer, i, intVal, nil);
-        }
-        return;
-    }
+    JSValueRef intVal;
 
     for (int i = 0; i < len; i++) {
         intVal = JSValueMakeNumber(context, (unsigned char)[strVal characterAtIndex:i % valLen]);
