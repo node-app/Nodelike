@@ -70,6 +70,20 @@ static JSChar *sliceBufferBinary(JSChar *data, JSValue *target, int off, int len
     return data;
 }
 
+static unsigned char hextab[] = "0123456789abcdef";
+
+static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
+    JSContextRef contextRef = target.context.JSGlobalContextRef;
+    JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
+    for (int i = 0; i < len; i += 2) {
+        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + off, nil);
+        unsigned char val = (unsigned char)JSValueToNumber(contextRef, prop, nil) % 256;
+        data[i + 0] = hextab[(val >> 4) & 0x0f];
+        data[i + 1] = hextab[(val >> 0) & 0x0f];
+    }
+    return data;
+}
+
 @implementation NLBuffer
 
 + (id)binding {
@@ -152,8 +166,7 @@ static JSChar *sliceBufferBinary(JSChar *data, JSValue *target, int off, int len
 
 + (JSValue *)sliceAscii:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg {
     int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
-    JSChar *data  = sliceBufferAscii(calloc(len + 1, sizeof(JSChar)), buffer, start, len);
-    data[len] = '\0';
+    JSChar *data  = sliceBufferAscii(calloc(len, sizeof(JSChar)), buffer, start, len);
     JSContextRef c = buffer.context.JSGlobalContextRef;
     JSStringRef  s = JSStringCreateWithCharacters(data, len);
     free(data);
@@ -162,8 +175,16 @@ static JSChar *sliceBufferBinary(JSChar *data, JSValue *target, int off, int len
 
 + (JSValue *)sliceBinary:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg {
     int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
-    JSChar *data  = sliceBufferBinary(calloc(len + 1, sizeof(JSChar)), buffer, start, len);
-    data[len] = '\0';
+    JSChar *data  = sliceBufferBinary(calloc(len, sizeof(JSChar)), buffer, start, len);
+    JSContextRef c = buffer.context.JSGlobalContextRef;
+    JSStringRef  s = JSStringCreateWithCharacters(data, len);
+    free(data);
+    return [JSValue valueWithJSValueRef:JSValueMakeString(c, s) inContext:buffer.context];
+}
+
++ (JSValue *)sliceHex:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg {
+    int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
+    JSChar *data  = sliceBufferHex(calloc(len * 2, sizeof(JSChar)), buffer, start, len);
     JSContextRef c = buffer.context.JSGlobalContextRef;
     JSStringRef  s = JSStringCreateWithCharacters(data, len);
     free(data);
@@ -201,6 +222,10 @@ static JSChar *sliceBufferBinary(JSChar *data, JSValue *target, int off, int len
     
     proto[@"utf8Slice"] = ^(NSNumber *start, NSNumber *end) {
         return [NLBuffer slice:NLContext.currentThis from:start to:end];
+    };
+    
+    proto[@"hexSlice"] = ^(NSNumber *start, NSNumber *end) {
+        return [NLBuffer sliceHex:JSContext.currentThis from:start to:end];
     };
     
     proto[@"asciiWrite"] = ^(NSString *string, JSValue *off, JSValue *len) {
