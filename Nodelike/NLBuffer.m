@@ -75,11 +75,11 @@ static unsigned char hextab[] = "0123456789abcdef";
 static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     JSContextRef contextRef = target.context.JSGlobalContextRef;
     JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
-    for (int i = 0; i < len; i += 2) {
+    for (int i = 0; i < len; i++) {
         JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + off, nil);
         unsigned char val = (unsigned char)JSValueToNumber(contextRef, prop, nil) % 256;
-        data[i + 0] = hextab[(val >> 4) & 0x0f];
-        data[i + 1] = hextab[(val >> 0) & 0x0f];
+        data[i * 2 + 0] = hextab[(val >> 4) & 0x0f];
+        data[i * 2 + 1] = hextab[(val >> 0) & 0x0f];
     }
     return data;
 }
@@ -186,20 +186,45 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
     JSChar *data  = sliceBufferHex(calloc(len * 2, sizeof(JSChar)), buffer, start, len);
     JSContextRef c = buffer.context.JSGlobalContextRef;
-    JSStringRef  s = JSStringCreateWithCharacters(data, len);
+    JSStringRef  s = JSStringCreateWithCharacters(data, len * 2);
     free(data);
     return [JSValue valueWithJSValueRef:JSValueMakeString(c, s) inContext:buffer.context];
 }
 
 + (void)fill:(JSValue *)target with:(JSValue *)value from:(JSValue *)start_arg to:(JSValue *)end_arg {
+
     int start = start_arg.isUndefined ? 0 : start_arg.toInt32,
-        end   = end_arg.isUndefined   ? [self getLength:target] : end_arg.toInt32;
+        end   = end_arg.isUndefined   ? [self getLength:target] : end_arg.toInt32,
+        len   = end - start;
+
     JSContextRef context = target.context.JSGlobalContextRef;
     JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
-    JSValueRef   val     = value.JSValueRef;
-    for (int i = start; i < end; i++) {
-        JSObjectSetPropertyAtIndex(context, buffer, i, val, nil);
+    
+    if (value.isNumber) {
+        JSValueRef intVal = JSValueMakeNumber(context, value.toInt32 % 256);
+        for (int i = start; i < end; i++) {
+            JSObjectSetPropertyAtIndex(context, buffer, i, intVal, nil);
+        }
+        return;
     }
+    
+    NSString     *strVal = value.toString;
+    unsigned long valLen = strVal.length;
+    
+    JSValueRef intVal = JSValueMakeNumber(context, (unsigned char)[strVal characterAtIndex:0]);
+    
+    if (valLen == 1) {
+        for (int i = start; i < end; i++) {
+            JSObjectSetPropertyAtIndex(context, buffer, i, intVal, nil);
+        }
+        return;
+    }
+
+    for (int i = 0; i < len; i++) {
+        intVal = JSValueMakeNumber(context, (unsigned char)[strVal characterAtIndex:i % valLen]);
+        JSObjectSetPropertyAtIndex(context, buffer, i + start, intVal, nil);
+    }
+
 }
 
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
