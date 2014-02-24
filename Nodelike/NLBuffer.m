@@ -191,6 +191,38 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     return [JSValue valueWithJSValueRef:JSValueMakeString(c, s) inContext:buffer.context];
 }
 
++ (NSNumber *)copy:(JSValue *)source
+            target:(JSValue *)target targetStart:(JSValue *)targetStartArg
+       sourceStart:(JSValue *)sourceStartArg sourceEnd:(JSValue *)sourceEndArg {
+
+    int targetLength = [NLBuffer getLength:target],
+        sourceLength = [NLBuffer getLength:source],
+        targetStart  = targetStartArg.isUndefined ? 0 : targetStartArg.toInt32,
+        sourceStart  = sourceStartArg.isUndefined ? 0 : sourceStartArg.toInt32,
+        sourceEnd    = sourceEndArg.isUndefined   ? sourceLength : sourceEndArg.toInt32;
+    
+    if (targetStart >= targetLength || sourceStart >= sourceEnd)
+        return [NSNumber numberWithInt:0];
+    
+    if (sourceEnd - sourceStart > targetLength - targetStart)
+        sourceEnd = sourceStart + targetLength - targetStart;
+    
+    int toCopy = MIN(MIN(sourceEnd - sourceStart, targetLength - targetStart), sourceLength - sourceStart);
+    
+    JSContextRef context      = target.context.JSGlobalContextRef;
+    JSObjectRef  sourceBuffer = JSValueToObject(context, source.JSValueRef, nil),
+                 targetBuffer = JSValueToObject(context, target.JSValueRef, nil);
+    JSValueRef   value;
+    
+    for (int i = 0; i < toCopy; i++) {
+        value = JSObjectGetPropertyAtIndex(context, sourceBuffer, i + sourceStart, nil);
+        JSObjectSetPropertyAtIndex(context, targetBuffer, i + targetStart, value, nil);
+    }
+    
+    return [NSNumber numberWithInt:toCopy];
+    
+}
+
 + (void)fill:(JSValue *)target with:(JSValue *)value from:(JSValue *)start_arg to:(JSValue *)end_arg {
 
     int start = start_arg.isUndefined ? 0 : start_arg.toInt32,
@@ -228,6 +260,10 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     
     proto[@"fill"] = ^(JSValue *value, JSValue *start, JSValue *end) {
         return [NLBuffer fill:JSContext.currentThis with:value from:start to:end];
+    };
+    
+    proto[@"copy"] = ^(JSValue *target, JSValue *targetStart, JSValue *sourceStart, JSValue *sourceEnd) {
+        return [NLBuffer copy:JSContext.currentThis target:target targetStart:targetStart sourceStart:sourceStart sourceEnd:sourceEnd];
     };
     
     proto[@"asciiSlice"] = ^(NSNumber *start, NSNumber *end) {
