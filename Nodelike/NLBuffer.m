@@ -31,6 +31,15 @@ static size_t writeBufferAscii(const char *data, JSValue *target, int off, int l
     return len;
 }
 
+static size_t writeBufferBinary(const char *data, JSValue *target, int off, int len) {
+    JSContextRef context = target.context.JSGlobalContextRef;
+    JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
+    for (int i = 0; i < len; i++) {
+        JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 256), nil);
+    }
+    return len;
+}
+
 static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
     JSContextRef contextRef = target.context.JSGlobalContextRef;
     JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
@@ -47,6 +56,16 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
     for (int i = 0; i < len; i++) {
         JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + off, nil);
         data[i] = (unsigned char)JSValueToNumber(contextRef, prop, nil) % 128;
+    }
+    return data;
+}
+
+static JSChar *sliceBufferBinary(JSChar *data, JSValue *target, int off, int len) {
+    JSContextRef contextRef = target.context.JSGlobalContextRef;
+    JSObjectRef  bufferRef  = (JSObjectRef)target.JSValueRef;
+    for (int i = 0; i < len; i++) {
+        JSValueRef prop = JSObjectGetPropertyAtIndex(contextRef, bufferRef, i + off, nil);
+        data[i] = (unsigned char)JSValueToNumber(contextRef, prop, nil) % 256;
     }
     return data;
 }
@@ -79,6 +98,11 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
     return [NLBuffer writeAscii:[data bytes] toBuffer:target atOffset:off withLength:len];
 }
 
++ (NSNumber *)writeBinaryString:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
+    longlived NSData *data = [str dataUsingEncoding:NSASCIIStringEncoding];
+    return [NLBuffer writeBinary:[data bytes] toBuffer:target atOffset:off withLength:len];
+}
+
 + (NSNumber *)write:(const char *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
     
     int obj_length = [target[@"length"] toInt32],
@@ -96,6 +120,16 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
     max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
     return [NSNumber numberWithUnsignedInteger:writeBufferAscii(data, target, offset, MIN(obj_length - offset, max_length))];
+    
+}
+
++ (NSNumber *)writeBinary:(const char *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
+    
+    int obj_length = [target[@"length"] toInt32],
+    offset     = [off isUndefined] ?                   0 : [off toUInt32],
+    max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
+    
+    return [NSNumber numberWithUnsignedInteger:writeBufferBinary(data, target, offset, MIN(obj_length - offset, max_length))];
     
 }
 
@@ -119,6 +153,16 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
 + (JSValue *)sliceAscii:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg {
     int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
     JSChar *data  = sliceBufferAscii(calloc(len + 1, sizeof(JSChar)), buffer, start, len);
+    data[len] = '\0';
+    JSContextRef c = buffer.context.JSGlobalContextRef;
+    JSStringRef  s = JSStringCreateWithCharacters(data, len);
+    free(data);
+    return [JSValue valueWithJSValueRef:JSValueMakeString(c, s) inContext:buffer.context];
+}
+
++ (JSValue *)sliceBinary:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg {
+    int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
+    JSChar *data  = sliceBufferBinary(calloc(len + 1, sizeof(JSChar)), buffer, start, len);
     data[len] = '\0';
     JSContextRef c = buffer.context.JSGlobalContextRef;
     JSStringRef  s = JSStringCreateWithCharacters(data, len);
@@ -152,7 +196,7 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
     };
     
     proto[@"binarySlice"] = ^(NSNumber *start, NSNumber *end) {
-        return [NLBuffer sliceAscii:NLContext.currentThis from:start to:end];
+        return [NLBuffer sliceBinary:NLContext.currentThis from:start to:end];
     };
     
     proto[@"utf8Slice"] = ^(NSNumber *start, NSNumber *end) {
@@ -164,7 +208,7 @@ static JSChar *sliceBufferAscii(JSChar *data, JSValue *target, int off, int len)
     };
     
     proto[@"binaryWrite"] = ^(NSString *string, JSValue *off, JSValue *len) {
-        return [NLBuffer writeAsciiString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
+        return [NLBuffer writeBinaryString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
     };
     
     proto[@"utf8Write"] = ^(NSString *string, JSValue *off, JSValue *len) {
