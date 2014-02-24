@@ -6,7 +6,9 @@ notifications:
   flowdock: 803358c5edc46b50866b8e588b4c374b
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/fa1f3636231a3e89e7fd
-    on_success: change  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: false     # default: false
+    - https://webhooks.gitter.im/e/fa1f3636231a3e89e7fd
+    on_success: change
+    on_failure: always
+    on_start: false
+  hipchat:
+    secure: PWUImx7gQYERVm1kpBaZGOE+fLVmL4WnOSuDJSTBMaD0X1kL+6wo+qPJVCrp49IIa2GWEOkCDS0ZJaaEmN1mifct4HMSkgzD9W8PbvPFc0GryYvuZEos5j+932a8opV5GnysDMeF2szZZIog2D6dePZpA9CSJLDvTwK8OxjBLDQ=
