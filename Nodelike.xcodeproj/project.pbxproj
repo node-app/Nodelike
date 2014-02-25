@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCares.m */; };
+		B511406818BD57E6001B3987 /* smalloc.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406718BD57C4001B3987 /* smalloc.js */; };
 		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
 		B52B8144186075CD003B40D9 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8118186075CD003B40D9 /* inet.c */; };
 		B52B8146186075CD003B40D9 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811C186075CD003B40D9 /* async.c */; };
@@ -154,6 +155,7 @@
 /* Begin PBXFileReference section */
 		B5061A381815A9B00083AB4B /* NLCares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCares.h; sourceTree = "<group>"; };
 		B5061A391815A9B00083AB4B /* NLCares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCares.m; sourceTree = "<group>"; };
+		B511406718BD57C4001B3987 /* smalloc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = smalloc.js; sourceTree = "<group>"; };
 		B52B810D18607587003B40D9 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = libuv/include/tree.h; sourceTree = SOURCE_ROOT; };
 		B52B810E18607587003B40D9 /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-bsd.h"; path = "libuv/include/uv-bsd.h"; sourceTree = SOURCE_ROOT; };
 		B52B810F18607587003B40D9 /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-darwin.h"; path = "libuv/include/uv-darwin.h"; sourceTree = SOURCE_ROOT; };
@@ -1143,6 +1145,7 @@
 				B572DD6518B4E92A005E6403 /* querystring.js */,
 				B572DD6618B4E92A005E6403 /* readline.js */,
 				B572DD6718B4E92A005E6403 /* repl.js */,
+				B511406718BD57C4001B3987 /* smalloc.js */,
 				B572DD6818B4E92A005E6403 /* stream.js */,
 				B572DD6918B4E92A005E6403 /* string_decoder.js */,
 				B572DD6A18B4E92A005E6403 /* sys.js */,
@@ -2052,6 +2055,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B511406818BD57E6001B3987 /* smalloc.js in Resources */,
 				B58E801318B953CC0049990B /* test-buffer-ascii.js in Resources */,
 				B58E801418B953CC0049990B /* test-buffer-concat.js in Resources */,
 				B58E801518B953CC0049990B /* test-buffer-inspect.js in Resources */,
