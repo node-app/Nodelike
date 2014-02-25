@@ -169,21 +169,21 @@ static JSContext *contextForEventRequest(uv_fs_t *req) {
     return (JSContext *)((__bridge JSValue *)data->callback).context;
 }
 
-static JSValue *req(JSValue *cb, void(^task)(uv_loop_t *, uv_fs_t *, callback), void(^then)(uv_fs_t *)) {
-    
-    JSContext *context = JSContext.currentContext;
-    
-    uv_fs_t *req = malloc(uv_req_size(UV_FS));
-    
-    struct data *data = req->data = malloc(sizeof(struct data));
+static bool createReq(uv_fs_t **req, JSValue *cb, void(^then)(uv_fs_t *)) {
+    *req = malloc(uv_req_size(UV_FS));
+    struct data *data = (*req)->data = malloc(sizeof(struct data));
     data->callback = (void *)CFBridgingRetain(cb);
     data->error = nil;
     data->value = nil;
     data->after = (void *)CFBridgingRetain(then);
+    return !cb.isUndefined;
+}
+
+static JSValue *fireReq(uv_fs_t *req, bool async) {
     
-    bool async = ![cb isUndefined];
+    JSContext *context = JSContext.currentContext;
     
-    task(NLContext.eventLoop, req, async ? after : nil);
+    struct data *data = req->data;
     
     if (!async) {
         
@@ -203,6 +203,18 @@ static JSValue *req(JSValue *cb, void(^task)(uv_loop_t *, uv_fs_t *, callback), 
     }
     
     return nil;
+
+}
+
+static JSValue *req(JSValue *cb, void(^task)(uv_loop_t *, uv_fs_t *, callback), void(^then)(uv_fs_t *)) {
+    
+    uv_fs_t *req;
+    
+    bool async = createReq(&req, cb, then);
+    
+    task(NLContext.eventLoop, req, async ? after : nil);
+    
+    return fireReq(req, async);
     
 }
 
