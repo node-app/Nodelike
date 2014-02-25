@@ -37,6 +37,29 @@
 		B52B8167186075CD003B40D9 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8142186075CD003B40D9 /* version.c */; };
 		B52B9B9318A01D0800492856 /* NLAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B9B9218A01D0800492856 /* NLAsync.m */; };
 		B53E6998184672F3004E4EF9 /* NLStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B53E6997184672F3004E4EF9 /* NLStream.m */; };
+		B54109D018BCBE0900FC854A /* NLAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = B52B9B9218A01D0800492856 /* NLAsync.m */; };
+		B54109D118BCBE0900FC854A /* NLHTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */; };
+		B54109D218BCBE0900FC854A /* NSObject+Nodelike.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */; };
+		B54109D318BCBE0900FC854A /* NLTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = B599FF2B185A7ED000057DD6 /* NLTCP.m */; };
+		B54109D418BCBE0900FC854A /* NLUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = B5417310189415C000B6636B /* NLUDP.m */; };
+		B54109D518BCBE0900FC854A /* NLUV.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F8A181EC45A0093A6FF /* NLUV.m */; };
+		B54109D618BCBE0900FC854A /* NLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA2181F07480093A6FF /* NLConstants.m */; };
+		B54109D718BCBE0900FC854A /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
+		B54109D818BCBE0900FC854A /* NLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F99181F07270093A6FF /* NLContext.m */; };
+		B54109D918BCBE0900FC854A /* NLCares.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCares.m */; };
+		B54109DA18BCBE0900FC854A /* NLHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F90181EE3590093A6FF /* NLHandle.m */; };
+		B54109DB18BCBE0900FC854A /* NLNatives.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842618945E9900EA1A81 /* NLNatives.m */; };
+		B54109DC18BCBE0900FC854A /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFA8187DBFA700FF1D8A /* http_parser.c */; };
+		B54109DD18BCBE0900FC854A /* NLStream.m in Sources */ = {isa = PBXBuildFile; fileRef = B53E6997184672F3004E4EF9 /* NLStream.m */; };
+		B54109DE18BCBE0900FC854A /* NLContextify.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2D189E501200CC04D6 /* NLContextify.m */; };
+		B54109DF18BCBE0900FC854A /* NLFS.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F93181F07090093A6FF /* NLFS.m */; };
+		B54109E018BCBE0900FC854A /* NLProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F9C181F07320093A6FF /* NLProcess.m */; };
+		B54109E118BCBE0900FC854A /* NLBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F9F181F073D0093A6FF /* NLBinding.m */; };
+		B54109E218BCBE0900FC854A /* NLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA51820EF530093A6FF /* NLTimer.m */; };
+		B54109E318BCBE0900FC854A /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
+		B54109E518BCBE0900FC854A /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
+		B54109E618BCBE0900FC854A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
+		B54109E718BCBE0900FC854A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B5417311189415C000B6636B /* NLUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = B5417310189415C000B6636B /* NLUDP.m */; };
 		B54173181894341600B6636B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54173171894341600B6636B /* XCTest.framework */; };
 		B54173191894341600B6636B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
@@ -127,6 +150,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B54109CE18BCBE0900FC854A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5B44637180AB78E009ADEF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B54C1F51180D37280051F826;
+			remoteInfo = uv;
+		};
 		B54173251894341600B6636B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5B44637180AB78E009ADEF9 /* Project object */;
@@ -188,6 +218,7 @@
 		B52B9B9218A01D0800492856 /* NLAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLAsync.m; sourceTree = "<group>"; };
 		B53E6996184672F3004E4EF9 /* NLStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLStream.h; sourceTree = "<group>"; };
 		B53E6997184672F3004E4EF9 /* NLStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLStream.m; sourceTree = "<group>"; };
+		B54109EC18BCBE0900FC854A /* libNodelikeOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNodelikeOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B541730F189415C000B6636B /* NLUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLUDP.h; sourceTree = "<group>"; };
 		B5417310189415C000B6636B /* NLUDP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLUDP.m; sourceTree = "<group>"; };
 		B54173161894341600B6636B /* Nodelike Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nodelike Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -298,6 +329,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B54109E418BCBE0900FC854A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B54109E518BCBE0900FC854A /* libuv.a in Frameworks */,
+				B54109E618BCBE0900FC854A /* JavaScriptCore.framework in Frameworks */,
+				B54109E718BCBE0900FC854A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B54173131894341600B6636B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,6 +593,7 @@
 				B59EA08E180CB587005BF5C1 /* libNodelike.a */,
 				B54C1F52180D37280051F826 /* libuv.a */,
 				B54173161894341600B6636B /* Nodelike Tests.xctest */,
+				B54109EC18BCBE0900FC854A /* libNodelikeOSX.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -597,6 +639,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B54109CC18BCBE0900FC854A /* NodelikeOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B54109E918BCBE0900FC854A /* Build configuration list for PBXNativeTarget "NodelikeOSX" */;
+			buildPhases = (
+				B54109CF18BCBE0900FC854A /* Sources */,
+				B54109E418BCBE0900FC854A /* Frameworks */,
+				B54109E818BCBE0900FC854A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B54109CD18BCBE0900FC854A /* PBXTargetDependency */,
+			);
+			name = NodelikeOSX;
+			productName = Nodelike;
+			productReference = B54109EC18BCBE0900FC854A /* libNodelikeOSX.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		B54173151894341600B6636B /* Nodelike Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B54173271894341600B6636B /* Build configuration list for PBXNativeTarget "Nodelike Tests" */;
@@ -681,11 +741,19 @@
 				B59EA08D180CB587005BF5C1 /* Nodelike */,
 				B54C1F51180D37280051F826 /* uv */,
 				B54173151894341600B6636B /* Nodelike Tests */,
+				B54109CC18BCBE0900FC854A /* NodelikeOSX */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B54109E818BCBE0900FC854A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B54173141894341600B6636B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -780,6 +848,33 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B54109CF18BCBE0900FC854A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B54109D018BCBE0900FC854A /* NLAsync.m in Sources */,
+				B54109D118BCBE0900FC854A /* NLHTTPParser.m in Sources */,
+				B54109D218BCBE0900FC854A /* NSObject+Nodelike.m in Sources */,
+				B54109D318BCBE0900FC854A /* NLTCP.m in Sources */,
+				B54109D418BCBE0900FC854A /* NLUDP.m in Sources */,
+				B54109D518BCBE0900FC854A /* NLUV.m in Sources */,
+				B54109D618BCBE0900FC854A /* NLConstants.m in Sources */,
+				B54109D718BCBE0900FC854A /* NLSmalloc.m in Sources */,
+				B54109D818BCBE0900FC854A /* NLContext.m in Sources */,
+				B54109D918BCBE0900FC854A /* NLCares.m in Sources */,
+				B54109DA18BCBE0900FC854A /* NLHandle.m in Sources */,
+				B54109DB18BCBE0900FC854A /* NLNatives.m in Sources */,
+				B54109DC18BCBE0900FC854A /* http_parser.c in Sources */,
+				B54109DD18BCBE0900FC854A /* NLStream.m in Sources */,
+				B54109DE18BCBE0900FC854A /* NLContextify.m in Sources */,
+				B54109DF18BCBE0900FC854A /* NLFS.m in Sources */,
+				B54109E018BCBE0900FC854A /* NLProcess.m in Sources */,
+				B54109E118BCBE0900FC854A /* NLBinding.m in Sources */,
+				B54109E218BCBE0900FC854A /* NLTimer.m in Sources */,
+				B54109E318BCBE0900FC854A /* NLBuffer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B54173121894341600B6636B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -852,6 +947,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B54109CD18BCBE0900FC854A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B54C1F51180D37280051F826 /* uv */;
+			targetProxy = B54109CE18BCBE0900FC854A /* PBXContainerItemProxy */;
+		};
 		B54173261894341600B6636B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B59EA08D180CB587005BF5C1 /* Nodelike */;
@@ -876,6 +976,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B54109EA18BCBE0900FC854A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Nodelike.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nodelike/Nodelike-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = NodelikeOSX;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B54109EB18BCBE0900FC854A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Nodelike.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Nodelike/Nodelike-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = NodelikeOSX;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		B54173281894341600B6636B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1041,6 +1171,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B54109E918BCBE0900FC854A /* Build configuration list for PBXNativeTarget "NodelikeOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B54109EA18BCBE0900FC854A /* Debug */,
+				B54109EB18BCBE0900FC854A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B54173271894341600B6636B /* Build configuration list for PBXNativeTarget "Nodelike Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
