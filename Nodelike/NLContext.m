@@ -33,10 +33,6 @@
     return self;
 }
 
-+ (NLContext *)currentContext {
-    return (NLContext *)[super currentContext];
-}
-
 #pragma mark - Scope Setup
 
 + (void)attachToContext:(JSContext *)context {
@@ -135,7 +131,7 @@
     return uv_default_loop();
 }
 
-+ (dispatch_queue_t)dispatchQueue {
+static dispatch_queue_t dispatchQueue () {
     static dispatch_queue_t queue;
     static dispatch_once_t token = 0;
     dispatch_once(&token, ^{
@@ -145,13 +141,13 @@
 }
 
 + (void)runEventLoopSync {
-    dispatch_sync(NLContext.dispatchQueue, ^{
+    dispatch_sync(dispatchQueue(), ^{
         uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
     });
 }
 
 + (void)runEventLoopAsync {
-    dispatch_async(NLContext.dispatchQueue, ^{
+    dispatch_async(dispatchQueue(), ^{
         uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
     });
 }
