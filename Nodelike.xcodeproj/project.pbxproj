@@ -57,9 +57,38 @@
 		B54109E118BCBE0900FC854A /* NLBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5F9F181F073D0093A6FF /* NLBinding.m */; };
 		B54109E218BCBE0900FC854A /* NLTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B59E5FA51820EF530093A6FF /* NLTimer.m */; };
 		B54109E318BCBE0900FC854A /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
-		B54109E518BCBE0900FC854A /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
 		B54109E618BCBE0900FC854A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA04F180CB38E005BF5C1 /* JavaScriptCore.framework */; };
 		B54109E718BCBE0900FC854A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
+		B54109F818BCBF8C00FC854A /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811E186075CD003B40D9 /* core.c */; };
+		B54109F918BCBF8C00FC854A /* uv-common.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8140186075CD003B40D9 /* uv-common.c */; };
+		B54109FA18BCBF8C00FC854A /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8123186075CD003B40D9 /* fs.c */; };
+		B54109FB18BCBF8C00FC854A /* dl.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8121186075CD003B40D9 /* dl.c */; };
+		B54109FC18BCBF8C00FC854A /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811C186075CD003B40D9 /* async.c */; };
+		B54109FD18BCBF8C00FC854A /* getaddrinfo.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8125186075CD003B40D9 /* getaddrinfo.c */; };
+		B54109FE18BCBF8C00FC854A /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8135186075CD003B40D9 /* signal.c */; };
+		B54109FF18BCBF8C00FC854A /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813A186075CD003B40D9 /* thread.c */; };
+		B5410A0018BCBF8C00FC854A /* threadpool.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813B186075CD003B40D9 /* threadpool.c */; };
+		B5410A0118BCBF8C00FC854A /* loop-watcher.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B812C186075CD003B40D9 /* loop-watcher.c */; };
+		B5410A0218BCBF8C00FC854A /* tty.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813D186075CD003B40D9 /* tty.c */; };
+		B5410A0318BCBF8C00FC854A /* poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8131186075CD003B40D9 /* poll.c */; };
+		B5410A0418BCBF8C00FC854A /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813C186075CD003B40D9 /* timer.c */; };
+		B5410A0518BCBF8C00FC854A /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8142186075CD003B40D9 /* version.c */; };
+		B5410A0618BCBF8C00FC854A /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B813E186075CD003B40D9 /* udp.c */; };
+		B5410A0718BCBF8C00FC854A /* stream.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8137186075CD003B40D9 /* stream.c */; };
+		B5410A0818BCBF8C00FC854A /* kqueue.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8127186075CD003B40D9 /* kqueue.c */; };
+		B5410A0918BCBF8C00FC854A /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8132186075CD003B40D9 /* process.c */; };
+		B5410A0A18BCBF8C00FC854A /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8139186075CD003B40D9 /* tcp.c */; };
+		B5410A0B18BCBF8C00FC854A /* loop.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B812D186075CD003B40D9 /* loop.c */; };
+		B5410A0C18BCBF8C00FC854A /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8118186075CD003B40D9 /* inet.c */; };
+		B5410A0D18BCBF8C00FC854A /* pipe.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8130186075CD003B40D9 /* pipe.c */; };
+		B5410A0E18BCBF8C00FC854A /* proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8133186075CD003B40D9 /* proctitle.c */; };
+		B5410A0F18BCBF8C00FC854A /* darwin.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8120186075CD003B40D9 /* darwin.c */; };
+		B5410A1018BCBF8C00FC854A /* fsevents.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8124186075CD003B40D9 /* fsevents.c */; };
+		B5410A1118BCBF8C00FC854A /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
+		B5410A1218BCBF8C00FC854A /* darwin-proctitle.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811F186075CD003B40D9 /* darwin-proctitle.c */; };
+		B5410A1418BCBF8C00FC854A /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
+		B5410A1518BCBF8C00FC854A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
+		B5410A1C18BCBFB200FC854A /* libuvOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5410A1918BCBF8C00FC854A /* libuvOSX.a */; };
 		B5417311189415C000B6636B /* NLUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = B5417310189415C000B6636B /* NLUDP.m */; };
 		B54173181894341600B6636B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54173171894341600B6636B /* XCTest.framework */; };
 		B54173191894341600B6636B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
@@ -150,12 +179,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B54109CE18BCBE0900FC854A /* PBXContainerItemProxy */ = {
+		B5410A1A18BCBFAA00FC854A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5B44637180AB78E009ADEF9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B54C1F51180D37280051F826;
-			remoteInfo = uv;
+			remoteGlobalIDString = B54109F618BCBF8C00FC854A;
+			remoteInfo = uvOSX;
 		};
 		B54173251894341600B6636B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -219,6 +248,7 @@
 		B53E6996184672F3004E4EF9 /* NLStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLStream.h; sourceTree = "<group>"; };
 		B53E6997184672F3004E4EF9 /* NLStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLStream.m; sourceTree = "<group>"; };
 		B54109EC18BCBE0900FC854A /* libNodelikeOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNodelikeOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5410A1918BCBF8C00FC854A /* libuvOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuvOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B541730F189415C000B6636B /* NLUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLUDP.h; sourceTree = "<group>"; };
 		B5417310189415C000B6636B /* NLUDP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLUDP.m; sourceTree = "<group>"; };
 		B54173161894341600B6636B /* Nodelike Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nodelike Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,9 +363,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B54109E518BCBE0900FC854A /* libuv.a in Frameworks */,
+				B5410A1C18BCBFB200FC854A /* libuvOSX.a in Frameworks */,
 				B54109E618BCBE0900FC854A /* JavaScriptCore.framework in Frameworks */,
 				B54109E718BCBE0900FC854A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5410A1318BCBF8C00FC854A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5410A1418BCBF8C00FC854A /* libm.dylib in Frameworks */,
+				B5410A1518BCBF8C00FC854A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +633,7 @@
 				B54C1F52180D37280051F826 /* libuv.a */,
 				B54173161894341600B6636B /* Nodelike Tests.xctest */,
 				B54109EC18BCBE0900FC854A /* libNodelikeOSX.a */,
+				B5410A1918BCBF8C00FC854A /* libuvOSX.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -650,11 +690,27 @@
 			buildRules = (
 			);
 			dependencies = (
-				B54109CD18BCBE0900FC854A /* PBXTargetDependency */,
+				B5410A1B18BCBFAA00FC854A /* PBXTargetDependency */,
 			);
 			name = NodelikeOSX;
 			productName = Nodelike;
 			productReference = B54109EC18BCBE0900FC854A /* libNodelikeOSX.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B54109F618BCBF8C00FC854A /* uvOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5410A1618BCBF8C00FC854A /* Build configuration list for PBXNativeTarget "uvOSX" */;
+			buildPhases = (
+				B54109F718BCBF8C00FC854A /* Sources */,
+				B5410A1318BCBF8C00FC854A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = uvOSX;
+			productName = uv;
+			productReference = B5410A1918BCBF8C00FC854A /* libuvOSX.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		B54173151894341600B6636B /* Nodelike Tests */ = {
@@ -742,6 +798,7 @@
 				B54C1F51180D37280051F826 /* uv */,
 				B54173151894341600B6636B /* Nodelike Tests */,
 				B54109CC18BCBE0900FC854A /* NodelikeOSX */,
+				B54109F618BCBF8C00FC854A /* uvOSX */,
 			);
 		};
 /* End PBXProject section */
@@ -875,6 +932,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B54109F718BCBF8C00FC854A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B54109F818BCBF8C00FC854A /* core.c in Sources */,
+				B54109F918BCBF8C00FC854A /* uv-common.c in Sources */,
+				B54109FA18BCBF8C00FC854A /* fs.c in Sources */,
+				B54109FB18BCBF8C00FC854A /* dl.c in Sources */,
+				B54109FC18BCBF8C00FC854A /* async.c in Sources */,
+				B54109FD18BCBF8C00FC854A /* getaddrinfo.c in Sources */,
+				B54109FE18BCBF8C00FC854A /* signal.c in Sources */,
+				B54109FF18BCBF8C00FC854A /* thread.c in Sources */,
+				B5410A0018BCBF8C00FC854A /* threadpool.c in Sources */,
+				B5410A0118BCBF8C00FC854A /* loop-watcher.c in Sources */,
+				B5410A0218BCBF8C00FC854A /* tty.c in Sources */,
+				B5410A0318BCBF8C00FC854A /* poll.c in Sources */,
+				B5410A0418BCBF8C00FC854A /* timer.c in Sources */,
+				B5410A0518BCBF8C00FC854A /* version.c in Sources */,
+				B5410A0618BCBF8C00FC854A /* udp.c in Sources */,
+				B5410A0718BCBF8C00FC854A /* stream.c in Sources */,
+				B5410A0818BCBF8C00FC854A /* kqueue.c in Sources */,
+				B5410A0918BCBF8C00FC854A /* process.c in Sources */,
+				B5410A0A18BCBF8C00FC854A /* tcp.c in Sources */,
+				B5410A0B18BCBF8C00FC854A /* loop.c in Sources */,
+				B5410A0C18BCBF8C00FC854A /* inet.c in Sources */,
+				B5410A0D18BCBF8C00FC854A /* pipe.c in Sources */,
+				B5410A0E18BCBF8C00FC854A /* proctitle.c in Sources */,
+				B5410A0F18BCBF8C00FC854A /* darwin.c in Sources */,
+				B5410A1018BCBF8C00FC854A /* fsevents.c in Sources */,
+				B5410A1118BCBF8C00FC854A /* fs-poll.c in Sources */,
+				B5410A1218BCBF8C00FC854A /* darwin-proctitle.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B54173121894341600B6636B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -947,10 +1038,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B54109CD18BCBE0900FC854A /* PBXTargetDependency */ = {
+		B5410A1B18BCBFAA00FC854A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B54C1F51180D37280051F826 /* uv */;
-			targetProxy = B54109CE18BCBE0900FC854A /* PBXContainerItemProxy */;
+			target = B54109F618BCBF8C00FC854A /* uvOSX */;
+			targetProxy = B5410A1A18BCBFAA00FC854A /* PBXContainerItemProxy */;
 		};
 		B54173261894341600B6636B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1001,6 +1092,32 @@
 				GCC_PREFIX_HEADER = "Nodelike/Nodelike-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = NodelikeOSX;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		B5410A1718BCBF8C00FC854A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/uv.dst;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = uvOSX;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B5410A1818BCBF8C00FC854A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/uv.dst;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = uvOSX;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -1176,6 +1293,15 @@
 			buildConfigurations = (
 				B54109EA18BCBE0900FC854A /* Debug */,
 				B54109EB18BCBE0900FC854A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5410A1618BCBF8C00FC854A /* Build configuration list for PBXNativeTarget "uvOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5410A1718BCBF8C00FC854A /* Debug */,
+				B5410A1818BCBF8C00FC854A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
