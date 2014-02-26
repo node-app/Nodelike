@@ -117,6 +117,9 @@
     context[@"COUNTER_HTTP_CLIENT_REQUEST"]         = noop;
     context[@"COUNTER_HTTP_CLIENT_RESPONSE"]        = noop;
     
+    [context evaluateScript:@"Error.captureStackTrace = function (value) { return; };"];
+    [context evaluateScript:@"Number.isFinite = function (value) { return typeof value === 'number' && isFinite(value); };"];
+    
 }
 
 #if TARGET_OS_IPHONE
