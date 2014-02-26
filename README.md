@@ -41,6 +41,23 @@ As such, it can be combined with the _Node.app_ project, to get the best of both
 
 Apache Cordova is available for multiple platforms, but when focussing on the iOS platform, it too can be combined with the _Node.app_ project to get the best of both worlds.
 
+## What's working right now
+
+- `console.log()`
+- `process`: `.argv`, `.env`, `.exit()`, `.nextTick()`
+- `require()` for native modules
+- `fs`
+- `net`
+- `http`
+- `timers`
+- `util`
+- `url`
+- `events`
+- `path`
+- `stream`
+- `querystring`
+- `punycode`
+- `assert`
 
 ## How to compile
 
