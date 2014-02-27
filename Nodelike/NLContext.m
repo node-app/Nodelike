@@ -52,7 +52,8 @@
         @"moduleLoadList": @[]
     } inContext:context];
     
-    process[@"resourcePath"] = NLNatives.bundle.resourcePath;
+    process[@"resourcePath"]      = NLNatives.bundle.resourcePath;
+    process[@"env"][@"NODE_PATH"] = [NLNatives.bundle.resourcePath stringByAppendingString:@"/node_modules"];
     
     // used in Hrtime() below
 #define NANOS_PER_SEC 1000000000
