@@ -33,11 +33,6 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
         break;
         
         case NLEncodingAscii:
-        for (int i = 0; i < len; i++) {
-            JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 128), nil);
-        }
-        break;
-        
         case NLEncodingBinary:
         for (int i = 0; i < len; i++) {
             JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 256), nil);
@@ -56,7 +51,34 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
 
 static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int off, int len) {
     
-    return writeBuffer(enc, str.UTF8String, target, off, MIN(len, (int)str.length));
+    unichar *conv;
+    char    *data;
+    
+    switch (enc) {
+     
+        case NLEncodingBinary:
+        case NLEncodingAscii:
+        len  = MIN(len, (int)str.length);
+        conv = malloc(len * sizeof(unichar));
+        data = malloc(len);
+        [str getCharacters:conv];
+        for (int i = 0; i < len; i++) {
+            data[i] = conv[i] % 256;
+        }
+        break;
+        
+        case NLEncodingVerbatim:
+        data = (char *)[str cStringUsingEncoding:NSUTF8StringEncoding];
+        len  = MIN(len, (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+        break;
+        
+        default:
+        assert(0 && "unknown encoding");
+        break;
+        
+    }
+    
+    return writeBuffer(enc, data, target, off, len);
 
 }
 
