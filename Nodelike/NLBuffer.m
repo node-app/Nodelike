@@ -28,7 +28,7 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
         
         case NLEncodingVerbatim:
         for (int i = 0; i < len; i++) {
-            JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, data[i]), nil);
+            JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i]), nil);
         }
         break;
         
