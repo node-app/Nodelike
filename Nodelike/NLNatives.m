@@ -50,6 +50,7 @@
         [sources defineProperty:name
                      descriptor:@{JSPropertyDescriptorGetKey: ^{ return [NLNatives source:name]; }}];
     }
+    sources[@"config"] = @"\n{}";
     return sources;
 }
 
