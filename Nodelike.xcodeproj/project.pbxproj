@@ -101,23 +101,6 @@
 		B572E03318B92374005E6403 /* test-common.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E03218B92368005E6403 /* test-common.js */; };
 		B578842418944F2000EA1A81 /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
 		B578842718945E9900EA1A81 /* NLNatives.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842618945E9900EA1A81 /* NLNatives.m */; };
-		B58E800218B94E630049990B /* test-vm-basic.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C018B94E33005E6403 /* test-vm-basic.js */; };
-		B58E800318B94E630049990B /* test-vm-context-async-script.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C118B94E33005E6403 /* test-vm-context-async-script.js */; };
-		B58E800418B94E630049990B /* test-vm-context-property-forwarding.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C218B94E33005E6403 /* test-vm-context-property-forwarding.js */; };
-		B58E800518B94E630049990B /* test-vm-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C318B94E33005E6403 /* test-vm-context.js */; };
-		B58E800618B94E630049990B /* test-vm-create-and-run-in-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C418B94E33005E6403 /* test-vm-create-and-run-in-context.js */; };
-		B58E800718B94E630049990B /* test-vm-create-context-accessors.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C518B94E33005E6403 /* test-vm-create-context-accessors.js */; };
-		B58E800818B94E630049990B /* test-vm-create-context-arg.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C618B94E33005E6403 /* test-vm-create-context-arg.js */; };
-		B58E800918B94E630049990B /* test-vm-create-context-circular-reference.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C718B94E33005E6403 /* test-vm-create-context-circular-reference.js */; };
-		B58E800A18B94E630049990B /* test-vm-function-declaration.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C818B94E33005E6403 /* test-vm-function-declaration.js */; };
-		B58E800B18B94E630049990B /* test-vm-global-define-property.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C918B94E33005E6403 /* test-vm-global-define-property.js */; };
-		B58E800C18B94E630049990B /* test-vm-global-identity.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CA18B94E33005E6403 /* test-vm-global-identity.js */; };
-		B58E800D18B94E630049990B /* test-vm-is-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CB18B94E33005E6403 /* test-vm-is-context.js */; };
-		B58E800E18B94E630049990B /* test-vm-new-script-new-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CC18B94E33005E6403 /* test-vm-new-script-new-context.js */; };
-		B58E800F18B94E630049990B /* test-vm-new-script-this-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CD18B94E33005E6403 /* test-vm-new-script-this-context.js */; };
-		B58E801018B94E630049990B /* test-vm-run-in-new-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CE18B94E33005E6403 /* test-vm-run-in-new-context.js */; };
-		B58E801118B94E630049990B /* test-vm-static-this.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CF18B94E33005E6403 /* test-vm-static-this.js */; };
-		B58E801218B94E630049990B /* test-vm-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2D018B94E33005E6403 /* test-vm-timeout.js */; };
 		B58E801318B953CC0049990B /* test-buffer-ascii.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E04F18B94E2E005E6403 /* test-buffer-ascii.js */; };
 		B58E801418B953CC0049990B /* test-buffer-concat.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E05018B94E2E005E6403 /* test-buffer-concat.js */; };
 		B58E801518B953CC0049990B /* test-buffer-inspect.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E05118B94E2E005E6403 /* test-buffer-inspect.js */; };
@@ -2070,23 +2053,6 @@
 				B58E801418B953CC0049990B /* test-buffer-concat.js in Resources */,
 				B58E801518B953CC0049990B /* test-buffer-inspect.js in Resources */,
 				B58E801618B953CC0049990B /* test-buffer.js in Resources */,
-				B58E800218B94E630049990B /* test-vm-basic.js in Resources */,
-				B58E800318B94E630049990B /* test-vm-context-async-script.js in Resources */,
-				B58E800418B94E630049990B /* test-vm-context-property-forwarding.js in Resources */,
-				B58E800518B94E630049990B /* test-vm-context.js in Resources */,
-				B58E800618B94E630049990B /* test-vm-create-and-run-in-context.js in Resources */,
-				B58E800718B94E630049990B /* test-vm-create-context-accessors.js in Resources */,
-				B58E800818B94E630049990B /* test-vm-create-context-arg.js in Resources */,
-				B58E800918B94E630049990B /* test-vm-create-context-circular-reference.js in Resources */,
-				B58E800A18B94E630049990B /* test-vm-function-declaration.js in Resources */,
-				B58E800B18B94E630049990B /* test-vm-global-define-property.js in Resources */,
-				B58E800C18B94E630049990B /* test-vm-global-identity.js in Resources */,
-				B58E800D18B94E630049990B /* test-vm-is-context.js in Resources */,
-				B58E800E18B94E630049990B /* test-vm-new-script-new-context.js in Resources */,
-				B58E800F18B94E630049990B /* test-vm-new-script-this-context.js in Resources */,
-				B58E801018B94E630049990B /* test-vm-run-in-new-context.js in Resources */,
-				B58E801118B94E630049990B /* test-vm-static-this.js in Resources */,
-				B58E801218B94E630049990B /* test-vm-timeout.js in Resources */,
 				B572E03318B92374005E6403 /* test-common.js in Resources */,
 				B572DD9C18B4EB2C005E6403 /* nodelike.js in Resources */,
 				B572DD7218B4E93C005E6403 /* _debugger.js in Resources */,
