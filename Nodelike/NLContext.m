@@ -39,13 +39,13 @@
 
 #ifdef DEBUG
     context.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
-        NSLog(@"EXC: %@", e);
+        NSLog(@"EXC: %@; line: %@, stack: %@", e, [e valueForProperty:@"line"], [e valueForProperty:@"stack"]);
     };
 #endif
     
     JSValue *process = [JSValue valueWithObject:@{
         @"platform": @"darwin",
-        @"argv":     NSProcessInfo.processInfo.arguments,
+        @"argv":     @[],
         @"env":      NSProcessInfo.processInfo.environment,
         @"execPath": NSBundle.mainBundle.executablePath,
         @"_asyncFlags": @{},
@@ -89,13 +89,17 @@
         return [NLBinding bindingForIdentifier:binding];
     };
     
+    process[@"cwd"] = ^{
+        return @(getcwd(NULL, 0));
+    };
+    
+    process[@"_setupAsyncListener"] = ^{};
+    process[@"_setupNextTick"]      = ^{};
+    
     context[@"console"] = @{
         @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
         @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
     };
-    
-    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
-    [constructor callWithArguments:@[process]];
     
     [context.virtualMachine nodelikeSet:&env_process_object toValue:process];
 
@@ -119,6 +123,9 @@
     
     [context evaluateScript:@"Error.captureStackTrace = function (value) { return; };"];
     [context evaluateScript:@"Number.isFinite = function (value) { return typeof value === 'number' && isFinite(value); };"];
+    
+    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
+    [constructor callWithArguments:@[process]];
     
 }
 
