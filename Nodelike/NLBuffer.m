@@ -75,7 +75,7 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
 
     }
     
-    return writeBuffer(enc, data, target, off, len);
+    return writeBuffer(enc, data, target, off, MIN(len, (int)str.length));
 
 }
 
