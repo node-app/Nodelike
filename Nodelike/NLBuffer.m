@@ -55,27 +55,8 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
 }
 
 static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int off, int len) {
-
-    const char *data;
     
-    switch (enc) {
-        
-        case NLEncodingVerbatim:
-        data = str.UTF8String;
-        break;
-        
-        case NLEncodingAscii:
-        case NLEncodingBinary:
-        data = [str dataUsingEncoding:NSASCIIStringEncoding].bytes;
-        break;
-        
-        default:
-        assert(0 && "unknown encoding");
-        break;
-
-    }
-    
-    return writeBuffer(enc, data, target, off, MIN(len, (int)str.length));
+    return writeBuffer(enc, str.UTF8String, target, off, MIN(len, (int)str.length));
 
 }
 
