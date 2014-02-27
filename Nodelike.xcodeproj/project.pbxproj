@@ -1976,7 +1976,6 @@
 				B52B9B90189EC15600492856 /* Kill Simulator */,
 				B54173121894341600B6636B /* Sources */,
 				B54173131894341600B6636B /* Frameworks */,
-				B572DDCC18B91C54005E6403 /* Retrieve Test Scripts */,
 				B54173141894341600B6636B /* Resources */,
 			);
 			buildRules = (
@@ -2178,20 +2177,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "if [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then\n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\"?NL\nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\"\nfi\nfi";
-		};
-		B572DDCC18B91C54005E6403 /* Retrieve Test Scripts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Retrieve Test Scripts";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "curl https://registry.npmjs.org/node-core-test-simple/-/node-core-test-simple-0.11.11.tgz | tar -C Nodelike\\ Tests -xf -";
 		};
 /* End PBXShellScriptBuildPhase section */
 
