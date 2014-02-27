@@ -13,31 +13,45 @@
 
 #import "NSObject+Nodelike.h"
 
-static size_t writeBuffer(const char *data, JSValue *target, int off, int len) {
-    JSContextRef context = target.context.JSGlobalContextRef;
-    JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
-    for (int i = 0; i < len; i++) {
-        JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, data[i]), nil);
-    }
-    return len;
-}
+typedef enum {
+    NLEncodingAscii,
+    NLEncodingBinary,
+    NLEncodingVerbatim
+} NLEncoding;
 
-static size_t writeBufferAscii(const char *data, JSValue *target, int off, int len) {
+static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int off, int len) {
+    
     JSContextRef context = target.context.JSGlobalContextRef;
     JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
-    for (int i = 0; i < len; i++) {
-        JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 128), nil);
+    
+    switch (enc) {
+        
+        case NLEncodingVerbatim:
+        for (int i = 0; i < len; i++) {
+            JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, data[i]), nil);
+        }
+        break;
+        
+        case NLEncodingAscii:
+        for (int i = 0; i < len; i++) {
+            JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 128), nil);
+        }
+        break;
+        
+        case NLEncodingBinary:
+        for (int i = 0; i < len; i++) {
+            JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 256), nil);
+        }
+        break;
+        
+        default:
+        assert(0 && "unknown encoding");
+        break;
+        
     }
+    
     return len;
-}
-
-static size_t writeBufferBinary(const char *data, JSValue *target, int off, int len) {
-    JSContextRef context = target.context.JSGlobalContextRef;
-    JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
-    for (int i = 0; i < len; i++) {
-        JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i] % 256), nil);
-    }
-    return len;
+    
 }
 
 static char *sliceBuffer(char *data, JSValue *target, int off, int len) {
@@ -99,7 +113,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
 
 + (JSValue *)useData:(const char *)data ofLength:(int)len inContext:(JSContext *)ctx {
     JSValue *buffer = [[self constructorInContext:ctx] constructWithArguments:@[[NSNumber numberWithInt:len]]];
-    writeBuffer(data, buffer, 0, len);
+    writeBuffer(NLEncodingVerbatim, data, buffer, 0, len);
     return buffer;
 }
 
@@ -123,7 +137,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
         offset     = [off isUndefined] ?                   0 : [off toUInt32],
         max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
-    return [NSNumber numberWithUnsignedInteger:writeBuffer(data, target, offset, MIN(obj_length - offset, max_length))];
+    return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingVerbatim, data, target, offset, MIN(obj_length - offset, max_length))];
     
 }
 
@@ -133,7 +147,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     offset     = [off isUndefined] ?                   0 : [off toUInt32],
     max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
-    return [NSNumber numberWithUnsignedInteger:writeBufferAscii(data, target, offset, MIN(obj_length - offset, max_length))];
+    return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingAscii, data, target, offset, MIN(obj_length - offset, max_length))];
     
 }
 
@@ -143,7 +157,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     offset     = [off isUndefined] ?                   0 : [off toUInt32],
     max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
-    return [NSNumber numberWithUnsignedInteger:writeBufferBinary(data, target, offset, MIN(obj_length - offset, max_length))];
+    return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingBinary, data, target, offset, MIN(obj_length - offset, max_length))];
     
 }
 
