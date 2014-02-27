@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCares.m */; };
 		B511406818BD57E6001B3987 /* smalloc.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406718BD57C4001B3987 /* smalloc.js */; };
+		B511406B18BEB400001B3987 /* node.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406A18BEB39A001B3987 /* node.js */; };
 		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
 		B52B8144186075CD003B40D9 /* inet.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8118186075CD003B40D9 /* inet.c */; };
 		B52B8146186075CD003B40D9 /* async.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B811C186075CD003B40D9 /* async.c */; };
@@ -45,6 +46,8 @@
 		B54173211894341600B6636B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B541731F1894341600B6636B /* InfoPlist.strings */; };
 		B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B541732A1894362000B6636B /* NLTimer_Tests.m */; };
 		B541732C189436B700B6636B /* libNodelike.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B59EA08E180CB587005BF5C1 /* libNodelike.a */; };
+		B544C74A18BEC2E800925D24 /* node_modules in Resources */ = {isa = PBXBuildFile; fileRef = B544C74918BEC2D900925D24 /* node_modules */; };
+		B544C74C18BEC37A00925D24 /* Resource_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B544C74B18BEC37A00925D24 /* Resource_Tests.m */; };
 		B54C1F53180D37280051F826 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B44642180AB78E009ADEF9 /* Foundation.framework */; };
 		B54C1F94180D37810051F826 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F52180D37280051F826 /* libuv.a */; };
 		B54C1F96180D37C80051F826 /* libm.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C1F95180D37C80051F826 /* libm.dylib */; };
@@ -156,6 +159,7 @@
 		B5061A381815A9B00083AB4B /* NLCares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCares.h; sourceTree = "<group>"; };
 		B5061A391815A9B00083AB4B /* NLCares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCares.m; sourceTree = "<group>"; };
 		B511406718BD57C4001B3987 /* smalloc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = smalloc.js; sourceTree = "<group>"; };
+		B511406A18BEB39A001B3987 /* node.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = node.js; path = lib/node.js; sourceTree = "<group>"; };
 		B52B810D18607587003B40D9 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = libuv/include/tree.h; sourceTree = SOURCE_ROOT; };
 		B52B810E18607587003B40D9 /* uv-bsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-bsd.h"; path = "libuv/include/uv-bsd.h"; sourceTree = SOURCE_ROOT; };
 		B52B810F18607587003B40D9 /* uv-darwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "uv-darwin.h"; path = "libuv/include/uv-darwin.h"; sourceTree = SOURCE_ROOT; };
@@ -207,6 +211,8 @@
 		B54173201894341600B6636B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B54173241894341600B6636B /* Nodelike Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nodelike Tests-Prefix.pch"; sourceTree = "<group>"; };
 		B541732A1894362000B6636B /* NLTimer_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTimer_Tests.m; sourceTree = "<group>"; };
+		B544C74918BEC2D900925D24 /* node_modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = node_modules; sourceTree = "<group>"; };
+		B544C74B18BEC37A00925D24 /* Resource_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resource_Tests.m; sourceTree = "<group>"; };
 		B54C1F52180D37280051F826 /* libuv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54C1F95180D37C80051F826 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		B56DEFA8187DBFA700FF1D8A /* http_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
@@ -1081,12 +1087,14 @@
 		B541731C1894341600B6636B /* Nodelike Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B544C74918BEC2D900925D24 /* node_modules */,
 				B572E03418B94E2E005E6403 /* package */,
 				B572E03218B92368005E6403 /* test-common.js */,
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B572DDB418B55F01005E6403 /* Util_Tests.m */,
 				B572DDCA18B90F16005E6403 /* Buffer_Tests.m */,
 				B572DDBA18B56331005E6403 /* VM_Tests.m */,
+				B544C74B18BEC37A00925D24 /* Resource_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
 			path = "Nodelike Tests";
@@ -1914,6 +1922,7 @@
 			isa = PBXGroup;
 			children = (
 				B572DD9B18B4EB15005E6403 /* nodelike.js */,
+				B511406A18BEB39A001B3987 /* node.js */,
 				B572DD4818B4E92A005E6403 /* package */,
 				B56DEF9F187DBFA700FF1D8A /* http-parser */,
 				B5D9EC4B183A342400E321A0 /* libuv */,
@@ -2055,6 +2064,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B544C74A18BEC2E800925D24 /* node_modules in Resources */,
+				B511406B18BEB400001B3987 /* node.js in Resources */,
 				B511406818BD57E6001B3987 /* smalloc.js in Resources */,
 				B58E801318B953CC0049990B /* test-buffer-ascii.js in Resources */,
 				B58E801418B953CC0049990B /* test-buffer-concat.js in Resources */,
@@ -2189,6 +2200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B544C74C18BEC37A00925D24 /* Resource_Tests.m in Sources */,
 				B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */,
 				B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */,
 				B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */,
