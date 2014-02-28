@@ -17,6 +17,7 @@ typedef enum {
     NLEncodingAscii,
     NLEncodingBinary,
     NLEncodingUTF8,
+    NLEncodingUCS2,
     NLEncodingVerbatim
 } NLEncoding;
 
@@ -28,6 +29,7 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
     switch (enc) {
         
         case NLEncodingUTF8:
+        case NLEncodingUCS2:
         case NLEncodingVerbatim:
         for (int i = 0; i < len; i++) {
             JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i]), nil);
@@ -73,6 +75,11 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
         case NLEncodingVerbatim:
         data = (char *)[str cStringUsingEncoding:NSUTF8StringEncoding];
         len  = MIN(len, (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
+        break;
+        
+        case NLEncodingUCS2:
+        data = (char *)[str cStringUsingEncoding:NSUTF16StringEncoding];
+        len  = MIN(len, (int)[str lengthOfBytesUsingEncoding:NSUTF16StringEncoding]);
         break;
         
         default:
@@ -317,6 +324,10 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     
     proto[@"utf8Write"] = ^(NSString *string, JSValue *off, JSValue *len) {
         return [NLBuffer writeString:string usingEncoding:NLEncodingUTF8 toBuffer:NLContext.currentThis atOffset:off withLength:len];
+    };
+    
+    proto[@"ucs2Write"] = ^(NSString *string, JSValue *off, JSValue *len) {
+        return [NLBuffer writeString:string usingEncoding:NLEncodingUCS2 toBuffer:NLContext.currentThis atOffset:off withLength:len];
     };
     
     internal[@"byteLength"] = ^(NSString *string) {
