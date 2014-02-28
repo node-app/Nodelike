@@ -16,6 +16,7 @@
 typedef enum {
     NLEncodingAscii,
     NLEncodingBinary,
+    NLEncodingUTF8,
     NLEncodingVerbatim
 } NLEncoding;
 
@@ -26,6 +27,7 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
     
     switch (enc) {
         
+        case NLEncodingUTF8:
         case NLEncodingVerbatim:
         for (int i = 0; i < len; i++) {
             JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i]), nil);
@@ -67,6 +69,7 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
         }
         break;
         
+        case NLEncodingUTF8:
         case NLEncodingVerbatim:
         data = (char *)[str cStringUsingEncoding:NSUTF8StringEncoding];
         len  = MIN(len, (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding]);
@@ -153,6 +156,16 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     
     return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingVerbatim, str.UTF8String, target, offset, MIN(obj_length - offset, max_length))];
 
+}
+
++ (NSNumber *)writeUTF8String:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
+    
+    int obj_length = [target[@"length"] toInt32],
+    offset     = [off isUndefined] ?                   0 : [off toUInt32],
+    max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
+    
+    return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingUTF8, str.UTF8String, target, offset, MIN(obj_length - offset, max_length))];
+    
 }
 
 + (NSNumber *)writeAsciiString:(longlived NSString *)str toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(JSValue *)len {
@@ -329,7 +342,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     };
     
     proto[@"utf8Write"] = ^(NSString *string, JSValue *off, JSValue *len) {
-        return [NLBuffer writeString:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
+        return [NLBuffer writeUTF8String:string toBuffer:NLContext.currentThis atOffset:off withLength:len];
     };
     
     internal[@"byteLength"] = ^(NSString *string) {
