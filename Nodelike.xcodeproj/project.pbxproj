@@ -10,6 +10,8 @@
 		B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */ = {isa = PBXBuildFile; fileRef = B5061A391815A9B00083AB4B /* NLCares.m */; };
 		B50A48EB18C01CDF00656FA3 /* test-timers.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28418B94E32005E6403 /* test-timers.js */; };
 		B50A48EC18C01CF000656FA3 /* test-timers-zero-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28318B94E32005E6403 /* test-timers-zero-timeout.js */; };
+		B50A48ED18C01D9A00656FA3 /* test-timers-first-fire.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27B18B94E32005E6403 /* test-timers-first-fire.js */; };
+		B50A48EE18C01DC400656FA3 /* test-timers-this.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28018B94E32005E6403 /* test-timers-this.js */; };
 		B511406818BD57E6001B3987 /* smalloc.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406718BD57C4001B3987 /* smalloc.js */; };
 		B511406B18BEB400001B3987 /* node.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406A18BEB39A001B3987 /* node.js */; };
 		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
@@ -2048,6 +2050,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B50A48EE18C01DC400656FA3 /* test-timers-this.js in Resources */,
+				B50A48ED18C01D9A00656FA3 /* test-timers-first-fire.js in Resources */,
 				B50A48EC18C01CF000656FA3 /* test-timers-zero-timeout.js in Resources */,
 				B50A48EB18C01CDF00656FA3 /* test-timers.js in Resources */,
 				B544C74A18BEC2E800925D24 /* node_modules in Resources */,
