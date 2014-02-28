@@ -23,8 +23,6 @@
 
 @property (readonly) uv_handle_t *handle;
 @property (readonly) NSValue     *weakValue;
-@property (readonly) JSValue     *object;
-@property (readonly) JSContext   *context;
 
 - (id)initWithHandle:(uv_handle_t *)handle inContext:(JSContext *)context;
 

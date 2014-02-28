@@ -57,14 +57,7 @@ static const unsigned int kOnTimeout = 0;
 }
 
 static void onTimeout(uv_timer_t *handle, int status) {
-    JSValue     *wrap       = ((__bridge NLHandle *)handle->data).object;
-    JSObjectRef  wrapRef    = (JSObjectRef)(wrap.JSValueRef);
-    JSContextRef contextRef = wrap.context.JSGlobalContextRef;
-    JSValueRef   callback   = JSObjectGetPropertyAtIndex(contextRef, wrapRef, kOnTimeout, nil);
-    if (callback && JSValueIsObject(contextRef, callback) && JSObjectIsFunction(contextRef, (JSObjectRef)callback)) {
-        JSValueRef arg = JSValueMakeNumber(contextRef, status);
-        JSObjectCallAsFunction(contextRef, (JSObjectRef)callback, wrapRef, 1, &arg, nil);
-    }
+    [(__bridge NLHandle *)handle->data makeCallbackFromIndex:kOnTimeout withArguments:@[@(status)]];
 }
 
 @end

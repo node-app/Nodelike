@@ -13,4 +13,12 @@
 
 @interface NLAsync : NLBinding
 
+@property (readonly) JSValue *object;
+@property (readonly) JSContext *context;
+
+- (instancetype)initInContext:(JSContext *)context;
+
+- (void)makeCallbackFromMethod:(NSString *)method withArguments:(NSArray *)args;
+- (void)makeCallbackFromIndex:(unsigned int)idx withArguments:(NSArray *)args;
+
 @end

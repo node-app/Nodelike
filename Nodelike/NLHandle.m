@@ -56,19 +56,14 @@ static const unsigned int kCloseCallback = 2;
 
 - (id)initWithHandle:(uv_handle_t *)handle inContext:(JSContext *)context {
     assert(context != nil);
-    self          = [super init];
+    self          = [super initInContext:context];
     flags         = 0;
     _handle       = handle;
     _handle->data = (__bridge void *)self;
-    _context      = context;
-    persistent   = self.object;
+    persistent    = self.object;
     _weakValue    = [NSValue valueWithNonretainedObject:self];
     [NLHandle.handleQueue addObject:_weakValue];
     return self;
-}
-
-- (JSValue *)object {
-    return [JSValue valueWithObject:self inContext:self.context];
 }
 
 - (void)dealloc {
@@ -78,7 +73,7 @@ static const unsigned int kCloseCallback = 2;
 static void onClose(uv_handle_t *handle) {
     NLHandle *wrap = (__bridge NLHandle *)handle->data;
     if (wrap->flags & kCloseCallback) {
-        [wrap.object invokeMethod:@"close" withArguments:@[]];
+        [wrap makeCallbackFromMethod:@"close" withArguments:@[]];
     }
     wrap->persistent = nil;
 }
