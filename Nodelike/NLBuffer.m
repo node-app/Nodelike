@@ -154,7 +154,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     offset     = [off isUndefined] ?                   0 : [off toUInt32],
     max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
-    return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingVerbatim, str.UTF8String, target, offset, MIN(obj_length - offset, max_length))];
+    return [NSNumber numberWithUnsignedInteger:writeString(NLEncodingVerbatim, str, target, offset, MIN(obj_length - offset, max_length))];
 
 }
 
@@ -164,7 +164,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     offset     = [off isUndefined] ?                   0 : [off toUInt32],
     max_length = [len isUndefined] ? obj_length - offset : [len toUInt32];
     
-    return [NSNumber numberWithUnsignedInteger:writeBuffer(NLEncodingUTF8, str.UTF8String, target, offset, MIN(obj_length - offset, max_length))];
+    return [NSNumber numberWithUnsignedInteger:writeString(NLEncodingUTF8, str, target, offset, MIN(obj_length - offset, max_length))];
     
 }
 
