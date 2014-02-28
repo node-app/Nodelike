@@ -42,12 +42,6 @@
                   Identifier = "Nodelike_Tests/testExample">
                </Test>
                <Test
-                  Identifier = "NLTimer_Tests/testTimer">
-               </Test>
-               <Test
-                  Identifier = "NLTimer_Tests">
-               </Test>
-               <Test
                   Identifier = "Util_Tests">
                </Test>
                <Test
