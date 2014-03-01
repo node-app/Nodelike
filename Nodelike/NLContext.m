@@ -17,6 +17,8 @@
 
 #import "NLNatives.h"
 
+#import "NLTickInfo.h"
+
 @implementation NLContext
 
 #pragma mark - JSContext
@@ -82,12 +84,6 @@
         kill(pid.intValue, sig.intValue);
     };
     
-    process[@"nextTick"] = ^(JSValue *cb) {
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            [cb callWithArguments:@[]];
-        });
-    };
-    
     process[@"binding"] = ^(NSString *binding) {
         return [NLBinding bindingForIdentifier:binding];
     };
@@ -97,11 +93,14 @@
     };
     
     process[@"_setupAsyncListener"] = ^{};
-    process[@"_setupNextTick"]      = ^{};
-    
-    context[@"console"] = @{
-        @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
-        @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
+
+    process[@"_setupNextTick"]      = ^(JSValue *obj, JSValue *func) {
+        assert(obj.isObject);
+        assert(func.isObject);
+        [NLTickInfo initObject:obj];
+        [NLTickInfo setObject:obj inContext:context];
+        [NLTickInfo setCallback:func inContext:context];
+        [process deleteProperty:@"_setupNextTick"];
     };
     
     [context.virtualMachine nodelikeSet:&env_process_object toValue:process];
@@ -127,8 +126,13 @@
     [context evaluateScript:@"Error.captureStackTrace = function (value) { return; };"];
     [context evaluateScript:@"Number.isFinite = function (value) { return typeof value === 'number' && isFinite(value); };"];
     
-    JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
+    JSValue *constructor = [context evaluateScript:[NLNatives source:@"node"]];
     [constructor callWithArguments:@[process]];
+    
+    context[@"console"] = @{
+                            @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
+                            @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
+                            };
     
 }
 

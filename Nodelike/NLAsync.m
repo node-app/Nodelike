@@ -11,6 +11,10 @@
 
 #import "NLAsync.h"
 
+#import "NSObject+Nodelike.h"
+
+#import "NLTickInfo.h"
+
 @implementation NLAsync
 
 - (instancetype)initInContext:(JSContext *)context {
@@ -23,24 +27,54 @@
     return [JSValue valueWithObject:self inContext:self.context];
 }
 
-- (void)makeCallbackFromMethod:(NSString *)method withArguments:(NSArray *)args {
-    [self.object invokeMethod:method withArguments:args];
++ (void)performTickCallbackInContext:(JSContext *)context {
+    JSValue *tickInfo = [NLTickInfo getObjectInContext:context];
+    
+    if ([NLTickInfo inTick:tickInfo]) {
+        return;
+    }
+    
+    if ([NLTickInfo length:tickInfo] == 0) {
+        [NLTickInfo setIndex:tickInfo index:0];
+        return;
+    }
+    
+    [NLTickInfo setInTick:tickInfo on:YES];
+    
+    [NLAsync makeCallback:[NLTickInfo getCallbackInContext:context]
+               fromObject:[context.virtualMachine nodelikeGet:&env_process_object]
+            withArguments:@[]];
+    
+    [NLTickInfo setInTick:tickInfo on:NO];
+    
 }
 
-- (void)makeCallbackFromIndex:(unsigned int)idx withArguments:(NSArray *)args {
-    JSValue     *wrap       = self.object;
-    JSObjectRef  wrapRef    = (JSObjectRef)(wrap.JSValueRef);
-    JSContext   *context    = self.context;
++ (JSValue *)makeCallback:(JSValue *)func fromObject:(JSValue *)object withArguments:(NSArray *)args {
+    JSContext   *context    = object.context;
     JSContextRef contextRef = context.JSGlobalContextRef;
-    JSValueRef   callback   = JSObjectGetPropertyAtIndex(contextRef, wrapRef, idx, nil);
+    JSValueRef   callback   = func.JSValueRef;
+    JSValueRef   returnVal  = JSValueMakeUndefined(contextRef);
     if (callback && JSValueIsObject(contextRef, callback) && JSObjectIsFunction(contextRef, (JSObjectRef)callback)) {
         NSUInteger  argc  = args.count;
         JSValueRef *argsv = calloc(argc, sizeof(JSValueRef));
         for (int i = 0; i < argc; i++) {
             argsv[i] = [JSValue valueWithObject:args[i] inContext:context].JSValueRef;
         }
-        JSObjectCallAsFunction(contextRef, (JSObjectRef)callback, wrapRef, argc, argsv, nil);
+        returnVal = JSObjectCallAsFunction(contextRef, (JSObjectRef)callback, (JSObjectRef)object.JSValueRef, argc, argsv, nil);
     }
+    [NLAsync performTickCallbackInContext:context];
+    return [JSValue valueWithJSValueRef:returnVal inContext:context];
+}
+
+- (void)makeCallbackFromMethod:(NSString *)method withArguments:(NSArray *)args {
+    [NLAsync makeCallback:[self.object valueForProperty:method] fromObject:self.object withArguments:args];
+}
+
+- (void)makeCallbackFromIndex:(unsigned int)idx withArguments:(NSArray *)args {
+    JSValue     *wrap     = self.object;
+    JSContext   *context  = self.context;
+    JSValueRef   callback = JSObjectGetPropertyAtIndex(context.JSGlobalContextRef, (JSObjectRef)wrap.JSValueRef, idx, nil);
+    [NLAsync makeCallback:[JSValue valueWithJSValueRef:callback inContext:context] fromObject:wrap withArguments:args];
 }
 
 @end
