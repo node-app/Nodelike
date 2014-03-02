@@ -206,6 +206,24 @@ static dispatch_queue_t dispatchQueue () {
     });
 }
 
+- (int)emitExit {
+    return [NLContext emitExit:self];
+}
+
++ (int)emitExit:(JSContext *)context {
+    JSValue *process = [context.virtualMachine nodelikeGet:&env_process_object];
+    
+    process[@"_exiting"] = [NSNumber numberWithBool:YES];
+    
+    int code = process[@"exitCode"].toInt32;
+    
+    [NLAsync makeGlobalCallback:process[@"emit"]
+                     fromObject:process
+                  withArguments:@[@"exit", @(code)]];
+
+    return code;
+}
+
 #pragma mark - Helpers
 
 + (NSString *)resourcePath {

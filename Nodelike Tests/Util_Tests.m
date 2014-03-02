@@ -29,8 +29,7 @@
             [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
             [ctx evaluateScript:[NLNatives source:obj]];
             [NLContext runEventLoopSync];
-            [ctx evaluateScript:@"process.emit('exit');"];
-            [NLContext runEventLoopSync];
+            [ctx emitExit];
         }
     }];
 }

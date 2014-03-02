@@ -34,6 +34,9 @@
 + (void)runEventLoopSync;
 + (void)runEventLoopAsync;
 
+- (int)emitExit;
++ (int)emitExit:(JSContext *)context;
+
 + (NSString *)resourcePath;
 
 @end
