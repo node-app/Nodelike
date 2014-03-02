@@ -42,10 +42,12 @@
         XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
     };
     JSValue *pv = [ctx evaluateScript:@"process.resourcePath"];
+    XCTAssertEqualObjects(NLContext.resourcePath, pv.toString, @"resourcePaths not equal.");
     NSString *path = [pv.toString stringByAppendingString:@"/node_modules/test_module"];
     NSString *script = [NSString stringWithFormat:@"require('%@')", path];
     JSValue *testMod = [ctx evaluateScript:script];
-    XCTAssertTrue([testMod valueForProperty:@"foo"].isString);
+    XCTAssertTrue([testMod valueForProperty:@"nested"].isObject);
+    XCTAssertTrue([testMod valueForProperty:@"nested_folder"].isObject);
     NSLog(@"testMod: %@", testMod.toDictionary);
 }
 
@@ -57,7 +59,8 @@
     JSValue *paths = [ctx evaluateScript:@"require('module').globalPaths"];
     NSLog(@"globalPaths: %@", paths.toArray);
     JSValue *testMod = [ctx evaluateScript:@"require('test_module');"];
-    XCTAssertTrue([testMod valueForProperty:@"foo"].isString);
+    XCTAssertTrue([testMod valueForProperty:@"nested"].isObject);
+    XCTAssertTrue([testMod valueForProperty:@"nested_folder"].isObject);
     NSLog(@"testMod: %@", testMod.toDictionary);
 }
 
