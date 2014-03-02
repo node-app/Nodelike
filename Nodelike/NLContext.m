@@ -17,6 +17,8 @@
 
 #import "NLNatives.h"
 
+#import "NLAsync.h"
+
 #import "NLTickInfo.h"
 
 @implementation NLContext
@@ -38,6 +40,12 @@
 #pragma mark - Scope Setup
 
 + (void)attachToContext:(JSContext *)context {
+    
+    uv_check_t *immediate_check_handle = malloc(sizeof(uv_check_t));
+    uv_idle_t  *immediate_idle_handle  = malloc(sizeof(uv_idle_t));
+    uv_check_init(NLContext.eventLoop, immediate_check_handle);
+    uv_unref((uv_handle_t *)immediate_check_handle);
+    uv_idle_init(NLContext.eventLoop, immediate_idle_handle);
 
 #ifdef DEBUG
     context.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
@@ -102,6 +110,32 @@
         [NLTickInfo setCallback:func inContext:context];
         [process deleteProperty:@"_setupNextTick"];
     };
+    
+    id getNeedImmediateCallback = ^{
+
+        return [NSNumber numberWithBool:uv_is_active((uv_handle_t *)immediate_check_handle)];
+
+    };
+    
+    id setNeedImmediateCallback = ^(JSValue *value) {
+
+        bool active = uv_is_active((uv_handle_t *)immediate_check_handle);
+        
+        if (active == value.toBool)
+            return;
+        
+        if (active) {
+            uv_check_stop(immediate_check_handle);
+            uv_idle_stop(immediate_idle_handle);
+        } else {
+            uv_check_start(immediate_check_handle, CheckImmediate);
+            uv_idle_start(immediate_idle_handle, IdleImmediateDummy);
+        }
+        
+    };
+
+    [process defineProperty:@"_needImmediateCallback"
+                 descriptor:@{@"get": getNeedImmediateCallback, @"set": setNeedImmediateCallback}];
     
     [context.virtualMachine nodelikeSet:&env_process_object toValue:process];
 
@@ -174,5 +208,14 @@ static dispatch_queue_t dispatchQueue () {
 + (NSString *)resourcePath {
     return [NSBundle bundleForClass:NLContext.class].resourcePath;
 }
+
+static void CheckImmediate(uv_check_t *handle, int status) {
+    JSContext *context  = JSContext.currentContext;
+    JSValue   *process  = [context.virtualMachine nodelikeGet:&env_process_object];
+    JSValue   *callback = [process valueForProperty:@"_immediateCallback"];
+    [NLAsync makeCallback:callback fromObject:process withArguments:@[]];
+}
+
+static void IdleImmediateDummy(uv_idle_t *handle, int status) {}
 
 @end

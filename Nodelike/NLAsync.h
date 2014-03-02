@@ -18,6 +18,8 @@
 
 - (instancetype)initInContext:(JSContext *)context;
 
++ (JSValue *)makeCallback:(JSValue *)func fromObject:(JSValue *)object withArguments:(NSArray *)args;
+
 - (void)makeCallbackFromMethod:(NSString *)method withArguments:(NSArray *)args;
 - (void)makeCallbackFromIndex:(unsigned int)idx withArguments:(NSArray *)args;
 
