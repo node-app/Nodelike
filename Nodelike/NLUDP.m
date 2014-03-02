@@ -116,7 +116,7 @@ static NSNumber *sendCommon (JSValue *req, JSValue *buffer,
         return [NSNumber numberWithInt:err];
     }
     
-    struct sendWrap *sendWrap = malloc(sizeof(sendWrap));
+    struct sendWrap *sendWrap = malloc(sizeof(struct sendWrap));
     sendWrap->value = CFBridgingRetain(req);
     sendWrap->hasCallback = hasCallback;
     sendWrap->req.data = sendWrap;
