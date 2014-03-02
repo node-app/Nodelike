@@ -55,8 +55,8 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
 
 static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int off, int len) {
     
-    unichar *conv;
-    char    *data;
+    unichar *conv = NULL;
+    char    *data = NULL;
     
     switch (enc) {
      
@@ -88,7 +88,14 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
         
     }
     
-    return writeBuffer(enc, data, target, off, len);
+    size_t size = writeBuffer(enc, data, target, off, len);
+
+    if (conv) {
+        free(data);
+        free(conv);
+    }
+    
+    return size;
 
 }
 
