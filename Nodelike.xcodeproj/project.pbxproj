@@ -13,6 +13,13 @@
 		B50A48ED18C01D9A00656FA3 /* test-timers-first-fire.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27B18B94E32005E6403 /* test-timers-first-fire.js */; };
 		B50A48EE18C01DC400656FA3 /* test-timers-this.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28018B94E32005E6403 /* test-timers-this.js */; };
 		B50A48F118C2659700656FA3 /* NLTickInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B50A48F018C2659700656FA3 /* NLTickInfo.m */; };
+		B50A490318C3882700656FA3 /* NextTick_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B50A490218C3882700656FA3 /* NextTick_Tests.m */; };
+		B50A490418C3885300656FA3 /* test-next-tick-doesnt-hang.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1E918B94E30005E6403 /* test-next-tick-doesnt-hang.js */; };
+		B50A490618C3885300656FA3 /* test-next-tick-errors.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1EB18B94E30005E6403 /* test-next-tick-errors.js */; };
+		B50A490818C3885300656FA3 /* test-next-tick-ordering.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1ED18B94E30005E6403 /* test-next-tick-ordering.js */; };
+		B50A490918C3885300656FA3 /* test-next-tick-ordering2.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1EE18B94E30005E6403 /* test-next-tick-ordering2.js */; };
+		B50A490A18C3885300656FA3 /* test-next-tick.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1EF18B94E30005E6403 /* test-next-tick.js */; };
+		B50A490B18C3B6C800656FA3 /* test-next-tick-intentional-starvation.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1EC18B94E30005E6403 /* test-next-tick-intentional-starvation.js */; };
 		B511406818BD57E6001B3987 /* smalloc.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406718BD57C4001B3987 /* smalloc.js */; };
 		B511406B18BEB400001B3987 /* node.js in Resources */ = {isa = PBXBuildFile; fileRef = B511406A18BEB39A001B3987 /* node.js */; };
 		B52B8143186075CD003B40D9 /* fs-poll.c in Sources */ = {isa = PBXBuildFile; fileRef = B52B8117186075CD003B40D9 /* fs-poll.c */; };
@@ -148,6 +155,7 @@
 		B5061A391815A9B00083AB4B /* NLCares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCares.m; sourceTree = "<group>"; };
 		B50A48EF18C2659700656FA3 /* NLTickInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTickInfo.h; sourceTree = "<group>"; };
 		B50A48F018C2659700656FA3 /* NLTickInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTickInfo.m; sourceTree = "<group>"; };
+		B50A490218C3882700656FA3 /* NextTick_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTick_Tests.m; sourceTree = "<group>"; };
 		B511406718BD57C4001B3987 /* smalloc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = smalloc.js; sourceTree = "<group>"; };
 		B511406A18BEB39A001B3987 /* node.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = node.js; path = lib/node.js; sourceTree = "<group>"; };
 		B52B810D18607587003B40D9 /* tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tree.h; path = libuv/include/tree.h; sourceTree = SOURCE_ROOT; };
@@ -1085,6 +1093,7 @@
 				B572DDCA18B90F16005E6403 /* Buffer_Tests.m */,
 				B572DDBA18B56331005E6403 /* VM_Tests.m */,
 				B544C74B18BEC37A00925D24 /* Resource_Tests.m */,
+				B50A490218C3882700656FA3 /* NextTick_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
 			path = "Nodelike Tests";
@@ -2055,6 +2064,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B50A490B18C3B6C800656FA3 /* test-next-tick-intentional-starvation.js in Resources */,
+				B50A490418C3885300656FA3 /* test-next-tick-doesnt-hang.js in Resources */,
+				B50A490618C3885300656FA3 /* test-next-tick-errors.js in Resources */,
+				B50A490818C3885300656FA3 /* test-next-tick-ordering.js in Resources */,
+				B50A490918C3885300656FA3 /* test-next-tick-ordering2.js in Resources */,
+				B50A490A18C3885300656FA3 /* test-next-tick.js in Resources */,
 				B50A48EE18C01DC400656FA3 /* test-timers-this.js in Resources */,
 				B50A48ED18C01D9A00656FA3 /* test-timers-first-fire.js in Resources */,
 				B50A48EC18C01CF000656FA3 /* test-timers-zero-timeout.js in Resources */,
@@ -2165,6 +2180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B544C74C18BEC37A00925D24 /* Resource_Tests.m in Sources */,
+				B50A490318C3882700656FA3 /* NextTick_Tests.m in Sources */,
 				B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */,
 				B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */,
 				B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */,
