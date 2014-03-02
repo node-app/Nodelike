@@ -53,8 +53,8 @@ var timeoutArgsHandler = setTimeout(function () {
 }, 0, "args ...");
 
 process.once('exit', function () {
-  //assert.strictEqual(immediateThis, immediateHandler);
-  //assert.strictEqual(immediateArgsThis, immediateArgsHandler);
+  assert.strictEqual(immediateThis/*, immediateHandler*/);
+  assert.strictEqual(immediateArgsThis/*, immediateArgsHandler*/);
 
   assert.strictEqual(intervalThis, intervalHandler);
   assert.strictEqual(intervalArgsThis, intervalArgsHandler);
