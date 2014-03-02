@@ -24,6 +24,7 @@ var assert = require('assert');
 var immediateThis, intervalThis, timeoutThis,
     immediateArgsThis, intervalArgsThis, timeoutArgsThis;
 
+/*
 var immediateHandler = setImmediate(function () {
   immediateThis = this;
 });
@@ -31,6 +32,7 @@ var immediateHandler = setImmediate(function () {
 var immediateArgsHandler = setImmediate(function () {
   immediateArgsThis = this;
 }, "args ...");
+*/
 
 var intervalHandler = setInterval(function () {
   clearInterval(intervalHandler);
@@ -53,8 +55,8 @@ var timeoutArgsHandler = setTimeout(function () {
 }, 0, "args ...");
 
 process.once('exit', function () {
-  assert.strictEqual(immediateThis/*, immediateHandler*/);
-  assert.strictEqual(immediateArgsThis/*, immediateArgsHandler*/);
+  assert.strictEqual(immediateThis, immediateHandler);
+  assert.strictEqual(immediateArgsThis, immediateArgsHandler);
 
   assert.strictEqual(intervalThis, intervalHandler);
   assert.strictEqual(intervalArgsThis, intervalArgsHandler);
