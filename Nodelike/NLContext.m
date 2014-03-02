@@ -100,7 +100,10 @@
         return @(getcwd(NULL, 0));
     };
     
-    process[@"_setupAsyncListener"] = ^{};
+    process[@"_setupAsyncListener"] = ^(JSValue *o, JSValue *r, JSValue *l, JSValue *u) {
+        [NLAsync setupAsyncListener:o run:r load:l unload:u];
+        [process deleteProperty:@"_setupAsyncListener"];
+    };
 
     process[@"_setupNextTick"]      = ^(JSValue *obj, JSValue *func) {
         assert(obj.isObject);
@@ -213,7 +216,7 @@ static void CheckImmediate(uv_check_t *handle, int status) {
     JSContext *context  = JSContext.currentContext;
     JSValue   *process  = [context.virtualMachine nodelikeGet:&env_process_object];
     JSValue   *callback = [process valueForProperty:@"_immediateCallback"];
-    [NLAsync makeCallback:callback fromObject:process withArguments:@[]];
+    [NLAsync makeGlobalCallback:callback fromObject:process withArguments:@[]];
 }
 
 static void IdleImmediateDummy(uv_idle_t *handle, int status) {}

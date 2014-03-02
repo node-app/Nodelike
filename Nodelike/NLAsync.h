@@ -18,9 +18,13 @@
 
 - (instancetype)initInContext:(JSContext *)context;
 
-+ (JSValue *)makeCallback:(JSValue *)func fromObject:(JSValue *)object withArguments:(NSArray *)args;
++ (JSValue *)makeGlobalCallback:(JSValue *)func fromObject:(JSValue *)object withArguments:(NSArray *)args;
+- (JSValue *)makeCallback:(JSValue *)func withArguments:(NSArray *)args;
 
 - (void)makeCallbackFromMethod:(NSString *)method withArguments:(NSArray *)args;
 - (void)makeCallbackFromIndex:(unsigned int)idx withArguments:(NSArray *)args;
+
++ (void)setupAsyncListener:(JSValue *)flagObj run:(JSValue *)run load:(JSValue *)load unload:(JSValue *)unload;
++ (bool)hasAsyncListener:(JSContext *)context;
 
 @end
