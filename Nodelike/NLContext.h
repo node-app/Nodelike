@@ -34,4 +34,6 @@
 + (void)runEventLoopSync;
 + (void)runEventLoopAsync;
 
++ (NSString *)resourcePath;
+
 @end

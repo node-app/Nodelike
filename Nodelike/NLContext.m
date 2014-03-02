@@ -169,4 +169,10 @@ static dispatch_queue_t dispatchQueue () {
     });
 }
 
+#pragma mark - Helpers
+
++ (NSString *)resourcePath {
+    return NLNatives.bundle.resourcePath;
+}
+
 @end
