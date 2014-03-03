@@ -30,6 +30,6 @@ Pod::Spec.new do |s|
   s.exclude_files = 'libuv/src/win', 'libuv/src/unix/*{bsd,aix,linux,sunos}*', 'libuv/include/uv-{bsd,linux,sunos,win}*.h','libuv/include/*msvc2008*.h' 
   s.frameworks = 'Foundation', 'JavaScriptCore'
   s.libraries = 'System'
-  s.resource_bundle = {'Nodelike' => '{lib,package}/*.js'}
+  s.resource_bundle = {'Nodelike' => 'lib/*.js'}
   s.compiler_flags ='-Wno-conversion'
 end
