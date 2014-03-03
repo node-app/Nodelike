@@ -108,7 +108,6 @@
 		B572DD9C18B4EB2C005E6403 /* nodelike.js in Resources */ = {isa = PBXBuildFile; fileRef = B572DD9B18B4EB15005E6403 /* nodelike.js */; };
 		B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDB418B55F01005E6403 /* Util_Tests.m */; };
 		B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDBA18B56331005E6403 /* VM_Tests.m */; };
-		B572DDC118B5671D005E6403 /* NLScript.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDC018B5671D005E6403 /* NLScript.m */; };
 		B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDCA18B90F16005E6403 /* Buffer_Tests.m */; };
 		B572E03318B92374005E6403 /* test-common.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E03218B92368005E6403 /* test-common.js */; };
 		B578842418944F2000EA1A81 /* NLBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B578842318944F2000EA1A81 /* NLBuffer.m */; };
@@ -262,8 +261,6 @@
 		B572DDA818B4F6E3005E6403 /* StyleSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StyleSettings.plist; sourceTree = "<group>"; };
 		B572DDB418B55F01005E6403 /* Util_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util_Tests.m; sourceTree = "<group>"; };
 		B572DDBA18B56331005E6403 /* VM_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VM_Tests.m; sourceTree = "<group>"; };
-		B572DDBF18B5671D005E6403 /* NLScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLScript.h; sourceTree = "<group>"; };
-		B572DDC018B5671D005E6403 /* NLScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLScript.m; sourceTree = "<group>"; };
 		B572DDCA18B90F16005E6403 /* Buffer_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Buffer_Tests.m; sourceTree = "<group>"; };
 		B572E03218B92368005E6403 /* test-common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-common.js"; sourceTree = "<group>"; };
 		B572E03518B94E2E005E6403 /* net-socket-readystate.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "net-socket-readystate.js"; sourceTree = "<group>"; };
@@ -1869,8 +1866,6 @@
 				B52B9B9218A01D0800492856 /* NLAsync.m */,
 				B5A79B2C189E501200CC04D6 /* NLContextify.h */,
 				B5A79B2D189E501200CC04D6 /* NLContextify.m */,
-				B572DDBF18B5671D005E6403 /* NLScript.h */,
-				B572DDC018B5671D005E6403 /* NLScript.m */,
 				B59E5F98181F07270093A6FF /* NLContext.h */,
 				B59E5F99181F07270093A6FF /* NLContext.m */,
 				B50A48EF18C2659700656FA3 /* NLTickInfo.h */,
@@ -2238,7 +2233,6 @@
 				B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */,
 				B50A48F118C2659700656FA3 /* NLTickInfo.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
-				B572DDC118B5671D005E6403 /* NLScript.m in Sources */,
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,
 				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,

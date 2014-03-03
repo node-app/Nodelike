@@ -24,7 +24,6 @@
 #import "NLHTTPParser.h"
 #import "NLNatives.h"
 #import "NLContextify.h"
-#import "NLScript.h"
 
 @implementation NLBinding
 
@@ -44,8 +43,7 @@
                      @"process_wrap": NLProcess.class,
                      @"http_parser":  NLHTTPParser.class,
                      @"natives":      NLNatives.class,
-                     @"contextify":   NLContextify.class,
-                     @"evals":        NLScript.class};
+                     @"contextify":   NLContextify.class};
     });
     return bindings;
 }
