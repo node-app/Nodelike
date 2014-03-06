@@ -68,3 +68,13 @@ You then need to fetch the nodejs submodule. Do so by:
 2. `git submodule update`
 
 Afterwards, just open `Nodelike.xcodeproj`, build the framework and you're all set!
+
+## How to use
+
+First, attach Nodelike to a Javascript Context by `NLContext#attachToContext:(JSContext *)`. This exposes the Node APIs to the global object of the context.
+
+You can then execute some javascript via `JSContext#evaluateScript:(NSString *)`.
+
+Afterwards, you need to run the event loop via `NLContext#runEventLoopSync` or `NLContext#runEventLoopAsync`.
+
+In the end, when you executed all scripts you wanted to, you can simulate the shutdown of the Node.js process via `NLContext#emitExit:(JSContext *)`.
