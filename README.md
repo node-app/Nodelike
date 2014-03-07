@@ -78,3 +78,5 @@ You can then execute some javascript via `JSContext#evaluateScript:(NSString *)`
 Afterwards, you need to run the event loop via `NLContext#runEventLoopSync` or `NLContext#runEventLoopAsync`.
 
 In the end, when you executed all scripts you wanted to, you can simulate the shutdown of the Node.js process via `NLContext#emitExit:(JSContext *)`.
+
+For more information, [take a look at the wiki](//github.com/node-app/Nodelike/wiki).
