@@ -34,6 +34,9 @@
 + (void)runEventLoopSync;
 + (void)runEventLoopAsync;
 
+- (void)runProcessAsyncQueue;
++ (void)runProcessAsyncQueue:(JSContext *)context;
+
 - (int)emitExit;
 + (int)emitExit:(JSContext *)context;
 

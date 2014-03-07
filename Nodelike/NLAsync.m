@@ -91,6 +91,9 @@ enum AsyncFlags {
 }
 
 + (JSValue *)performCallback:(JSValue *)func fromObject:(JSValue *)object withArguments:(NSArray *)args {
+    
+    if (!func) return nil;
+    
     JSContext   *context    = object.context;
     JSContextRef contextRef = context.JSGlobalContextRef;
     JSValueRef   callback   = func.JSValueRef;

@@ -206,6 +206,14 @@ static dispatch_queue_t dispatchQueue () {
     });
 }
 
+- (void)runProcessAsyncQueue {
+    [NLContext runProcessAsyncQueue:self];
+}
+
++ (void)runProcessAsyncQueue:(JSContext *)context {
+    [NLAsync makeGlobalCallback:nil fromObject:[context.virtualMachine nodelikeGet:&env_process_object] withArguments:nil];
+}
+
 - (int)emitExit {
     return [NLContext emitExit:self];
 }
