@@ -12,7 +12,6 @@
 		B50A48EC18C01CF000656FA3 /* test-timers-zero-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28318B94E32005E6403 /* test-timers-zero-timeout.js */; };
 		B50A48ED18C01D9A00656FA3 /* test-timers-first-fire.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27B18B94E32005E6403 /* test-timers-first-fire.js */; };
 		B50A48EE18C01DC400656FA3 /* test-timers-this.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28018B94E32005E6403 /* test-timers-this.js */; };
-		B50A48F118C2659700656FA3 /* NLTickInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B50A48F018C2659700656FA3 /* NLTickInfo.m */; };
 		B50A490318C3882700656FA3 /* NextTick_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B50A490218C3882700656FA3 /* NextTick_Tests.m */; };
 		B50A490418C3885300656FA3 /* test-next-tick-doesnt-hang.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1E918B94E30005E6403 /* test-next-tick-doesnt-hang.js */; };
 		B50A490618C3885300656FA3 /* test-next-tick-errors.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1EB18B94E30005E6403 /* test-next-tick-errors.js */; };
@@ -160,8 +159,6 @@
 /* Begin PBXFileReference section */
 		B5061A381815A9B00083AB4B /* NLCares.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCares.h; sourceTree = "<group>"; };
 		B5061A391815A9B00083AB4B /* NLCares.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCares.m; sourceTree = "<group>"; };
-		B50A48EF18C2659700656FA3 /* NLTickInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTickInfo.h; sourceTree = "<group>"; };
-		B50A48F018C2659700656FA3 /* NLTickInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTickInfo.m; sourceTree = "<group>"; };
 		B50A490218C3882700656FA3 /* NextTick_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTick_Tests.m; sourceTree = "<group>"; };
 		B50A490D18C526DE00656FA3 /* _debugger.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _debugger.js; sourceTree = "<group>"; };
 		B50A490E18C526DE00656FA3 /* _http_agent.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = _http_agent.js; sourceTree = "<group>"; };
@@ -1892,8 +1889,6 @@
 				B5A79B2D189E501200CC04D6 /* NLContextify.m */,
 				B59E5F98181F07270093A6FF /* NLContext.h */,
 				B59E5F99181F07270093A6FF /* NLContext.m */,
-				B50A48EF18C2659700656FA3 /* NLTickInfo.h */,
-				B50A48F018C2659700656FA3 /* NLTickInfo.m */,
 				B578842518945E9900EA1A81 /* NLNatives.h */,
 				B578842618945E9900EA1A81 /* NLNatives.m */,
 				B59E5F9B181F07320093A6FF /* NLProcess.h */,
@@ -2246,7 +2241,6 @@
 				B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */,
 				B59E5F9A181F07270093A6FF /* NLContext.m in Sources */,
 				B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */,
-				B50A48F118C2659700656FA3 /* NLTickInfo.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,

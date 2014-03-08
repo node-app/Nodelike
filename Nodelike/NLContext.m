@@ -19,8 +19,6 @@
 
 #import "NLAsync.h"
 
-#import "NLTickInfo.h"
-
 @implementation NLContext
 
 #pragma mark - JSContext
@@ -108,9 +106,7 @@
     process[@"_setupNextTick"]      = ^(JSValue *obj, JSValue *func) {
         assert(obj.isObject);
         assert(func.isObject);
-        [NLTickInfo initObject:obj];
-        [NLTickInfo setObject:obj inContext:context];
-        [NLTickInfo setCallback:func inContext:context];
+        [NLAsync setupNextTick:obj func:func];
         [process deleteProperty:@"_setupNextTick"];
     };
     

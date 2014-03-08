@@ -27,4 +27,6 @@
 + (void)setupAsyncListener:(JSValue *)flagObj run:(JSValue *)run load:(JSValue *)load unload:(JSValue *)unload;
 + (bool)hasAsyncListener:(JSContext *)context;
 
++ (void)setupNextTick:(JSValue *)obj func:(JSValue *)func;
+
 @end

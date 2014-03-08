@@ -13,7 +13,13 @@
 
 #import "NSObject+Nodelike.h"
 
-#import "NLTickInfo.h"
+enum TickInfoFields {
+    kTickIndex,
+    kTickLength,
+    kTickFieldsCount
+};
+
+static char tickInfoField, tickCallbackField, inTickField, lastThrewField;
 
 static char asyncListenerFlagObject,
             asyncListenerRunFunction,
@@ -21,8 +27,8 @@ static char asyncListenerFlagObject,
             asyncListenerUnloadFunction;
 
 enum AsyncListenerFields {
-    kHasListener,
-    kFieldsCount
+    kAsyncHasListener,
+    kAsyncFieldsCount
 };
 
 enum AsyncFlags {
@@ -69,24 +75,24 @@ enum AsyncFlags {
 }
 
 + (void)performTickCallbackInContext:(JSContext *)context {
-    JSValue *tickInfo = [NLTickInfo getObjectInContext:context];
+    JSValue *tickInfo = [self getTickObjectInContext:context];
     
-    if ([NLTickInfo inTick:tickInfo]) {
+    if ([self inTick:tickInfo]) {
         return;
     }
     
-    if ([NLTickInfo length:tickInfo] == 0) {
-        [NLTickInfo setIndex:tickInfo index:0];
+    if ([self tickLength:tickInfo] == 0) {
+        [self setTickIndex:tickInfo index:0];
         return;
     }
     
-    [NLTickInfo setInTick:tickInfo on:YES];
+    [self setInTick:tickInfo on:YES];
     
-    [NLAsync performCallback:[NLTickInfo getCallbackInContext:context]
+    [NLAsync performCallback:[self getTickCallbackInContext:context]
                   fromObject:[context.virtualMachine nodelikeGet:&env_process_object]
                withArguments:@[]];
     
-    [NLTickInfo setInTick:tickInfo on:NO];
+    [self setInTick:tickInfo on:NO];
     
 }
 
@@ -176,7 +182,7 @@ enum AsyncFlags {
     JSContext   *context    = flagObj.context;
     JSContextRef contextRef = context.JSGlobalContextRef;
     JSValueRef   flagObjRef = flagObj.JSValueRef;
-    for (int i = 0; i < kFieldsCount; i++) {
+    for (int i = 0; i < kAsyncFieldsCount; i++) {
         JSObjectSetPropertyAtIndex(contextRef, (JSObjectRef)flagObjRef, i, JSValueMakeNumber(contextRef, 0), nil);
     }
     [context.virtualMachine nodelikeSet:&asyncListenerFlagObject     toValue:flagObj];
@@ -192,8 +198,75 @@ enum AsyncFlags {
 + (bool)hasAsyncListener:(JSContext *)context {
     JSValueRef   flagObjRef  = ((JSValue *)[context.virtualMachine nodelikeGet:&asyncListenerFlagObject]).JSValueRef;
     JSContextRef contextRef  = context.JSGlobalContextRef;
-    JSValueRef   hasListener = JSObjectGetPropertyAtIndex(contextRef, (JSObjectRef)flagObjRef, kHasListener, nil);
+    JSValueRef   hasListener = JSObjectGetPropertyAtIndex(contextRef, (JSObjectRef)flagObjRef, kAsyncHasListener, nil);
     return JSValueToNumber(contextRef, hasListener, nil) > 0;
+}
+
+#pragma mark - Tick Info
+
++ (void)setupNextTick:(JSValue *)obj func:(JSValue *)func {
+    [self initTickObject:obj];
+    [self setTickObject:obj    inContext:obj.context];
+    [self setTickCallback:func inContext:obj.context];
+}
+
++ (void)initTickObject:(JSValue *)object {
+    JSContextRef context = object.context.JSGlobalContextRef;
+    for (int i = 0; i< kTickFieldsCount; i++) {
+        JSObjectSetPropertyAtIndex(context, object.JSValueRef, i, JSValueMakeNumber(context, 0), nil);
+    }
+}
+
++ (void)setTickObject:(JSValue *)object inContext:(JSContext *)context {
+    [context.virtualMachine nodelikeSet:&tickInfoField toValue:object];
+}
+
++ (JSValue *)getTickObjectInContext:(JSContext *)context {
+    return [context.virtualMachine nodelikeGet:&tickInfoField];
+}
+
++ (void)setTickCallback:(JSValue *)object inContext:(JSContext *)context {
+    [context.virtualMachine nodelikeSet:&tickCallbackField toValue:object];
+}
+
++ (JSValue *)getTickCallbackInContext:(JSContext *)context {
+    return [context.virtualMachine nodelikeGet:&tickCallbackField];
+}
+
++ (int)tickFieldsCount:(JSValue *)object {
+    JSContextRef context = object.context.JSGlobalContextRef;
+    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, object.JSValueRef, kTickFieldsCount, nil), nil);
+}
+
++ (uint32_t)tickIndex:(JSValue *)object {
+    JSContextRef context = object.context.JSGlobalContextRef;
+    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, object.JSValueRef, kTickIndex, nil), nil);
+}
+
++ (uint32_t)tickLength:(JSValue *)object {
+    JSContextRef context = object.context.JSGlobalContextRef;
+    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, object.JSValueRef, kTickLength, nil), nil);
+}
+
++ (bool)inTick:(JSValue *)object {
+    return ((NSNumber *)[object nodelikeGet:&inTickField]).boolValue;
+}
+
++ (bool)lastThrew:(JSValue *)object {
+    return ((NSNumber *)[object nodelikeGet:&inTickField]).boolValue;
+}
+
++ (void)setTickIndex:(JSValue *)object index:(uint32_t)index {
+    JSContextRef context = object.context.JSGlobalContextRef;
+    JSObjectSetPropertyAtIndex(context, object.JSValueRef, kTickIndex, JSValueMakeNumber(context, index), nil);
+}
+
++ (void)setInTick:(JSValue *)object on:(bool)on {
+    [object nodelikeSet:&inTickField toValue:[NSNumber numberWithBool:on]];
+}
+
++ (void)setLastThrew:(JSValue *)object on:(bool)on {
+    [object nodelikeSet:&lastThrewField toValue:[NSNumber numberWithBool:on]];
 }
 
 @end
