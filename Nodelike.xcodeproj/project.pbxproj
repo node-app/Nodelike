@@ -117,7 +117,6 @@
 		B557E51F18CB80C9006E75AC /* test-event-emitter-listeners.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0D418B94E2E005E6403 /* test-event-emitter-listeners.js */; };
 		B557E52018CB80C9006E75AC /* test-event-emitter-max-listeners.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0D518B94E2E005E6403 /* test-event-emitter-max-listeners.js */; };
 		B557E52118CB80C9006E75AC /* test-event-emitter-modify-in-emit.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0D618B94E2E005E6403 /* test-event-emitter-modify-in-emit.js */; };
-		B557E52218CB80C9006E75AC /* test-event-emitter-no-error-provided-to-error-event.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0D718B94E2E005E6403 /* test-event-emitter-no-error-provided-to-error-event.js */; };
 		B557E52318CB80C9006E75AC /* test-event-emitter-num-args.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0D818B94E2E005E6403 /* test-event-emitter-num-args.js */; };
 		B557E52418CB80C9006E75AC /* test-event-emitter-once.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0D918B94E2E005E6403 /* test-event-emitter-once.js */; };
 		B557E52518CB80C9006E75AC /* test-event-emitter-remove-all-listeners.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0DA18B94E2E005E6403 /* test-event-emitter-remove-all-listeners.js */; };
@@ -125,6 +124,7 @@
 		B557E52718CB80C9006E75AC /* test-event-emitter-set-max-listeners-side-effects.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0DC18B94E2E005E6403 /* test-event-emitter-set-max-listeners-side-effects.js */; };
 		B557E52818CB80C9006E75AC /* test-event-emitter-subclass.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E0DD18B94E2E005E6403 /* test-event-emitter-subclass.js */; };
 		B557E52A18CB80F9006E75AC /* EventEmitter_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B557E52918CB80F9006E75AC /* EventEmitter_Tests.m */; };
+		B557E52F18CB832C006E75AC /* NLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B557E52E18CB832C006E75AC /* NLTestCase.m */; };
 		B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFA8187DBFA700FF1D8A /* http_parser.c */; };
 		B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */; };
 		B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDB418B55F01005E6403 /* Util_Tests.m */; };
@@ -281,6 +281,8 @@
 		B54C1F52180D37280051F826 /* libuv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libuv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54C1F95180D37C80051F826 /* libm.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libm.dylib; path = usr/lib/libm.dylib; sourceTree = SDKROOT; };
 		B557E52918CB80F9006E75AC /* EventEmitter_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventEmitter_Tests.m; sourceTree = "<group>"; };
+		B557E52D18CB832C006E75AC /* NLTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTestCase.h; sourceTree = "<group>"; };
+		B557E52E18CB832C006E75AC /* NLTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTestCase.m; sourceTree = "<group>"; };
 		B56DEFA8187DBFA700FF1D8A /* http_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = http_parser.c; sourceTree = "<group>"; };
 		B56DEFAA187DBFA700FF1D8A /* http_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_parser.h; sourceTree = "<group>"; };
 		B56DEFBC187DC18100FF1D8A /* NLHTTPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLHTTPParser.h; sourceTree = "<group>"; };
@@ -1170,6 +1172,8 @@
 				B544C74918BEC2D900925D24 /* node_modules */,
 				B572E03418B94E2E005E6403 /* package */,
 				B572E03218B92368005E6403 /* test-common.js */,
+				B557E52D18CB832C006E75AC /* NLTestCase.h */,
+				B557E52E18CB832C006E75AC /* NLTestCase.m */,
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B572DDB418B55F01005E6403 /* Util_Tests.m */,
 				B572DDCA18B90F16005E6403 /* Buffer_Tests.m */,
@@ -2097,7 +2101,6 @@
 				B557E51F18CB80C9006E75AC /* test-event-emitter-listeners.js in Resources */,
 				B557E52018CB80C9006E75AC /* test-event-emitter-max-listeners.js in Resources */,
 				B557E52118CB80C9006E75AC /* test-event-emitter-modify-in-emit.js in Resources */,
-				B557E52218CB80C9006E75AC /* test-event-emitter-no-error-provided-to-error-event.js in Resources */,
 				B557E52318CB80C9006E75AC /* test-event-emitter-num-args.js in Resources */,
 				B557E52418CB80C9006E75AC /* test-event-emitter-once.js in Resources */,
 				B557E52518CB80C9006E75AC /* test-event-emitter-remove-all-listeners.js in Resources */,
@@ -2218,6 +2221,7 @@
 				B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */,
 				B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */,
 				B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */,
+				B557E52F18CB832C006E75AC /* NLTestCase.m in Sources */,
 				B557E52A18CB80F9006E75AC /* EventEmitter_Tests.m in Sources */,
 				B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */,
 			);

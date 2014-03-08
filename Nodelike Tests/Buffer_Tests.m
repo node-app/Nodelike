@@ -6,32 +6,16 @@
 //  Copyright (c) 2014 Sam Rijs. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "NLTestCase.h"
 
-#import "NLContext.h"
-#import "NLNatives.h"
-
-@interface Buffer_Tests : XCTestCase
+@interface Buffer_Tests : NLTestCase
 
 @end
 
 @implementation Buffer_Tests
 
 - (void)testAll {
-    NSString *prefix = @"test-buffer";
-    [NLNatives.modules enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-        if ([obj hasPrefix:prefix]) {
-            NSLog(@"running %@", obj);
-            NLContext *ctx = [NLContext new];
-            ctx.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
-                XCTFail(@"Context exception thrown: %@; line: %@, stack: %@", e, [e valueForProperty:@"line"], [e valueForProperty:@"stack"]);
-            };
-            [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
-            [ctx evaluateScript:[NLNatives source:obj]];
-            [NLContext runEventLoopSync];
-            [ctx emitExit];
-        }
-    }];
+    [self runWithPrefix:@"test-buffer"];
 }
 
 @end
