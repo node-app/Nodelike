@@ -45,7 +45,7 @@ Apache Cordova is available for multiple platforms, but when focussing on the iO
 
 - `console.log()`
 - `process`: `.argv`, `.env`, `.exit()`, `.nextTick()`
-- `require()` for native modules
+- `require()`
 - `fs`
 - `net`
 - `http`
