@@ -610,7 +610,7 @@ static size_t base64DecodedSize(const char * src, size_t size) {
     
     internal[@"byteLength"] = ^(NSString *string, NSString * encoding) {
         if ([encoding isEqualToString:@"base64"])
-		return base64DecodedSize(string.UTF8String, string.length);
+		return (NSUInteger)base64DecodedSize(string.UTF8String, string.length);
         return [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     };
     
