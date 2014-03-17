@@ -151,6 +151,33 @@
 		B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */; };
 		B5A79B2E189E501300CC04D6 /* NLContextify.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2D189E501200CC04D6 /* NLContextify.m */; };
 		B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
+		DABE969718D67A3100BA2966 /* Write_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DABE969618D67A3100BA2966 /* Write_Tests.m */; };
+		DABE969818D67BB000BA2966 /* test-util-debug.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BB18B94E33005E6403 /* test-util-debug.js */; };
+		DABE969918D67BB000BA2966 /* test-util-format.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BC18B94E33005E6403 /* test-util-format.js */; };
+		DABE969A18D67BB000BA2966 /* test-util-inspect.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BD18B94E33005E6403 /* test-util-inspect.js */; };
+		DABE969B18D67BB000BA2966 /* test-util-log.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BE18B94E33005E6403 /* test-util-log.js */; };
+		DABE969C18D67BB000BA2966 /* test-util.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BF18B94E33005E6403 /* test-util.js */; };
+		DABE969D18D67BB000BA2966 /* test-vm-basic.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C018B94E33005E6403 /* test-vm-basic.js */; };
+		DABE969E18D67BB000BA2966 /* test-vm-context-async-script.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C118B94E33005E6403 /* test-vm-context-async-script.js */; };
+		DABE969F18D67BB000BA2966 /* test-vm-context-property-forwarding.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C218B94E33005E6403 /* test-vm-context-property-forwarding.js */; };
+		DABE96A018D67BB000BA2966 /* test-vm-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C318B94E33005E6403 /* test-vm-context.js */; };
+		DABE96A118D67BB000BA2966 /* test-vm-create-and-run-in-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C418B94E33005E6403 /* test-vm-create-and-run-in-context.js */; };
+		DABE96A218D67BB000BA2966 /* test-vm-create-context-accessors.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C518B94E33005E6403 /* test-vm-create-context-accessors.js */; };
+		DABE96A318D67BB000BA2966 /* test-vm-create-context-arg.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C618B94E33005E6403 /* test-vm-create-context-arg.js */; };
+		DABE96A418D67BB000BA2966 /* test-vm-create-context-circular-reference.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C718B94E33005E6403 /* test-vm-create-context-circular-reference.js */; };
+		DABE96A518D67BB000BA2966 /* test-vm-function-declaration.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C818B94E33005E6403 /* test-vm-function-declaration.js */; };
+		DABE96A618D67BB000BA2966 /* test-vm-global-define-property.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2C918B94E33005E6403 /* test-vm-global-define-property.js */; };
+		DABE96A718D67BB000BA2966 /* test-vm-global-identity.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CA18B94E33005E6403 /* test-vm-global-identity.js */; };
+		DABE96A818D67BB000BA2966 /* test-vm-is-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CB18B94E33005E6403 /* test-vm-is-context.js */; };
+		DABE96A918D67BB000BA2966 /* test-vm-new-script-new-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CC18B94E33005E6403 /* test-vm-new-script-new-context.js */; };
+		DABE96AA18D67BB000BA2966 /* test-vm-new-script-this-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CD18B94E33005E6403 /* test-vm-new-script-this-context.js */; };
+		DABE96AB18D67BB000BA2966 /* test-vm-run-in-new-context.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CE18B94E33005E6403 /* test-vm-run-in-new-context.js */; };
+		DABE96AC18D67BB000BA2966 /* test-vm-static-this.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2CF18B94E33005E6403 /* test-vm-static-this.js */; };
+		DABE96AD18D67BB000BA2966 /* test-vm-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2D018B94E33005E6403 /* test-vm-timeout.js */; };
+		DABE96AE18D67BB000BA2966 /* test-writedouble.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2D118B94E33005E6403 /* test-writedouble.js */; };
+		DABE96AF18D67BB000BA2966 /* test-writefloat.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2D218B94E33005E6403 /* test-writefloat.js */; };
+		DABE96B018D67BB000BA2966 /* test-writeint.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2D318B94E33005E6403 /* test-writeint.js */; };
+		DABE96B118D67BB000BA2966 /* test-writeuint.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2D418B94E33005E6403 /* test-writeuint.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1011,6 +1038,7 @@
 		B5C5B247181319550091FDE8 /* NLSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
+		DABE969618D67A3100BA2966 /* Write_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Write_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1181,6 +1209,7 @@
 				B544C74B18BEC37A00925D24 /* Resource_Tests.m */,
 				B50A490218C3882700656FA3 /* NextTick_Tests.m */,
 				B557E52918CB80F9006E75AC /* EventEmitter_Tests.m */,
+				DABE969618D67A3100BA2966 /* Write_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
 			path = "Nodelike Tests";
@@ -2095,6 +2124,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABE969818D67BB000BA2966 /* test-util-debug.js in Resources */,
+				DABE969918D67BB000BA2966 /* test-util-format.js in Resources */,
+				DABE969A18D67BB000BA2966 /* test-util-inspect.js in Resources */,
+				DABE969B18D67BB000BA2966 /* test-util-log.js in Resources */,
+				DABE969C18D67BB000BA2966 /* test-util.js in Resources */,
+				DABE969D18D67BB000BA2966 /* test-vm-basic.js in Resources */,
+				DABE969E18D67BB000BA2966 /* test-vm-context-async-script.js in Resources */,
+				DABE969F18D67BB000BA2966 /* test-vm-context-property-forwarding.js in Resources */,
+				DABE96A018D67BB000BA2966 /* test-vm-context.js in Resources */,
+				DABE96A118D67BB000BA2966 /* test-vm-create-and-run-in-context.js in Resources */,
+				DABE96A218D67BB000BA2966 /* test-vm-create-context-accessors.js in Resources */,
+				DABE96A318D67BB000BA2966 /* test-vm-create-context-arg.js in Resources */,
+				DABE96A418D67BB000BA2966 /* test-vm-create-context-circular-reference.js in Resources */,
+				DABE96A518D67BB000BA2966 /* test-vm-function-declaration.js in Resources */,
+				DABE96A618D67BB000BA2966 /* test-vm-global-define-property.js in Resources */,
+				DABE96A718D67BB000BA2966 /* test-vm-global-identity.js in Resources */,
+				DABE96A818D67BB000BA2966 /* test-vm-is-context.js in Resources */,
+				DABE96A918D67BB000BA2966 /* test-vm-new-script-new-context.js in Resources */,
+				DABE96AA18D67BB000BA2966 /* test-vm-new-script-this-context.js in Resources */,
+				DABE96AB18D67BB000BA2966 /* test-vm-run-in-new-context.js in Resources */,
+				DABE96AC18D67BB000BA2966 /* test-vm-static-this.js in Resources */,
+				DABE96AD18D67BB000BA2966 /* test-vm-timeout.js in Resources */,
+				DABE96AE18D67BB000BA2966 /* test-writedouble.js in Resources */,
+				DABE96AF18D67BB000BA2966 /* test-writefloat.js in Resources */,
+				DABE96B018D67BB000BA2966 /* test-writeint.js in Resources */,
+				DABE96B118D67BB000BA2966 /* test-writeuint.js in Resources */,
 				B557E51C18CB80C9006E75AC /* test-event-emitter-add-listeners.js in Resources */,
 				B557E51D18CB80C9006E75AC /* test-event-emitter-check-listener-leaks.js in Resources */,
 				B557E51E18CB80C9006E75AC /* test-event-emitter-listeners-side-effects.js in Resources */,
@@ -2216,6 +2271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DABE969718D67A3100BA2966 /* Write_Tests.m in Sources */,
 				B544C74C18BEC37A00925D24 /* Resource_Tests.m in Sources */,
 				B50A490318C3882700656FA3 /* NextTick_Tests.m in Sources */,
 				B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */,

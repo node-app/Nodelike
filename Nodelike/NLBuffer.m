@@ -12,6 +12,8 @@
 #import "NLBuffer.h"
 
 #import "NSObject+Nodelike.h"
+#import <libkern/OSByteOrder.h>
+
 
 typedef enum {
     NLEncodingAscii,
@@ -75,6 +77,7 @@ static size_t writeBuffer(NLEncoding enc, const char *data, JSValue *target, int
         case NLEncodingUTF8:
         case NLEncodingUCS2:
         case NLEncodingVerbatim:
+            
         for (int i = 0; i < len; i++) {
             JSObjectSetPropertyAtIndex(context, buffer, i + off, JSValueMakeNumber(context, (unsigned char)data[i]), nil);
         }
@@ -127,7 +130,7 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
         break;
 
         case NLEncodingHex:
-        len = MIN(len, str.length/2);
+        len = MIN(len, (int)str.length/2);
         conv = malloc(str.length * sizeof(unichar));
         data = malloc(len);
         [str getCharacters:conv];
@@ -141,7 +144,7 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
         case NLEncodingBase64:
         {
         NSData * d = base64Decode(str);
-        len  = MIN(len, d.length);
+        len  = MIN(len, (int)d.length);
         data = len? strdup(d.bytes) : 0;
         }
         break;
@@ -296,11 +299,21 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
             return target.context.exception;
     }
 
-    return [JSValue valueWithInt32: offset + writeBuffer(NLEncodingVerbatim, data, target, offset, MIN(obj_length - offset, len)) inContext:target.context];
+    return [JSValue valueWithUInt32: offset + (unsigned)writeBuffer(NLEncodingVerbatim, data, target, offset, MIN(obj_length - offset, len)) inContext:target.context];
     
 }
 
-+ (JSValue *)readLEFromBuffer:(JSValue *)target atOffset:(unsigned)offset length:(unsigned)len{
++ (JSValue *)writeBE:(const void *)data toBuffer:(JSValue *)target atOffset:(JSValue *)off withLength:(int) len {
+	char bedata[8];
+	switch (len) {
+	case 4: *(uint32_t*)bedata = OSSwapInt32(*(uint32_t*)data); break;
+	case 8: *(uint64_t*)bedata = OSSwapInt64(*(uint64_t*)data); break;
+	default: assert(0);
+	}
+	return [self writeLE:bedata toBuffer: target atOffset:off withLength:len];
+}
+
++ (JSValue *)readFPFromBuffer:(JSValue *)target atOffset:(unsigned)offset length:(unsigned)len big:(BOOL)big{
     char data[8];
     unsigned olen = [target[@"length"] toUInt32];
     if (offset > (olen - len)) {
@@ -308,11 +321,16 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
             return target.context.exception;
     }
     sliceBuffer(data, target, offset, len);
-    JSValue * ret;
     double d;
     switch (len) {
-    case 4: d = *(float*)data; break;
-    case 8: d = *(double*)data; break;
+    case 4: 
+	    if (big) *(int32_t*)data = OSSwapInt32(*(int32_t*)data);
+	    d = *(float*)data; 
+	    break;
+    case 8: 
+	    if (big) *(int64_t*)data = OSSwapInt64(*(int64_t*)data);
+	    d = *(double*)data;
+	    break;
     default:assert(0);
     }
     return [JSValue valueWithDouble: d inContext:target.context];
@@ -351,7 +369,6 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     free(data);
     return str;
 }
-
 
 + (JSValue *)sliceAscii:(JSValue *)buffer from:(NSNumber *)start_arg to:(NSNumber *)end_arg {
     int   start = start_arg.intValue, end = end_arg.intValue, len = end - start;
@@ -436,10 +453,41 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
     JSValueRef intVal;
 
     for (int i = 0; i < len; i++) {
-        intVal = JSValueMakeNumber(context, cstr[i % valLen]);
+        intVal = JSValueMakeNumber(context, (unsigned char)cstr[i % valLen]);
         JSObjectSetPropertyAtIndex(context, buffer, i + start, intVal, nil);
     }
 
+}
+
+// base64DecodeSize shamelessly stolen from Node.js string_bytes.cc
+
+static inline size_t base64DecodedSizeFast(size_t size) {
+	size_t remainder = size % 4;
+
+	size = (size / 4) * 3;
+	if (remainder) {
+		if (size == 0 && remainder == 1) {
+			// special case: 1-byte input cannot be decoded
+			size = 0;
+		} else {
+			// non-padded input, add 1 or 2 extra bytes
+			size += 1 + (remainder == 3);
+		}
+	}
+
+	return size;
+}
+
+static size_t base64DecodedSize(const char * src, size_t size) {
+	if (size == 0)
+		return 0;
+
+	if (src[size - 1] == '=')
+		size--;
+	if (size > 0 && src[size - 1] == '=')
+		size--;
+
+	return base64DecodedSizeFast(size);
 }
 
 + (void)setupBufferJS:(JSValue *)target internal:(JSValue *)internal {
@@ -511,6 +559,13 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
                           withLength:sizeof(val)];
     };
 
+    proto[@"writeFloatBE"] = ^(float val, JSValue * off) {
+            return [NLBuffer writeBE:&val
+                          toBuffer:NLContext.currentThis 
+                          atOffset:off 
+                          withLength:sizeof(val)];
+    };
+
     proto[@"writeDoubleLE"] = ^(double val, JSValue * off) {
             return [NLBuffer writeLE:&val
                           toBuffer:NLContext.currentThis 
@@ -518,23 +573,44 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
                           withLength:sizeof(val)];
     };
 
+    proto[@"writeDoubleBE"] = ^(double val, JSValue * off) {
+            return [NLBuffer writeBE:&val
+                          toBuffer:NLContext.currentThis 
+                          atOffset:off 
+                          withLength:sizeof(val)];
+    };
+
     proto[@"readFloatLE"] = ^(unsigned off) {
-            return [NLBuffer readLEFromBuffer:NLContext.currentThis
+            return [NLBuffer readFPFromBuffer:NLContext.currentThis
                                      atOffset:off
-                                       length:sizeof(float)];
+                                       length:sizeof(float)
+					big:NO];
+    };
+
+    proto[@"readFloatBE"] = ^(unsigned off) {
+            return [NLBuffer readFPFromBuffer:NLContext.currentThis
+				   atOffset:off
+				     length:sizeof(float)
+					big:YES];
     };
 
     proto[@"readDoubleLE"] = ^(unsigned off) {
-            return [NLBuffer readLEFromBuffer:NLContext.currentThis
-                                     atOffset:off
-                                       length:sizeof(double)];
+            return [NLBuffer readFPFromBuffer:NLContext.currentThis
+				   atOffset:off
+				     length:sizeof(double)
+					big:NO];
+    };
+
+    proto[@"readDoubleBE"] = ^(unsigned off) {
+            return [NLBuffer readFPFromBuffer:NLContext.currentThis
+				   atOffset:off
+				     length:sizeof(double)
+					big:YES];
     };
     
     internal[@"byteLength"] = ^(NSString *string, NSString * encoding) {
-        if ([encoding isEqualToString:@"base64"]) {
-                NSData * d = base64Decode(string);
-                return d.length;
-        }
+        if ([encoding isEqualToString:@"base64"])
+		return base64DecodedSize(string.UTF8String, string.length);
         return [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     };
     
