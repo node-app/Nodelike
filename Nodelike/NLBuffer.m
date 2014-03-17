@@ -114,69 +114,69 @@ static int utf8clen(const char * s, int rem) {
 static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int off, int len) {
     
     unichar *conv = NULL;
-    char    *data = NULL;
+    const char *data = NULL;
+    char *adata = NULL;
     
     switch (enc) {
-     
+    
         case NLEncodingBinary:
         case NLEncodingAscii:
         len  = MIN(len, (int)str.length);
         conv = malloc(len * sizeof(unichar));
-        data = malloc(len);
+        data = adata = malloc(len);
         [str getCharacters:conv];
         for (int i = 0; i < len; i++) {
-            data[i] = conv[i] % 256;
+            adata[i] = conv[i] % 256;
         }
         break;
 
         case NLEncodingHex:
         len = MIN(len, (int)str.length/2);
         conv = malloc(str.length * sizeof(unichar));
-        data = malloc(len);
+        data = adata = malloc(len);
         [str getCharacters:conv];
         for (int i = 0; i < len; i++) {
             char buf[3];
             buf[0] = conv[2*i+0]; buf[1] = conv[2*i+1]; buf[2] = 0;
-            data[i] = strtol(buf, 0, 16);
+            adata[i] = strtol(buf, 0, 16);
         }
         break;
 
         case NLEncodingBase64:
         {
-        NSData * d = base64Decode(str);
-        len  = MIN(len, (int)d.length);
-        data = len? strdup(d.bytes) : 0;
+            NSData * d = base64Decode(str);
+            len  = MIN(len, (int)d.length);
+            data = len? (char*)d.bytes : 0;
         }
         break;
 
         case NLEncodingUTF8:
         {
-        int sblen = (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        len = MIN(len, sblen);
-        conv = malloc(1);
-        size_t sz = len;
-        data = malloc(sz+1);
-        const char * src = str.UTF8String;
-        int sofar = 0;
-        int i;
-        int slen = (int)str.length;
-        for (i = 0; i < slen; i++) {
+            int sblen = (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+            len = MIN(len, sblen);
+            size_t sz = len;
+            data = adata = malloc(sz+1);
+            const char * src = str.UTF8String;
+            int sofar = 0;
+            int i;
+            int slen = (int)str.length;
+            for (i = 0; i < slen; i++) {
                 int clen = utf8clen(src+sofar, sblen-sofar);
                 if (sz-sofar >= clen) {
-                        memcpy(data+sofar, src+sofar, clen);
-                        sofar += clen;
+                    memcpy(adata+sofar, src+sofar, clen);
+                    sofar += clen;
                 } else
-                        break;
-        }
-        len = sofar;
+                    break;
+            }
+            len = sofar;
         }
         break;
 
         case NLEncodingVerbatim:
         {
-        int blen = (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        data = (char *)[str cStringUsingEncoding:NSUTF8StringEncoding];
-        len  = MIN(len, blen);
+            int blen = (int)[str lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+            data = (char *)[str cStringUsingEncoding:NSUTF8StringEncoding];
+            len  = MIN(len, blen);
         }
         break;
         
@@ -194,10 +194,10 @@ static size_t writeString(NLEncoding enc, NSString *str, JSValue *target, int of
     
     size_t size = writeBuffer(enc, data, target, off, len);
 
-    if (conv) {
-        free(data);
+    if (conv)
         free(conv);
-    }
+    if (adata)
+        free(adata);
     
     return size;
 
