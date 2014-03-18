@@ -18,11 +18,11 @@
         if ([obj hasPrefix:prefix]) {
             NSLog(@"running %@", obj);
             NLContext *ctx = [NLContext new];
-            ctx.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
-                XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
-            };
             [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
             [ctx evaluateScript:[NLNatives source:obj]];
+            JSValue * e = ctx.exception;
+            if (e)
+                XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
             [NLContext runEventLoopSync];
             [ctx emitExit];
         }
