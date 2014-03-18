@@ -79,7 +79,8 @@
             uint64_t nanos   = [offset valueAtIndex:1].toInt32;
             t -= (seconds * NANOS_PER_SEC) + nanos;
         }
-        return @[[NSNumber numberWithUnsignedInt:t / NANOS_PER_SEC], [NSNumber numberWithUnsignedInt:t % NANOS_PER_SEC]];
+        return @[[NSNumber numberWithUnsignedInt:(unsigned)(t / NANOS_PER_SEC)],
+                 [NSNumber numberWithUnsignedInt:(unsigned)(t % NANOS_PER_SEC)]];
     };
     
     process[@"reallyExit"] = ^(NSNumber *code) {
