@@ -29,8 +29,7 @@ var result = vm.runInNewContext(
   'foo = "bar"; this.typeofProcess = typeof process; typeof Object;',
   sandbox
 );
-console.log(sandbox.foo);
-console.log(sandbox.typeofProcess);
+
 assert.deepEqual(sandbox, {
   foo: 'bar',
   typeofProcess: 'undefined',
