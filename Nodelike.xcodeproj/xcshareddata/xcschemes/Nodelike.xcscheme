@@ -39,13 +39,43 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "Assert_Tests">
+               </Test>
+               <Test
+                  Identifier = "Buffer_Tests">
+               </Test>
+               <Test
+                  Identifier = "Console_Tests">
+               </Test>
+               <Test
+                  Identifier = "EventEmitter_Tests">
+               </Test>
+               <Test
+                  Identifier = "NLTestCase">
+               </Test>
+               <Test
+                  Identifier = "NLTimer_Tests">
+               </Test>
+               <Test
+                  Identifier = "NextTick_Tests">
+               </Test>
+               <Test
+                  Identifier = "Nodelike_Tests">
+               </Test>
+               <Test
                   Identifier = "Nodelike_Tests/testExample">
+               </Test>
+               <Test
+                  Identifier = "Read_Tests">
+               </Test>
+               <Test
+                  Identifier = "Resource_Tests">
                </Test>
                <Test
                   Identifier = "Util_Tests">
                </Test>
                <Test
-                  Identifier = "VM_Tests">
+                  Identifier = "Write_Tests">
                </Test>
             </SkippedTests>
          </TestableReference>

@@ -18,8 +18,10 @@
 #import "NLCares.h"
 #import "NLUV.h"
 #import "NLTimer.h"
+#import "NLDate.h"
 #import "NLTCP.h"
 #import "NLUDP.h"
+#import "NLTTY.h"
 #import "NLProcess.h"
 #import "NLHTTPParser.h"
 #import "NLNatives.h"
@@ -36,9 +38,11 @@
                      @"smalloc":      NLSmalloc.class,
                      @"buffer":       NLBuffer.class,
                      @"timer_wrap":   NLTimer.class,
+                     @"date_wrap":    NLDate.class,
                      @"cares_wrap":   NLCares.class,
                      @"tcp_wrap":     NLTCP.class,
                      @"udp_wrap":     NLUDP.class,
+                     @"tty_wrap":     NLTTY.class,
                      @"uv":           NLUV.class,
                      @"process_wrap": NLProcess.class,
                      @"http_parser":  NLHTTPParser.class,
