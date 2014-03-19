@@ -63,14 +63,6 @@
     
     process[@"resourcePath"]      = NLContext.resourcePath;
     process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
-    process[@"env"][@"NODE_DEBUG"] = 
-#ifdef DEBUG
-	    @TRUE
-#else
-	    @FALSE
-#endif
-	    ;
-    
     // used in Hrtime() below
 #define NANOS_PER_SEC 1000000000
 
