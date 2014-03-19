@@ -156,7 +156,6 @@
 		DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09718B94E2E005E6403 /* test-console-instance.js */; };
 		DA1A549B18D8BC4F009302E0 /* test-console-not-call-toString.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09818B94E2E005E6403 /* test-console-not-call-toString.js */; };
 		DA1A549C18D8BC4F009302E0 /* test-console.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09918B94E2E005E6403 /* test-console.js */; };
-		DA49974518D88C270078FCB1 /* NLDate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49974418D88C270078FCB1 /* NLDate.m */; };
 		DA49974818D899480078FCB1 /* NLTTY.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49974718D899480078FCB1 /* NLTTY.m */; };
 		DA49974E18D8B4C00078FCB1 /* test-vm-infinite-recursion.js in Resources */ = {isa = PBXBuildFile; fileRef = DA49974C18D8B4300078FCB1 /* test-vm-infinite-recursion.js */; };
 		DA8453C518D858B700839549 /* Assert_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8453C418D858B700839549 /* Assert_Tests.m */; };
@@ -1050,8 +1049,6 @@
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
 		DA1A549618D8BAEE009302E0 /* Read_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Read_Tests.m; sourceTree = "<group>"; };
 		DA1A549818D8BC2F009302E0 /* Console_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console_Tests.m; sourceTree = "<group>"; };
-		DA49974318D88C190078FCB1 /* NLDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLDate.h; sourceTree = "<group>"; };
-		DA49974418D88C270078FCB1 /* NLDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLDate.m; sourceTree = "<group>"; };
 		DA49974618D899400078FCB1 /* NLTTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTTY.h; sourceTree = "<group>"; };
 		DA49974718D899480078FCB1 /* NLTTY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTTY.m; sourceTree = "<group>"; };
 		DA49974C18D8B4300078FCB1 /* test-vm-infinite-recursion.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-vm-infinite-recursion.js"; sourceTree = "<group>"; };
@@ -1954,8 +1951,6 @@
 			children = (
 				DA49974718D899480078FCB1 /* NLTTY.m */,
 				DA49974618D899400078FCB1 /* NLTTY.h */,
-				DA49974418D88C270078FCB1 /* NLDate.m */,
-				DA49974318D88C190078FCB1 /* NLDate.h */,
 				B5A79B29189E4F9400CC04D6 /* NSObject+Nodelike.h */,
 				B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */,
 				B52B9B9118A01D0800492856 /* NLAsync.h */,
@@ -2357,7 +2352,6 @@
 			files = (
 				B52B9B9318A01D0800492856 /* NLAsync.m in Sources */,
 				B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */,
-				DA49974518D88C270078FCB1 /* NLDate.m in Sources */,
 				B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */,
 				B599FF2C185A7ED000057DD6 /* NLTCP.m in Sources */,
 				B5417311189415C000B6636B /* NLUDP.m in Sources */,
