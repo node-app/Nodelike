@@ -15,7 +15,7 @@
 @implementation VM_Tests
 
 - (void)testAll {
-    [self runWithPrefix:@"test-vm-harmony-sym"];
+    [self runWithPrefix:@"test-vm"];
 }
 
 @end
