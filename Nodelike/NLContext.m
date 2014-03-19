@@ -165,7 +165,7 @@
     context[@"COUNTER_HTTP_CLIENT_REQUEST"]         = noop;
     context[@"COUNTER_HTTP_CLIENT_RESPONSE"]        = noop;
     
-    [context evaluateScript:@"Error.captureStackTrace = function (value) { return; };"];
+    [context evaluateScript:@"Error.captureStackTrace = function (e) { e.stack = 'Trace: ' + e.message };"];
     [context evaluateScript:@"Number.isFinite = function (value) { return typeof value === 'number' && isFinite(value); };"];
     
     JSValue *constructor = [context evaluateScript:[NLNatives source:@"node"]];
