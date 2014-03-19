@@ -23,12 +23,6 @@ var common = require('../common');
 var assert = require('assert');
 var a = require('assert');
 
-console.log('DATE');
-console.log(new Date(2000, 3, 14));
-console.log(new Date(2000, 1, 1));
-console.log(new Date());
-
-
 function makeBlock(f) {
   var args = Array.prototype.slice.call(arguments, 1);
   return function() {
