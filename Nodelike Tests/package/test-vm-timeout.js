@@ -42,7 +42,6 @@ assert.throws(function() {
 vm.runInThisContext('', { timeout: 1000 });
 
 // Test 5: Nested vm timeouts, inner timeout propagates out
-/*XXX fails
 assert.throws(function() {
   var context = {
     log: console.log,
@@ -53,5 +52,3 @@ assert.throws(function() {
   vm.runInNewContext('runInVM(10)', context, { timeout: 100 });
   throw new Error('Test 5 failed');
 }, /Script execution timed out./);
-
-*/
