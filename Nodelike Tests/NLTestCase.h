@@ -10,6 +10,7 @@
 
 @interface NLTestCase : XCTestCase
 
+- (void)runWithPrefix:(NSString *)prefix skipping:(NSArray *)bad;
 - (void)runWithPrefix:(NSString *)prefix;
 
 @end

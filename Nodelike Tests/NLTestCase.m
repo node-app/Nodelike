@@ -14,8 +14,16 @@
 @implementation NLTestCase
 
 - (void)runWithPrefix:(NSString *)prefix {
+	[self runWithPrefix:prefix skipping:nil];
+}
+
+- (void)runWithPrefix:(NSString *)prefix skipping:(NSArray *)bad {
     [NLNatives.modules enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-        if ([obj hasPrefix:prefix]) {
+    if ([obj hasPrefix:prefix]) {
+	    if ([bad containsObject:obj]) {
+		    NSLog(@"skipping %@", obj);
+		    return;
+	    }
             NSLog(@"running %@", obj);
             NLContext *ctx = [NLContext new];
             [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
