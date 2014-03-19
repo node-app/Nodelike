@@ -13,7 +13,7 @@
 
 #import "NSObject+Nodelike.h"
 
-#if USE_TIMEOUTS
+#if USE_PRIVATE_APIS
 JS_EXPORT void JSContextGroupSetExecutionTimeLimit(JSContextGroupRef, double limit, void*, void* context) CF_AVAILABLE(10_6, 7_0);
 JS_EXPORT void JSContextGroupClearExecutionTimeLimit(JSContextGroupRef) CF_AVAILABLE(10_6, 7_0);
 #endif
@@ -39,7 +39,7 @@ static char contextify_sandbox;
 
 - (JSValue *)runInJSContext:(JSContext*)context options:(JSValue *)options {
     JSValue * opt = options.isUndefined? self.options : options;;
-#if USE_TIMEOUTS
+#if USE_PRIVATE_APIS
     int hasTimeout = !opt.isUndefined && [opt hasProperty:@"timeout"];
     if (hasTimeout) {
         JSValue * timeout = opt[@"timeout"];
@@ -52,7 +52,7 @@ static char contextify_sandbox;
     }
 #endif
     JSValue *result = [context evaluateScript:self.code];
-#if USE_TIMEOUTS
+#if USE_PRIVATE_APIS
     if (hasTimeout) {
         JSContextRef jsctx = context.JSGlobalContextRef;
         JSContextGroupRef grp = JSContextGetGroup(jsctx);
@@ -61,7 +61,7 @@ static char contextify_sandbox;
 #endif
     JSValue * e = context.exception;
     if (e) {
-#if USE_TIMEOUTS
+#if USE_PRIVATE_APIS
 	if ([e.toString isEqualToString:@"JavaScript execution terminated."])
 		[context evaluateScript:@"throw Error('Script execution timed out.')"];
 #endif	

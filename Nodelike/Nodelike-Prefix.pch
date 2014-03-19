@@ -8,4 +8,3 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#define USE_TIMEOUTS 1
