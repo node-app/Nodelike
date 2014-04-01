@@ -6,12 +6,12 @@
 
 + (id)binding {
 	return @{
-		@"TTY": [NLBinding makeConstructor:^(NSNumber *fd, NSNumber * readable) {
-				NLTTY * tty = [NLTTY new];
+		@"TTY": [NLBinding makeConstructor:^(NSNumber *fd, NSNumber *readable) {
+				NLTTY *tty = [NLTTY new];
 				[tty TTY:fd readable:readable];
 				return tty;
 			} inContext:JSContext.currentContext],
-		@"guessHandleType": ^(NSNumber*fd){ return @"TTY"; },
+		@"guessHandleType": ^(NSNumber *fd){ return @"TTY"; },
 		};
 }
 

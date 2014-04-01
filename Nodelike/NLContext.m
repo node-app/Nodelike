@@ -61,6 +61,8 @@
         @"moduleLoadList": @[]
     } inContext:context];
     
+    JSValue __weak *weakProcess = process;
+    
     process[@"resourcePath"]      = NLContext.resourcePath;
     process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
     // used in Hrtime() below
@@ -101,14 +103,14 @@
     
     process[@"_setupAsyncListener"] = ^(JSValue *o, JSValue *r, JSValue *l, JSValue *u) {
         [NLAsync setupAsyncListener:o run:r load:l unload:u];
-        [process deleteProperty:@"_setupAsyncListener"];
+        [weakProcess deleteProperty:@"_setupAsyncListener"];
     };
 
-    process[@"_setupNextTick"]      = ^(JSValue *obj, JSValue *func) {
+    process[@"_setupNextTick"] = ^(JSValue *obj, JSValue *func) {
         assert(obj.isObject);
         assert(func.isObject);
         [NLAsync setupNextTick:obj func:func];
-        [process deleteProperty:@"_setupNextTick"];
+        [weakProcess deleteProperty:@"_setupNextTick"];
     };
     
     id getNeedImmediateCallback = ^{

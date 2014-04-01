@@ -28,7 +28,7 @@
             NLContext *ctx = [NLContext new];
             [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
             [ctx evaluateScript:[NLNatives source:obj]];
-            JSValue * e = ctx.exception;
+            JSValue *e = ctx.exception;
             if (e)
                 XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
             [NLContext runEventLoopSync];

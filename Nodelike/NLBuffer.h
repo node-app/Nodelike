@@ -15,7 +15,7 @@
 
 + (JSValue *)constructorInContext:(JSContext *)context;
 
-+ (JSValue *)useData:(const char *)data ofLength:(int)len inContext:(JSContext *)ctx;
++ (JSValue *)useData:(const char *)data ofLength:(size_t)len inContext:(JSContext *)ctx;
 
 + (int)getLength:(JSValue *)buffer;
 + (char *)getData:(JSValue *)buffer ofSize:(int)size;

@@ -110,7 +110,7 @@ static int utf8clen (const char *s, int rem) {
 
 #pragma mark Core Write
 
-static size_t writeBuffer (NLEncoding enc, const char *data, JSValue *target, int off, int len) {
+static size_t writeBuffer (NLEncoding enc, const char *data, JSValue *target, int off, size_t len) {
     
     JSContextRef context = target.context.JSGlobalContextRef;
     JSObjectRef  buffer  = JSValueToObject(context, target.JSValueRef, nil);
@@ -294,8 +294,8 @@ static JSChar *sliceBufferHex (JSChar *data, JSValue *target, int off, int len) 
     return [ctx nodelikeGet:&env_buffer_constructor];
 }
 
-+ (JSValue *)useData:(const char *)data ofLength:(int)len inContext:(JSContext *)ctx {
-    JSValue *buffer = [[self constructorInContext:ctx] constructWithArguments:@[[NSNumber numberWithInt:len]]];
++ (JSValue *)useData:(const char *)data ofLength:(size_t)len inContext:(JSContext *)ctx {
+    JSValue *buffer = [[self constructorInContext:ctx] constructWithArguments:@[[NSNumber numberWithInt:(int)len]]];
     writeBuffer(NLEncodingVerbatim, data, buffer, 0, len);
     free((void *)data);
     return buffer;

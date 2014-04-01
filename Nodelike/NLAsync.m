@@ -213,7 +213,7 @@ enum AsyncFlags {
 + (void)initTickObject:(JSValue *)object {
     JSContextRef context = object.context.JSGlobalContextRef;
     for (int i = 0; i< kTickFieldsCount; i++) {
-        JSObjectSetPropertyAtIndex(context, object.JSValueRef, i, JSValueMakeNumber(context, 0), nil);
+        JSObjectSetPropertyAtIndex(context, JSValueToObject(context, object.JSValueRef, nil), i, JSValueMakeNumber(context, 0), nil);
     }
 }
 
@@ -235,17 +235,17 @@ enum AsyncFlags {
 
 + (int)tickFieldsCount:(JSValue *)object {
     JSContextRef context = object.context.JSGlobalContextRef;
-    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, object.JSValueRef, kTickFieldsCount, nil), nil);
+    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, JSValueToObject(context, object.JSValueRef, nil), kTickFieldsCount, nil), nil);
 }
 
 + (uint32_t)tickIndex:(JSValue *)object {
     JSContextRef context = object.context.JSGlobalContextRef;
-    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, object.JSValueRef, kTickIndex, nil), nil);
+    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, JSValueToObject(context, object.JSValueRef, nil), kTickIndex, nil), nil);
 }
 
 + (uint32_t)tickLength:(JSValue *)object {
     JSContextRef context = object.context.JSGlobalContextRef;
-    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, object.JSValueRef, kTickLength, nil), nil);
+    return JSValueToNumber(context, JSObjectGetPropertyAtIndex(context, JSValueToObject(context, object.JSValueRef, nil), kTickLength, nil), nil);
 }
 
 + (bool)inTick:(JSValue *)object {
@@ -258,7 +258,7 @@ enum AsyncFlags {
 
 + (void)setTickIndex:(JSValue *)object index:(uint32_t)index {
     JSContextRef context = object.context.JSGlobalContextRef;
-    JSObjectSetPropertyAtIndex(context, object.JSValueRef, kTickIndex, JSValueMakeNumber(context, index), nil);
+    JSObjectSetPropertyAtIndex(context, JSValueToObject(context, object.JSValueRef, nil), kTickIndex, JSValueMakeNumber(context, index), nil);
 }
 
 + (void)setInTick:(JSValue *)object on:(bool)on {

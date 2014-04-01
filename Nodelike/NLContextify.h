@@ -15,7 +15,7 @@
 
 JSExportAs(runInContext, - (JSValue *)runInContext:(JSValue *)context options:(JSValue *)options);
 - (JSValue *)runInThisContext:(JSValue *)options;
-JSExportAs(runInNewContext, - (JSValue *)runInNewContext:(JSValue *)sandbox options:(JSValue*)options);
+JSExportAs(runInNewContext, - (JSValue *)runInNewContext:(JSValue *)sandbox options:(JSValue *)options);
 
 @end
 
