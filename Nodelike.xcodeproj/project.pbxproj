@@ -2411,7 +2411,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nodelike Tests/Nodelike Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"USE_PRIVATE_APIS=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Nodelike Tests/Nodelike Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -2428,7 +2431,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nodelike Tests/Nodelike Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"USE_PRIVATE_APIS=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Nodelike Tests/Nodelike Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -2507,7 +2513,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"USE_PRIVATE_APIS=1",
+					"USE_PRIVATE_APIS=0",
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -2545,7 +2551,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"USE_PRIVATE_APIS=1",
+					"USE_PRIVATE_APIS=0",
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
