@@ -19,14 +19,12 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var common = require('../common');
+// Flags: --stack-size=128
+
 var assert = require('assert');
 var vm = require('vm');
+var s = 'vm.runInNewContext(s, { vm: vm, s: s })';
 
-var ctx = vm.createContext();
-ctx.window = ctx;
-var thisVal = vm.runInContext('this;', ctx);
-/* XXX
-var windowVal = vm.runInContext('window;', ctx);
-assert.strictEqual(thisVal, windowVal);
-*/
+assert.throws(function() {
+  eval(s);
+}, /Maximum call stack/);

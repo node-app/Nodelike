@@ -15,7 +15,7 @@
 
 JSExportAs(runInContext, - (JSValue *)runInContext:(JSValue *)context options:(JSValue *)options);
 - (JSValue *)runInThisContext:(JSValue *)options;
-- (JSValue *)runInNewContext:(JSValue *)options;
+JSExportAs(runInNewContext, - (JSValue *)runInNewContext:(JSValue *)sandbox options:(JSValue*)options);
 
 @end
 
@@ -23,8 +23,5 @@ JSExportAs(runInContext, - (JSValue *)runInContext:(JSValue *)context options:(J
 
 @property NSString *code;
 @property JSValue  *options;
-
-+ (BOOL)isContext:(JSValue *)obj;
-+ (JSValue *)makeContext:(JSValue *)sandbox;
 
 @end

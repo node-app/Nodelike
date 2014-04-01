@@ -151,6 +151,15 @@
 		B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */; };
 		B5A79B2E189E501300CC04D6 /* NLContextify.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2D189E501200CC04D6 /* NLContextify.m */; };
 		B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
+		DA1A549718D8BAEE009302E0 /* Read_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549618D8BAEE009302E0 /* Read_Tests.m */; };
+		DA1A549918D8BC2F009302E0 /* Console_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549818D8BC2F009302E0 /* Console_Tests.m */; };
+		DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09718B94E2E005E6403 /* test-console-instance.js */; };
+		DA1A549B18D8BC4F009302E0 /* test-console-not-call-toString.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09818B94E2E005E6403 /* test-console-not-call-toString.js */; };
+		DA1A549C18D8BC4F009302E0 /* test-console.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09918B94E2E005E6403 /* test-console.js */; };
+		DA49974818D899480078FCB1 /* NLTTY.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49974718D899480078FCB1 /* NLTTY.m */; };
+		DA49974E18D8B4C00078FCB1 /* test-vm-infinite-recursion.js in Resources */ = {isa = PBXBuildFile; fileRef = DA49974C18D8B4300078FCB1 /* test-vm-infinite-recursion.js */; };
+		DA8453C518D858B700839549 /* Assert_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8453C418D858B700839549 /* Assert_Tests.m */; };
+		DA9EAADA18D85B8D00EF824F /* test-assert.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E03A18B94E2E005E6403 /* test-assert.js */; };
 		DABE969718D67A3100BA2966 /* Write_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DABE969618D67A3100BA2966 /* Write_Tests.m */; };
 		DABE969818D67BB000BA2966 /* test-util-debug.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BB18B94E33005E6403 /* test-util-debug.js */; };
 		DABE969918D67BB000BA2966 /* test-util-format.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E2BC18B94E33005E6403 /* test-util-format.js */; };
@@ -1038,6 +1047,12 @@
 		B5C5B247181319550091FDE8 /* NLSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
+		DA1A549618D8BAEE009302E0 /* Read_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Read_Tests.m; sourceTree = "<group>"; };
+		DA1A549818D8BC2F009302E0 /* Console_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console_Tests.m; sourceTree = "<group>"; };
+		DA49974618D899400078FCB1 /* NLTTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTTY.h; sourceTree = "<group>"; };
+		DA49974718D899480078FCB1 /* NLTTY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLTTY.m; sourceTree = "<group>"; };
+		DA49974C18D8B4300078FCB1 /* test-vm-infinite-recursion.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-vm-infinite-recursion.js"; sourceTree = "<group>"; };
+		DA8453C418D858B700839549 /* Assert_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assert_Tests.m; sourceTree = "<group>"; };
 		DABE969618D67A3100BA2966 /* Write_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Write_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1209,7 +1224,10 @@
 				B544C74B18BEC37A00925D24 /* Resource_Tests.m */,
 				B50A490218C3882700656FA3 /* NextTick_Tests.m */,
 				B557E52918CB80F9006E75AC /* EventEmitter_Tests.m */,
+				DA8453C418D858B700839549 /* Assert_Tests.m */,
 				DABE969618D67A3100BA2966 /* Write_Tests.m */,
+				DA1A549618D8BAEE009302E0 /* Read_Tests.m */,
+				DA1A549818D8BC2F009302E0 /* Console_Tests.m */,
 				B541731D1894341600B6636B /* Supporting Files */,
 			);
 			path = "Nodelike Tests";
@@ -1899,6 +1917,7 @@
 				B572E2C818B94E33005E6403 /* test-vm-function-declaration.js */,
 				B572E2C918B94E33005E6403 /* test-vm-global-define-property.js */,
 				B572E2CA18B94E33005E6403 /* test-vm-global-identity.js */,
+				DA49974C18D8B4300078FCB1 /* test-vm-infinite-recursion.js */,
 				B572E2CB18B94E33005E6403 /* test-vm-is-context.js */,
 				B572E2CC18B94E33005E6403 /* test-vm-new-script-new-context.js */,
 				B572E2CD18B94E33005E6403 /* test-vm-new-script-this-context.js */,
@@ -1930,6 +1949,8 @@
 		B59EA090180CB587005BF5C1 /* Nodelike */ = {
 			isa = PBXGroup;
 			children = (
+				DA49974718D899480078FCB1 /* NLTTY.m */,
+				DA49974618D899400078FCB1 /* NLTTY.h */,
 				B5A79B29189E4F9400CC04D6 /* NSObject+Nodelike.h */,
 				B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */,
 				B52B9B9118A01D0800492856 /* NLAsync.h */,
@@ -2124,6 +2145,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */,
+				DA1A549B18D8BC4F009302E0 /* test-console-not-call-toString.js in Resources */,
+				DA1A549C18D8BC4F009302E0 /* test-console.js in Resources */,
+				DA49974E18D8B4C00078FCB1 /* test-vm-infinite-recursion.js in Resources */,
+				DA9EAADA18D85B8D00EF824F /* test-assert.js in Resources */,
 				DABE969818D67BB000BA2966 /* test-util-debug.js in Resources */,
 				DABE969918D67BB000BA2966 /* test-util-format.js in Resources */,
 				DABE969A18D67BB000BA2966 /* test-util-inspect.js in Resources */,
@@ -2272,12 +2298,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DABE969718D67A3100BA2966 /* Write_Tests.m in Sources */,
+				DA1A549718D8BAEE009302E0 /* Read_Tests.m in Sources */,
 				B544C74C18BEC37A00925D24 /* Resource_Tests.m in Sources */,
 				B50A490318C3882700656FA3 /* NextTick_Tests.m in Sources */,
 				B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */,
 				B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */,
 				B541732B1894362000B6636B /* NLTimer_Tests.m in Sources */,
+				DA1A549918D8BC2F009302E0 /* Console_Tests.m in Sources */,
 				B557E52F18CB832C006E75AC /* NLTestCase.m in Sources */,
+				DA8453C518D858B700839549 /* Assert_Tests.m in Sources */,
 				B557E52A18CB80F9006E75AC /* EventEmitter_Tests.m in Sources */,
 				B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */,
 			);
@@ -2333,6 +2362,7 @@
 				B5061A3A1815A9B00083AB4B /* NLCares.m in Sources */,
 				B59E5F91181EE3590093A6FF /* NLHandle.m in Sources */,
 				B578842718945E9900EA1A81 /* NLNatives.m in Sources */,
+				DA49974818D899480078FCB1 /* NLTTY.m in Sources */,
 				B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */,
 				B53E6998184672F3004E4EF9 /* NLStream.m in Sources */,
 				B5A79B2E189E501300CC04D6 /* NLContextify.m in Sources */,
@@ -2382,7 +2412,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nodelike Tests/Nodelike Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+					"USE_PRIVATE_APIS=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Nodelike Tests/Nodelike Tests-Info.plist";
@@ -2401,6 +2431,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nodelike Tests/Nodelike Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"USE_PRIVATE_APIS=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "Nodelike Tests/Nodelike Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -2437,10 +2471,7 @@
 				DSTROOT = /tmp/Nodelike.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nodelike/Nodelike-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2453,6 +2484,7 @@
 				DSTROOT = /tmp/Nodelike.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Nodelike/Nodelike-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -2481,6 +2513,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"USE_PRIVATE_APIS=0",
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -2517,6 +2550,10 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"USE_PRIVATE_APIS=0",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

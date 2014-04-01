@@ -46,8 +46,7 @@ var error;
 script = new Script('foo.bar = 5;');
 assert.throws(function () {
   script.runInNewContext();
-}, /not defined/);
-
+}, /Can't find variable/);
 
 hello = 5;
 script = new Script('hello = 2');
@@ -81,7 +80,7 @@ assert.equal(f.a, 2);
 
 assert.throws(function() {
   script.runInNewContext();
-}, /f is not defined/);
+}, /Can't find variable/);
 
 console.error('invalid this');
 assert.throws(function() {

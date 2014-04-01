@@ -14,15 +14,23 @@
 @implementation NLTestCase
 
 - (void)runWithPrefix:(NSString *)prefix {
+	[self runWithPrefix:prefix skipping:nil];
+}
+
+- (void)runWithPrefix:(NSString *)prefix skipping:(NSArray *)bad {
     [NLNatives.modules enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
-        if ([obj hasPrefix:prefix]) {
+    if ([obj hasPrefix:prefix]) {
+	    if ([bad containsObject:obj]) {
+		    NSLog(@"skipping %@", obj);
+		    return;
+	    }
             NSLog(@"running %@", obj);
             NLContext *ctx = [NLContext new];
-            ctx.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
-                XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
-            };
             [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
             [ctx evaluateScript:[NLNatives source:obj]];
+            JSValue * e = ctx.exception;
+            if (e)
+                XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
             [NLContext runEventLoopSync];
             [ctx emitExit];
         }

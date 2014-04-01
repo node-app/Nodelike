@@ -19,14 +19,18 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
+
+
 var common = require('../common');
 var assert = require('assert');
-var vm = require('vm');
 
-var ctx = vm.createContext();
-ctx.window = ctx;
-var thisVal = vm.runInContext('this;', ctx);
-/* XXX
-var windowVal = vm.runInContext('window;', ctx);
-assert.strictEqual(thisVal, windowVal);
-*/
+var func = function() {};
+var toStringCalled = false;
+func.toString = function() {
+  toStringCalled = true;
+};
+
+require('util').inspect(func);
+
+assert.ok(!toStringCalled);

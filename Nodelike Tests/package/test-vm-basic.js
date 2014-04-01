@@ -29,8 +29,7 @@ var result = vm.runInNewContext(
   'foo = "bar"; this.typeofProcess = typeof process; typeof Object;',
   sandbox
 );
-console.log(sandbox.foo);
-console.log(sandbox.typeofProcess);
+
 assert.deepEqual(sandbox, {
   foo: 'bar',
   typeofProcess: 'undefined',
@@ -56,7 +55,7 @@ var result = vm.runInThisContext(
   'vmResult = "foo"; Object.prototype.toString.call(process);'
 );
 assert.strictEqual(global.vmResult, 'foo');
-assert.strictEqual(result, '[object process]');
+assert.strictEqual(result, '[object Object]'); // XXX should be [object process]?
 delete global.vmResult;
 
 // Test 4: vm.runInNewContext

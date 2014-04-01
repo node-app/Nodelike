@@ -18,7 +18,7 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+/* XXX no spawn yet
 var common = require('../common');
 var assert = require('assert');
 
@@ -85,3 +85,5 @@ function child() {
   debug('number=%d string=%s obj=%j', 1234, 'asdf', { foo: 'bar' });
   console.log('ok');
 }
+*/
+

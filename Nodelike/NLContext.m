@@ -47,6 +47,7 @@
 
 #ifdef DEBUG
     context.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
+	ctx.exception = e;
         NSLog(@"EXC: %@; line: %@, stack: %@", e, [e valueForProperty:@"line"], [e valueForProperty:@"stack"]);
     };
 #endif
@@ -62,7 +63,6 @@
     
     process[@"resourcePath"]      = NLContext.resourcePath;
     process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
-    
     // used in Hrtime() below
 #define NANOS_PER_SEC 1000000000
 
@@ -157,18 +157,11 @@
     context[@"COUNTER_HTTP_CLIENT_REQUEST"]         = noop;
     context[@"COUNTER_HTTP_CLIENT_RESPONSE"]        = noop;
     
-    [context evaluateScript:@"Error.captureStackTrace = function (value) { return; };"];
+    [context evaluateScript:@"Error.captureStackTrace = function (e) { e.stack = 'Trace: ' + e.message };"];
     [context evaluateScript:@"Number.isFinite = function (value) { return typeof value === 'number' && isFinite(value); };"];
     
     JSValue *constructor = [context evaluateScript:[NLNatives source:@"node"]];
     [constructor callWithArguments:@[process]];
-    
-    context[@"console"] = @{
-                            @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
-                            @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); },
-                            @"trace": ^{}
-                            };
-    
 }
 
 #if TARGET_OS_IPHONE

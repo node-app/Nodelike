@@ -41,12 +41,6 @@
                <Test
                   Identifier = "Nodelike_Tests/testExample">
                </Test>
-               <Test
-                  Identifier = "Util_Tests">
-               </Test>
-               <Test
-                  Identifier = "VM_Tests">
-               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>

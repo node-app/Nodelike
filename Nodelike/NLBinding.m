@@ -20,6 +20,7 @@
 #import "NLTimer.h"
 #import "NLTCP.h"
 #import "NLUDP.h"
+#import "NLTTY.h"
 #import "NLProcess.h"
 #import "NLHTTPParser.h"
 #import "NLNatives.h"
@@ -39,6 +40,7 @@
                      @"cares_wrap":   NLCares.class,
                      @"tcp_wrap":     NLTCP.class,
                      @"udp_wrap":     NLUDP.class,
+                     @"tty_wrap":     NLTTY.class,
                      @"uv":           NLUV.class,
                      @"process_wrap": NLProcess.class,
                      @"http_parser":  NLHTTPParser.class,

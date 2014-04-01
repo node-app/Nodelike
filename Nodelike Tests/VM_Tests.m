@@ -15,7 +15,11 @@
 @implementation VM_Tests
 
 - (void)testAll {
-    [self runWithPrefix:@"test-vm"];
+    NSMutableArray * bad = [NSMutableArray new];
+#if !USE_PRIVATE_APIS
+    [bad addObject:@"test-vm-timeout"];
+#endif
+    [self runWithPrefix:@"test-vm" skipping:bad];
 }
 
 @end
