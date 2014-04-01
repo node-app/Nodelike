@@ -263,6 +263,7 @@ static JSChar *sliceBufferHex(JSChar *data, JSValue *target, int off, int len) {
 + (JSValue *)useData:(const char *)data ofLength:(int)len inContext:(JSContext *)ctx {
     JSValue *buffer = [[self constructorInContext:ctx] constructWithArguments:@[[NSNumber numberWithInt:len]]];
     writeBuffer(NLEncodingVerbatim, data, buffer, 0, len);
+    free((void *)data);
     return buffer;
 }
 
