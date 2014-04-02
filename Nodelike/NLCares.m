@@ -60,7 +60,7 @@ static int isIP(const char *ip) {
     hints.ai_family = family;
     hints.ai_socktype = SOCK_STREAM;
     
-    int err = uv_getaddrinfo(NLContext.eventLoop,
+    int err = uv_getaddrinfo([NLContext eventLoopInContext:JSContext.currentContext],
                              &wrap->req,
                              afterGetAddrInfo,
                              hostname.UTF8String,

@@ -16,6 +16,7 @@
 char env_buffer_constructor = 0;
 char env_contextify_hidden  = 0;
 char env_process_object     = 0;
+char env_event_loop         = 0;
 
 @implementation NSObject (Nodelike)
 

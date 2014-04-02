@@ -21,7 +21,7 @@ static const unsigned int kOnTimeout = 0;
     JSValue   *timer     = self.constructor;
     timer[@"kOnTimeout"] = [NSNumber numberWithUnsignedInt:kOnTimeout];
     timer[@"now"]        = ^{
-        uv_loop_t *eventLoop = NLContext.eventLoop;
+        uv_loop_t *eventLoop = [NLContext eventLoopInContext:JSContext.currentContext];
         uv_update_time(eventLoop);
         return [NSNumber numberWithDouble:uv_now(eventLoop)];
     };
@@ -30,7 +30,7 @@ static const unsigned int kOnTimeout = 0;
 
 - (id)init {
     self = [super initWithHandle:(uv_handle_t *)&handle inContext:JSContext.currentContext];
-    int r = uv_timer_init(NLContext.eventLoop, &handle);
+    int r = uv_timer_init([NLContext eventLoopInContext:JSContext.currentContext], &handle);
     assert(r == 0);
     return self;
 }

@@ -30,7 +30,7 @@ struct connectWrap {
 
 - (id)initInContext:(JSContext *)context {
     self = [super initWithStream:(uv_stream_t *)&handle inContext:context];
-    int r = uv_tcp_init(NLContext.eventLoop, &handle);
+    int r = uv_tcp_init([NLContext eventLoopInContext:context], &handle);
     assert(r == 0);
     return self;
 }

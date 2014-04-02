@@ -25,7 +25,7 @@
 }
 
 - (void)TTY:(NSNumber *)fd readable:(NSNumber *)readable {
-    int r = uv_tty_init(NLContext.eventLoop, &handle, fd.intValue, readable.intValue);
+    int r = uv_tty_init([NLContext eventLoopInContext:JSContext.currentContext], &handle, fd.intValue, readable.intValue);
     assert(r == 0);
 }
 

@@ -33,7 +33,7 @@ struct sendWrap {
 
 - (id)initInContext:(JSContext *)context {
     self = [super initWithHandle:(uv_handle_t *)&handle inContext:context];
-    int r = uv_udp_init(NLContext.eventLoop, &handle);
+    int r = uv_udp_init([NLContext eventLoopInContext:context], &handle);
     assert(r == 0);
     return self;
 }

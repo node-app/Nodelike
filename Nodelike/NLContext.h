@@ -29,10 +29,10 @@
 + (void)attachToWebView:(UIWebView *)webView;
 #endif
 
-+ (uv_loop_t *)eventLoop;
++ (uv_loop_t *)eventLoopInContext:(JSContext *)context;
 
-+ (void)runEventLoopSync;
-+ (void)runEventLoopAsync;
++ (void)runEventLoopSyncInContext:(JSContext *)context;
++ (void)runEventLoopAsyncInContext:(JSContext *)context;
 
 - (void)runProcessAsyncQueue;
 + (void)runProcessAsyncQueue:(JSContext *)context;

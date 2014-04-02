@@ -43,7 +43,7 @@ static JSValue *Stats = nil;
 #define call(fn, cb, then, ...) \
     do { \
         callback async; \
-        uv_loop_t *loop = NLContext.eventLoop; \
+        uv_loop_t *loop = [NLContext eventLoopInContext:JSContext.currentContext]; \
         uv_fs_t *req = createReq(&async, cb, then); \
         uv_fs_ ## fn(loop, req, __VA_ARGS__, async); \
         return fireReq(req, async); \

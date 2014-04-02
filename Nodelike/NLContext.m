@@ -39,11 +39,14 @@
 
 + (void)attachToContext:(JSContext *)context {
     
+    uv_loop_t *eventLoop = uv_loop_new();
+    [context.virtualMachine nodelikeSet:&env_event_loop toValue:[NSValue valueWithPointer:eventLoop]];
+    
     uv_check_t *immediate_check_handle = malloc(sizeof(uv_check_t));
     uv_idle_t  *immediate_idle_handle  = malloc(sizeof(uv_idle_t));
-    uv_check_init(NLContext.eventLoop, immediate_check_handle);
+    uv_check_init(eventLoop, immediate_check_handle);
     uv_unref((uv_handle_t *)immediate_check_handle);
-    uv_idle_init(NLContext.eventLoop, immediate_idle_handle);
+    uv_idle_init(eventLoop, immediate_idle_handle);
 
 #ifdef DEBUG
     context.exceptionHandler = ^(JSContext *ctx, JSValue *e) {
@@ -174,8 +177,8 @@
 
 #pragma mark - Event Handling
 
-+ (uv_loop_t *)eventLoop {
-    return uv_default_loop();
++ (uv_loop_t *)eventLoopInContext:(JSContext *)context {
+    return ((NSValue *)[context.virtualMachine nodelikeGet:&env_event_loop]).pointerValue;
 }
 
 static dispatch_queue_t dispatchQueue () {
@@ -187,15 +190,15 @@ static dispatch_queue_t dispatchQueue () {
     return queue;
 }
 
-+ (void)runEventLoopSync {
-    dispatch_sync(dispatchQueue(), ^{
-        uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
-    });
++ (void)runEventLoopSyncInContext:(JSContext *)context {
+    //dispatch_sync(dispatchQueue(), ^{
+    uv_run([NLContext eventLoopInContext:context], UV_RUN_DEFAULT);
+    //});
 }
 
-+ (void)runEventLoopAsync {
++ (void)runEventLoopAsyncInContext:(JSContext *)context {
     dispatch_async(dispatchQueue(), ^{
-        uv_run(NLContext.eventLoop, UV_RUN_DEFAULT);
+        uv_run([NLContext eventLoopInContext:context], UV_RUN_DEFAULT);
     });
 }
 

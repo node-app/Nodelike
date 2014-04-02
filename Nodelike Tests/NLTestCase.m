@@ -31,7 +31,7 @@
             JSValue *e = ctx.exception;
             if (e)
                 XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
-            [NLContext runEventLoopSync];
+            [NLContext runEventLoopSyncInContext:ctx];
             [ctx emitExit];
         }
     }];

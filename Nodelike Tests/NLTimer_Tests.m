@@ -30,7 +30,7 @@
         canary = true;
     };
     [ctx evaluateScript:@"require('timers').setTimeout(callback, 0);"];
-    [NLContext runEventLoopAsync];
+    [NLContext runEventLoopAsyncInContext:ctx];
     [NSThread sleepForTimeInterval:0.1f];
     XCTAssertTrue(canary, @"Canary not true immediately after timeout fired.");
 }
@@ -45,7 +45,7 @@
         canary = true;
     };
     [ctx evaluateScript:@"require('timers').setTimeout(callback, 1000);"];
-    [NLContext runEventLoopAsync];
+    [NLContext runEventLoopAsyncInContext:ctx];
     XCTAssertFalse(canary, @"Canary not false immediately after timeout set.");
     [NSThread sleepForTimeInterval:1.1f];
     XCTAssertTrue(canary, @"Canary not true immediately after timeout fired.");
