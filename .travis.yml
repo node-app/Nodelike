@@ -6,9 +6,16 @@ notifications:
   flowdock: 803358c5edc46b50866b8e588b4c374b
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/fa1f3636231a3e89e7fd
+    - https://webhooks.gitter.im/e/fa1f3636231a3e89e7fd
     on_success: change
     on_failure: always
     on_start: false
   hipchat:
     secure: PWUImx7gQYERVm1kpBaZGOE+fLVmL4WnOSuDJSTBMaD0X1kL+6wo+qPJVCrp49IIa2GWEOkCDS0ZJaaEmN1mifct4HMSkgzD9W8PbvPFc0GryYvuZEos5j+932a8opV5GnysDMeF2szZZIog2D6dePZpA9CSJLDvTwK8OxjBLDQ=
+env:
+  global:
+    secure: JKBqjntMCwpZfgbUwM3dDHINkQDsJLGiPltpSSN29n4V8FRffMEegEss/ApeSL6xme2om6oRWNuJ8FJKgWR73DbUw9A58Sd0g5kNvVvLAC6lSeCoeeFWAmcx3agYakoVByWNFhTfHRqoCE8N0fwFc7wxki4zV8WzAg/6QXm0vXA=
+before_script:
+  - sudo easy_install cpp-coveralls
+after_success:
+  - ./coveralls.rb --extension m --exclude-folder "Nodelike Tests"
