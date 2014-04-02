@@ -184,15 +184,6 @@
 		B5FA64F818EBA548009A490B /* test-stream2-unpipe-leak.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27018B94E32005E6403 /* test-stream2-unpipe-leak.js */; };
 		B5FA64F918EBA548009A490B /* test-stream2-writable.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27118B94E32005E6403 /* test-stream2-writable.js */; };
 		B5FA64FC18EBA569009A490B /* Stream_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA64FB18EBA569009A490B /* Stream_Tests.m */; };
-		B5FA651018EBAB9E009A490B /* test-asynclistener-error-multiple-handled.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA64FD18EBAB6F009A490B /* test-asynclistener-error-multiple-handled.js */; };
-		B5FA651118EBAB9E009A490B /* test-asynclistener-error-multiple-mix.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA64FE18EBAB6F009A490B /* test-asynclistener-error-multiple-mix.js */; };
-		B5FA651218EBAB9E009A490B /* test-asynclistener-error-multiple-unhandled.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA64FF18EBAB6F009A490B /* test-asynclistener-error-multiple-unhandled.js */; };
-		B5FA651418EBAB9E009A490B /* test-asynclistener-error-throw-in-after.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650118EBAB6F009A490B /* test-asynclistener-error-throw-in-after.js */; };
-		B5FA651518EBAB9E009A490B /* test-asynclistener-error-throw-in-before-multiple.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650218EBAB6F009A490B /* test-asynclistener-error-throw-in-before-multiple.js */; };
-		B5FA651618EBAB9E009A490B /* test-asynclistener-error-throw-in-before.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650318EBAB6F009A490B /* test-asynclistener-error-throw-in-before.js */; };
-		B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650518EBAB6F009A490B /* test-asynclistener-error.js */; };
-		B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650618EBAB6F009A490B /* test-asynclistener-multi-timeout.js */; };
-		B5FA652418EBABBF009A490B /* AsyncListener_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */; };
 		DA1A549718D8BAEE009302E0 /* Read_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549618D8BAEE009302E0 /* Read_Tests.m */; };
 		DA1A549918D8BC2F009302E0 /* Console_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549818D8BC2F009302E0 /* Console_Tests.m */; };
 		DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09718B94E2E005E6403 /* test-console-instance.js */; };
@@ -376,6 +367,24 @@
 		B572E03818B94E2E005E6403 /* simple.status */ = {isa = PBXFileReference; lastKnownFileType = text; path = simple.status; sourceTree = "<group>"; };
 		B572E03918B94E2E005E6403 /* test-abort-fatal-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-abort-fatal-error.js"; sourceTree = "<group>"; };
 		B572E03A18B94E2E005E6403 /* test-assert.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-assert.js"; sourceTree = "<group>"; };
+		B572E03B18B94E2E005E6403 /* test-asynclistener-error-multiple-handled.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-multiple-handled.js"; sourceTree = "<group>"; };
+		B572E03C18B94E2E005E6403 /* test-asynclistener-error-multiple-mix.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-multiple-mix.js"; sourceTree = "<group>"; };
+		B572E03D18B94E2E005E6403 /* test-asynclistener-error-multiple-unhandled.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-multiple-unhandled.js"; sourceTree = "<group>"; };
+		B572E03E18B94E2E005E6403 /* test-asynclistener-error-net.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-net.js"; sourceTree = "<group>"; };
+		B572E03F18B94E2E005E6403 /* test-asynclistener-error-throw-in-after.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-after.js"; sourceTree = "<group>"; };
+		B572E04018B94E2E005E6403 /* test-asynclistener-error-throw-in-before-multiple.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-before-multiple.js"; sourceTree = "<group>"; };
+		B572E04118B94E2E005E6403 /* test-asynclistener-error-throw-in-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-before.js"; sourceTree = "<group>"; };
+		B572E04218B94E2E005E6403 /* test-asynclistener-error-throw-in-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-error.js"; sourceTree = "<group>"; };
+		B572E04318B94E2E005E6403 /* test-asynclistener-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error.js"; sourceTree = "<group>"; };
+		B572E04418B94E2E005E6403 /* test-asynclistener-multi-timeout.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-multi-timeout.js"; sourceTree = "<group>"; };
+		B572E04518B94E2E005E6403 /* test-asynclistener-remove-add-in-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-add-in-before.js"; sourceTree = "<group>"; };
+		B572E04618B94E2E005E6403 /* test-asynclistener-remove-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-before.js"; sourceTree = "<group>"; };
+		B572E04718B94E2E005E6403 /* test-asynclistener-remove-in-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-in-before.js"; sourceTree = "<group>"; };
+		B572E04818B94E2E005E6403 /* test-asynclistener-remove-inflight-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-inflight-error.js"; sourceTree = "<group>"; };
+		B572E04918B94E2E005E6403 /* test-asynclistener-remove-inflight.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-inflight.js"; sourceTree = "<group>"; };
+		B572E04A18B94E2E005E6403 /* test-asynclistener-run-error-once.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-run-error-once.js"; sourceTree = "<group>"; };
+		B572E04B18B94E2E005E6403 /* test-asynclistener-run-inst-once.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-run-inst-once.js"; sourceTree = "<group>"; };
+		B572E04C18B94E2E005E6403 /* test-asynclistener-throw-before-infinite-recursion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-throw-before-infinite-recursion.js"; sourceTree = "<group>"; };
 		B572E04D18B94E2E005E6403 /* test-asynclistener.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener.js"; sourceTree = "<group>"; };
 		B572E04E18B94E2E005E6403 /* test-bad-unicode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-bad-unicode.js"; sourceTree = "<group>"; };
 		B572E04F18B94E2E005E6403 /* test-buffer-ascii.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-buffer-ascii.js"; sourceTree = "<group>"; };
@@ -1111,25 +1120,6 @@
 		B5FA64AB18EBA507009A490B /* test-stream2-writable.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-writable.js"; sourceTree = "<group>"; };
 		B5FA64AC18EBA507009A490B /* test-stream3-pause-then-read.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream3-pause-then-read.js"; sourceTree = "<group>"; };
 		B5FA64FB18EBA569009A490B /* Stream_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stream_Tests.m; sourceTree = "<group>"; };
-		B5FA64FD18EBAB6F009A490B /* test-asynclistener-error-multiple-handled.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-multiple-handled.js"; sourceTree = "<group>"; };
-		B5FA64FE18EBAB6F009A490B /* test-asynclistener-error-multiple-mix.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-multiple-mix.js"; sourceTree = "<group>"; };
-		B5FA64FF18EBAB6F009A490B /* test-asynclistener-error-multiple-unhandled.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-multiple-unhandled.js"; sourceTree = "<group>"; };
-		B5FA650018EBAB6F009A490B /* test-asynclistener-error-net.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-net.js"; sourceTree = "<group>"; };
-		B5FA650118EBAB6F009A490B /* test-asynclistener-error-throw-in-after.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-after.js"; sourceTree = "<group>"; };
-		B5FA650218EBAB6F009A490B /* test-asynclistener-error-throw-in-before-multiple.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-before-multiple.js"; sourceTree = "<group>"; };
-		B5FA650318EBAB6F009A490B /* test-asynclistener-error-throw-in-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-before.js"; sourceTree = "<group>"; };
-		B5FA650418EBAB6F009A490B /* test-asynclistener-error-throw-in-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error-throw-in-error.js"; sourceTree = "<group>"; };
-		B5FA650518EBAB6F009A490B /* test-asynclistener-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-error.js"; sourceTree = "<group>"; };
-		B5FA650618EBAB6F009A490B /* test-asynclistener-multi-timeout.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-multi-timeout.js"; sourceTree = "<group>"; };
-		B5FA650718EBAB6F009A490B /* test-asynclistener-remove-add-in-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-add-in-before.js"; sourceTree = "<group>"; };
-		B5FA650818EBAB6F009A490B /* test-asynclistener-remove-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-before.js"; sourceTree = "<group>"; };
-		B5FA650918EBAB6F009A490B /* test-asynclistener-remove-in-before.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-in-before.js"; sourceTree = "<group>"; };
-		B5FA650A18EBAB6F009A490B /* test-asynclistener-remove-inflight-error.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-inflight-error.js"; sourceTree = "<group>"; };
-		B5FA650B18EBAB6F009A490B /* test-asynclistener-remove-inflight.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-remove-inflight.js"; sourceTree = "<group>"; };
-		B5FA650C18EBAB6F009A490B /* test-asynclistener-run-error-once.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-run-error-once.js"; sourceTree = "<group>"; };
-		B5FA650D18EBAB6F009A490B /* test-asynclistener-run-inst-once.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-run-inst-once.js"; sourceTree = "<group>"; };
-		B5FA650E18EBAB6F009A490B /* test-asynclistener-throw-before-infinite-recursion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-throw-before-infinite-recursion.js"; sourceTree = "<group>"; };
-		B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncListener_Tests.m; sourceTree = "<group>"; };
 		DA1A549618D8BAEE009302E0 /* Read_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Read_Tests.m; sourceTree = "<group>"; };
 		DA1A549818D8BC2F009302E0 /* Console_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console_Tests.m; sourceTree = "<group>"; };
 		DA49974618D899400078FCB1 /* NLTTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTTY.h; sourceTree = "<group>"; };
@@ -1303,7 +1293,6 @@
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B572DDB418B55F01005E6403 /* Util_Tests.m */,
 				B572DDCA18B90F16005E6403 /* Buffer_Tests.m */,
-				B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */,
 				B5FA64FB18EBA569009A490B /* Stream_Tests.m */,
 				B572DDBA18B56331005E6403 /* VM_Tests.m */,
 				B544C74B18BEC37A00925D24 /* Resource_Tests.m */,
@@ -1346,24 +1335,24 @@
 				B572E03818B94E2E005E6403 /* simple.status */,
 				B572E03918B94E2E005E6403 /* test-abort-fatal-error.js */,
 				B572E03A18B94E2E005E6403 /* test-assert.js */,
-				B5FA64FD18EBAB6F009A490B /* test-asynclistener-error-multiple-handled.js */,
-				B5FA64FE18EBAB6F009A490B /* test-asynclistener-error-multiple-mix.js */,
-				B5FA64FF18EBAB6F009A490B /* test-asynclistener-error-multiple-unhandled.js */,
-				B5FA650018EBAB6F009A490B /* test-asynclistener-error-net.js */,
-				B5FA650118EBAB6F009A490B /* test-asynclistener-error-throw-in-after.js */,
-				B5FA650218EBAB6F009A490B /* test-asynclistener-error-throw-in-before-multiple.js */,
-				B5FA650318EBAB6F009A490B /* test-asynclistener-error-throw-in-before.js */,
-				B5FA650418EBAB6F009A490B /* test-asynclistener-error-throw-in-error.js */,
-				B5FA650518EBAB6F009A490B /* test-asynclistener-error.js */,
-				B5FA650618EBAB6F009A490B /* test-asynclistener-multi-timeout.js */,
-				B5FA650718EBAB6F009A490B /* test-asynclistener-remove-add-in-before.js */,
-				B5FA650818EBAB6F009A490B /* test-asynclistener-remove-before.js */,
-				B5FA650918EBAB6F009A490B /* test-asynclistener-remove-in-before.js */,
-				B5FA650A18EBAB6F009A490B /* test-asynclistener-remove-inflight-error.js */,
-				B5FA650B18EBAB6F009A490B /* test-asynclistener-remove-inflight.js */,
-				B5FA650C18EBAB6F009A490B /* test-asynclistener-run-error-once.js */,
-				B5FA650D18EBAB6F009A490B /* test-asynclistener-run-inst-once.js */,
-				B5FA650E18EBAB6F009A490B /* test-asynclistener-throw-before-infinite-recursion.js */,
+				B572E03B18B94E2E005E6403 /* test-asynclistener-error-multiple-handled.js */,
+				B572E03C18B94E2E005E6403 /* test-asynclistener-error-multiple-mix.js */,
+				B572E03D18B94E2E005E6403 /* test-asynclistener-error-multiple-unhandled.js */,
+				B572E03E18B94E2E005E6403 /* test-asynclistener-error-net.js */,
+				B572E03F18B94E2E005E6403 /* test-asynclistener-error-throw-in-after.js */,
+				B572E04018B94E2E005E6403 /* test-asynclistener-error-throw-in-before-multiple.js */,
+				B572E04118B94E2E005E6403 /* test-asynclistener-error-throw-in-before.js */,
+				B572E04218B94E2E005E6403 /* test-asynclistener-error-throw-in-error.js */,
+				B572E04318B94E2E005E6403 /* test-asynclistener-error.js */,
+				B572E04418B94E2E005E6403 /* test-asynclistener-multi-timeout.js */,
+				B572E04518B94E2E005E6403 /* test-asynclistener-remove-add-in-before.js */,
+				B572E04618B94E2E005E6403 /* test-asynclistener-remove-before.js */,
+				B572E04718B94E2E005E6403 /* test-asynclistener-remove-in-before.js */,
+				B572E04818B94E2E005E6403 /* test-asynclistener-remove-inflight-error.js */,
+				B572E04918B94E2E005E6403 /* test-asynclistener-remove-inflight.js */,
+				B572E04A18B94E2E005E6403 /* test-asynclistener-run-error-once.js */,
+				B572E04B18B94E2E005E6403 /* test-asynclistener-run-inst-once.js */,
+				B572E04C18B94E2E005E6403 /* test-asynclistener-throw-before-infinite-recursion.js */,
 				B572E04D18B94E2E005E6403 /* test-asynclistener.js */,
 				B572E04E18B94E2E005E6403 /* test-bad-unicode.js */,
 				B572E04F18B94E2E005E6403 /* test-buffer-ascii.js */,
@@ -2269,14 +2258,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5FA651018EBAB9E009A490B /* test-asynclistener-error-multiple-handled.js in Resources */,
-				B5FA651118EBAB9E009A490B /* test-asynclistener-error-multiple-mix.js in Resources */,
-				B5FA651218EBAB9E009A490B /* test-asynclistener-error-multiple-unhandled.js in Resources */,
-				B5FA651418EBAB9E009A490B /* test-asynclistener-error-throw-in-after.js in Resources */,
-				B5FA651518EBAB9E009A490B /* test-asynclistener-error-throw-in-before-multiple.js in Resources */,
-				B5FA651618EBAB9E009A490B /* test-asynclistener-error-throw-in-before.js in Resources */,
-				B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */,
-				B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */,
 				B5FA64D518EBA548009A490B /* test-stream-big-push.js in Resources */,
 				B5FA64D618EBA548009A490B /* test-stream-end-paused.js in Resources */,
 				B5FA64D718EBA548009A490B /* test-stream-pipe-after-end.js in Resources */,
@@ -2471,7 +2452,6 @@
 				DA1A549918D8BC2F009302E0 /* Console_Tests.m in Sources */,
 				B557E52F18CB832C006E75AC /* NLTestCase.m in Sources */,
 				DA8453C518D858B700839549 /* Assert_Tests.m in Sources */,
-				B5FA652418EBABBF009A490B /* AsyncListener_Tests.m in Sources */,
 				B557E52A18CB80F9006E75AC /* EventEmitter_Tests.m in Sources */,
 				B5FA64FC18EBA569009A490B /* Stream_Tests.m in Sources */,
 				B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */,
