@@ -37,4 +37,11 @@
     }];
 }
 
++ (void)tearDown {
+    [super tearDown];
+    // flush coverage data
+    extern void __gcov_flush(void);
+    __gcov_flush();
+}
+
 @end
