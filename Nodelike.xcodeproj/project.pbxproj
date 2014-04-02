@@ -151,6 +151,39 @@
 		B5A79B2B189E4F9400CC04D6 /* NSObject+Nodelike.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2A189E4F9400CC04D6 /* NSObject+Nodelike.m */; };
 		B5A79B2E189E501300CC04D6 /* NLContextify.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A79B2D189E501200CC04D6 /* NLContextify.m */; };
 		B5C5B249181319550091FDE8 /* NLSmalloc.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5B248181319550091FDE8 /* NLSmalloc.m */; };
+		B5FA64D518EBA548009A490B /* test-stream-big-push.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E24D18B94E31005E6403 /* test-stream-big-push.js */; };
+		B5FA64D618EBA548009A490B /* test-stream-end-paused.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E24E18B94E31005E6403 /* test-stream-end-paused.js */; };
+		B5FA64D718EBA548009A490B /* test-stream-pipe-after-end.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E24F18B94E31005E6403 /* test-stream-pipe-after-end.js */; };
+		B5FA64D818EBA548009A490B /* test-stream-pipe-cleanup.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25018B94E31005E6403 /* test-stream-pipe-cleanup.js */; };
+		B5FA64D918EBA548009A490B /* test-stream-pipe-error-handling.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25118B94E31005E6403 /* test-stream-pipe-error-handling.js */; };
+		B5FA64DA18EBA548009A490B /* test-stream-pipe-event.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25218B94E31005E6403 /* test-stream-pipe-event.js */; };
+		B5FA64DB18EBA548009A490B /* test-stream-push-order.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25318B94E32005E6403 /* test-stream-push-order.js */; };
+		B5FA64DC18EBA548009A490B /* test-stream-push-strings.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25418B94E32005E6403 /* test-stream-push-strings.js */; };
+		B5FA64DD18EBA548009A490B /* test-stream-readable-event.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25518B94E32005E6403 /* test-stream-readable-event.js */; };
+		B5FA64DE18EBA548009A490B /* test-stream-readable-flow-recursion.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25618B94E32005E6403 /* test-stream-readable-flow-recursion.js */; };
+		B5FA64DF18EBA548009A490B /* test-stream-transform-objectmode-falsey-value.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25718B94E32005E6403 /* test-stream-transform-objectmode-falsey-value.js */; };
+		B5FA64E018EBA548009A490B /* test-stream-unshift-empty-chunk.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25818B94E32005E6403 /* test-stream-unshift-empty-chunk.js */; };
+		B5FA64E118EBA548009A490B /* test-stream-unshift-read-race.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25918B94E32005E6403 /* test-stream-unshift-read-race.js */; };
+		B5FA64E218EBA548009A490B /* test-stream-writable-decoded-encoding.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25A18B94E32005E6403 /* test-stream-writable-decoded-encoding.js */; };
+		B5FA64E318EBA548009A490B /* test-stream-writev.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25B18B94E32005E6403 /* test-stream-writev.js */; };
+		B5FA64E518EBA548009A490B /* test-stream2-finish-pipe.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25D18B94E32005E6403 /* test-stream2-finish-pipe.js */; };
+		B5FA64E818EBA548009A490B /* test-stream2-large-read-stall.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26018B94E32005E6403 /* test-stream2-large-read-stall.js */; };
+		B5FA64E918EBA548009A490B /* test-stream2-objects.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26118B94E32005E6403 /* test-stream2-objects.js */; };
+		B5FA64EA18EBA548009A490B /* test-stream2-pipe-error-handling.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26218B94E32005E6403 /* test-stream2-pipe-error-handling.js */; };
+		B5FA64EB18EBA548009A490B /* test-stream2-pipe-error-once-listener.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26318B94E32005E6403 /* test-stream2-pipe-error-once-listener.js */; };
+		B5FA64EC18EBA548009A490B /* test-stream2-push.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26418B94E32005E6403 /* test-stream2-push.js */; };
+		B5FA64ED18EBA548009A490B /* test-stream2-read-sync-stack.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26518B94E32005E6403 /* test-stream2-read-sync-stack.js */; };
+		B5FA64EE18EBA548009A490B /* test-stream2-readable-empty-buffer-no-eof.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26618B94E32005E6403 /* test-stream2-readable-empty-buffer-no-eof.js */; };
+		B5FA64EF18EBA548009A490B /* test-stream2-readable-from-list.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26718B94E32005E6403 /* test-stream2-readable-from-list.js */; };
+		B5FA64F018EBA548009A490B /* test-stream2-readable-legacy-drain.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26818B94E32005E6403 /* test-stream2-readable-legacy-drain.js */; };
+		B5FA64F118EBA548009A490B /* test-stream2-readable-non-empty-end.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26918B94E32005E6403 /* test-stream2-readable-non-empty-end.js */; };
+		B5FA64F218EBA548009A490B /* test-stream2-readable-wrap-empty.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26A18B94E32005E6403 /* test-stream2-readable-wrap-empty.js */; };
+		B5FA64F318EBA548009A490B /* test-stream2-readable-wrap.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26B18B94E32005E6403 /* test-stream2-readable-wrap.js */; };
+		B5FA64F418EBA548009A490B /* test-stream2-set-encoding.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26C18B94E32005E6403 /* test-stream2-set-encoding.js */; };
+		B5FA64F618EBA548009A490B /* test-stream2-transform.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E26E18B94E32005E6403 /* test-stream2-transform.js */; };
+		B5FA64F818EBA548009A490B /* test-stream2-unpipe-leak.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27018B94E32005E6403 /* test-stream2-unpipe-leak.js */; };
+		B5FA64F918EBA548009A490B /* test-stream2-writable.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27118B94E32005E6403 /* test-stream2-writable.js */; };
+		B5FA64FC18EBA569009A490B /* Stream_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA64FB18EBA569009A490B /* Stream_Tests.m */; };
 		DA1A549718D8BAEE009302E0 /* Read_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549618D8BAEE009302E0 /* Read_Tests.m */; };
 		DA1A549918D8BC2F009302E0 /* Console_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549818D8BC2F009302E0 /* Console_Tests.m */; };
 		DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09718B94E2E005E6403 /* test-console-instance.js */; };
@@ -1047,6 +1080,46 @@
 		B5C5B247181319550091FDE8 /* NLSmalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLSmalloc.h; sourceTree = "<group>"; };
 		B5C5B248181319550091FDE8 /* NLSmalloc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLSmalloc.m; sourceTree = "<group>"; };
 		B5C5B24A181321300091FDE8 /* NLBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLBuffer.h; sourceTree = "<group>"; };
+		B5FA648618EBA506009A490B /* test-stream-big-packet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-big-packet.js"; sourceTree = "<group>"; };
+		B5FA648718EBA506009A490B /* test-stream-big-push.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-big-push.js"; sourceTree = "<group>"; };
+		B5FA648818EBA506009A490B /* test-stream-end-paused.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-end-paused.js"; sourceTree = "<group>"; };
+		B5FA648918EBA506009A490B /* test-stream-pipe-after-end.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-pipe-after-end.js"; sourceTree = "<group>"; };
+		B5FA648A18EBA506009A490B /* test-stream-pipe-cleanup.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-pipe-cleanup.js"; sourceTree = "<group>"; };
+		B5FA648B18EBA506009A490B /* test-stream-pipe-error-handling.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-pipe-error-handling.js"; sourceTree = "<group>"; };
+		B5FA648C18EBA506009A490B /* test-stream-pipe-event.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-pipe-event.js"; sourceTree = "<group>"; };
+		B5FA648D18EBA506009A490B /* test-stream-push-order.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-push-order.js"; sourceTree = "<group>"; };
+		B5FA648E18EBA506009A490B /* test-stream-push-strings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-push-strings.js"; sourceTree = "<group>"; };
+		B5FA648F18EBA506009A490B /* test-stream-readable-event.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-readable-event.js"; sourceTree = "<group>"; };
+		B5FA649018EBA506009A490B /* test-stream-readable-flow-recursion.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-readable-flow-recursion.js"; sourceTree = "<group>"; };
+		B5FA649118EBA506009A490B /* test-stream-transform-objectmode-falsey-value.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-transform-objectmode-falsey-value.js"; sourceTree = "<group>"; };
+		B5FA649218EBA506009A490B /* test-stream-unshift-empty-chunk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-unshift-empty-chunk.js"; sourceTree = "<group>"; };
+		B5FA649318EBA506009A490B /* test-stream-unshift-read-race.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-unshift-read-race.js"; sourceTree = "<group>"; };
+		B5FA649418EBA506009A490B /* test-stream-writable-decoded-encoding.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-writable-decoded-encoding.js"; sourceTree = "<group>"; };
+		B5FA649518EBA506009A490B /* test-stream-writev.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream-writev.js"; sourceTree = "<group>"; };
+		B5FA649618EBA506009A490B /* test-stream2-compatibility.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-compatibility.js"; sourceTree = "<group>"; };
+		B5FA649718EBA506009A490B /* test-stream2-finish-pipe.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-finish-pipe.js"; sourceTree = "<group>"; };
+		B5FA649818EBA506009A490B /* test-stream2-fs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-fs.js"; sourceTree = "<group>"; };
+		B5FA649918EBA506009A490B /* test-stream2-httpclient-response-end.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-httpclient-response-end.js"; sourceTree = "<group>"; };
+		B5FA649A18EBA506009A490B /* test-stream2-large-read-stall.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-large-read-stall.js"; sourceTree = "<group>"; };
+		B5FA649B18EBA506009A490B /* test-stream2-objects.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-objects.js"; sourceTree = "<group>"; };
+		B5FA649C18EBA506009A490B /* test-stream2-pipe-error-handling.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-pipe-error-handling.js"; sourceTree = "<group>"; };
+		B5FA649D18EBA506009A490B /* test-stream2-pipe-error-once-listener.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-pipe-error-once-listener.js"; sourceTree = "<group>"; };
+		B5FA649E18EBA506009A490B /* test-stream2-push.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-push.js"; sourceTree = "<group>"; };
+		B5FA649F18EBA506009A490B /* test-stream2-read-sync-stack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-read-sync-stack.js"; sourceTree = "<group>"; };
+		B5FA64A018EBA506009A490B /* test-stream2-readable-empty-buffer-no-eof.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-readable-empty-buffer-no-eof.js"; sourceTree = "<group>"; };
+		B5FA64A118EBA506009A490B /* test-stream2-readable-from-list.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-readable-from-list.js"; sourceTree = "<group>"; };
+		B5FA64A218EBA506009A490B /* test-stream2-readable-legacy-drain.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-readable-legacy-drain.js"; sourceTree = "<group>"; };
+		B5FA64A318EBA506009A490B /* test-stream2-readable-non-empty-end.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-readable-non-empty-end.js"; sourceTree = "<group>"; };
+		B5FA64A418EBA506009A490B /* test-stream2-readable-wrap-empty.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-readable-wrap-empty.js"; sourceTree = "<group>"; };
+		B5FA64A518EBA506009A490B /* test-stream2-readable-wrap.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-readable-wrap.js"; sourceTree = "<group>"; };
+		B5FA64A618EBA507009A490B /* test-stream2-set-encoding.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-set-encoding.js"; sourceTree = "<group>"; };
+		B5FA64A718EBA507009A490B /* test-stream2-stderr-sync.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-stderr-sync.js"; sourceTree = "<group>"; };
+		B5FA64A818EBA507009A490B /* test-stream2-transform.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-transform.js"; sourceTree = "<group>"; };
+		B5FA64A918EBA507009A490B /* test-stream2-unpipe-drain.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-unpipe-drain.js"; sourceTree = "<group>"; };
+		B5FA64AA18EBA507009A490B /* test-stream2-unpipe-leak.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-unpipe-leak.js"; sourceTree = "<group>"; };
+		B5FA64AB18EBA507009A490B /* test-stream2-writable.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream2-writable.js"; sourceTree = "<group>"; };
+		B5FA64AC18EBA507009A490B /* test-stream3-pause-then-read.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-stream3-pause-then-read.js"; sourceTree = "<group>"; };
+		B5FA64FB18EBA569009A490B /* Stream_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stream_Tests.m; sourceTree = "<group>"; };
 		DA1A549618D8BAEE009302E0 /* Read_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Read_Tests.m; sourceTree = "<group>"; };
 		DA1A549818D8BC2F009302E0 /* Console_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console_Tests.m; sourceTree = "<group>"; };
 		DA49974618D899400078FCB1 /* NLTTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTTY.h; sourceTree = "<group>"; };
@@ -1220,6 +1293,7 @@
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B572DDB418B55F01005E6403 /* Util_Tests.m */,
 				B572DDCA18B90F16005E6403 /* Buffer_Tests.m */,
+				B5FA64FB18EBA569009A490B /* Stream_Tests.m */,
 				B572DDBA18B56331005E6403 /* VM_Tests.m */,
 				B544C74B18BEC37A00925D24 /* Resource_Tests.m */,
 				B50A490218C3882700656FA3 /* NextTick_Tests.m */,
@@ -1837,6 +1911,45 @@
 				B572E27818B94E32005E6403 /* test-tcp-wrap-connect.js */,
 				B572E27918B94E32005E6403 /* test-tcp-wrap-listen.js */,
 				B572E27A18B94E32005E6403 /* test-tcp-wrap.js */,
+				B5FA648618EBA506009A490B /* test-stream-big-packet.js */,
+				B5FA648718EBA506009A490B /* test-stream-big-push.js */,
+				B5FA648818EBA506009A490B /* test-stream-end-paused.js */,
+				B5FA648918EBA506009A490B /* test-stream-pipe-after-end.js */,
+				B5FA648A18EBA506009A490B /* test-stream-pipe-cleanup.js */,
+				B5FA648B18EBA506009A490B /* test-stream-pipe-error-handling.js */,
+				B5FA648C18EBA506009A490B /* test-stream-pipe-event.js */,
+				B5FA648D18EBA506009A490B /* test-stream-push-order.js */,
+				B5FA648E18EBA506009A490B /* test-stream-push-strings.js */,
+				B5FA648F18EBA506009A490B /* test-stream-readable-event.js */,
+				B5FA649018EBA506009A490B /* test-stream-readable-flow-recursion.js */,
+				B5FA649118EBA506009A490B /* test-stream-transform-objectmode-falsey-value.js */,
+				B5FA649218EBA506009A490B /* test-stream-unshift-empty-chunk.js */,
+				B5FA649318EBA506009A490B /* test-stream-unshift-read-race.js */,
+				B5FA649418EBA506009A490B /* test-stream-writable-decoded-encoding.js */,
+				B5FA649518EBA506009A490B /* test-stream-writev.js */,
+				B5FA649618EBA506009A490B /* test-stream2-compatibility.js */,
+				B5FA649718EBA506009A490B /* test-stream2-finish-pipe.js */,
+				B5FA649818EBA506009A490B /* test-stream2-fs.js */,
+				B5FA649918EBA506009A490B /* test-stream2-httpclient-response-end.js */,
+				B5FA649A18EBA506009A490B /* test-stream2-large-read-stall.js */,
+				B5FA649B18EBA506009A490B /* test-stream2-objects.js */,
+				B5FA649C18EBA506009A490B /* test-stream2-pipe-error-handling.js */,
+				B5FA649D18EBA506009A490B /* test-stream2-pipe-error-once-listener.js */,
+				B5FA649E18EBA506009A490B /* test-stream2-push.js */,
+				B5FA649F18EBA506009A490B /* test-stream2-read-sync-stack.js */,
+				B5FA64A018EBA506009A490B /* test-stream2-readable-empty-buffer-no-eof.js */,
+				B5FA64A118EBA506009A490B /* test-stream2-readable-from-list.js */,
+				B5FA64A218EBA506009A490B /* test-stream2-readable-legacy-drain.js */,
+				B5FA64A318EBA506009A490B /* test-stream2-readable-non-empty-end.js */,
+				B5FA64A418EBA506009A490B /* test-stream2-readable-wrap-empty.js */,
+				B5FA64A518EBA506009A490B /* test-stream2-readable-wrap.js */,
+				B5FA64A618EBA507009A490B /* test-stream2-set-encoding.js */,
+				B5FA64A718EBA507009A490B /* test-stream2-stderr-sync.js */,
+				B5FA64A818EBA507009A490B /* test-stream2-transform.js */,
+				B5FA64A918EBA507009A490B /* test-stream2-unpipe-drain.js */,
+				B5FA64AA18EBA507009A490B /* test-stream2-unpipe-leak.js */,
+				B5FA64AB18EBA507009A490B /* test-stream2-writable.js */,
+				B5FA64AC18EBA507009A490B /* test-stream3-pause-then-read.js */,
 				B572E27B18B94E32005E6403 /* test-timers-first-fire.js */,
 				B572E27C18B94E32005E6403 /* test-timers-immediate-queue.js */,
 				B572E27D18B94E32005E6403 /* test-timers-immediate.js */,
@@ -2145,6 +2258,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FA64D518EBA548009A490B /* test-stream-big-push.js in Resources */,
+				B5FA64D618EBA548009A490B /* test-stream-end-paused.js in Resources */,
+				B5FA64D718EBA548009A490B /* test-stream-pipe-after-end.js in Resources */,
+				B5FA64D818EBA548009A490B /* test-stream-pipe-cleanup.js in Resources */,
+				B5FA64D918EBA548009A490B /* test-stream-pipe-error-handling.js in Resources */,
+				B5FA64DA18EBA548009A490B /* test-stream-pipe-event.js in Resources */,
+				B5FA64DB18EBA548009A490B /* test-stream-push-order.js in Resources */,
+				B5FA64DC18EBA548009A490B /* test-stream-push-strings.js in Resources */,
+				B5FA64DD18EBA548009A490B /* test-stream-readable-event.js in Resources */,
+				B5FA64DE18EBA548009A490B /* test-stream-readable-flow-recursion.js in Resources */,
+				B5FA64DF18EBA548009A490B /* test-stream-transform-objectmode-falsey-value.js in Resources */,
+				B5FA64E018EBA548009A490B /* test-stream-unshift-empty-chunk.js in Resources */,
+				B5FA64E118EBA548009A490B /* test-stream-unshift-read-race.js in Resources */,
+				B5FA64E218EBA548009A490B /* test-stream-writable-decoded-encoding.js in Resources */,
+				B5FA64E318EBA548009A490B /* test-stream-writev.js in Resources */,
+				B5FA64E518EBA548009A490B /* test-stream2-finish-pipe.js in Resources */,
+				B5FA64E818EBA548009A490B /* test-stream2-large-read-stall.js in Resources */,
+				B5FA64E918EBA548009A490B /* test-stream2-objects.js in Resources */,
+				B5FA64EA18EBA548009A490B /* test-stream2-pipe-error-handling.js in Resources */,
+				B5FA64EB18EBA548009A490B /* test-stream2-pipe-error-once-listener.js in Resources */,
+				B5FA64EC18EBA548009A490B /* test-stream2-push.js in Resources */,
+				B5FA64ED18EBA548009A490B /* test-stream2-read-sync-stack.js in Resources */,
+				B5FA64EE18EBA548009A490B /* test-stream2-readable-empty-buffer-no-eof.js in Resources */,
+				B5FA64EF18EBA548009A490B /* test-stream2-readable-from-list.js in Resources */,
+				B5FA64F018EBA548009A490B /* test-stream2-readable-legacy-drain.js in Resources */,
+				B5FA64F118EBA548009A490B /* test-stream2-readable-non-empty-end.js in Resources */,
+				B5FA64F218EBA548009A490B /* test-stream2-readable-wrap-empty.js in Resources */,
+				B5FA64F318EBA548009A490B /* test-stream2-readable-wrap.js in Resources */,
+				B5FA64F418EBA548009A490B /* test-stream2-set-encoding.js in Resources */,
+				B5FA64F618EBA548009A490B /* test-stream2-transform.js in Resources */,
+				B5FA64F818EBA548009A490B /* test-stream2-unpipe-leak.js in Resources */,
+				B5FA64F918EBA548009A490B /* test-stream2-writable.js in Resources */,
 				DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */,
 				DA1A549B18D8BC4F009302E0 /* test-console-not-call-toString.js in Resources */,
 				DA1A549C18D8BC4F009302E0 /* test-console.js in Resources */,
@@ -2308,6 +2453,7 @@
 				B557E52F18CB832C006E75AC /* NLTestCase.m in Sources */,
 				DA8453C518D858B700839549 /* Assert_Tests.m in Sources */,
 				B557E52A18CB80F9006E75AC /* EventEmitter_Tests.m in Sources */,
+				B5FA64FC18EBA569009A490B /* Stream_Tests.m in Sources */,
 				B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

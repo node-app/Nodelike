@@ -26,7 +26,7 @@
 	    }
             NSLog(@"running %@", obj);
             NLContext *ctx = [NLContext new];
-            [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module === '../common' ? 'test-common' : module); });"];
+            [ctx evaluateScript:@"require_ = require; require = (function (module) { return require_(module.substr(0,9) === '../common' ? 'test-common' : module); });"];
             [ctx evaluateScript:[NLNatives source:obj]];
             JSValue *e = ctx.exception;
             if (e)
