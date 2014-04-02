@@ -193,6 +193,10 @@
 		B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650518EBAB6F009A490B /* test-asynclistener-error.js */; };
 		B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650618EBAB6F009A490B /* test-asynclistener-multi-timeout.js */; };
 		B5FA652418EBABBF009A490B /* AsyncListener_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */; };
+		B5FA652A18EC6FB3009A490B /* Net_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA652918EC6FB3009A490B /* Net_Tests.m */; };
+		B5FA652B18EC6FC6009A490B /* test-net-isip.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1CF18B94E30005E6403 /* test-net-isip.js */; };
+		B5FA652C18EC70E0009A490B /* test-net-end-without-connect.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1CD18B94E30005E6403 /* test-net-end-without-connect.js */; };
+		B5FA652D18EC7187009A490B /* test-net-server-unref.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E1E018B94E30005E6403 /* test-net-server-unref.js */; };
 		DA1A549718D8BAEE009302E0 /* Read_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549618D8BAEE009302E0 /* Read_Tests.m */; };
 		DA1A549918D8BC2F009302E0 /* Console_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1A549818D8BC2F009302E0 /* Console_Tests.m */; };
 		DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E09718B94E2E005E6403 /* test-console-instance.js */; };
@@ -1130,6 +1134,7 @@
 		B5FA650D18EBAB6F009A490B /* test-asynclistener-run-inst-once.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-run-inst-once.js"; sourceTree = "<group>"; };
 		B5FA650E18EBAB6F009A490B /* test-asynclistener-throw-before-infinite-recursion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "test-asynclistener-throw-before-infinite-recursion.js"; sourceTree = "<group>"; };
 		B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncListener_Tests.m; sourceTree = "<group>"; };
+		B5FA652918EC6FB3009A490B /* Net_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Net_Tests.m; sourceTree = "<group>"; };
 		DA1A549618D8BAEE009302E0 /* Read_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Read_Tests.m; sourceTree = "<group>"; };
 		DA1A549818D8BC2F009302E0 /* Console_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Console_Tests.m; sourceTree = "<group>"; };
 		DA49974618D899400078FCB1 /* NLTTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTTY.h; sourceTree = "<group>"; };
@@ -1302,6 +1307,7 @@
 				B557E52E18CB832C006E75AC /* NLTestCase.m */,
 				B541732A1894362000B6636B /* NLTimer_Tests.m */,
 				B572DDB418B55F01005E6403 /* Util_Tests.m */,
+				B5FA652918EC6FB3009A490B /* Net_Tests.m */,
 				B572DDCA18B90F16005E6403 /* Buffer_Tests.m */,
 				B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */,
 				B5FA64FB18EBA569009A490B /* Stream_Tests.m */,
@@ -2269,6 +2275,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FA652D18EC7187009A490B /* test-net-server-unref.js in Resources */,
+				B5FA652C18EC70E0009A490B /* test-net-end-without-connect.js in Resources */,
+				B5FA652B18EC6FC6009A490B /* test-net-isip.js in Resources */,
 				B5FA651018EBAB9E009A490B /* test-asynclistener-error-multiple-handled.js in Resources */,
 				B5FA651118EBAB9E009A490B /* test-asynclistener-error-multiple-mix.js in Resources */,
 				B5FA651218EBAB9E009A490B /* test-asynclistener-error-multiple-unhandled.js in Resources */,
@@ -2475,6 +2484,7 @@
 				B557E52A18CB80F9006E75AC /* EventEmitter_Tests.m in Sources */,
 				B5FA64FC18EBA569009A490B /* Stream_Tests.m in Sources */,
 				B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */,
+				B5FA652A18EC6FB3009A490B /* Net_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
