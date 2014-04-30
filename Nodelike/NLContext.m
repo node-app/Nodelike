@@ -92,11 +92,13 @@
     process[@"binding"] = ^(NSString *binding) {
         return [NLBinding bindingForIdentifier:binding];
     };
-    
-    context[@"console"] = @{
-        @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
-        @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
-    };
+
+    if (context[@"console"].isUndefined) {  
+        context[@"console"] = @{
+            @"log": ^ { NSLog(@"stdio: %@", [JSContext currentArguments]); },
+            @"error": ^{ NSLog(@"stderr: %@", [JSContext currentArguments]); }
+        };
+    }
     
     JSValue *constructor = [context evaluateScript:[NLNatives source:@"nodelike"]];
     [constructor callWithArguments:@[process]];
