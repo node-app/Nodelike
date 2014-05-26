@@ -20,6 +20,9 @@ JSExportAs(close, - (JSValue *)close:(NSNumber *)file callback:(JSValue *)cb);
 
 JSExportAs(read, - (JSValue *)read:(NSNumber *)file to:(JSValue *)target offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb);
 
+JSExportAs(writeBuffer, - (JSValue *)writeBufferTo:(NSNumber *)file source:(JSValue *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb );
+JSExportAs(writeString, - (JSValue *)writeStringTo:(NSNumber *)file source:(NSString *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb );
+
 JSExportAs(readdir, - (JSValue *)readDir:(NSString *)path callback:(JSValue *)cb);
 
 JSExportAs(fdatasync, - (JSValue *)fdatasync:(NSNumber *)file callback:(JSValue *)cb);
@@ -49,6 +52,7 @@ JSExportAs(fchown, - (JSValue *)fchown:(NSNumber *)file uid:(NSNumber *)uid gid:
 JSExportAs(stat,  - (JSValue *)stat: (NSString *)path callback:(JSValue *)cb);
 JSExportAs(lstat, - (JSValue *)lstat:(NSString *)path callback:(JSValue *)cb);
 JSExportAs(fstat, - (JSValue *)fstat:(NSNumber *)file callback:(JSValue *)cb);
+
 
 @end
 
