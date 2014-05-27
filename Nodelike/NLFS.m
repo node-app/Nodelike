@@ -52,7 +52,11 @@ static JSValue *Stats = nil;
 
 - (JSValue *)writeStringTo:(NSNumber *)file source:(NSString *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
 
-    char const *buf = [source UTF8String];
+    char * cString = malloc(sizeof(char)*(source.length + 1));
+    strcpy(cString, source.UTF8String);
+    cString[source.length] = '\0';
+    
+    char const *buf = cString;
     
     unsigned int buffer_length = [source length];
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
@@ -65,8 +69,12 @@ static JSValue *Stats = nil;
 - (JSValue *)writeBufferTo:(NSNumber *)file source:(JSValue *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
     
     NSString *src = [source toString];
-    char const *buf = [src UTF8String];
+    char * cString = malloc(sizeof(char)*(src.length + 1));
+    strcpy(cString, src.UTF8String);
+    cString[src.length] = '\0';
     
+    char const *buf = cString;
+        
     unsigned int buffer_length = [source[@"length"] toUInt32];
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
