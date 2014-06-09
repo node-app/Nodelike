@@ -68,17 +68,20 @@ static JSValue *Stats = nil;
 
 - (JSValue *)writeBufferTo:(NSNumber *)file source:(JSValue *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
     
-    NSString *src = [source toString];
-    char * cString = malloc(sizeof(char)*(src.length + 1));
-    strcpy(cString, src.UTF8String);
-    cString[src.length] = '\0';
+    //Source must be a Buffer object:
+    NSDictionary *tmp = [source toDictionary];
     
-    char const *buf = cString;
-        
-    unsigned int buffer_length = [source[@"length"] toUInt32];
+    NSUInteger buffer_length = [tmp[@"length"] integerValue];
+    char *bytes = malloc(sizeof(char)*(buffer_length));
+    for (int i = 0; i < buffer_length ; i++) {
+        NSString *idx = [NSString stringWithFormat:@"%d",i];
+        bytes[i] = (char)[tmp[idx] intValue];
+    }
+    
+    char const *buf = (char const *)bytes;
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
-        
+    
     call(write, cb, nil, file.intValue, buf, length, position);
     
 }
