@@ -68,7 +68,12 @@
     
     process[@"resourcePath"]      = NLContext.resourcePath;
     //process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
-    process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/onBoard/node_modules"];
+    
+    NSString *allPaths = [NLContext.resourcePath stringByAppendingString:@"/onBoard"];
+    allPaths = [allPaths stringByAppendingString:@":"]; //Adds a path delimeter
+    allPaths = [allPaths stringByAppendingString:[NLContext.resourcePath stringByAppendingString:@"/onBoard/node_modules"]];
+    process[@"env"][@"NODE_PATH"] = allPaths;
+    
     // used in Hrtime() below
 #define NANOS_PER_SEC 1000000000
 
