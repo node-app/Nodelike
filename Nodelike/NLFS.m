@@ -68,17 +68,22 @@ static JSValue *Stats = nil;
 
 - (JSValue *)writeBufferTo:(NSNumber *)file source:(JSValue *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
     
-    //Source must be a Buffer object:
-    NSDictionary *tmp = [source toDictionary];
-    
-    NSUInteger buffer_length = [tmp[@"length"] integerValue];
-    char *bytes = malloc(sizeof(char)*(buffer_length));
-    for (int i = 0; i < buffer_length ; i++) {
-        NSString *idx = [NSString stringWithFormat:@"%d",i];
-        bytes[i] = (char)[tmp[idx] intValue];
-    }
-    
-    char const *buf = (char const *)bytes;
+//Source must be a Buffer object:
+//    NSDictionary *tmp = [source toDictionary];
+//    
+//    NSUInteger buffer_length = [tmp[@"length"] integerValue];
+//    char *bytes = malloc(sizeof(char)*(buffer_length));
+//    for (int i = 0; i < buffer_length ; i++) {
+//        NSString *idx = [NSString stringWithFormat:@"%d",i];
+//        bytes[i] = (char)[tmp[idx] intValue];
+//    }
+//    
+//    char const *buf = (char const *)bytes;
+	
+	NSUInteger buffer_length = [NLBuffer getLength:source];
+	NSLog(@"Buffer Length: %d",buffer_length);
+	
+	char const *buf = [NLBuffer getData:source ofSize:buffer_length];
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
     unsigned int position = [pos isUndefined] ?             0 : [pos toUInt32];
     
