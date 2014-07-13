@@ -33,6 +33,7 @@
                 XCTFail(@"Context exception thrown: %@; stack: %@", e, [e valueForProperty:@"stack"]);
             [NLContext runEventLoopSyncInContext:ctx];
             [ctx emitExit];
+            [NLContext runEventLoopSyncInContext:ctx];
         }
     }];
 }
