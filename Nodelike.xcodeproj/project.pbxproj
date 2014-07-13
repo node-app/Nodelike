@@ -133,6 +133,9 @@
 		B56E24EB1972255700816FC1 /* test-timers-linked-list.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27E18B94E32005E6403 /* test-timers-linked-list.js */; };
 		B56E24EC1972259800816FC1 /* test-timers-ordering.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27F18B94E32005E6403 /* test-timers-ordering.js */; };
 		B56E24ED197225DF00816FC1 /* test-timers-uncaught-exception.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28118B94E32005E6403 /* test-timers-uncaught-exception.js */; };
+		B56E24F01972284600816FC1 /* test-stream-big-packet.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E24C18B94E31005E6403 /* test-stream-big-packet.js */; };
+		B56E24F11972289F00816FC1 /* test-stream2-compatibility.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E25C18B94E32005E6403 /* test-stream2-compatibility.js */; };
+		B56E24F61972296700816FC1 /* test-stream3-pause-then-read.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA64AC18EBA507009A490B /* test-stream3-pause-then-read.js */; };
 		B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDB418B55F01005E6403 /* Util_Tests.m */; };
 		B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDBA18B56331005E6403 /* VM_Tests.m */; };
 		B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDCA18B90F16005E6403 /* Buffer_Tests.m */; };
@@ -2281,23 +2284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B56E24ED197225DF00816FC1 /* test-timers-uncaught-exception.js in Resources */,
-				B56E24EC1972259800816FC1 /* test-timers-ordering.js in Resources */,
-				B56E24EB1972255700816FC1 /* test-timers-linked-list.js in Resources */,
-				B56E24EA197224FC00816FC1 /* test-timers-unref.js in Resources */,
-				B56E24E9197224D400816FC1 /* test-timers-immediate-queue.js in Resources */,
-				B56E24E81972246700816FC1 /* test-timers-immediate.js in Resources */,
-				B5FA652D18EC7187009A490B /* test-net-server-unref.js in Resources */,
-				B5FA652C18EC70E0009A490B /* test-net-end-without-connect.js in Resources */,
-				B5FA652B18EC6FC6009A490B /* test-net-isip.js in Resources */,
-				B5FA651018EBAB9E009A490B /* test-asynclistener-error-multiple-handled.js in Resources */,
-				B5FA651118EBAB9E009A490B /* test-asynclistener-error-multiple-mix.js in Resources */,
-				B5FA651218EBAB9E009A490B /* test-asynclistener-error-multiple-unhandled.js in Resources */,
-				B5FA651418EBAB9E009A490B /* test-asynclistener-error-throw-in-after.js in Resources */,
-				B5FA651518EBAB9E009A490B /* test-asynclistener-error-throw-in-before-multiple.js in Resources */,
-				B5FA651618EBAB9E009A490B /* test-asynclistener-error-throw-in-before.js in Resources */,
-				B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */,
-				B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */,
+				B56E24F01972284600816FC1 /* test-stream-big-packet.js in Resources */,
 				B5FA64D518EBA548009A490B /* test-stream-big-push.js in Resources */,
 				B5FA64D618EBA548009A490B /* test-stream-end-paused.js in Resources */,
 				B5FA64D718EBA548009A490B /* test-stream-pipe-after-end.js in Resources */,
@@ -2313,6 +2300,7 @@
 				B5FA64E118EBA548009A490B /* test-stream-unshift-read-race.js in Resources */,
 				B5FA64E218EBA548009A490B /* test-stream-writable-decoded-encoding.js in Resources */,
 				B5FA64E318EBA548009A490B /* test-stream-writev.js in Resources */,
+				B56E24F11972289F00816FC1 /* test-stream2-compatibility.js in Resources */,
 				B5FA64E518EBA548009A490B /* test-stream2-finish-pipe.js in Resources */,
 				B5FA64E818EBA548009A490B /* test-stream2-large-read-stall.js in Resources */,
 				B5FA64E918EBA548009A490B /* test-stream2-objects.js in Resources */,
@@ -2330,6 +2318,24 @@
 				B5FA64F618EBA548009A490B /* test-stream2-transform.js in Resources */,
 				B5FA64F818EBA548009A490B /* test-stream2-unpipe-leak.js in Resources */,
 				B5FA64F918EBA548009A490B /* test-stream2-writable.js in Resources */,
+				B56E24F61972296700816FC1 /* test-stream3-pause-then-read.js in Resources */,
+				B56E24ED197225DF00816FC1 /* test-timers-uncaught-exception.js in Resources */,
+				B56E24EC1972259800816FC1 /* test-timers-ordering.js in Resources */,
+				B56E24EB1972255700816FC1 /* test-timers-linked-list.js in Resources */,
+				B56E24EA197224FC00816FC1 /* test-timers-unref.js in Resources */,
+				B56E24E9197224D400816FC1 /* test-timers-immediate-queue.js in Resources */,
+				B56E24E81972246700816FC1 /* test-timers-immediate.js in Resources */,
+				B5FA652D18EC7187009A490B /* test-net-server-unref.js in Resources */,
+				B5FA652C18EC70E0009A490B /* test-net-end-without-connect.js in Resources */,
+				B5FA652B18EC6FC6009A490B /* test-net-isip.js in Resources */,
+				B5FA651018EBAB9E009A490B /* test-asynclistener-error-multiple-handled.js in Resources */,
+				B5FA651118EBAB9E009A490B /* test-asynclistener-error-multiple-mix.js in Resources */,
+				B5FA651218EBAB9E009A490B /* test-asynclistener-error-multiple-unhandled.js in Resources */,
+				B5FA651418EBAB9E009A490B /* test-asynclistener-error-throw-in-after.js in Resources */,
+				B5FA651518EBAB9E009A490B /* test-asynclistener-error-throw-in-before-multiple.js in Resources */,
+				B5FA651618EBAB9E009A490B /* test-asynclistener-error-throw-in-before.js in Resources */,
+				B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */,
+				B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */,
 				DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */,
 				DA1A549B18D8BC4F009302E0 /* test-console-not-call-toString.js in Resources */,
 				DA1A549C18D8BC4F009302E0 /* test-console.js in Resources */,
