@@ -127,6 +127,12 @@
 		B557E52F18CB832C006E75AC /* NLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B557E52E18CB832C006E75AC /* NLTestCase.m */; };
 		B56DEFB6187DBFA700FF1D8A /* http_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFA8187DBFA700FF1D8A /* http_parser.c */; };
 		B56DEFBE187DC18100FF1D8A /* NLHTTPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B56DEFBD187DC18100FF1D8A /* NLHTTPParser.m */; };
+		B56E24E81972246700816FC1 /* test-timers-immediate.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27D18B94E32005E6403 /* test-timers-immediate.js */; };
+		B56E24E9197224D400816FC1 /* test-timers-immediate-queue.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27C18B94E32005E6403 /* test-timers-immediate-queue.js */; };
+		B56E24EA197224FC00816FC1 /* test-timers-unref.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28218B94E32005E6403 /* test-timers-unref.js */; };
+		B56E24EB1972255700816FC1 /* test-timers-linked-list.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27E18B94E32005E6403 /* test-timers-linked-list.js */; };
+		B56E24EC1972259800816FC1 /* test-timers-ordering.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E27F18B94E32005E6403 /* test-timers-ordering.js */; };
+		B56E24ED197225DF00816FC1 /* test-timers-uncaught-exception.js in Resources */ = {isa = PBXBuildFile; fileRef = B572E28118B94E32005E6403 /* test-timers-uncaught-exception.js */; };
 		B572DDB518B55F01005E6403 /* Util_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDB418B55F01005E6403 /* Util_Tests.m */; };
 		B572DDBB18B56331005E6403 /* VM_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDBA18B56331005E6403 /* VM_Tests.m */; };
 		B572DDCB18B90F16005E6403 /* Buffer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B572DDCA18B90F16005E6403 /* Buffer_Tests.m */; };
@@ -2275,6 +2281,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56E24ED197225DF00816FC1 /* test-timers-uncaught-exception.js in Resources */,
+				B56E24EC1972259800816FC1 /* test-timers-ordering.js in Resources */,
+				B56E24EB1972255700816FC1 /* test-timers-linked-list.js in Resources */,
+				B56E24EA197224FC00816FC1 /* test-timers-unref.js in Resources */,
+				B56E24E9197224D400816FC1 /* test-timers-immediate-queue.js in Resources */,
+				B56E24E81972246700816FC1 /* test-timers-immediate.js in Resources */,
 				B5FA652D18EC7187009A490B /* test-net-server-unref.js in Resources */,
 				B5FA652C18EC70E0009A490B /* test-net-end-without-connect.js in Resources */,
 				B5FA652B18EC6FC6009A490B /* test-net-isip.js in Resources */,
