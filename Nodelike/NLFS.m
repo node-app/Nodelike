@@ -81,7 +81,6 @@ static JSValue *Stats = nil;
 //    char const *buf = (char const *)bytes;
 	
 	NSUInteger buffer_length = [NLBuffer getLength:source];
-	NSLog(@"Buffer Length: %d",buffer_length);
 	
 	char const *buf = [NLBuffer getData:source ofSize:buffer_length];
     unsigned int length   = [len isUndefined] ? buffer_length : [len toUInt32];
