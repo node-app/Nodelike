@@ -67,19 +67,7 @@ static JSValue *Stats = nil;
 }
 
 - (JSValue *)writeBufferTo:(NSNumber *)file source:(JSValue *)source offset:(JSValue *)off length:(JSValue *)len pos:(JSValue *)pos callback:(JSValue *)cb {
-    
-//Source must be a Buffer object:
-//    NSDictionary *tmp = [source toDictionary];
-//    
-//    NSUInteger buffer_length = [tmp[@"length"] integerValue];
-//    char *bytes = malloc(sizeof(char)*(buffer_length));
-//    for (int i = 0; i < buffer_length ; i++) {
-//        NSString *idx = [NSString stringWithFormat:@"%d",i];
-//        bytes[i] = (char)[tmp[idx] intValue];
-//    }
-//    
-//    char const *buf = (char const *)bytes;
-	
+    	
 	NSUInteger buffer_length = [NLBuffer getLength:source];
 	
 	char const *buf = [NLBuffer getData:source ofSize:buffer_length];
@@ -206,6 +194,10 @@ static JSValue *buildStatsObject(const uv_stat_t *s, JSValue *_Stats) {
 
 - (JSValue *)fstat:(longlived NSNumber *)file callback:(JSValue *)cb {
     call(fstat, cb, nil, file.intValue);
+}
+
+- (JSValue *)utimes:(longlived NSString *)path atime:(JSValue *)atime mtime:(JSValue *)mtime callback:(JSValue *)cb {
+	call(utime, cb, nil, path.UTF8String, (double)[atime toDouble]/1000, (double)[mtime toDouble]/1000);
 }
 
 struct data {

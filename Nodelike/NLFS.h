@@ -53,6 +53,7 @@ JSExportAs(stat,  - (JSValue *)stat: (NSString *)path callback:(JSValue *)cb);
 JSExportAs(lstat, - (JSValue *)lstat:(NSString *)path callback:(JSValue *)cb);
 JSExportAs(fstat, - (JSValue *)fstat:(NSNumber *)file callback:(JSValue *)cb);
 
+JSExportAs(utimes,  - (JSValue *)utimes: (NSString *)path atime:(JSValue *)atime mtime:(JSValue *)mtime callback:(JSValue *)cb);
 
 @end
 
