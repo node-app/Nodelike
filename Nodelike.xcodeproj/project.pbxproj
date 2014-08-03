@@ -199,7 +199,6 @@
 		B5FA651418EBAB9E009A490B /* test-asynclistener-error-throw-in-after.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650118EBAB6F009A490B /* test-asynclistener-error-throw-in-after.js */; };
 		B5FA651518EBAB9E009A490B /* test-asynclistener-error-throw-in-before-multiple.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650218EBAB6F009A490B /* test-asynclistener-error-throw-in-before-multiple.js */; };
 		B5FA651618EBAB9E009A490B /* test-asynclistener-error-throw-in-before.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650318EBAB6F009A490B /* test-asynclistener-error-throw-in-before.js */; };
-		B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650518EBAB6F009A490B /* test-asynclistener-error.js */; };
 		B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */ = {isa = PBXBuildFile; fileRef = B5FA650618EBAB6F009A490B /* test-asynclistener-multi-timeout.js */; };
 		B5FA652418EBABBF009A490B /* AsyncListener_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA652318EBABBF009A490B /* AsyncListener_Tests.m */; };
 		B5FA652A18EC6FB3009A490B /* Net_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FA652918EC6FB3009A490B /* Net_Tests.m */; };
@@ -2334,7 +2333,6 @@
 				B5FA651418EBAB9E009A490B /* test-asynclistener-error-throw-in-after.js in Resources */,
 				B5FA651518EBAB9E009A490B /* test-asynclistener-error-throw-in-before-multiple.js in Resources */,
 				B5FA651618EBAB9E009A490B /* test-asynclistener-error-throw-in-before.js in Resources */,
-				B5FA651818EBAB9E009A490B /* test-asynclistener-error.js in Resources */,
 				B5FA651918EBAB9E009A490B /* test-asynclistener-multi-timeout.js in Resources */,
 				DA1A549A18D8BC4F009302E0 /* test-console-instance.js in Resources */,
 				DA1A549B18D8BC4F009302E0 /* test-console-not-call-toString.js in Resources */,
