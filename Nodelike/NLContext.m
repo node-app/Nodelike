@@ -23,12 +23,6 @@
 
 #pragma mark - JSContext
 
-- (id)init {
-    self = [super init];
-    [NLContext attachToContext:self];
-    return self;
-}
-
 - (id)initWithVirtualMachine:(JSVirtualMachine *)virtualMachine {
     self = [super initWithVirtualMachine:virtualMachine];
     [NLContext attachToContext:self];
