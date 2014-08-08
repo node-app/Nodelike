@@ -69,9 +69,9 @@
     process[@"resourcePath"]      = NLContext.resourcePath;
     //process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
     
-    NSString *allPaths = [NLContext.resourcePath stringByAppendingString:@"/onBoard"];
+    NSString *allPaths = [NLContext.resourcePath stringByAppendingString:@"/client"];
     allPaths = [allPaths stringByAppendingString:@":"]; //Adds a path delimeter
-    allPaths = [allPaths stringByAppendingString:[NLContext.resourcePath stringByAppendingString:@"/onBoard/node_modules"]];
+    allPaths = [allPaths stringByAppendingString:[NLContext.resourcePath stringByAppendingString:@"/client/node_modules"]];
     process[@"env"][@"NODE_PATH"] = allPaths;
     
     // used in Hrtime() below
