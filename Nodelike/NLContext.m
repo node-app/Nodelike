@@ -93,6 +93,10 @@
         kill(pid.intValue, sig.intValue);
     };
     
+    process[@"_rawDebug"] = ^(NSString *info) {
+        NSLog (@"RAW DEBUG: %@s", info);
+    };
+  
     process[@"binding"] = ^(NSString *binding) {
         return [NLBinding bindingForIdentifier:binding];
     };
