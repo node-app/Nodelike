@@ -31,10 +31,8 @@
             JSValue *e = ctx.exception;
             if (e)
                 XCTFail(@"%@: Context exception thrown: %@; stack: %@", obj, e, [e valueForProperty:@"stack"]);
-            [NLContext runProcessAsyncQueue:ctx];
             [NLContext runEventLoopSyncInContext:ctx];
             [ctx emitExit];
-            [NLContext runProcessAsyncQueue:ctx];
             [NLContext runEventLoopSyncInContext:ctx];
         }
     }];
