@@ -59,6 +59,16 @@ Apache Cordova is available for multiple platforms, but when focussing on the iO
 - `punycode`
 - `assert`
 
+## Installation with CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C. See the ["Getting Started" guide for more information](https://github.com/AFNetworking/AFNetworking/wiki/Getting-Started-with-AFNetworking).
+
+### Podfile
+
+```ruby
+pod 'Nodelike', :git => 'https://github.com/node-app/Nodelike.git', :branch => 'stable', :submodules => true
+```
+
 ## How to compile
 
 You most likely want to use the stable brach, by `git checkout stable`.
