@@ -1,3 +1,5 @@
+# Important: This project is no longer maintained. The code is still available, but please don't regard it as anything but a hack. Please do not open new support tickets.
+
 # Nodelike [![Build Status](https://travis-ci.org/node-app/Nodelike.png?branch=master)](https://travis-ci.org/node-app/Nodelike) [![Coverage Status](https://coveralls.io/repos/node-app/Nodelike/badge.png?branch=master)](https://coveralls.io/r/node-app/Nodelike?branch=master) [![Gitter chat](https://badges.gitter.im/node-app/Nodelike.png)](https://gitter.im/node-app/Nodelike)
 
 _Nodelike_ the core framework of the _Node.app_ project. The _Node.app_ project has the goal to implement a roughly Node.JS-compatible interface using JavaScriptCore.framework on iOS 7 and OS X Mavericks.
