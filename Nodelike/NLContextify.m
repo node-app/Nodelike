@@ -76,7 +76,7 @@ static char contextify_sandbox;
     if (!context.isObject)
         return [context.context evaluateScript:@"throw TypeError('contextifiedSandbox argument must be an object.');"];
     
-    NSLog(@"run: %@ %@", context[@"_contextifyHidden"], self.code);
+    //NSLog(@"run: %@ %@", context[@"_contextifyHidden"], self.code);
     
     JSContext *ctx = [context[@"_contextifyHidden"] toObjectOfClass:JSContext.class];
     

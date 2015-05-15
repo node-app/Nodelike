@@ -64,7 +64,13 @@
     JSValue __weak *weakProcess = process;
     
     process[@"resourcePath"]      = NLContext.resourcePath;
-    process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
+    //process[@"env"][@"NODE_PATH"] = [NLContext.resourcePath stringByAppendingString:@"/node_modules"];
+    
+    NSString *allPaths = [NLContext.resourcePath stringByAppendingString:@"/client"];
+    allPaths = [allPaths stringByAppendingString:@":"]; //Adds a path delimeter
+    allPaths = [allPaths stringByAppendingString:[NLContext.resourcePath stringByAppendingString:@"/client/node_modules"]];
+    process[@"env"][@"NODE_PATH"] = allPaths;
+    
     // used in Hrtime() below
 #define NANOS_PER_SEC 1000000000
 
